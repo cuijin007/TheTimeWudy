@@ -263,6 +263,7 @@ namespace TimeMDev
             this.InitListView();
             string[] showBuffer = new string[5];
             ItemsCollect = new List<ListViewItem>();
+            ListViewItem[] itemsCollect2 = new ListViewItem[listSingleSentence.Count];
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
             {
                
@@ -275,7 +276,9 @@ namespace TimeMDev
                 showBuffer[4] = "0";
                 //this.listView1.Items.Add(new ListViewItem(showBuffer));
                 ItemsCollect.Add(new ListViewItem(showBuffer));
+                //itemsCollect2[i-1] = new ListViewItem(showBuffer);
             }
+           // this.listView1.Items.AddRange(itemsCollect2);
             this.listView1.VirtualListSize = ItemsCollect.Count;
             this.listView1.VirtualMode = true;
             this.listView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(listView1_RetrieveVirtualItem);
@@ -349,6 +352,15 @@ namespace TimeMDev
         {
             CCHandle.HandleCCLongitudinal(this.timeLineReadWrite.GetListSingleSentence());
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.listView1.VirtualListSize--;
+            List<ListViewItem> items=new List<ListViewItem>();
+            items.Add(ItemsCollect[0]);
+            this.ItemsCollect.Remove(ItemsCollect[0]);
+            this.listView1.Invalidate();
         }
     }
 }
