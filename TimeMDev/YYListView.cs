@@ -16,19 +16,21 @@ namespace TimeMDev
         public Brush Plural;
         public Brush OtherSelected;
         public Brush SeletedLineColor = Brushes.Blue;
+        public List<ListViewItem> yyItems = new List<ListViewItem>();
         int itemHeight=1;
         YYListViewColumnSorter yyListViewColumnSorter = new YYListViewColumnSorter();
+        YYListViewColumnSorterVirtual yyListViewColumnSorterVirtual = new YYListViewColumnSorterVirtual();
         private System.ComponentModel.IContainer components;
        public int selectedLine;
         public int SortStyle
        {
-           get { return yyListViewColumnSorter.SortSytle; }
-           set { this.yyListViewColumnSorter.SortSytle = value; }
+           get { return yyListViewColumnSorterVirtual.SortSytle; }
+           set { this.yyListViewColumnSorterVirtual.SortSytle = value; }
        }
        public int ColumnToSort
        {
-           get { return yyListViewColumnSorter.SortColumn; }
-           set { this.yyListViewColumnSorter.SortColumn = value; }
+           get { return yyListViewColumnSorterVirtual.SortColumn; }
+           set { this.yyListViewColumnSorterVirtual.SortColumn = value; }
        }
        public SortOrder Order
        {
@@ -45,6 +47,13 @@ namespace TimeMDev
             this.Plural = Brushes.White;
             this.OtherSelected = Brushes.DarkGreen;
             this.ListViewItemSorter = yyListViewColumnSorter;
+
+            this.VirtualMode = true;
+            this.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(YYListView_RetrieveVirtualItem);
+            //双缓冲
+            SetStyle(ControlStyles.DoubleBuffer |ControlStyles.OptimizedDoubleBuffer |ControlStyles.AllPaintingInWmPaint, true);
+
+            UpdateStyles(); 
         }
         protected override void OnDrawColumnHeader(DrawListViewColumnHeaderEventArgs e)
         {
@@ -169,7 +178,36 @@ namespace TimeMDev
         {
             this.SuspendLayout();
             this.ResumeLayout(false);
-
         }
+
+        void YYListView_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            if (this.yyItems == null || this.yyItems.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                e.Item = this.yyItems[e.ItemIndex];
+                if (e.ItemIndex == this.yyItems.Count)
+                {
+                    //this.ItemsCollect = null;
+                }
+            }
+        }
+
+
+        public void YYRefresh()
+        {
+            this.VirtualListSize = this.yyItems.Count;
+            this.Invalidate();
+        }
+        public void YYSort()
+        {
+            this.yyItems.Sort(this.yyListViewColumnSorterVirtual);
+            this.Invalidate();
+        }
+    
+    
     }
 }

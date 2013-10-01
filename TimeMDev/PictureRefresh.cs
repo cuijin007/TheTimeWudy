@@ -493,35 +493,35 @@ namespace TimeMDev
             int realItemPosition = this.GetRealNum(count);
             if (realItemPosition>=0)
             {
-                if (realItemPosition + 5 < this.form1.listView1.Items.Count)
+                if (realItemPosition + 5 < this.form1.listView1.yyItems.Count)
                 {
-                    form1.listView1.Items[realItemPosition].EnsureVisible();
+                    form1.listView1.yyItems[realItemPosition].EnsureVisible();
                 }
                 else
                 {
-                    form1.listView1.Items[realItemPosition].EnsureVisible();
+                    form1.listView1.yyItems[realItemPosition].EnsureVisible();
                 }
-                this.form1.listView1.Items[realItemPosition].Selected = true;
+                this.form1.listView1.yyItems[realItemPosition].Selected = true;
                 //this.form1.listView1.Refresh();
-                //form1.listView1.Items[count].BackColor = Color.AliceBlue;
+                //form1.listView1.yyItems[count].BackColor = Color.AliceBlue;
             }
 
            // //确定看到的listView的位置的
-           //if (count >= 0&&count<this.form1.listView1.Items.Count)
+           //if (count >= 0&&count<this.form1.listView1.yyItems.Count)
            // {
-           //     if (count + 5 < this.form1.listView1.Items.Count)
+           //     if (count + 5 < this.form1.listView1.yyItems.Count)
            //     {
-           //         form1.listView1.Items[count+5].EnsureVisible();
+           //         form1.listView1.yyItems[count+5].EnsureVisible();
            //     }
            //     else
            //     {
-           //         form1.listView1.Items[count].EnsureVisible();
+           //         form1.listView1.yyItems[count].EnsureVisible();
            //     }
                //2013-8-4等待转换
             //再次选中的时候，是为了进行要先计算出来是哪个行要被选中，然后再去做标记
 
                
-                //form1.listView1.Items[count].BackColor = Color.AliceBlue;
+                //form1.listView1.yyItems[count].BackColor = Color.AliceBlue;
             //}
             
             //增加trackbar的更新
@@ -539,9 +539,10 @@ namespace TimeMDev
         private int GetRealNum(int count)
         {
             string countStr=count+"";
-            for (int i = 0; i < form1.listView1.Items.Count; i++)
+            for (int i = 0; i < form1.listView1.yyItems.Count; i++)
             {
-                if (form1.listView1.Items[i].SubItems[0].Text.Equals(countStr))
+                //if (form1.listView1.yyItems[i].SubItems[0].Text.Equals(countStr))
+                if (form1.listView1.yyItems[i].SubItems[0].Text.Equals(countStr))
                 {
                     return i;
                 }

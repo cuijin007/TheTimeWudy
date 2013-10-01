@@ -120,6 +120,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="YYListViewColumnSorter.cs" />
+    <Compile Include="YYListViewColumnSorterVirtual.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.xml" />

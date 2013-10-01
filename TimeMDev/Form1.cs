@@ -275,13 +275,15 @@ namespace TimeMDev
                 showBuffer[3] = listSingleSentence[i].content;
                 showBuffer[4] = "0";
                 //this.listView1.Items.Add(new ListViewItem(showBuffer));
-                ItemsCollect.Add(new ListViewItem(showBuffer));
+                //ItemsCollect.Add(new ListViewItem(showBuffer));
                 //itemsCollect2[i-1] = new ListViewItem(showBuffer);
+                this.listView1.yyItems.Add(new ListViewItem(showBuffer));
             }
            // this.listView1.Items.AddRange(itemsCollect2);
-            this.listView1.VirtualListSize = ItemsCollect.Count;
-            this.listView1.VirtualMode = true;
-            this.listView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(listView1_RetrieveVirtualItem);
+            //this.listView1.VirtualListSize = ItemsCollect.Count;
+            //this.listView1.VirtualMode = true;
+            //this.listView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(listView1_RetrieveVirtualItem);
+            this.listView1.YYRefresh();
         }
 
         void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
@@ -340,7 +342,7 @@ namespace TimeMDev
             {
                 this.listView1.Order = SortOrder.Ascending;
             }
-            this.listView1.Sort();
+            this.listView1.YYSort();
         }
 
         private void listViewMenu_Opening(object sender, CancelEventArgs e)
@@ -356,11 +358,22 @@ namespace TimeMDev
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.listView1.VirtualListSize--;
-            List<ListViewItem> items=new List<ListViewItem>();
-            items.Add(ItemsCollect[0]);
-            this.ItemsCollect.Remove(ItemsCollect[0]);
-            this.listView1.Invalidate();
+            this.listView1.yyItems[0].SubItems[0].Text = "eeeeee";
+            this.listView1.YYRefresh();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string[] item = new string[5];
+            item[0] = 99999+"";
+            item[1] = "0:0:13";
+            item[2] = "0:0:14";
+            item[3] = "dazhongsi";
+            item[4] = "333";
+            ListViewItem listViewItem = new ListViewItem(item);
+
+            this.listView1.yyItems.Add(listViewItem);
+            this.listView1.YYRefresh();
         }
     }
 }

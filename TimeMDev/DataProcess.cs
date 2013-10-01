@@ -9,7 +9,7 @@ namespace TimeMDev
     class DataProcess
     {
         PictureRefresh pictureRefresh;
-        ListView listView;
+        YYListView listView;
         int clickPositionX;//鼠标按下的位置
         int clickState;//点击的状态，是在哪个栏里面
         int slideState;//分为0,1,2三种，0为没有点中，1为点中左边，2为点中右面
@@ -24,7 +24,7 @@ namespace TimeMDev
 
         Cursor cursor;
         MPlayer mplayer;
-        public DataProcess(PictureRefresh pictureRefresh, Cursor cursor, MPlayer mplayer, ListView listView)
+        public DataProcess(PictureRefresh pictureRefresh, Cursor cursor, MPlayer mplayer, YYListView listView)
         {
             this.pictureRefresh = pictureRefresh;
             this.cursor = cursor;
@@ -236,16 +236,16 @@ namespace TimeMDev
         {
             if (this.slideCount >= 0)
             {
-                string[] item = new string[4];
+                string[] item = new string[5];
                 item[0] = this.slideCount + "";//2013-4-10去掉+1
                 item[1] = this.TimeOut(this.pictureRefresh.listSingleSentence[slideCount].startTime);
                 item[2] = this.TimeOut(this.pictureRefresh.listSingleSentence[slideCount].endTime);
                 item[3] = this.pictureRefresh.listSingleSentence[slideCount].content;
+                item[4] = "";
                 ListViewItem listViewItem = new ListViewItem(item);
-                this.listView.VirtualMode = false;//2013-10-1
-                this.listView.Items.RemoveAt(slideCount - 1);//2013-4-10
-                this.listView.Items.Insert(slideCount - 1, listViewItem);
-                this.listView.VirtualMode = true;//2013-10-1
+                this.listView.yyItems.RemoveAt(slideCount - 1);//2013-4-10
+                this.listView.yyItems.Insert(slideCount - 1, listViewItem);
+                this.listView.YYRefresh();
             }
             this.slideCount = -1;
             this.pictureRefresh.slideCount = -1;
@@ -410,13 +410,15 @@ namespace TimeMDev
                                     //2013-4-10增加之后在listview上也更新
                                     if (i > 0)
                                     {
-                                        string[] itemStr = new string[4];
+                                        string[] itemStr = new string[5];
                                         itemStr[0] = i + "";
                                         itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
                                         itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                         itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
+                                        itemStr[4] = "";
                                         ListViewItem item = new ListViewItem(itemStr);
-                                        this.listView.Items.Insert(i - 1, item);
+                                        this.listView.yyItems.Insert(i - 1, item);
+                                        this.listView.YYRefresh();
                                     }
 
 
@@ -469,13 +471,15 @@ namespace TimeMDev
                                         //2013-4-10增加之后在listview上也更新
                                         if (i > 0)
                                         {
-                                            string[] itemStr = new string[4];
+                                            string[] itemStr = new string[5];
                                             itemStr[0] = i + "";
                                             itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
                                             itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                             itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
+                                            itemStr[4] = "";
                                             ListViewItem item = new ListViewItem(itemStr);
-                                            this.listView.Items.Insert(i - 1, item);
+                                            this.listView.yyItems.Insert(i - 1, item);
+                                            this.listView.YYRefresh();
                                         }
 
                                         break;
@@ -497,8 +501,8 @@ namespace TimeMDev
                             if (pictureRefresh.listSingleSentence[i].isSelected)
                             {
                                 pictureRefresh.listSingleSentence.RemoveAt(i);
-                                this.listView.Items.RemoveAt(i - 1);
-
+                                this.listView.yyItems.RemoveAt(i - 1);
+                                this.listView.YYRefresh();
                             }
                         }
                         break;
