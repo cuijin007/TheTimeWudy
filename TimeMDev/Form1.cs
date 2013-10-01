@@ -257,9 +257,10 @@ namespace TimeMDev
         {
             this.listView1.Clear();
             this.InitListView();
+            string[] showBuffer = new string[5];
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
             {
-                string[] showBuffer = new string[5];
+               
 
                 //showBuffer[0] = i + 1 + "";
                 showBuffer[0] = i + "";//2013-4-10
@@ -316,6 +317,12 @@ namespace TimeMDev
         private void listViewMenu_Opening(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void ccRemoveDuplicateItemL_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CCHandle.HandleCCLongitudinal(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
         }
     }
 }

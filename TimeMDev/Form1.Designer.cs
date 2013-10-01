@@ -217,6 +217,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ccRemoveDuplicateItemL = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -461,7 +462,7 @@
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.panelContainer1.FloatVertical = true;
             this.panelContainer1.ID = new System.Guid("61e3c09f-0375-4408-8695-e06ff756d036");
-            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
+            this.panelContainer1.Location = new System.Drawing.Point(131, 187);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
             this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
@@ -802,9 +803,10 @@
             this.barButtonItem77,
             this.barButtonItem78,
             this.barButtonItem79,
-            this.barButtonItem80});
+            this.barButtonItem80,
+            this.ccRemoveDuplicateItemL});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 106;
+            this.barManager1.MaxItemId = 107;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -1260,6 +1262,7 @@
             this.toolMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ccSubtitleHandleItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.ccRemoveDuplicateItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ccRemoveDuplicateItemL),
             new DevExpress.XtraBars.LinkPersistInfo(this.merageAccurateLineItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.twoLanMerageItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.addEditorItem),
@@ -1789,15 +1792,22 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // ccRemoveDuplicateItemL
+            // 
+            this.ccRemoveDuplicateItemL.Caption = "CC字幕去重【纵向】";
+            this.ccRemoveDuplicateItemL.Id = 106;
+            this.ccRemoveDuplicateItemL.Name = "ccRemoveDuplicateItemL";
+            this.ccRemoveDuplicateItemL.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccRemoveDuplicateItemL_ItemClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 598);
             this.Controls.Add(this.textTimeLinePanel);
+            this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.picTimeLinePanel);
-            this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -2020,6 +2030,7 @@
         private System.Windows.Forms.ToolStripMenuItem pasteContext;
         private System.Windows.Forms.ToolStripMenuItem checkAllContext;
         private System.Windows.Forms.ToolStripMenuItem alignAllLineContext;
+        private DevExpress.XtraBars.BarButtonItem ccRemoveDuplicateItemL;
     }
 }
 
