@@ -242,8 +242,10 @@ namespace TimeMDev
                 item[2] = this.TimeOut(this.pictureRefresh.listSingleSentence[slideCount].endTime);
                 item[3] = this.pictureRefresh.listSingleSentence[slideCount].content;
                 ListViewItem listViewItem = new ListViewItem(item);
+                this.listView.VirtualMode = false;//2013-10-1
                 this.listView.Items.RemoveAt(slideCount - 1);//2013-4-10
                 this.listView.Items.Insert(slideCount - 1, listViewItem);
+                this.listView.VirtualMode = true;//2013-10-1
             }
             this.slideCount = -1;
             this.pictureRefresh.slideCount = -1;

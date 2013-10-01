@@ -249,6 +249,10 @@ namespace TimeMDev
             }
             this.rateShow.Focus();
         }
+
+
+
+        List<ListViewItem> ItemsCollect;
         /// <summary>
         /// 给listview赋值[这里是赋值，以后刷新的时候就是按前面的序号进行刷新了。]
         /// </summary>
@@ -258,6 +262,7 @@ namespace TimeMDev
             this.listView1.Clear();
             this.InitListView();
             string[] showBuffer = new string[5];
+            ItemsCollect = new List<ListViewItem>();
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
             {
                
@@ -268,7 +273,28 @@ namespace TimeMDev
                 showBuffer[2] = TimeOut(listSingleSentence[i].endTime);
                 showBuffer[3] = listSingleSentence[i].content;
                 showBuffer[4] = "0";
-                this.listView1.Items.Add(new ListViewItem(showBuffer));
+                //this.listView1.Items.Add(new ListViewItem(showBuffer));
+                ItemsCollect.Add(new ListViewItem(showBuffer));
+            }
+            this.listView1.VirtualListSize = ItemsCollect.Count;
+            this.listView1.VirtualMode = true;
+            this.listView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(listView1_RetrieveVirtualItem);
+        }
+
+        void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if (this.ItemsCollect == null || this.ItemsCollect.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                e.Item = this.ItemsCollect[e.ItemIndex];
+                if (e.ItemIndex == this.ItemsCollect.Count)
+                {
+                    //this.ItemsCollect = null;
+                }
             }
         }
         /// <summary>
