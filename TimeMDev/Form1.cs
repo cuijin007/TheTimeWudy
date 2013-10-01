@@ -274,15 +274,8 @@ namespace TimeMDev
                 showBuffer[2] = TimeOut(listSingleSentence[i].endTime);
                 showBuffer[3] = listSingleSentence[i].content;
                 showBuffer[4] = "0";
-                //this.listView1.Items.Add(new ListViewItem(showBuffer));
-                //ItemsCollect.Add(new ListViewItem(showBuffer));
-                //itemsCollect2[i-1] = new ListViewItem(showBuffer);
                 this.listView1.yyItems.Add(new ListViewItem(showBuffer));
             }
-           // this.listView1.Items.AddRange(itemsCollect2);
-            //this.listView1.VirtualListSize = ItemsCollect.Count;
-            //this.listView1.VirtualMode = true;
-            //this.listView1.RetrieveVirtualItem += new RetrieveVirtualItemEventHandler(listView1_RetrieveVirtualItem);
             this.listView1.YYRefresh();
         }
 

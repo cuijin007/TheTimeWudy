@@ -258,10 +258,10 @@
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
             this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPanel1.ID = new System.Guid("969a68cf-36f5-41da-89e3-0897c6ea1f28");
-            this.dockPanel1.Location = new System.Drawing.Point(0, 439);
+            this.dockPanel1.Location = new System.Drawing.Point(0, 24);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(131, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(131, 136);
+            this.dockPanel1.Size = new System.Drawing.Size(131, 551);
             this.dockPanel1.Text = "Tasks pane";
             // 
             // dockPanel1_Container
@@ -462,10 +462,10 @@
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.panelContainer1.FloatVertical = true;
             this.panelContainer1.ID = new System.Guid("61e3c09f-0375-4408-8695-e06ff756d036");
-            this.panelContainer1.Location = new System.Drawing.Point(0, 24);
+            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
-            this.panelContainer1.Size = new System.Drawing.Size(1186, 252);
+            this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
             this.panelContainer1.Text = "panelContainer1";
             // 
             // videoPanel
@@ -650,10 +650,10 @@
             this.picTimeLinePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.picTimeLinePanel.FloatVertical = true;
             this.picTimeLinePanel.ID = new System.Guid("ee3c6f74-b203-46a9-b484-9a8d7ae5e6d0");
-            this.picTimeLinePanel.Location = new System.Drawing.Point(0, 276);
+            this.picTimeLinePanel.Location = new System.Drawing.Point(131, 276);
             this.picTimeLinePanel.Name = "picTimeLinePanel";
             this.picTimeLinePanel.OriginalSize = new System.Drawing.Size(200, 163);
-            this.picTimeLinePanel.Size = new System.Drawing.Size(1186, 163);
+            this.picTimeLinePanel.Size = new System.Drawing.Size(1055, 163);
             this.picTimeLinePanel.Text = "可视化时间轴";
             // 
             // dockPanel2_Container
