@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TimeMDev
 {
@@ -95,5 +96,21 @@ namespace TimeMDev
                 }
             }
         }
+
+        /// <summary>
+        /// 删除注释
+        /// </summary>
+        /// <param name="listSingleSentence"></param>
+        public static void DeleteRemark(List<SingleSentence> listSingleSentence)
+        {
+            for (int i = 0; i < listSingleSentence.Count; i++)
+            {
+                listSingleSentence[i].content = Regex.Replace(listSingleSentence[i].content, @"\<.*\>.*\<.*\>", "");
+                listSingleSentence[i].content=Regex.Replace(listSingleSentence[i].content, "\\[.*?\\]|\\(.*?\\)", "");
+              
+            }
+        }
+    
+    
     }
 }

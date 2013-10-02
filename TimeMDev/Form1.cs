@@ -359,5 +359,12 @@ namespace TimeMDev
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }
+
+        private void ccSubtitleHandleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+            this.listView1.YYRefresh();
+        }
     }
 }

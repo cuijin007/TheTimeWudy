@@ -67,6 +67,7 @@
             this.movieTrack = new System.Windows.Forms.TrackBar();
             this.modifySubtitlePanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel4_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.contentEdit = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.confirmChange = new System.Windows.Forms.Button();
             this.timeEditStart = new System.Windows.Forms.TextBox();
@@ -75,7 +76,6 @@
             this.timeEditEnd = new System.Windows.Forms.TextBox();
             this.numEdit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.contentEdit = new System.Windows.Forms.TextBox();
             this.picTimeLinePanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.rateShow = new System.Windows.Forms.PictureBox();
@@ -563,6 +563,15 @@
             this.dockPanel4_Container.Size = new System.Drawing.Size(972, 225);
             this.dockPanel4_Container.TabIndex = 0;
             // 
+            // contentEdit
+            // 
+            this.contentEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contentEdit.Location = new System.Drawing.Point(123, 0);
+            this.contentEdit.Multiline = true;
+            this.contentEdit.Name = "contentEdit";
+            this.contentEdit.Size = new System.Drawing.Size(849, 225);
+            this.contentEdit.TabIndex = 16;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.confirmChange);
@@ -634,15 +643,6 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 18;
             this.label2.Text = "停止时间：";
-            // 
-            // contentEdit
-            // 
-            this.contentEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentEdit.Location = new System.Drawing.Point(123, 0);
-            this.contentEdit.Multiline = true;
-            this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(849, 225);
-            this.contentEdit.TabIndex = 16;
             // 
             // picTimeLinePanel
             // 
@@ -1277,6 +1277,7 @@
             this.ccSubtitleHandleItem.Caption = "CC字幕处理";
             this.ccSubtitleHandleItem.Id = 62;
             this.ccSubtitleHandleItem.Name = "ccSubtitleHandleItem";
+            this.ccSubtitleHandleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccSubtitleHandleItem_ItemClick);
             // 
             // ccRemoveDuplicateItem
             // 
