@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Threading;
 
 namespace TimeMDev
 {
@@ -105,12 +107,99 @@ namespace TimeMDev
         {
             for (int i = 0; i < listSingleSentence.Count; i++)
             {
-                listSingleSentence[i].content = Regex.Replace(listSingleSentence[i].content, @"\<.*\>.*\<.*\>", "");
+                listSingleSentence[i].content = Regex.Replace(listSingleSentence[i].content, @"\<.*\>", "");
                 listSingleSentence[i].content=Regex.Replace(listSingleSentence[i].content, "\\[.*?\\]|\\(.*?\\)", "");
-              
+                if (listSingleSentence[i].content.Equals(""))
+                {
+                    listSingleSentence.Remove(listSingleSentence[i]);
+                    i--;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 大小写格式转化，Mrs.，首字母大写等
+        /// </summary>
+        /// <param name="listSingleSentence"></param>
+        public static void TurnUpLowPunctuation(List<SingleSentence> listSingleSentence)
+        {
+            //TextInfo textInfo=Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
+            StringBuilder sb = new StringBuilder(listSingleSentence[1].content);
+            if (sb.Length > 0)
+            {
+                sb[0]=char.ToUpper(sb[0]);
+                listSingleSentence[1].content = sb.ToString();
+            }
+            bool findMark=false;
+            for (int i = 1; i < listSingleSentence.Count; i++)
+            {
+                sb = new StringBuilder(listSingleSentence[i].content);
+                for (int j = 0; j < sb.Length; j++)
+                {
+                    if (findMark&&sb[j]!=' ')
+                    {
+                        sb[j]=char.ToUpper(sb[j]);
+                        findMark = false;
+                    }
+                    if (sb[j] == '!' || sb[j] == '?' || sb[j] == '.')
+                    {
+                        findMark = true;
+                    }
+                    if (sb[j] =='i')
+                    {
+                        if (sb.Length>1)
+                        {
+                            if (j == 0)
+                            {
+                                if (sb[j + 1] == ' ')
+                                {
+                                    sb[j] = char.ToUpper(sb[j]);
+                                }
+                            }
+                            else if (j == sb.Length - 1)
+                            {
+                                if (sb[j - 1] == ' ')
+                                {
+                                    sb[j] = char.ToUpper(sb[j]);
+                                }
+                            }
+                            else
+                            {
+                                if (sb[j - 1] == ' ' && sb[j + 1] == ' ')
+                                {
+                                    sb[j] = char.ToUpper(sb[j]);
+                                }
+                                if (sb[j - 1] == ' ' && sb[j + 1] == '\'')
+                                {
+                                    sb[j] = char.ToUpper(sb[j]);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            sb[j]=char.ToUpper(sb[j]);
+                        }
+                    }
+                }
+                listSingleSentence[i].content = sb.ToString();
             }
         }
     
-    
+        /// <summary>
+        /// 根据组合将名字判断大小写
+        /// </summary>
+        /// <param name="?"></param>
+        public static void TurnUpLowName(List<SingleSentence> listSingleSentence)
+        {
+            for (int i = 0; i < listSingleSentence.Count; i++)
+            {
+                listSingleSentence[i].content = listSingleSentence[i].content.Replace(" mrs.", " Mrs.");
+                listSingleSentence[i].content = listSingleSentence[i].content.Replace(" dr.", " Dr.");
+                listSingleSentence[i].content = listSingleSentence[i].content.Replace(" ms.", "Ms.");
+                listSingleSentence[i].content = listSingleSentence[i].content.Replace(" mr.", " Mr.");
+            }
+        }
+
+
     }
 }
