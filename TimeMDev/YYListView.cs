@@ -108,8 +108,8 @@ namespace TimeMDev
                     g.FillRectangle(this.OtherSelected, bounds);
                 }
                 string text=e.SubItem.Text;
-                text=text.Replace("\r","");
-                text=text.Replace("\n","");
+               // text=text.Replace("\r","");
+              //  text=text.Replace("\n","");
                 TextRenderer.DrawText(
                     g,
                     text,
