@@ -62,7 +62,7 @@ namespace TimeMDev
             bool runMark = true;
             string[] spiltChar = { ":", ",", "，", " --> " };
             this.listSingleSentence.Clear();
-            //用之前先把这个东西初始化一下。
+            //用之前先把这个东西初始化一下。有一个空的字节。
             SingleSentence singleSentenceS = new SingleSentence();
             singleSentenceS.content = "";
             singleSentenceS.startTime = 0;

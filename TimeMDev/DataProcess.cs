@@ -243,8 +243,16 @@ namespace TimeMDev
                 item[3] = this.pictureRefresh.listSingleSentence[slideCount].content;
                 item[4] = "";
                 ListViewItem listViewItem = new ListViewItem(item);
-                this.listView.yyItems.RemoveAt(slideCount - 1);//2013-4-10
-                this.listView.yyItems.Insert(slideCount - 1, listViewItem);
+                if (slideCount > 0)
+                {
+                    this.listView.yyItems.RemoveAt(slideCount - 1);//2013-4-10
+                    this.listView.yyItems.Insert(slideCount - 1, listViewItem);
+                }
+                if (slideCount == 0)
+                {
+                    this.listView.yyItems.RemoveAt(0);//2013-4-10
+                    this.listView.yyItems.Insert(0, listViewItem);
+                }
                 this.listView.YYRefresh();
             }
             this.slideCount = -1;

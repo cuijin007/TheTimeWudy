@@ -556,8 +556,8 @@
             // 
             // dockPanel4_Container
             // 
-            this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Controls.Add(this.contentEdit);
+            this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
             this.dockPanel4_Container.Size = new System.Drawing.Size(972, 225);
@@ -638,10 +638,10 @@
             // contentEdit
             // 
             this.contentEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contentEdit.Location = new System.Drawing.Point(0, 0);
+            this.contentEdit.Location = new System.Drawing.Point(123, 0);
             this.contentEdit.Multiline = true;
             this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(972, 225);
+            this.contentEdit.Size = new System.Drawing.Size(849, 225);
             this.contentEdit.TabIndex = 16;
             // 
             // picTimeLinePanel
@@ -1280,9 +1280,10 @@
             // 
             // ccRemoveDuplicateItem
             // 
-            this.ccRemoveDuplicateItem.Caption = "CC字幕去重";
+            this.ccRemoveDuplicateItem.Caption = "CC字幕去重【横向】";
             this.ccRemoveDuplicateItem.Id = 63;
             this.ccRemoveDuplicateItem.Name = "ccRemoveDuplicateItem";
+            this.ccRemoveDuplicateItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccRemoveDuplicateItem_ItemClick);
             // 
             // ccRemoveDuplicateItemL
             // 
@@ -1806,9 +1807,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 598);
             this.Controls.Add(this.textTimeLinePanel);
-            this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.dockPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);

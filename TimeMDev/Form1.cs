@@ -238,6 +238,7 @@ namespace TimeMDev
                 {
                     //还要修改后缀
                     temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
                 }
                 else
                 {
@@ -260,6 +261,8 @@ namespace TimeMDev
         public void SetListViewData(List<SingleSentence> listSingleSentence)
         {
             this.listView1.Clear();
+            this.listView1.yyItems.Clear();
+            this.listView1.YYRefresh();
             this.InitListView();
             string[] showBuffer = new string[5];
             ItemsCollect = new List<ListViewItem>();
@@ -347,25 +350,13 @@ namespace TimeMDev
         {
             CCHandle.HandleCCLongitudinal(this.timeLineReadWrite.GetListSingleSentence());
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.listView1.yyItems[0].SubItems[0].Text = "eeeeee";
             this.listView1.YYRefresh();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void ccRemoveDuplicateItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string[] item = new string[5];
-            item[0] = 99999+"";
-            item[1] = "0:0:13";
-            item[2] = "0:0:14";
-            item[3] = "dazhongsi";
-            item[4] = "333";
-            ListViewItem listViewItem = new ListViewItem(item);
-
-            this.listView1.yyItems.Add(listViewItem);
+            CCHandle.HandleCCLatitude(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }
     }
