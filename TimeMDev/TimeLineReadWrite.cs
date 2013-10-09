@@ -249,9 +249,9 @@ namespace TimeMDev
             streamReader = new StreamReader(fileStream, this.encoding);
             bool runMark=true;
             int readPositionState=0;//读取的位置的变量
-            if (this.ReadHeadInfo(fileStream))
+            if (this.ReadHeadInfo(streamReader))
             {
-                this.ReadAllEvent(fileStream);
+                this.ReadAllEvent(streamReader);
             }
             streamReader.Close();
             fileStream.Close();
