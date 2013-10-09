@@ -38,7 +38,12 @@ namespace TimeMDev
             this.rateShow.MouseWheel+=new MouseEventHandler(rateShow_MouseWheel);
             originalSubtitlePath = "";
             moviePath = "";
+<<<<<<< HEAD
             temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
+=======
+            //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
+            temporarySubtitlePath = "d:\\yyets~c~.srt";
+>>>>>>> origin/10.1-cc
         }
         private void startMplayerFristTimeLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -94,7 +99,12 @@ namespace TimeMDev
                 this.moviePath = Path.GetDirectoryName(dialog.FileName);
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
+<<<<<<< HEAD
                 this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+=======
+                //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+                this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+>>>>>>> origin/10.1-cc
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
             }
 
@@ -178,6 +188,10 @@ namespace TimeMDev
         {
             this.pictureRefresh.runMark = false;
             this.mplayer.getPositionMark = false;
+<<<<<<< HEAD
+=======
+            this.mplayer.MPlayerQuit();
+>>>>>>> origin/10.1-cc
         }
 
         private void rateShow_Click(object sender, EventArgs e)
@@ -197,6 +211,15 @@ namespace TimeMDev
         {
             this.dataProcess.MouseUp(sender, e);
             this.timeLineReadWrite.WriteAllTimeline();
+<<<<<<< HEAD
+=======
+            //2013-10-3尝试一下看会不会崩溃
+            if (mplayer != null)
+            {
+                this.mplayer.LoadTimeLine(this.temporarySubtitlePath);
+                //this.mplayer.RemoveTimeLine();
+            }
+>>>>>>> origin/10.1-cc
         }
         void rateShow_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -237,7 +260,12 @@ namespace TimeMDev
                 if (this.moviePath.Equals(""))
                 {
                     //还要修改后缀
+<<<<<<< HEAD
                     temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+=======
+                    //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+>>>>>>> origin/10.1-cc
                 }
                 else
                 {
@@ -249,6 +277,13 @@ namespace TimeMDev
             }
             this.rateShow.Focus();
         }
+<<<<<<< HEAD
+=======
+
+
+
+        List<ListViewItem> ItemsCollect;
+>>>>>>> origin/10.1-cc
         /// <summary>
         /// 给listview赋值[这里是赋值，以后刷新的时候就是按前面的序号进行刷新了。]
         /// </summary>
@@ -256,18 +291,51 @@ namespace TimeMDev
         public void SetListViewData(List<SingleSentence> listSingleSentence)
         {
             this.listView1.Clear();
+<<<<<<< HEAD
             this.InitListView();
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
             {
                 string[] showBuffer = new string[5];
 
+=======
+            this.listView1.yyItems.Clear();
+            this.listView1.YYRefresh();
+            this.InitListView();
+            string[] showBuffer = new string[5];
+            ItemsCollect = new List<ListViewItem>();
+            ListViewItem[] itemsCollect2 = new ListViewItem[listSingleSentence.Count];
+            for (int i = 1; i < listSingleSentence.Count - 1; i++)
+            {
+>>>>>>> origin/10.1-cc
                 //showBuffer[0] = i + 1 + "";
                 showBuffer[0] = i + "";//2013-4-10
                 showBuffer[1] = TimeOut(listSingleSentence[i].startTime);
                 showBuffer[2] = TimeOut(listSingleSentence[i].endTime);
                 showBuffer[3] = listSingleSentence[i].content;
                 showBuffer[4] = "0";
+<<<<<<< HEAD
                 this.listView1.Items.Add(new ListViewItem(showBuffer));
+=======
+                this.listView1.yyItems.Add(new ListViewItem(showBuffer));
+            }
+            this.listView1.YYRefresh();
+        }
+
+        void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+            //throw new NotImplementedException();
+            if (this.ItemsCollect == null || this.ItemsCollect.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                e.Item = this.ItemsCollect[e.ItemIndex];
+                if (e.ItemIndex == this.ItemsCollect.Count)
+                {
+                    //this.ItemsCollect = null;
+                }
+>>>>>>> origin/10.1-cc
             }
         }
         /// <summary>
@@ -310,12 +378,40 @@ namespace TimeMDev
             {
                 this.listView1.Order = SortOrder.Ascending;
             }
+<<<<<<< HEAD
             this.listView1.Sort();
+=======
+            this.listView1.YYSort();
+>>>>>>> origin/10.1-cc
         }
 
         private void listViewMenu_Opening(object sender, CancelEventArgs e)
         {
 
         }
+<<<<<<< HEAD
+=======
+
+        private void ccRemoveDuplicateItemL_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CCHandle.HandleCCLongitudinal(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+            this.listView1.YYRefresh();
+        }
+
+        private void ccRemoveDuplicateItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CCHandle.HandleCCLatitude(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+            this.listView1.YYRefresh();
+        }
+
+        private void ccSubtitleHandleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
+            this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+            this.listView1.YYRefresh();
+        }
+>>>>>>> origin/10.1-cc
     }
 }

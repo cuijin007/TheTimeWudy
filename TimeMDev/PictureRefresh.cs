@@ -493,6 +493,7 @@ namespace TimeMDev
             int realItemPosition = this.GetRealNum(count);
             if (realItemPosition>=0)
             {
+<<<<<<< HEAD
                 if (realItemPosition + 5 < this.form1.listView1.Items.Count)
                 {
                     form1.listView1.Items[realItemPosition].EnsureVisible();
@@ -516,12 +517,41 @@ namespace TimeMDev
            //     else
            //     {
            //         form1.listView1.Items[count].EnsureVisible();
+=======
+                if (realItemPosition + 5 < this.form1.listView1.yyItems.Count)
+                {
+                    form1.listView1.yyItems[realItemPosition].EnsureVisible();
+                }
+                else
+                {
+                    form1.listView1.yyItems[realItemPosition].EnsureVisible();
+                }
+                this.form1.listView1.yyItems[realItemPosition].Selected = true;
+                //this.form1.listView1.Refresh();
+                //form1.listView1.yyItems[count].BackColor = Color.AliceBlue;
+            }
+
+           // //确定看到的listView的位置的
+           //if (count >= 0&&count<this.form1.listView1.yyItems.Count)
+           // {
+           //     if (count + 5 < this.form1.listView1.yyItems.Count)
+           //     {
+           //         form1.listView1.yyItems[count+5].EnsureVisible();
+           //     }
+           //     else
+           //     {
+           //         form1.listView1.yyItems[count].EnsureVisible();
+>>>>>>> origin/10.1-cc
            //     }
                //2013-8-4等待转换
             //再次选中的时候，是为了进行要先计算出来是哪个行要被选中，然后再去做标记
 
                
+<<<<<<< HEAD
                 //form1.listView1.Items[count].BackColor = Color.AliceBlue;
+=======
+                //form1.listView1.yyItems[count].BackColor = Color.AliceBlue;
+>>>>>>> origin/10.1-cc
             //}
             
             //增加trackbar的更新
@@ -539,9 +569,16 @@ namespace TimeMDev
         private int GetRealNum(int count)
         {
             string countStr=count+"";
+<<<<<<< HEAD
             for (int i = 0; i < form1.listView1.Items.Count; i++)
             {
                 if (form1.listView1.Items[i].SubItems[0].Text.Equals(countStr))
+=======
+            for (int i = 0; i < form1.listView1.yyItems.Count; i++)
+            {
+                //if (form1.listView1.yyItems[i].SubItems[0].Text.Equals(countStr))
+                if (form1.listView1.yyItems[i].SubItems[0].Text.Equals(countStr))
+>>>>>>> origin/10.1-cc
                 {
                     return i;
                 }
