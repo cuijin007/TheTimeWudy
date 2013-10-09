@@ -257,6 +257,9 @@ namespace TimeMDev
             }
             this.slideCount = -1;
             this.pictureRefresh.slideCount = -1;
+
+
+          //  this.mplayer.LoadTimeLine(
         }
 
         /// <summary>

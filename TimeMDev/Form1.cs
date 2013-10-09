@@ -38,7 +38,8 @@ namespace TimeMDev
             this.rateShow.MouseWheel+=new MouseEventHandler(rateShow_MouseWheel);
             originalSubtitlePath = "";
             moviePath = "";
-            temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
+            //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
+            temporarySubtitlePath = "d:\\yyets~c~.srt";
         }
         private void startMplayerFristTimeLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -94,7 +95,8 @@ namespace TimeMDev
                 this.moviePath = Path.GetDirectoryName(dialog.FileName);
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
-                this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+                //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+                this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
             }
 
@@ -178,6 +180,7 @@ namespace TimeMDev
         {
             this.pictureRefresh.runMark = false;
             this.mplayer.getPositionMark = false;
+            this.mplayer.MPlayerQuit();
         }
 
         private void rateShow_Click(object sender, EventArgs e)
@@ -197,6 +200,12 @@ namespace TimeMDev
         {
             this.dataProcess.MouseUp(sender, e);
             this.timeLineReadWrite.WriteAllTimeline();
+            //2013-10-3尝试一下看会不会崩溃
+            if (mplayer != null)
+            {
+                this.mplayer.LoadTimeLine(this.temporarySubtitlePath);
+                //this.mplayer.RemoveTimeLine();
+            }
         }
         void rateShow_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -237,7 +246,7 @@ namespace TimeMDev
                 if (this.moviePath.Equals(""))
                 {
                     //还要修改后缀
-                    temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                    //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
                     this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
                 }
                 else
@@ -269,8 +278,6 @@ namespace TimeMDev
             ListViewItem[] itemsCollect2 = new ListViewItem[listSingleSentence.Count];
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
             {
-               
-
                 //showBuffer[0] = i + 1 + "";
                 showBuffer[0] = i + "";//2013-4-10
                 showBuffer[1] = TimeOut(listSingleSentence[i].startTime);

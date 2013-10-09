@@ -37,6 +37,7 @@ namespace TimeMDev
             }
         }
         string appPath;
+        DataReceivedEventHandler dataReceivedEventHandler;
         public  MPlayer(int wid)
         {
             this.wid = wid;//输出窗口
@@ -92,6 +93,10 @@ namespace TimeMDev
                 
             }
         }
+       
+        /// <summary>
+        /// 设置基础参数
+        /// </summary>
         private void StartPlayInit()
         {
             if (this.mplayer != null)
@@ -103,11 +108,13 @@ namespace TimeMDev
                 mplayer.StartInfo.RedirectStandardInput = true;
                 mplayer.StartInfo.RedirectStandardOutput = true;
                 mplayer.StartInfo.RedirectStandardError = true;
-                this.mplayer.OutputDataReceived += new DataReceivedEventHandler(mplayer_OutputDataReceived);
+                this.dataReceivedEventHandler = new DataReceivedEventHandler(mplayer_OutputDataReceived);
+                this.mplayer.OutputDataReceived += this.dataReceivedEventHandler;
 
                 this.InitMovie();
-
-                mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle  -noautosub -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
+                //修改了一个参数，被屏蔽掉的是没字幕的，之前调试ok的版本
+                //mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle  -noautosub -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
+                mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -autosub -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
                 mplayer.Start();
                 mplayer.BeginErrorReadLine();
                 mplayer.BeginOutputReadLine();
@@ -299,8 +306,19 @@ namespace TimeMDev
        }
        public void LoadTimeLine(string timeLinePath)
        {
-           this.mplayer.StandardInput.WriteLine("sub_load "+timeLinePath);
-           this.mplayer.StandardInput.Flush();
+           if (this.mplayer != null)
+           {
+               this.mplayer.StandardInput.WriteLine("sub_remove ");
+               this.mplayer.StandardInput.Flush();
+
+               timeLinePath = timeLinePath.Replace(@"\", @"^o^");
+               timeLinePath = timeLinePath.Replace(@"^o^", @"\\");
+               this.mplayer.StandardInput.WriteLine("sub_load " + timeLinePath);
+               // this.mplayer.StandardInput.WriteLine("sub_load \"F:\\\\1.字幕组\\\\smallville.s07e15.720p.bluray.x264-orpheus.srt\"");
+               this.mplayer.StandardInput.Flush();
+               this.mplayer.StandardInput.WriteLine("sub_select 0 ");
+               this.mplayer.StandardInput.Flush();
+           }
        }
        public void LoadMovie(string path)
        {
@@ -335,6 +353,26 @@ namespace TimeMDev
            mplayer.StartInfo.FileName =this.appPath+ @"mplayer\mplayer.exe";
            mplayer.StartInfo.Arguments = string.Format("-slave -quiet \"{0}\"",path);
            mplayer.Start();
+       }
+       public void RemoveTimeLine()
+       {
+           this.mplayer.StandardInput.WriteLine("sub_remove 0");
+           this.mplayer.StandardInput.Flush();
+       }
+
+       public void MPlayerQuit()
+       {
+           if (this.mplayer != null)
+           {
+               try
+               {
+                   this.mplayer.OutputDataReceived -= this.dataReceivedEventHandler;
+               }
+               catch
+               {
+ 
+               }
+           }
        }
     }
     
