@@ -305,6 +305,7 @@ namespace TimeMDev
         {
             string[] dictionaryType;
             string[] spiltChar = { ":", ","};
+             string[] spiltChar2 = {","};
             string[] markStr={"Layer", "Start", "End", "Style", "Actor", "MarginL", "MarginR", "MarginV", "Effect", "Text"};
             string str =streamReader.ReadLine();
             bool runMark=true;
@@ -345,10 +346,17 @@ namespace TimeMDev
             {
                 try
                 {
-                    str=streamReader.ReadLine();
+                    str=streamReader.ReadLine();                    
+                    if (str.Equals(""))
+                    {
+                        continue;
+                    }
+                    SingleSentence singleSentence = new SingleSentence();
                     str=str.Replace("Dialogue:","");
-                    string[] dialog=str.Split(spiltChar,StringSplitOptions.None);
-                    SingleSentence singleSentence=new SingleSentence();
+                    singleSentence.matchCollectionEffect = Regex.Matches(str, @"\{.*\}");                    
+                    str = Regex.Replace(str, @"\{.*\}", "");
+                    string[] dialog=str.Split(spiltChar2,StringSplitOptions.None);
+                    
                     if(getPos[0]>=0)
                     {
                         singleSentence.layer=dialog[getPos[0]];
@@ -427,6 +435,11 @@ namespace TimeMDev
                 return timedouble;
             }
         }
-
+        public void WriteAllTimelineAss()
+        {
+            fileStream = new FileStream(this.filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            streamWriter = new StreamWriter(fileStream, this.encoding);
+            this.streamWriter.WriteLine("[]");
+        }
     }
 }

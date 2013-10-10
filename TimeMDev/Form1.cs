@@ -230,7 +230,7 @@ namespace TimeMDev
         private void loadSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "字幕文件|*.srt";
+            dialog.Filter = "字幕文件|*.srt;*.ass";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
@@ -241,7 +241,14 @@ namespace TimeMDev
 
                 this.timeLineReadWrite = new TimeLineReadWrite();
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
-                this.timeLineReadWrite.ReadAllTimeline();
+                if (dialog.FileName.EndsWith("srt"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeline();
+                }
+                if (dialog.FileName.EndsWith("ass"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                }
                 this.originalSubtitlePath = dialog.FileName;//保存一个初始值。
                 if (this.moviePath.Equals(""))
                 {

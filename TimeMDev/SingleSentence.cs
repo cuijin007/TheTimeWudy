@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TimeMDev
 {
@@ -22,5 +23,6 @@ namespace TimeMDev
         public string effect;
         //string content
         public string textEffect;
+        public MatchCollection matchCollectionEffect;
     }
 }
