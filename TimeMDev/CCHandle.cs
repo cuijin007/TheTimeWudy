@@ -200,6 +200,23 @@ namespace TimeMDev
             }
         }
 
+        /// <summary>
+        /// 拆分规则
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="chinese"></param>
+        /// <param name="english"></param>
+        public static void SpiltRule(string content, out string chinese, out string english)
+        {
+            chinese = "";
+            english = "";
+            MatchCollection matchCollection = Regex.Matches(content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
+            if (matchCollection.Count > 0)
+            {
+                chinese = matchCollection[0].ToString();
+            }
+            english = content.Replace(chinese, "");
+        }
         
     }
 }
