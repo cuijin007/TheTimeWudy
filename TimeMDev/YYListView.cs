@@ -34,8 +34,8 @@ namespace TimeMDev
        }
        public SortOrder Order
        {
-           get { return yyListViewColumnSorter.Order; }
-           set { this.yyListViewColumnSorter.Order = value; }
+           get { return yyListViewColumnSorterVirtual.Order; }
+           set { this.yyListViewColumnSorterVirtual.Order = value; }
        }
         public YYListView()
         {

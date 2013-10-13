@@ -29,11 +29,27 @@ namespace TimeMDev
             ListViewItem listViewItemY = (ListViewItem)y;
             if (this.SortSytle == 0)
             {
-                compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text, listViewItemY.SubItems[this.ColumnToSort].Text);
+                //compareResult = this.objectCompare.Compare(TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text),TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text));
+                if (TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text) >= TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text))
+                {
+                    compareResult = 1;
+                }
+                else
+                {
+                    compareResult = -1;
+                }
             }
             else if (this.SortSytle == 1)
             {
-                compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text.Length, listViewItemY.SubItems[this.ColumnToSort].Text.Length);
+                //compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text.Length, listViewItemY.SubItems[this.ColumnToSort].Text.Length);
+                if (TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text) >= TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text))
+                {
+                    compareResult = 1;
+                }
+                else
+                {
+                    compareResult = -1;
+                }
             }
             else if (this.SortSytle == 2)
             {
@@ -53,11 +69,11 @@ namespace TimeMDev
             {
                 compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text, listViewItemY.SubItems[this.ColumnToSort].Text);
             }
-            if (this.sortOrder == SortOrder.Ascending)
+            if (this.Order == SortOrder.Ascending)
             {
                 return compareResult;
             }
-            else if (sortOrder == SortOrder.Descending)
+            else if (this.Order == SortOrder.Descending)
             {
                 return (-compareResult);
             }

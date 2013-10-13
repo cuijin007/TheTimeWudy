@@ -63,6 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMutiLinesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMutiLinesForm.Designer.cs">
+      <DependentUpon>AddMutiLinesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddMutiLinesParameter.cs" />
     <Compile Include="CCHandle.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DataProcess.cs" />
@@ -83,6 +90,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddMutiLinesForm.resx">
+      <DependentUpon>AddMutiLinesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>

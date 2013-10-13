@@ -1659,7 +1659,7 @@
             this.pasteContext,
             this.checkAllContext});
             this.listViewMenu.Name = "listViewMenu";
-            this.listViewMenu.Size = new System.Drawing.Size(229, 446);
+            this.listViewMenu.Size = new System.Drawing.Size(229, 424);
             this.listViewMenu.Opening += new System.ComponentModel.CancelEventHandler(this.listViewMenu_Opening);
             // 
             // addOneLineContext
@@ -1674,6 +1674,7 @@
             this.addMutiLineContext.Name = "addMutiLineContext";
             this.addMutiLineContext.Size = new System.Drawing.Size(228, 22);
             this.addMutiLineContext.Text = "插入多行字幕";
+            this.addMutiLineContext.Click += new System.EventHandler(this.addMutiLineContext_Click);
             // 
             // moveTimeContext
             // 

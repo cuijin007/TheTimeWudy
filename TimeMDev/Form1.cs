@@ -355,7 +355,11 @@ namespace TimeMDev
             {
                 this.listView1.Order = SortOrder.Descending;
             }
-            else
+            else if (this.listView1.Order == SortOrder.Descending)
+            {
+                this.listView1.Order = SortOrder.Ascending;
+            }
+            if (this.listView1.Order == SortOrder.None)
             {
                 this.listView1.Order = SortOrder.Ascending;
             }
@@ -419,10 +423,39 @@ namespace TimeMDev
                 SingleSentence singleSentence=new SingleSentence();
                 singleSentence.startTime = this.dataProcess.listSingleSentence[index].endTime;
                 singleSentence.endTime = singleSentence.startTime + 1;
-                this.dataProcess.listSingleSentence.Insert(index, singleSentence);
+                this.dataProcess.listSingleSentence.Insert(index+1, singleSentence);
                 this.SetListViewData(this.dataProcess.listSingleSentence);
                 this.listView1.Invalidate();
            }
+        }
+
+        private void addMutiLineContext_Click(object sender, EventArgs e)
+        {
+            int indexSave;
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                indexSave = this.listView1.SelectedIndices[0];
+            }
+            AddMutiLinesParameter addMutiLinesParameter = new AddMutiLinesParameter();
+            (new AddMutiLinesForm(addMutiLinesParameter)).ShowDialog();
+            int index = this.listView1.SelectedIndices[this.listView1.SelectedIndices.Count - 1];
+            index++;
+            double startTime= this.dataProcess.listSingleSentence[index].endTime;
+            if (addMutiLinesParameter.isConfirm == true)
+            {
+                for (int i = 0; i < addMutiLinesParameter.lineCount; i++)
+                {
+                    SingleSentence singleSentence = new SingleSentence();
+                    singleSentence.startTime = startTime;
+                    singleSentence.endTime = startTime+addMutiLinesParameter.timeSpiltLength;
+                    this.dataProcess.listSingleSentence.Insert(index + 1, singleSentence);
+                    this.SetListViewData(this.dataProcess.listSingleSentence);
+                    startTime += addMutiLinesParameter.timeSpiltLength;
+                    index++;
+                }
+                this.listView1.yyItems[index].Focused = true;
+                this.listView1.Invalidate();
+            }
         }
 
         

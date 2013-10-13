@@ -179,7 +179,7 @@ namespace TimeMDev
         {
             return this.listSingleSentence;
         }
-        public string TimeOut(double time)
+        public static string TimeOut(double time)
         {
             /*
             time = ((double)((int)(time * 1000))) / 1000;
@@ -198,7 +198,7 @@ namespace TimeMDev
             string TimeStr = hour + ":" + minute.ToString().PadLeft(2,'0') + ":" + second.ToString().PadLeft(2,'0') + "," + minsec.ToString().PadLeft(3,'0');
             return TimeStr;
         }
-        public double TimeIn(string time)
+        public static double TimeIn(string time)
         {
             string[] timeBuffer;
             string[] spiltChar = { ",", "，", ":" };
@@ -420,7 +420,7 @@ namespace TimeMDev
             }
             return true;
         }
-        private string TimeOutAss(double time)
+        private static string TimeOutAss(double time)
         {
             time = ((double)((int)(time * 1000))) / 1000;
             int hour = (int)time / 3600;
@@ -430,7 +430,7 @@ namespace TimeMDev
             string TimeStr = hour + ":" + minute.ToString().PadLeft(2, '0') + ":" + second.ToString().PadLeft(2, '0') + "," + minsec.ToString().PadLeft(2, '0');
             return TimeStr;
         }
-        public double TimeInAss(string time)
+        public static double TimeInAss(string time)
         {
             string[] timeBuffer;
             string[] spiltChar = { ".", "。", ":" };
@@ -460,8 +460,8 @@ namespace TimeMDev
             {
                 line = "Dialogue: ";
                 line += this.listSingleSentence[i].layer + ",";
-                line += this.TimeOutAss(this.listSingleSentence[i].startTime) + ",";
-                line += this.TimeOutAss(this.listSingleSentence[i].endTime) + ",";
+                line += TimeOutAss(this.listSingleSentence[i].startTime) + ",";
+                line += TimeOutAss(this.listSingleSentence[i].endTime) + ",";
                 line += this.listSingleSentence[i].style + ",";
                 line += this.listSingleSentence[i].actor + ",";
                 line += this.listSingleSentence[i].marginL + ",";
@@ -475,7 +475,6 @@ namespace TimeMDev
             streamWriter.Close();
             fileStream.Close();
         }
-
 
     }
 }
