@@ -40,6 +40,9 @@ namespace TimeMDev
             moviePath = "";
             //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
             temporarySubtitlePath = "d:\\yyets~c~.srt";
+
+            //初始的时候禁止listviewmenu显示
+            //this.SetListviewMenuEnable(false);
         }
         private void startMplayerFristTimeLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -265,6 +268,8 @@ namespace TimeMDev
                 this.rateShow.Focus();
                 this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
 
+                //使能 listviewmenu
+                //this.SetListviewMenuEnable(true);
             }
             this.rateShow.Focus();
         }
@@ -359,7 +364,26 @@ namespace TimeMDev
 
         private void listViewMenu_Opening(object sender, CancelEventArgs e)
         {
-
+            if (this.listView1.Columns.Count == 0)
+            {
+                for (int i = 0; i < this.listViewMenu.Items.Count; i++)
+                {
+                    this.listViewMenu.Items[i].Enabled = false;
+                }
+                    return;
+            }
+            else
+            {
+                for (int i = 0; i < this.listViewMenu.Items.Count; i++)
+                {
+                    this.listViewMenu.Items[i].Enabled = true;
+                }
+                if(this.mplayer.IsHaveMovie())
+                {
+                    this.alignNowLineContext.Enabled=false;
+                    this.alignAfterLineContext.Enabled=false;
+                }
+            }
         }
 
         private void ccRemoveDuplicateItemL_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -382,5 +406,25 @@ namespace TimeMDev
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }
+
+        ///以下，ListViewMenu的响应函数
+        private void addOneLineContext_Click(object sender, EventArgs e)
+        {
+            if(this.listView1.SelectedIndices.Count>0)
+            {
+                //this.listView1.Items.Insert(this.listView1.SelectedItems[this.listView1.SelectedItems.Count-1]
+                //this.listView1.yyItems.Insert(this.listView1.SelectedItemsthis.listView1.SelectedItems[this.listView1.SelectedItems.Count-1]
+                int index = this.listView1.SelectedIndices[this.listView1.SelectedIndices.Count - 1];
+                index++;
+                SingleSentence singleSentence=new SingleSentence();
+                singleSentence.startTime = this.dataProcess.listSingleSentence[index].endTime;
+                singleSentence.endTime = singleSentence.startTime + 1;
+                this.dataProcess.listSingleSentence.Insert(index, singleSentence);
+                this.SetListViewData(this.dataProcess.listSingleSentence);
+                this.listView1.Invalidate();
+           }
+        }
+
+        
     }
 }

@@ -93,7 +93,19 @@ namespace TimeMDev
                 
             }
         }
-       
+
+        public bool IsHaveMovie()
+        {
+            if (this.mplayer != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// 设置基础参数
         /// </summary>

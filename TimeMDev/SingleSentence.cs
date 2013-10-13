@@ -24,5 +24,12 @@ namespace TimeMDev
         //string content
         public string textEffect;
         public MatchCollection matchCollectionEffect;
+
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
+
 }
