@@ -207,7 +207,52 @@ namespace TimeMDev
             this.yyItems.Sort(this.yyListViewColumnSorterVirtual);
             this.Invalidate();
         }
-    
-    
+        /// <summary>
+        /// 插入空行
+        /// </summary>
+        /// <param name="num"></param>
+        public void YYInsertBlank(int index,int count,double timeSpilt,bool style)
+        {
+            //在某个位置插入多少空行，那个位置不变，其他位置都增加
+            for (int i = 0; i < this.yyItems.Count; i++)
+            {
+                int position = Int32.Parse(yyItems[i].SubItems[0].Text);
+                if (position > Int32.Parse(yyItems[index-1].SubItems[0].Text))
+                {
+                    yyItems[i].SubItems[0].Text = position + count + "";
+                }
+            }
+            for(int i=0;i<count;i++)
+            {
+                ListViewItem item=(ListViewItem)this.yyItems[0].Clone();
+                if(style==true)
+                {
+                    item.SubItems[3].Text="";
+                }
+                if(style==false)
+                {
+                    item.SubItems[3].Text="空白内容行"+i+1;
+                }
+                item.SubItems[0].Text=Int32.Parse(this.yyItems[index-1].SubItems[0].Text)+i+1+"";
+                item.SubItems[1].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index-1+i].SubItems[2].Text));
+                item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index-1+i].SubItems[2].Text)+1);
+                this.yyItems.Insert(index+i,item);
+            }
+            
+        }
+        public void YYDeleteLines(int index)
+        {
+            int num = Int32.Parse(yyItems[index].SubItems[0].Text);
+            yyItems.RemoveAt(index);
+            for (int i = 0; i < this.yyItems.Count; i++)
+            {
+                int position = Int32.Parse(yyItems[i].SubItems[0].Text);
+                if (position >num)
+                {
+                    yyItems[i].SubItems[0].Text = (position-1)+"";
+                }
+            }
+        }
     }
 }
+

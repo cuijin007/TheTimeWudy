@@ -448,11 +448,22 @@ namespace TimeMDev
                     SingleSentence singleSentence = new SingleSentence();
                     singleSentence.startTime = startTime;
                     singleSentence.endTime = startTime+addMutiLinesParameter.timeSpiltLength;
-                    this.dataProcess.listSingleSentence.Insert(index + 1, singleSentence);
-                    this.SetListViewData(this.dataProcess.listSingleSentence);
+                    if (addMutiLinesParameter.isBlank)
+                    {
+                        singleSentence.content = "";
+                    }
+                    else
+                    {
+                        singleSentence.content = "空白内容行" + i;
+                    }
+                    this.dataProcess.listSingleSentence.Insert(index + 1+i, singleSentence);
+                    //this.SetListViewData(this.dataProcess.listSingleSentence);
                     startTime += addMutiLinesParameter.timeSpiltLength;
-                    index++;
+                    
+                    //index++;
                 }
+
+                this.listView1.YYInsertBlank(index, addMutiLinesParameter.lineCount, addMutiLinesParameter.timeSpiltLength, addMutiLinesParameter.isBlank);
                 this.listView1.yyItems[index].Focused = true;
                 this.listView1.Invalidate();
             }
