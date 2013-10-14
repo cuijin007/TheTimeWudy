@@ -1659,7 +1659,7 @@
             this.pasteContext,
             this.checkAllContext});
             this.listViewMenu.Name = "listViewMenu";
-            this.listViewMenu.Size = new System.Drawing.Size(229, 424);
+            this.listViewMenu.Size = new System.Drawing.Size(229, 446);
             this.listViewMenu.Opening += new System.ComponentModel.CancelEventHandler(this.listViewMenu_Opening);
             // 
             // addOneLineContext
@@ -1733,6 +1733,7 @@
             this.deleteLineContext.Name = "deleteLineContext";
             this.deleteLineContext.Size = new System.Drawing.Size(228, 22);
             this.deleteLineContext.Text = "删除行";
+            this.deleteLineContext.Click += new System.EventHandler(this.deleteLineContext_Click);
             // 
             // zeroTime
             // 

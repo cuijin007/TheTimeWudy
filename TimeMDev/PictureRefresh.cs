@@ -278,6 +278,7 @@ namespace TimeMDev
                 }
             }
             endNum = startNum;
+
             for (int i = startNum; i < this.listSingleSentence.Count; i++)
             {
                 if (this.listSingleSentence[i].startTime > this.NowTime + (width / oneUnitPix) * unitBelow)
@@ -296,65 +297,70 @@ namespace TimeMDev
             }
             //以上是将起始的要显示的台词，和要停止的的显示的台词的序号都找到了
             //下一步就开始遍历这段数组，然后将台词显示出来
-            for (int i = startNum; i <= endNum; i++)
+            //for (int i = startNum; i <= endNum; i++)
+            for (int i = 0; i < this.listSingleSentence.Count;i++)
             {
-                if (this.selectedTime <= this.listSingleSentence[i].endTime && this.selectedTime >= this.listSingleSentence[i].startTime)
+                //遍历所有的数组，而不是找起始位和停止位。2013-10-14
+                if (this.listSingleSentence[i].endTime >= this.NowTime || this.listSingleSentence[i].startTime > this.NowTime + (width / oneUnitPix) * unitBelow)
                 {
-                    this.listSingleSentence[i].isSelected = true;
-                }
-                else
-                {
-                    this.listSingleSentence[i].isSelected = false;
-                }
-                //以上是将是不是选中，搞出来了，选中的反白显示
-                int startPosition = 0;
-                int endPosition = 0;
-                startPosition = (int)((this.listSingleSentence[i].startTime - NowTime) * this.oneUnitPix / unitBelow);
-                if (startPosition < 0)
-                {
-                    startPosition = 0;
-                }
-                endPosition = (int)((this.listSingleSentence[i].endTime - NowTime) * this.oneUnitPix / unitBelow);
-                if (endPosition > this.width)
-                {
-                    endPosition = width;
-                }
-                if (endPosition >= startPosition)//只有末尾比开始大，所有的工作才有意义..2013-3-8
-                {
-                    graphics.DrawLine(new Pen(brushDetailLine, 1), startPosition, cutE, startPosition, timeS);
-                    graphics.DrawLine(new Pen(brushDetailLine, 1), endPosition, cutE, endPosition, timeS);
-                    if (this.listSingleSentence[i].isSelected)
+                    if (this.selectedTime <= this.listSingleSentence[i].endTime && this.selectedTime >= this.listSingleSentence[i].startTime)
                     {
-                        graphics.FillRectangle(brushDetailSelected, startPosition, detailS, endPosition - startPosition, detailE - detailS);
+                        this.listSingleSentence[i].isSelected = true;
                     }
                     else
                     {
-                        graphics.FillRectangle(brushDetail, startPosition, detailS, endPosition - startPosition, detailE - detailS);
+                        this.listSingleSentence[i].isSelected = false;
                     }
-                    //以上是绘制图形，现在是绘制图像
-                    string str = listSingleSentence[i].content;
-                    SizeF sizeF = graphics.MeasureString(listSingleSentence[i].content, new Font("微软雅黑", 10));
-                    if (sizeF.Width > (endPosition - startPosition))
+                    //以上是将是不是选中，搞出来了，选中的反白显示
+                    int startPosition = 0;
+                    int endPosition = 0;
+                    startPosition = (int)((this.listSingleSentence[i].startTime - NowTime) * this.oneUnitPix / unitBelow);
+                    if (startPosition < 0)
                     {
-                        int wordNum = (int)(str.Length * (endPosition - startPosition) / sizeF.Width);
-                        str = str.Remove(wordNum);
+                        startPosition = 0;
                     }
-                    if (this.listSingleSentence[i].isSelected)
+                    endPosition = (int)((this.listSingleSentence[i].endTime - NowTime) * this.oneUnitPix / unitBelow);
+                    if (endPosition > this.width)
                     {
-                        graphics.DrawString(str, new Font("微软雅黑", 10), brushWordSelected, startPosition, detailS + 10);
+                        endPosition = width;
                     }
-                    else
+                    if (endPosition >= startPosition)//只有末尾比开始大，所有的工作才有意义..2013-3-8
                     {
-                        graphics.DrawString(str, new Font("微软雅黑", 10), brushWord, startPosition, detailS + 10);
-                    }
-                    //以上是绘制文字
-                    //以下是为了绘制滑块做准备
-                    SlideInfo info = new SlideInfo();
-                    info.startPosition = startPosition;
-                    info.endPosition = endPosition;
-                    info.num = i;
-                    this.listSlideInfo.Add(info);
+                        graphics.DrawLine(new Pen(brushDetailLine, 1), startPosition, cutE, startPosition, timeS);
+                        graphics.DrawLine(new Pen(brushDetailLine, 1), endPosition, cutE, endPosition, timeS);
+                        if (this.listSingleSentence[i].isSelected)
+                        {
+                            graphics.FillRectangle(brushDetailSelected, startPosition, detailS, endPosition - startPosition, detailE - detailS);
+                        }
+                        else
+                        {
+                            graphics.FillRectangle(brushDetail, startPosition, detailS, endPosition - startPosition, detailE - detailS);
+                        }
+                        //以上是绘制图形，现在是绘制图像
+                        string str = listSingleSentence[i].content;
+                        SizeF sizeF = graphics.MeasureString(listSingleSentence[i].content, new Font("微软雅黑", 10));
+                        if (sizeF.Width > (endPosition - startPosition))
+                        {
+                            int wordNum = (int)(str.Length * (endPosition - startPosition) / sizeF.Width);
+                            str = str.Remove(wordNum);
+                        }
+                        if (this.listSingleSentence[i].isSelected)
+                        {
+                            graphics.DrawString(str, new Font("微软雅黑", 10), brushWordSelected, startPosition, detailS + 10);
+                        }
+                        else
+                        {
+                            graphics.DrawString(str, new Font("微软雅黑", 10), brushWord, startPosition, detailS + 10);
+                        }
+                        //以上是绘制文字
+                        //以下是为了绘制滑块做准备
+                        SlideInfo info = new SlideInfo();
+                        info.startPosition = startPosition;
+                        info.endPosition = endPosition;
+                        info.num = i;
+                        this.listSlideInfo.Add(info);
 
+                    }
                 }
             }
 

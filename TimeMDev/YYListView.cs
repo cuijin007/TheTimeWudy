@@ -188,10 +188,11 @@ namespace TimeMDev
             }
             else
             {
-                e.Item = this.yyItems[e.ItemIndex];
-                if (e.ItemIndex == this.yyItems.Count)
+                //e.Item = this.yyItems[e.ItemIndex];
+                if (e.ItemIndex < this.yyItems.Count)
                 {
                     //this.ItemsCollect = null;
+                    e.Item = this.yyItems[e.ItemIndex];
                 }
             }
         }
@@ -238,9 +239,12 @@ namespace TimeMDev
                 item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index-1+i].SubItems[2].Text)+1);
                 this.yyItems.Insert(index+i,item);
             }
-            
         }
-        public void YYDeleteLines(int index)
+        /// <summary>
+        /// 删除某一行
+        /// </summary>
+        /// <param name="index"></param>
+        public void YYDeleteLine(int index)
         {
             int num = Int32.Parse(yyItems[index].SubItems[0].Text);
             yyItems.RemoveAt(index);

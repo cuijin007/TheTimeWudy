@@ -425,7 +425,7 @@ namespace TimeMDev
                 singleSentence.endTime = singleSentence.startTime + 1;
                 this.dataProcess.listSingleSentence.Insert(index+1, singleSentence);
                 this.SetListViewData(this.dataProcess.listSingleSentence);
-                this.listView1.Invalidate();
+                this.listView1.YYRefresh();
            }
         }
 
@@ -465,8 +465,20 @@ namespace TimeMDev
 
                 this.listView1.YYInsertBlank(index, addMutiLinesParameter.lineCount, addMutiLinesParameter.timeSpiltLength, addMutiLinesParameter.isBlank);
                 this.listView1.yyItems[index].Focused = true;
-                this.listView1.Invalidate();
+                this.listView1.YYRefresh();
             }
+        }
+
+        private void deleteLineContext_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            {
+                //int index = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                int index = this.listView1.SelectedIndices[i];
+                this.listView1.YYDeleteLine(index);
+            }
+            this.listView1.YYRefresh();
+           
         }
 
         
