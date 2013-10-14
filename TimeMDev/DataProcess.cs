@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace TimeMDev
 {
+    [Serializable]
     class DataProcess:RedoUndoInterface
     {
         PictureRefresh pictureRefresh;

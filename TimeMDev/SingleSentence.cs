@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace TimeMDev
 {
+    [Serializable]
     public class SingleSentence
     {
         public string content;

@@ -211,6 +211,8 @@ namespace TimeMDev
                 //this.mplayer.LoadTimeLine(this.temporarySubtitlePath);
                 //this.mplayer.RemoveTimeLine();
             }
+
+            this.dataProcess.Save();
         }
         void rateShow_MouseWheel(object sender, MouseEventArgs e)
         {
