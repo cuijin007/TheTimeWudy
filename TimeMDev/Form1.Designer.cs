@@ -1740,12 +1740,14 @@
             this.zeroTime.Name = "zeroTime";
             this.zeroTime.Size = new System.Drawing.Size(228, 22);
             this.zeroTime.Text = "仅时间清零";
+            this.zeroTime.Click += new System.EventHandler(this.zeroTime_Click);
             // 
             // zeroContentContext
             // 
             this.zeroContentContext.Name = "zeroContentContext";
             this.zeroContentContext.Size = new System.Drawing.Size(228, 22);
             this.zeroContentContext.Text = "仅内容清空";
+            this.zeroContentContext.Click += new System.EventHandler(this.zeroContentContext_Click);
             // 
             // toolStripSeparator3
             // 
@@ -1757,6 +1759,7 @@
             this.undoContext.Name = "undoContext";
             this.undoContext.Size = new System.Drawing.Size(228, 22);
             this.undoContext.Text = "撤销";
+            this.undoContext.Click += new System.EventHandler(this.undoContext_Click);
             // 
             // repeatContext
             // 

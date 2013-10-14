@@ -471,14 +471,44 @@ namespace TimeMDev
 
         private void deleteLineContext_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            for (int i = this.listView1.SelectedIndices.Count-1; i >=0; i--)
             {
-                //int index = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                this.dataProcess.listSingleSentence.RemoveAt(index2);
                 int index = this.listView1.SelectedIndices[i];
                 this.listView1.YYDeleteLine(index);
             }
             this.listView1.YYRefresh();
-           
+        }
+
+        private void zeroTime_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            {
+                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                this.dataProcess.listSingleSentence[index2].startTime = 0;
+                this.dataProcess.listSingleSentence[index2].endTime = 0;
+                int index = this.listView1.SelectedIndices[i];
+                this.listView1.YYZero(index, 1);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void zeroContentContext_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            {
+                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                this.dataProcess.listSingleSentence[index2].content = "";
+                int index = this.listView1.SelectedIndices[i];
+                this.listView1.YYZero(index, 0);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void undoContext_Click(object sender, EventArgs e)
+        {
+            this.dataProcess.Undo();
         }
 
         

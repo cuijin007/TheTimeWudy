@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace TimeMDev
 {
-    class DataProcess
+    class DataProcess:RedoUndoInterface
     {
         PictureRefresh pictureRefresh;
         YYListView listView;
@@ -560,5 +560,59 @@ namespace TimeMDev
             }
         }
 
+
+        #region RedoUndoInterface 成员
+        private List<List<SingleSentence>> undoStack = new List<List<SingleSentence>>();
+        private List<List<SingleSentence>> redoStack = new List<List<SingleSentence>>();
+        public bool Undo()
+        {
+            if (this.undoStack.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                List<SingleSentence> sg = CopyObject.DeepCopy(this.listSingleSentence);
+                this.redoStack.Insert(0, sg);
+                this.listSingleSentence = this.undoStack[0];
+                this.undoStack.RemoveAt(0);
+                return true;
+            }
+        }
+
+        public void Save()
+        {
+            List<SingleSentence> sg = CopyObject.DeepCopy(this.listSingleSentence);
+            this.undoStack.Insert(0, this.listSingleSentence);
+            if (this.undoStack.Count >= 10)
+            {
+                this.undoStack.RemoveAt(this.undoStack.Count - 1);
+            }
+        }
+
+        public bool Redo()
+        {
+            if (this.redoStack.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                List<SingleSentence> sg = CopyObject.DeepCopy(this.listSingleSentence);
+                this.undoStack.Insert(0, sg);
+                this.listSingleSentence = this.redoStack[0];
+                this.redoStack.RemoveAt(0);
+                return true;
+            }
+
+        }
+
+        public void Clear()
+        {
+            this.redoStack.Clear();
+            this.undoStack.Clear();
+        }
+
+        #endregion
     }
 }

@@ -257,6 +257,25 @@ namespace TimeMDev
                 }
             }
         }
+        /// <summary>
+        /// 清空某一项
+        /// </summary>
+        /// <param name="index">序号</param>
+        /// <param name="style">0，清空内容，1，清空时间</param>
+        public void YYZero(int index,int style)
+        {
+            if(style==0)
+            {
+                this.yyItems[index].SubItems[3].Text = "";
+            }
+            if (style == 1)
+            {
+                this.yyItems[index].SubItems[2].Text = "";
+                this.yyItems[index].SubItems[1].Text = "";
+            }
+        }
+
+
     }
 }
 
