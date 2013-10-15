@@ -1710,6 +1710,7 @@
             this.customSpiltContext.Name = "customSpiltContext";
             this.customSpiltContext.Size = new System.Drawing.Size(228, 22);
             this.customSpiltContext.Text = "自定义拆分";
+            this.customSpiltContext.Click += new System.EventHandler(this.customSpiltContext_Click);
             // 
             // combineOneLineContext
             // 

@@ -513,6 +513,17 @@ namespace TimeMDev
             this.dataProcess._Undo();
         }
 
+        private void customSpiltContext_Click(object sender, EventArgs e)
+        {
+            if(this.listView1.SelectedIndices.Count>0)
+            {
+                SpiltParameter spiltParameter = new SpiltParameter();
+                int index = Int32.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[0]].Text);
+                spiltParameter.beforeSpilt= this.dataProcess.listSingleSentence[index].content;
+                (new CustomSpilt(spiltParameter)).ShowDialog();
+            }
+        }
+
         
     }
 }

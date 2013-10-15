@@ -215,7 +215,10 @@ namespace TimeMDev
             {
                 chinese = matchCollection[0].ToString();
             }
-            english = content.Replace(chinese, "");
+            if (!chinese.Equals(""))
+            {
+                english = content.Replace(chinese, "");
+            }
         }
         
     }
