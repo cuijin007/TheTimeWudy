@@ -292,6 +292,7 @@ namespace TimeMDev
                 List<ListViewItem> sg = CopyObject.DeepCopy(this.yyItems);
                 this.redoStack.Insert(0, sg);
                 this.yyItems = this.undoStack[0];
+                this.VirtualListSize = this.yyItems.Count;
                 this.undoStack.RemoveAt(0);
                 return true;
             }
@@ -318,6 +319,7 @@ namespace TimeMDev
                 List<ListViewItem> sg = CopyObject.DeepCopy(this.yyItems);
                 this.undoStack.Insert(0, sg);
                 this.yyItems = this.redoStack[0];
+                this.VirtualListSize = this.yyItems.Count;
                 this.redoStack.RemoveAt(0);
                 return true;
             }
