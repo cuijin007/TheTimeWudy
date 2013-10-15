@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TimeMDev
 {
-    public class YYListView:ListView,RedoUndoInterface
+    public class YYListView:ListView,RedoUndoInterface,CopyPasteInterface
     {
         public List<int> SignPosition;//变颜色的位置
         public Brush Selected;
@@ -329,6 +329,24 @@ namespace TimeMDev
             this.redoStack.Clear();
             this.undoStack.Clear();
         }
+        #endregion
+
+        #region CopyPasteInterface 成员
+
+        public void _Copy()
+        {
+            if (this.SelectedIndices.Count > 0)
+            {
+                Clipboard.SetData(DataFormats.UnicodeText, this.yyItems[this.SelectedIndices[0]].SubItems[3].Text);
+            }
+        }
+
+        public void _Paste()
+        {
+            string str = (string)Clipboard.GetData(DataFormats.UnicodeText);
+            this.yyItems[this.SelectedIndices[0]].SubItems[3].Text = str;
+        }
+
         #endregion
     }
 }
