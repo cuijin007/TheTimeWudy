@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace TimeMDev
 {
-    public class YYListView:ListView
+    public class YYListView:ListView,RedoUndoInterface
     {
         public List<int> SignPosition;//变颜色的位置
         public Brush Selected;
@@ -276,6 +276,60 @@ namespace TimeMDev
         }
 
 
+
+        #region RedoUndoInterface 成员
+
+        private List<List<ListViewItem>> undoStack = new List<List<ListViewItem>>();
+        private List<List<ListViewItem>> redoStack = new List<List<ListViewItem>>();
+        public bool _Undo()
+        {
+            if (this.undoStack.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                List<ListViewItem> sg = CopyObject.DeepCopy(this.yyItems);
+                this.redoStack.Insert(0, sg);
+                this.yyItems = this.undoStack[0];
+                this.undoStack.RemoveAt(0);
+                return true;
+            }
+        }
+
+        public void _Save()
+        {
+            List<ListViewItem> sg = CopyObject.DeepCopy(this.yyItems);
+            this.undoStack.Insert(0, this.yyItems);
+            if (this.undoStack.Count >= 10)
+            {
+                this.undoStack.RemoveAt(this.undoStack.Count - 1);
+            }
+        }
+
+        public bool _Redo()
+        {
+            if (this.redoStack.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                List<ListViewItem> sg = CopyObject.DeepCopy(this.yyItems);
+                this.undoStack.Insert(0, sg);
+                this.yyItems = this.redoStack[0];
+                this.redoStack.RemoveAt(0);
+                return true;
+            }
+
+        }
+
+        public void _Clear()
+        {
+            this.redoStack.Clear();
+            this.undoStack.Clear();
+        }
+        #endregion
     }
 }
 

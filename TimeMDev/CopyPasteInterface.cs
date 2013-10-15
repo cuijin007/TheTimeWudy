@@ -7,5 +7,7 @@ namespace TimeMDev
 {
     public interface CopyPasteInterface
     {
+        void Copy();
+        void Paste();
     }
 }

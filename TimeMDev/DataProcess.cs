@@ -565,7 +565,7 @@ namespace TimeMDev
         #region RedoUndoInterface 成员
         private List<List<SingleSentence>> undoStack = new List<List<SingleSentence>>();
         private List<List<SingleSentence>> redoStack = new List<List<SingleSentence>>();
-        public bool Undo()
+        public bool _Undo()
         {
             if (this.undoStack.Count == 0)
             {
@@ -581,7 +581,7 @@ namespace TimeMDev
             }
         }
 
-        public void Save()
+        public void _Save()
         {
             List<SingleSentence> sg = CopyObject.DeepCopy(this.listSingleSentence);
             this.undoStack.Insert(0, this.listSingleSentence);
@@ -591,7 +591,7 @@ namespace TimeMDev
             }
         }
 
-        public bool Redo()
+        public bool _Redo()
         {
             if (this.redoStack.Count == 0)
             {
@@ -608,7 +608,7 @@ namespace TimeMDev
 
         }
 
-        public void Clear()
+        public void _Clear()
         {
             this.redoStack.Clear();
             this.undoStack.Clear();

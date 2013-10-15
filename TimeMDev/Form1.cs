@@ -212,7 +212,7 @@ namespace TimeMDev
                 //this.mplayer.RemoveTimeLine();
             }
 
-            this.dataProcess.Save();
+            this.dataProcess._Save();
         }
         void rateShow_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -285,7 +285,7 @@ namespace TimeMDev
         /// <param name="listSingleSentence"></param>
         public void SetListViewData(List<SingleSentence> listSingleSentence)
         {
-            this.listView1.Clear();
+            this.listView1._Clear();
             this.listView1.yyItems.Clear();
             this.listView1.YYRefresh();
             this.InitListView();
@@ -510,7 +510,7 @@ namespace TimeMDev
 
         private void undoContext_Click(object sender, EventArgs e)
         {
-            this.dataProcess.Undo();
+            this.dataProcess._Undo();
         }
 
         

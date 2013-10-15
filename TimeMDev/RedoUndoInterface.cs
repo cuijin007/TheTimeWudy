@@ -7,9 +7,9 @@ namespace TimeMDev
 {
     public interface RedoUndoInterface
     {
-        bool Undo();
-        void Save();
-        bool Redo();
-        void Clear();
+        bool _Undo();
+        void _Save();
+        bool _Redo();
+        void _Clear();
     }
 }
