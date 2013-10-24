@@ -520,6 +520,7 @@ namespace TimeMDev
                 SpiltParameter spiltParameter = new SpiltParameter();
                 int index = Int32.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[0]].Text);
                 spiltParameter.beforeSpilt= this.dataProcess.listSingleSentence[index].content;
+                this.Capture = false;
                 (new CustomSpilt(spiltParameter)).ShowDialog();
             }
         }

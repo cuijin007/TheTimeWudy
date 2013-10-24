@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureShowCut = new TimeMDev.PictureShowCut();
             this.label1 = new System.Windows.Forms.Label();
             this.timeLength = new System.Windows.Forms.Label();
             this.confirm = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.singleTimeLine = new System.Windows.Forms.RadioButton();
             this.doubleTimeLine = new System.Windows.Forms.RadioButton();
+            this.pictureShowCut = new TimeMDev.PictureShowCut();
             this.SuspendLayout();
-            // 
-            // pictureShowCut
-            // 
-            this.pictureShowCut.Location = new System.Drawing.Point(23, 53);
-            this.pictureShowCut.Name = "pictureShowCut";
-            this.pictureShowCut.Size = new System.Drawing.Size(519, 223);
-            this.pictureShowCut.TabIndex = 0;
             // 
             // label1
             // 
@@ -104,18 +97,26 @@
             this.doubleTimeLine.Text = "双语字幕";
             this.doubleTimeLine.UseVisualStyleBackColor = true;
             // 
+            // pictureShowCut
+            // 
+            this.pictureShowCut.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.pictureShowCut.Location = new System.Drawing.Point(23, 53);
+            this.pictureShowCut.Name = "pictureShowCut";
+            this.pictureShowCut.Size = new System.Drawing.Size(519, 223);
+            this.pictureShowCut.TabIndex = 0;
+            // 
             // CustomSpilt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 326);
+            this.Controls.Add(this.pictureShowCut);
             this.Controls.Add(this.doubleTimeLine);
             this.Controls.Add(this.singleTimeLine);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.confirm);
             this.Controls.Add(this.timeLength);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureShowCut);
             this.Name = "CustomSpilt";
             this.Text = "自定义拆分";
             this.ResumeLayout(false);

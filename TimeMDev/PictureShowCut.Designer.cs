@@ -40,6 +40,9 @@
             this.pictureBoxShow.Size = new System.Drawing.Size(786, 473);
             this.pictureBoxShow.TabIndex = 0;
             this.pictureBoxShow.TabStop = false;
+            this.pictureBoxShow.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxShow_MouseMove);
+            this.pictureBoxShow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxShow_MouseDown);
+            this.pictureBoxShow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxShow_MouseUp);
             // 
             // PictureShowCut
             // 

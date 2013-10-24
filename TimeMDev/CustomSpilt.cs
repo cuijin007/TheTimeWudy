@@ -16,7 +16,7 @@ namespace TimeMDev
         {
             InitializeComponent();
             this.spiltParameter = spiltParameter;
-            this.Capture = true;
+            this.pictureShowCut.Capture = true;
             this.Init();
             this.pictureShowCut.DrawPictureView();
         }
@@ -25,6 +25,7 @@ namespace TimeMDev
         {
             this.spiltParameter.confirm = true;
             this.pictureShowCut.SpiltWord(out this.spiltParameter.afterSpiltFristLine, out this.spiltParameter.afterSpiltSecondLine);
+            this.Close();
         }
 
         private void cancel_Click(object sender, EventArgs e)
