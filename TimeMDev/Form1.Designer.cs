@@ -1618,7 +1618,6 @@
             this.listView1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(2, 23);
-            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Order = System.Windows.Forms.SortOrder.None;
             this.listView1.OwnerDraw = true;
@@ -1659,7 +1658,7 @@
             this.pasteContext,
             this.checkAllContext});
             this.listViewMenu.Name = "listViewMenu";
-            this.listViewMenu.Size = new System.Drawing.Size(229, 446);
+            this.listViewMenu.Size = new System.Drawing.Size(229, 424);
             this.listViewMenu.Opening += new System.ComponentModel.CancelEventHandler(this.listViewMenu_Opening);
             // 
             // addOneLineContext
@@ -1778,24 +1777,28 @@
             this.cutContext.Name = "cutContext";
             this.cutContext.Size = new System.Drawing.Size(228, 22);
             this.cutContext.Text = "剪切";
+            this.cutContext.Click += new System.EventHandler(this.cutContext_Click);
             // 
             // copyContext
             // 
             this.copyContext.Name = "copyContext";
             this.copyContext.Size = new System.Drawing.Size(228, 22);
             this.copyContext.Text = "复制";
+            this.copyContext.Click += new System.EventHandler(this.copyContext_Click);
             // 
             // pasteContext
             // 
             this.pasteContext.Name = "pasteContext";
             this.pasteContext.Size = new System.Drawing.Size(228, 22);
             this.pasteContext.Text = "粘贴";
+            this.pasteContext.Click += new System.EventHandler(this.pasteContext_Click);
             // 
             // checkAllContext
             // 
             this.checkAllContext.Name = "checkAllContext";
             this.checkAllContext.Size = new System.Drawing.Size(228, 22);
             this.checkAllContext.Text = "全选";
+            this.checkAllContext.Click += new System.EventHandler(this.checkAllContext_Click);
             // 
             // imageList2
             // 

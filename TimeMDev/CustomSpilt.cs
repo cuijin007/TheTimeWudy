@@ -40,6 +40,8 @@ namespace TimeMDev
             string chinese = "";
             string english = "";
             CCHandle.SpiltRule(this.spiltParameter.beforeSpilt, out chinese, out english);
+            chinese = chinese.Replace("\r\n","");
+            english = english.Replace("\r\n","");
             this.pictureShowCut.Capture = true;
             this.pictureShowCut.Init(chinese, english);
         }

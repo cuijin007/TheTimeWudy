@@ -441,11 +441,13 @@ namespace TimeMDev
             {
                 if (this.pointList[i].y == 0)
                 {
-                    fristLineSave = fristLineSave.Insert(this.pointList[i].x + 1, "$&$");
+                    //fristLineSave = fristLineSave.Insert(this.pointList[i].x + 1, "$&$");
+                    fristLineSave = fristLineSave.Insert(this.pointList[i].x, "$&$");//改变了之后，会后搓一个字符。
                 }
                 if (this.pointList[i].y == 1)
                 {
-                    secondLineSave = secondLineSave.Insert(this.pointList[i].x + 1, "$&$");
+                    //secondLineSave = secondLineSave.Insert(this.pointList[i].x + 1, "$&$");
+                    secondLineSave = secondLineSave.Insert(this.pointList[i].x, "$&$");
                 }
             }
             string[] spilt = new string[1];

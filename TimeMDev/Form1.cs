@@ -518,11 +518,114 @@ namespace TimeMDev
             if(this.listView1.SelectedIndices.Count>0)
             {
                 SpiltParameter spiltParameter = new SpiltParameter();
+                
                 int index = Int32.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[0]].Text);
                 spiltParameter.beforeSpilt= this.dataProcess.listSingleSentence[index].content;
                 this.Capture = false;
                 (new CustomSpilt(spiltParameter)).ShowDialog();
+                if (spiltParameter.confirm == true)
+                {
+                    //拆分之后进行新行的插入和旧行的删除
+                    double startTime = this.dataProcess.listSingleSentence[index].startTime;
+                    double endTime = this.dataProcess.listSingleSentence[index].endTime;
+                    double timeSpilt = endTime - startTime;
+                    int count = 0;
+                    if (spiltParameter.afterSpiltFristLine.Length > spiltParameter.afterSpiltSecondLine.Length)
+                    {
+                        count = spiltParameter.afterSpiltFristLine.Length;
+                    }
+                    else
+                    {
+                        count = spiltParameter.afterSpiltSecondLine.Length;
+                    }
+
+                    int showPosition = this.listView1.SelectedIndices[0];
+                    this.dataProcess.listSingleSentence.RemoveAt(index);
+                   
+                    //this.listView1.yyItems.RemoveAt(this.listView1.SelectedIndices[0]);
+                    this.listView1.YYDeleteLine(this.listView1.SelectedIndices[0]);
+                    for (int i = 0; i < count; i++)
+                    {
+                        SingleSentence singleSentence = new SingleSentence();
+                        string content = "";
+                        if (spiltParameter.afterSpiltFristLine.Length > i)
+                        {
+                            content += spiltParameter.afterSpiltFristLine[i];
+                            content += "\r\n";
+                        }
+                        if (spiltParameter.afterSpiltSecondLine.Length > i)
+                        {
+                            content += spiltParameter.afterSpiltSecondLine[i];
+                        }
+                        singleSentence.startTime = startTime + ((endTime - startTime) / count) * i;
+                        singleSentence.endTime = startTime + ((endTime - startTime) / count) * (i + 1);
+                        singleSentence.content = content;
+                        this.dataProcess.listSingleSentence.Insert(index+i, singleSentence);
+                        this.listView1.YYInsertLine(showPosition+i, index+i, singleSentence);
+                    }
+                }
+                
             }
+            this.listView1.Invalidate();
+        }
+
+        private void copyContext_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                int[] index = new int[this.listView1.SelectedIndices.Count];
+                for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
+                {
+                    index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                }
+                this.dataProcess._Copy(index);
+            }
+            this.listView1.Invalidate();
+        }
+
+        private void cutContext_Click(object sender, EventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                int[] index = new int[this.listView1.SelectedIndices.Count];
+                for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
+                {
+                    index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                }
+                this.dataProcess._Cut(index);
+                
+                for(int j=this.listView1.SelectedIndices.Count-1;j>=0;j--)
+                {
+                    this.listView1.YYDeleteLine(this.listView1.SelectedIndices[j]);
+                }
+            }
+            this.listView1.Invalidate();
+        }
+
+        private void pasteContext_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
+                List<SingleSentence> sentences = (List<SingleSentence>)Clipboard.GetData(format.Name);
+                if (this.listView1.SelectedIndices.Count > 0)
+                {
+                    int index = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[0].Text);
+                    this.dataProcess._Paste(index);
+                    for (int i = 0; i < sentences.Count; i++)
+                    {
+                        this.listView1.YYInsertLine(this.listView1.SelectedIndices[0], index, sentences[i]);
+                    }
+                }
+            }
+            catch
+            {}
+            this.listView1.Invalidate();
+        }
+
+        private void checkAllContext_Click(object sender, EventArgs e)
+        {
+
         }
 
         

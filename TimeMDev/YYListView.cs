@@ -274,8 +274,54 @@ namespace TimeMDev
                 this.yyItems[index].SubItems[1].Text = "";
             }
         }
+        /// <summary>
+        /// 插入新行,如果在乱序情况下请先增加再删除
+        /// </summary>
+        /// <param name="index">显示的序号</param>
+        /// <param name="content">在listview中排列的位置</param>
+        public void YYInsertLine(int showPosition,int index, string[] content)
+        {
+            for (int i = 0; i < this.yyItems.Count; i++)
+            {
+                int position = Int32.Parse(yyItems[i].SubItems[0].Text);
+                if (position >= index)
+                {
+                    yyItems[i].SubItems[0].Text = position +1+ "";
+                }
+            }
 
+            ListViewItem item = (ListViewItem)this.yyItems[0].Clone();
+            item.SubItems[0].Text = content[0];
+            item.SubItems[1].Text = content[1];
+            item.SubItems[2].Text = content[2];
+            this.yyItems.Insert(showPosition, item);
 
+        }
+        /// <summary>
+        /// 插入某个位置，插入之后的所有值往后移动
+        /// </summary>
+        /// <param name="showPosition"></param>
+        /// <param name="index"></param>
+        /// <param name="content"></param>
+        public void YYInsertLine(int showPosition, int index, SingleSentence singleSentence)
+        {
+            for (int i = 0; i < this.yyItems.Count; i++)
+            {
+                int position = Int32.Parse(yyItems[i].SubItems[0].Text);
+                if (position >= index)
+                {
+                    yyItems[i].SubItems[0].Text = position + 1 + "";
+                }
+            }
+
+            ListViewItem item = (ListViewItem)this.yyItems[0].Clone();
+            item.SubItems[0].Text = index + "";
+            item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
+            item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
+            item.SubItems[3].Text = singleSentence.content;
+            this.yyItems.Insert(showPosition, item);
+
+        }
 
         #region RedoUndoInterface 成员
 
@@ -350,6 +396,7 @@ namespace TimeMDev
         }
 
         #endregion
+
     }
 }
 

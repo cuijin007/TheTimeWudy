@@ -562,6 +562,76 @@ namespace TimeMDev
         }
 
 
+        /// <summary>
+        /// 复制
+        /// </summary>
+        /// <returns></returns>
+        public bool _Copy(int[] index)
+        {
+            DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
+            List<SingleSentence> sentence = new List<SingleSentence>();
+            for (int i = 0; i < index.Length; i++)
+            {
+                SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.listSingleSentence[index[i]]);
+                sentence.Add(singleSentence);
+            }
+            DataObject dataObject=new DataObject(format.Name,sentence);
+            Clipboard.SetDataObject(dataObject);
+            return true;
+            //string content = "";
+
+            //for (int i = 0; i < index.Length; i++)
+            //{
+            //    for(int j=0;j<3;j++)
+            //    {
+            //        content+=
+            //    }
+            //}
+        }
+        /// <summary>
+        /// 剪切
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public bool _Cut(int[] index)
+        {
+            DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
+            List<SingleSentence> sentence = new List<SingleSentence>();
+            for (int i = 0; i < index.Length; i++)
+            {
+                SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.listSingleSentence[index[i]]);
+                sentence.Add(singleSentence);
+            }
+            DataObject dataObject = new DataObject(format.Name, sentence);
+            Clipboard.SetDataObject(dataObject);
+            Array.Sort(index);//神奇的排序
+            for (int j = index.Length-1; j >= 0; j--)
+            {
+                this.listSingleSentence.RemoveAt(j);
+            }
+            return true;
+        }
+        /// <summary>
+        /// 粘贴
+        /// </summary>
+        /// <returns></returns>
+        public bool _Paste(int index)
+        {
+            try
+            {
+                DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
+                List<SingleSentence> sentences = (List<SingleSentence>)Clipboard.GetData(format.Name);
+                for (int i = 0; i < sentences.Count; i++)
+                {
+                    this.listSingleSentence.Insert(index + i, sentences[i]);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #region RedoUndoInterface 成员
         private List<List<SingleSentence>> undoStack = new List<List<SingleSentence>>();
         private List<List<SingleSentence>> redoStack = new List<List<SingleSentence>>();
