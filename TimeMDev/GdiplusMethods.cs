@@ -78,5 +78,36 @@ namespace TimeMDev
         internal extern static int GdipDrawDriverString(IntPtr graphics,
             string text, int length, IntPtr font, IntPtr brush,
             PointF[] positions, int flags, IntPtr matrix);
+
+
+
+
+
+        public static int IsChineseLetter(char str)
+        {
+            int num = (int)str;
+            if (num >= 0x4e00 && num <= 0x9fff)//中文
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public static int IsChineseLetter(string letter, int index)
+        {
+            int num = Char.ConvertToUtf32(letter, index);
+            if (num >= 0x4e00 && num <= 0x9fff)//中文
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    
+    
     }
 }

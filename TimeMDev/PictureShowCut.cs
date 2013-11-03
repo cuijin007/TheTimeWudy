@@ -11,8 +11,9 @@ namespace TimeMDev
 {
     public partial class PictureShowCut : UserControl
     {
-          Bitmap bitmap;
+        Bitmap bitmap;
         Graphics gra;
+        RectangleF fristBounds, secondBounds;
         string fristLine = "";
         string secondLine = "";
         Color fristLineColor = Color.LightGreen;
@@ -22,35 +23,46 @@ namespace TimeMDev
         int wordInterval = 0;
         List<CutPoint> pointList = new List<CutPoint>();
         bool lineSelected = false;
+        PointF[] fristLinePosition, secondLinePosition;
+        Font wordFont;
+
         public PictureShowCut()
         {
             InitializeComponent();
+            this.wordFont = new Font("宋体", (float)this.wordLength, GraphicsUnit.Pixel);
+            this.fristLinePosition = new PointF[1];
+            this.secondLinePosition = new PointF[1];
         }
         public void Init(string fristLine, string secondLine)
         {
             this.fristLine = fristLine;
             this.secondLine = secondLine;
-            int wordLength = 0;
-            int wordNum = 0;
-            if (this.fristLine.Length >= this.secondLine.Length)
+            this.CaculatePointf(fristLine, ref this.fristLinePosition, 0, (float)(this.wordHigh));
+            this.CaculatePointf(secondLine, ref this.secondLinePosition, 0, (float)(this.wordHigh + this.wordHigh));
+            int length = 0;
+            int lengthFrist = 0;
+            int lengthSecond = 0;
+            if (this.fristLinePosition.Length > 0)
             {
-                wordNum = fristLine.Length * (this.wordLength + this.wordInterval);
-                if (wordNum > this.Width)
-                    this.pictureBoxShow.Width = wordNum;
-                else
-                {
-                    this.pictureBoxShow.Width = this.Width;
-                }
+                lengthFrist = (int)fristLinePosition[fristLinePosition.Length - 1].X;
+            }
+            if (this.secondLinePosition.Length > 0)
+            {
+                lengthSecond = (int)secondLinePosition[secondLinePosition.Length - 1].X;
+            }
+            if (lengthFrist > lengthSecond)
+            {
+                length = lengthFrist;
+                length += this.wordLength;
             }
             else
             {
-                wordNum = secondLine.Length * (this.wordLength + this.wordInterval);
-                if (wordNum > this.Width)
-                    this.pictureBoxShow.Width = wordNum;
-                else
-                {
-                    this.pictureBoxShow.Width = this.Width;
-                }
+                length = lengthSecond;
+                length += this.wordLength;
+            }
+            if (length > this.pictureBoxShow.Width)
+            {
+                this.pictureBoxShow.Width = length;
             }
             this.bitmap = new Bitmap(this.pictureBoxShow.Width, this.pictureBoxShow.Height);
             this.gra = Graphics.FromImage(this.bitmap);
@@ -63,21 +75,6 @@ namespace TimeMDev
         {
             gra.FillRectangle(Brushes.LightGreen, 0, 0, this.bitmap.Width, (int)(this.wordHigh * 1.1));
             gra.FillRectangle(Brushes.LightBlue, 0, (int)(this.wordHigh * 1.1), this.bitmap.Width, (int)(this.wordHigh));
-        }
-        protected void DrawWord()
-        {
-            PointF[] positionsFrist = new PointF[this.fristLine.Length];
-            PointF[] positionsSecond = new PointF[this.secondLine.Length];
-            for (int i = 0; i < positionsFrist.Length; i++)
-            {
-                positionsFrist[i] = new PointF(i * (this.wordLength + this.wordInterval), wordHigh);
-            }
-            GdiplusMethods.DrawDriverString(this.gra, this.fristLine, new Font("宋体", (float)this.wordLength, GraphicsUnit.Pixel), Brushes.Black, positionsFrist);
-            for (int j = 0; j < positionsSecond.Length; j++)
-            {
-                positionsSecond[j] = new PointF(j * (this.wordLength + this.wordInterval), wordHigh * 2);
-            }
-            GdiplusMethods.DrawDriverString(this.gra, this.secondLine, new Font("宋体", (float)this.wordLength, GraphicsUnit.Pixel), Brushes.Black, positionsSecond);
         }
         protected void DrawLine()
         {
@@ -94,14 +91,27 @@ namespace TimeMDev
                 }
                 if (pointList[i].y == 0)
                 {
-                    gra.DrawLine(new Pen(brush, 3), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), 0, ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 1.1));
+                    //gra.DrawLine(new Pen(brush, 3), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), 0, ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 1.1));
+                    float lengthNext = 0;
+                    gra.DrawLine(new Pen(brush, 3), this.fristLinePosition[pointList[i].x].X, 0, this.fristLinePosition[pointList[i].x].X, (float)(this.wordHigh * 1.1));
                 }
                 else
                 {
-                    gra.DrawLine(new Pen(brush, 3), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 1.1), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 2.1));
+                    //gra.DrawLine(new Pen(brush, 3), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 1.1), ((float)pointList[i].x + 1) * (this.wordInterval + this.wordLength), (float)(this.wordHigh * 2.1));
+                    gra.DrawLine(new Pen(brush, 3), this.secondLinePosition[pointList[i].x].X, (float)(this.wordHigh * 1.1), this.secondLinePosition[pointList[i].x].X, (float)(this.wordHigh * 2.1));
                 }
             }
         }
+        public void DrawWord()
+        {
+            string line = this.fristLine.Replace("\r", "↓");
+            line = line.Replace("\n", "↓");
+            GdiplusMethods.DrawDriverString(this.gra, line, this.wordFont, Brushes.Black, this.fristLinePosition);
+            string line2 = this.secondLine.Replace("\r", "↓");
+            line2 = line2.Replace("\n", "↓");
+            GdiplusMethods.DrawDriverString(this.gra, line2, this.wordFont, Brushes.Black, this.secondLinePosition);
+        }
+
         public void DrawPictureView()
         {
             this.pictureBoxShow.Refresh();
@@ -117,20 +127,64 @@ namespace TimeMDev
             if (e.Y <= 2 * this.wordHigh)
             {
                 int x, y;
+                x = -1;
                 int lengthNow = 0;
                 if (e.Y < this.wordHigh)
                 {
                     y = 0;//第0行
-                    lengthNow = this.fristLine.Length * (this.wordLength + this.wordInterval);
+                    if (this.fristLinePosition.Length > 0)
+                    {
+                        lengthNow = (int)this.fristLinePosition[this.fristLinePosition.Length - 1].X + this.wordLength;
+                    }
+                    else
+                    {
+                        lengthNow = 0;
+                    }
                 }
                 else
                 {
                     y = 1;//第1行
-                    lengthNow = this.secondLine.Length * (this.wordLength + this.wordInterval);
+                    if (this.secondLinePosition.Length > 0)
+                    {
+                        lengthNow = (int)this.secondLinePosition[this.secondLinePosition.Length - 1].X + (int)this.wordLength;
+                    }
+                    else
+                    {
+                        lengthNow = 0;
+                    }
                 }
                 if (e.X < lengthNow)
                 {
-                    x = ((int)(e.X / (this.wordLength + this.wordInterval)));
+                    if (y == 0)
+                    {
+                        for (int i = 0; i < this.fristLinePosition.Length; i++)
+                        {
+                            if (e.X < this.fristLinePosition[i].X)
+                            {
+                                x = i;//找到点击字符的下一个字符，那个字符的起始坐标，就是光标位置！
+                                break;
+                            }
+                        }
+                        if (x < 0)
+                        {
+                            // x = this.fristLinePosition.Length - 1;
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < this.secondLinePosition.Length; i++)
+                        {
+                            if (e.X < this.secondLinePosition[i].X)
+                            {
+                                x = i;
+                                break;
+                            }
+                        }
+                        if (x < 0)
+                        {
+                            // x = this.secondLinePosition.Length - 1;
+                        }
+                    }
                     CutPoint point = new CutPoint();
                     point.x = x;
                     point.y = y;
@@ -138,7 +192,10 @@ namespace TimeMDev
                     {
                         if (!this.pointList.Contains(point))
                         {
-                            this.pointList.Add(point);
+                            if (point.x >= 0)
+                            {
+                                this.pointList.Add(point);
+                            }
                         }
                     }
                 }
@@ -152,6 +209,7 @@ namespace TimeMDev
             if (e.Y <= 2 * this.wordHigh)
             {
                 int x, y;
+                x = -1;
                 int lengthNow = 0;
                 if (e.Y < this.wordHigh)
                 {
@@ -165,16 +223,46 @@ namespace TimeMDev
                 }
                 if (e.X < lengthNow)
                 {
-                    x = ((int)(e.X / (this.wordLength + this.wordInterval)));
-                    //CutPoint point = new CutPoint();
+                    if (y == 0)
+                    {
+                        for (int i = 0; i < this.fristLinePosition.Length; i++)
+                        {
+                            if (e.X < this.fristLinePosition[i].X)
+                            {
+                                x = i;//找到点击字符的下一个字符，那个字符的起始坐标，就是光标位置！
+                                break;
+                            }
+                        }
+                        if (x < 0)
+                        {
+                            // x = this.fristLinePosition.Length - 1;
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < this.secondLinePosition.Length; i++)
+                        {
+                            if (e.X < this.secondLinePosition[i].X)
+                            {
+                                x = i;
+                                break;
+                            }
+                        }
+                        if (x < 0)
+                        {
+                            // x = this.secondLinePosition.Length - 1;
+                        }
+                    }
                     point.x = x;
                     point.y = y;
                     if (!this.pointList.Contains(point))
                     {
                         if (!this.pointList.Contains(point))
                         {
-                            //this.pointList.Add(point);
-                            return point;
+                            if (point.x >= 0)
+                            {
+                                return point;
+                            }
                         }
                     }
                 }
@@ -251,23 +339,51 @@ namespace TimeMDev
             {
                 int x, y;
                 int lengthNow = 0;
-                if (e.Y < this.wordHigh)
+                if (e.Y < this.wordHigh * 1.1)
                 {
                     y = 0;//第0行
-                    lengthNow = this.fristLine.Length * (this.wordLength + this.wordInterval);
+                    if (this.fristLinePosition.Length > 0)
+                    {
+                        lengthNow = (int)this.fristLinePosition[this.fristLinePosition.Length - 1].X + this.wordLength;
+                    }
+                    else
+                    {
+                        lengthNow = 0;
+                    }
                 }
                 else
                 {
                     y = 1;//第1行
-                    lengthNow = this.secondLine.Length * (this.wordLength + this.wordInterval);
+                    if (this.secondLinePosition.Length > 0)
+                    {
+                        lengthNow = (int)this.secondLinePosition[this.secondLinePosition.Length - 1].X + (int)this.wordLength;
+                    }
+                    else
+                    {
+                        lengthNow = 0;
+                    }
                 }
                 if (e.X < lengthNow)
                 {
                     for (int i = 0; i < this.pointList.Count; i++)
                     {
-                        if (this.pointList[i].y == y && (e.X < (this.pointList[i].x + 1) * (this.wordLength + this.wordInterval) + 5) && (e.X > (this.pointList[i].x + 1) * (this.wordLength + this.wordInterval) - 5))
+                        //if (this.pointList[i].y == y && (e.X < (this.pointList[i].x + 1) * (this.wordLength + this.wordInterval) + 5) && (e.X > (this.pointList[i].x + 1) * (this.wordLength + this.wordInterval) - 5))
+                        //{
+                        //    return this.pointList[i];
+                        //}
+                        if (y == 0)
                         {
-                            return this.pointList[i];
+                            if (this.pointList[i].y == y && this.pointList[i].x < this.fristLinePosition.Length && e.X < this.fristLinePosition[this.pointList[i].x].X + 5 && e.X > this.fristLinePosition[this.pointList[i].x].X - 5)
+                            {
+                                return this.pointList[i];
+                            }
+                        }
+                        else
+                        {
+                            if (this.pointList[i].y == y && this.pointList[i].x < this.secondLinePosition.Length && e.X < this.secondLinePosition[this.pointList[i].x].X + 5 && e.X > this.secondLinePosition[this.pointList[i].x].X - 5)
+                            {
+                                return this.pointList[i];
+                            }
                         }
                     }
                     return pointSave;
@@ -311,7 +427,7 @@ namespace TimeMDev
                     }
                 }
                 this.Cursor = Cursors.Default;
-                
+
             }
             this.DrawPictureView();
         }
@@ -325,11 +441,11 @@ namespace TimeMDev
             {
                 if (this.pointList[i].y == 0)
                 {
-                    fristLineSave=fristLineSave.Insert(this.pointList[i].x+1, "$&$");
+                    fristLineSave = fristLineSave.Insert(this.pointList[i].x + 1, "$&$");
                 }
                 if (this.pointList[i].y == 1)
                 {
-                    secondLineSave=secondLineSave.Insert(this.pointList[i].x+1, "$&$");
+                    secondLineSave = secondLineSave.Insert(this.pointList[i].x + 1, "$&$");
                 }
             }
             string[] spilt = new string[1];
@@ -365,6 +481,36 @@ namespace TimeMDev
                     {
                         return 1;
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 计算每个字符的位置，给绘制做准备。
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="pointSave"></param>
+        /// <param name="startX"></param>
+        /// <param name="startY"></param>
+        public void CaculatePointf(string str, ref PointF[] pointSave, float startX, float startY)
+        {
+            StringBuilder stringBuilder = new StringBuilder(str);
+            pointSave = new PointF[stringBuilder.Length];
+            float startXSave = startX;
+            float startYSave = startY;
+            for (int i = 0; i < pointSave.Length; i++)
+            {
+                if (GdiplusMethods.IsChineseLetter(stringBuilder[i]) == 1)
+                {
+                    pointSave[i] = new PointF(startXSave, startYSave);
+                    startXSave = startXSave + this.wordLength;
+                    startYSave = startYSave;
+                }
+                if (GdiplusMethods.IsChineseLetter(stringBuilder[i]) == 0)
+                {
+                    pointSave[i] = new PointF(startXSave, startYSave);
+                    startXSave = startXSave + this.wordLength / 2;
+                    startYSave = startYSave;
                 }
             }
         }
