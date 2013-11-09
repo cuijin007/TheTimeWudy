@@ -285,7 +285,7 @@ namespace TimeMDev
         /// <param name="listSingleSentence"></param>
         public void SetListViewData(List<SingleSentence> listSingleSentence)
         {
-            this.listView1._Clear();
+            this.listView1.Clear();
             this.listView1.yyItems.Clear();
             this.listView1.YYRefresh();
             this.InitListView();
@@ -626,6 +626,20 @@ namespace TimeMDev
         private void checkAllContext_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void createEngNameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EnglishNameChange englishNameChange = new EnglishNameChange(this.dataProcess.listSingleSentence, this.originalSubtitlePath + "namelist.txt");
+            englishNameChange.CreateAndWriteNameList();
+        }
+
+        private void replaceEngNameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            EnglishNameChange englishNameChange = new EnglishNameChange(this.dataProcess.listSingleSentence, this.originalSubtitlePath+"namelist.txt");
+            englishNameChange.ReadAndReplaceAllName();
+            this.SetListViewData(this.dataProcess.listSingleSentence);
+            this.listView1.YYRefresh();
         }
 
         

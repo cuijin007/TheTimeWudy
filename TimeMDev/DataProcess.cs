@@ -678,7 +678,7 @@ namespace TimeMDev
 
         }
 
-        public void _Clear()
+        public void Clear()
         {
             this.redoStack.Clear();
             this.undoStack.Clear();

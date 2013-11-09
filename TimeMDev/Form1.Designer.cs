@@ -1328,12 +1328,14 @@
             this.createEngNameItem.Caption = "生成英文名列表";
             this.createEngNameItem.Id = 69;
             this.createEngNameItem.Name = "createEngNameItem";
+            this.createEngNameItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.createEngNameItem_ItemClick);
             // 
             // replaceEngNameItem
             // 
             this.replaceEngNameItem.Caption = "执行英文名替换";
             this.replaceEngNameItem.Id = 70;
             this.replaceEngNameItem.Name = "replaceEngNameItem";
+            this.replaceEngNameItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.replaceEngNameItem_ItemClick);
             // 
             // videoMenu
             // 

@@ -10,6 +10,6 @@ namespace TimeMDev
         bool _Undo();
         void _Save();
         bool _Redo();
-        void _Clear();
+        void Clear();
     }
 }
