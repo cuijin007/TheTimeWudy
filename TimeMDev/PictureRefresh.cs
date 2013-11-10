@@ -9,7 +9,7 @@ using System.Drawing.Drawing2D;
 
 namespace TimeMDev
 {
-    class PictureRefresh
+   public class PictureRefresh
     {
         public delegate void DRefreshAction();
         DRefreshAction refreshAction;

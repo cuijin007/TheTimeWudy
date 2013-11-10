@@ -17,6 +17,13 @@ namespace TimeMDev
         int startLocationX;
         bool startMark = false;
         DataProcess dataProcess;
+        public DataProcess DataProcessGet
+        {
+            get
+            {
+                return this.dataProcess;
+            }
+        }
         MPlayer mplayer;
         TimeLineReadWrite timeLineReadWrite = new TimeLineReadWrite();
 
@@ -640,6 +647,11 @@ namespace TimeMDev
             englishNameChange.ReadAndReplaceAllName();
             this.SetListViewData(this.dataProcess.listSingleSentence);
             this.listView1.YYRefresh();
+        }
+
+        private void findErrorItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (new ErrorCheckingForm(this)).Show();
         }
 
         

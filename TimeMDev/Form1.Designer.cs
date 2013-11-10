@@ -312,6 +312,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "打开字幕";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.openSubtitleLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.openVideoLink),
@@ -1322,6 +1323,7 @@
             this.findErrorItem.Caption = "检查除错";
             this.findErrorItem.Id = 68;
             this.findErrorItem.Name = "findErrorItem";
+            this.findErrorItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.findErrorItem_ItemClick);
             // 
             // createEngNameItem
             // 

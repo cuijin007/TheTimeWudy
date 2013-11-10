@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A5672B97-7DDB-46ED-A2E6-8DA68CFD7FD6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -82,6 +82,12 @@
     </Compile>
     <Compile Include="DataProcess.cs" />
     <Compile Include="EnglishNameChange.cs" />
+    <Compile Include="ErrorCheckingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorCheckingForm.Designer.cs">
+      <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomSpilt.resx">
       <DependentUpon>CustomSpilt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorCheckingForm.resx">
+      <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -59,6 +59,10 @@
             this.listViewShow = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.ColumnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.checkAll = new System.Windows.Forms.Button();
+            this.selectAll = new System.Windows.Forms.Button();
+            this.handleOverlap = new System.Windows.Forms.Button();
+            this.closeForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.textLengthColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startBigerColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.overLapColor)).BeginInit();
@@ -262,6 +266,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.closeForm);
+            this.groupBox1.Controls.Add(this.handleOverlap);
+            this.groupBox1.Controls.Add(this.selectAll);
+            this.groupBox1.Controls.Add(this.checkAll);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.timeLengthSmallBox);
@@ -291,7 +299,7 @@
             this.groupBox1.Controls.Add(this.chineseContainsEnglishCheck);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(336, 272);
+            this.groupBox1.Size = new System.Drawing.Size(336, 299);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "检查项目";
@@ -320,6 +328,7 @@
             this.timeLengthSmallBox.Name = "timeLengthSmallBox";
             this.timeLengthSmallBox.Size = new System.Drawing.Size(99, 21);
             this.timeLengthSmallBox.TabIndex = 4;
+            this.timeLengthSmallBox.Text = "00:00:00,500";
             // 
             // timeLengthBigBox
             // 
@@ -327,6 +336,7 @@
             this.timeLengthBigBox.Name = "timeLengthBigBox";
             this.timeLengthBigBox.Size = new System.Drawing.Size(99, 21);
             this.timeLengthBigBox.TabIndex = 4;
+            this.timeLengthBigBox.Text = "00:00:05,000";
             // 
             // linesCountBox
             // 
@@ -334,6 +344,7 @@
             this.linesCountBox.Name = "linesCountBox";
             this.linesCountBox.Size = new System.Drawing.Size(39, 21);
             this.linesCountBox.TabIndex = 4;
+            this.linesCountBox.Text = "2";
             // 
             // label5
             // 
@@ -350,6 +361,7 @@
             this.textLengthBox.Name = "textLengthBox";
             this.textLengthBox.Size = new System.Drawing.Size(39, 21);
             this.textLengthBox.TabIndex = 4;
+            this.textLengthBox.Text = "20";
             // 
             // label2
             // 
@@ -376,7 +388,7 @@
             this.ColumnHeader2});
             this.listViewShow.Location = new System.Drawing.Point(355, 13);
             this.listViewShow.Name = "listViewShow";
-            this.listViewShow.Size = new System.Drawing.Size(268, 271);
+            this.listViewShow.Size = new System.Drawing.Size(268, 298);
             this.listViewShow.TabIndex = 4;
             this.listViewShow.UseCompatibleStateImageBehavior = false;
             this.listViewShow.View = System.Windows.Forms.View.Details;
@@ -390,11 +402,51 @@
             this.ColumnHeader2.Text = "错误类型";
             this.ColumnHeader2.Width = 201;
             // 
+            // checkAll
+            // 
+            this.checkAll.Location = new System.Drawing.Point(16, 260);
+            this.checkAll.Name = "checkAll";
+            this.checkAll.Size = new System.Drawing.Size(46, 23);
+            this.checkAll.TabIndex = 6;
+            this.checkAll.Text = "检查";
+            this.checkAll.UseVisualStyleBackColor = true;
+            this.checkAll.Click += new System.EventHandler(this.checkAll_Click);
+            // 
+            // selectAll
+            // 
+            this.selectAll.Location = new System.Drawing.Point(68, 260);
+            this.selectAll.Name = "selectAll";
+            this.selectAll.Size = new System.Drawing.Size(100, 23);
+            this.selectAll.TabIndex = 6;
+            this.selectAll.Text = "选择所有结果行";
+            this.selectAll.UseVisualStyleBackColor = true;
+            this.selectAll.Click += new System.EventHandler(this.selectAll_Click);
+            // 
+            // handleOverlap
+            // 
+            this.handleOverlap.Location = new System.Drawing.Point(170, 260);
+            this.handleOverlap.Name = "handleOverlap";
+            this.handleOverlap.Size = new System.Drawing.Size(100, 23);
+            this.handleOverlap.TabIndex = 6;
+            this.handleOverlap.Text = "自动消除重叠";
+            this.handleOverlap.UseVisualStyleBackColor = true;
+            this.handleOverlap.Click += new System.EventHandler(this.handleOverlap_Click);
+            // 
+            // closeForm
+            // 
+            this.closeForm.Location = new System.Drawing.Point(276, 260);
+            this.closeForm.Name = "closeForm";
+            this.closeForm.Size = new System.Drawing.Size(54, 23);
+            this.closeForm.TabIndex = 6;
+            this.closeForm.Text = "关闭";
+            this.closeForm.UseVisualStyleBackColor = true;
+            this.closeForm.Click += new System.EventHandler(this.closeForm_Click);
+            // 
             // ErrorCheckingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 296);
+            this.ClientSize = new System.Drawing.Size(635, 321);
             this.Controls.Add(this.listViewShow);
             this.Controls.Add(this.groupBox1);
             this.Name = "ErrorCheckingForm";
@@ -447,5 +499,9 @@
         private System.Windows.Forms.ListView listViewShow;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader ColumnHeader2;
+        private System.Windows.Forms.Button closeForm;
+        private System.Windows.Forms.Button handleOverlap;
+        private System.Windows.Forms.Button selectAll;
+        private System.Windows.Forms.Button checkAll;
     }
 }

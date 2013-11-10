@@ -8,7 +8,7 @@ using System.IO;
 
 namespace TimeMDev
 {
-    class MPlayer
+    public class MPlayer
     {
         public delegate void  playerRateAction(double time,double totalTime);
         public bool isPlaying = true;

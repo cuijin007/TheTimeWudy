@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TimeMDev
 {
-    class SlideInfo
+    public class SlideInfo
     {
         public int startPosition;
         public int endPosition;

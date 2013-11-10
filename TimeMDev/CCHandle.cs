@@ -220,7 +220,57 @@ namespace TimeMDev
                 english = content.Replace(chinese, "");
             }
         }
-        
-       
+
+        /// <summary>
+        /// 从中文中获取英文字符
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="english"></param>
+        /// <returns></returns>
+        public static bool GetEnglishFromChinese(string content, out List<string> english)
+        {
+            string allChinese;//带英文的所有中文字段
+            english = new List<string>();
+            MatchCollection matchCollection = Regex.Matches("崔进抗八代" + content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
+            if (matchCollection == null || matchCollection.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                allChinese = matchCollection[0].ToString();
+                allChinese = allChinese.Replace("崔进抗八代", "");
+            }
+            MatchCollection EnglishCollection = Regex.Matches(allChinese, @"[A-Za-z][A-Za-z\s]*[A-Za-z]");
+            if (EnglishCollection == null && EnglishCollection.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < EnglishCollection.Count; i++)
+                {
+                    string name = EnglishCollection[i].ToString();
+                    english.Add(name);
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// 检查是否含有全角字符
+        /// </summary>
+        /// <param name="content">输入的变量</param>
+        /// <returns>true，有全角，false，没有全角</returns>
+        public static bool JudgeFullWidthSymbol(string content)
+        {
+            MatchCollection matchCollection = Regex.Matches(content, "[\uFF00-\uFFFF]");
+            if(matchCollection!=null&&matchCollection.Count>0)
+            {
+                return true;
+            }
+            return false;
+        }
+    
+    
     }
 }
