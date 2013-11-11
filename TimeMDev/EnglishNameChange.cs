@@ -175,6 +175,22 @@ namespace TimeMDev
             //Process.Start(path + "notepad.exe");
             System.Diagnostics.Process.Start("notepad.exe",path);
         }
+        /// <summary>
+        /// 获取处理之后的姓名列表列表
+        /// </summary>
+        public List<NameTable> GetNames()
+        {
+            return this.names;
+        }
+        /// <summary>
+        /// 读取，并获得所有的姓名
+        /// </summary>
+        /// <returns></returns>
+        public List<NameTable> ReadAndGetNames()
+        {
+            this.ReadAllNameFromFile();
+            return this.names;
+        }
     }
     public class NameTableCompare : IComparer<NameTable>
     {
