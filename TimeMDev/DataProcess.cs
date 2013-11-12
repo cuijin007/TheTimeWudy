@@ -685,5 +685,24 @@ namespace TimeMDev
         }
 
         #endregion
+
+        /// <summary>
+        /// 插入一个新行
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="sentence">内容</param>
+        public void YYInsertRecord(int index,SingleSentence sentence)
+        {
+            this.listSingleSentence.Insert(index, sentence);
+        }
+        /// <summary>
+        /// 删除一个行
+        /// </summary>
+        /// <param name="index"></param>
+        public void YYDeleteRecord(int index)
+        {
+            this.listSingleSentence.RemoveAt(index);
+        }
+        
     }
 }

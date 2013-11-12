@@ -322,7 +322,40 @@ namespace TimeMDev
             this.yyItems.Insert(showPosition, item);
 
         }
+        /// <summary>
+        /// 获取实际的在存储链表中的位置，即显示的所对应的实际位置
+        /// </summary>
+        /// <param name="index">显示的位置</param>
+        public int YYGetRealPosition(int index)
+        {
+            int realPosition = -1;
+            realPosition = Int32.Parse(this.yyItems[index].SubItems[0].Text);
+            return realPosition;
+        }
+        /// <summary>
+        /// 插入一个新行
+        /// </summary>
+        /// <param name="showPosition">新行显示位置</param>
+        /// <param name="singleSentence"></param>
+        public void YYInsertLine(int showPosition,SingleSentence singleSentence)
+        {
+            int index = this.YYGetRealPosition(showPosition);
+            for (int i = 0; i < this.yyItems.Count; i++)
+            {
+                int position = Int32.Parse(yyItems[i].SubItems[0].Text);
+                if (position >= index)
+                {
+                    yyItems[i].SubItems[0].Text = position + 1 + "";
+                }
+            }
 
+            ListViewItem item = (ListViewItem)this.yyItems[0].Clone();
+            item.SubItems[0].Text = index + "";
+            item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
+            item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
+            item.SubItems[3].Text = singleSentence.content;
+            this.yyItems.Insert(showPosition, item);
+        }
         #region RedoUndoInterface 成员
 
         private List<List<ListViewItem>> undoStack = new List<List<ListViewItem>>();
