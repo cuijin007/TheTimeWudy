@@ -16,6 +16,7 @@ namespace TimeMDev.HandleRecord
             this.listSingleSentence = listSingleSentence;
             this.yyListView = yyListView;
             this.sentence = sentence;
+            this.index = index;
         }
         public override void Execute()
         {

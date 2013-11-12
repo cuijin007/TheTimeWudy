@@ -97,9 +97,12 @@
     <Compile Include="GdiplusMethods.cs" />
     <Compile Include="HandleRecord\AddBlankRecord.cs" />
     <Compile Include="HandleRecord\AddRecord.cs" />
+    <Compile Include="HandleRecord\ChangeRecord.cs" />
+    <Compile Include="HandleRecord\CommandManage.cs" />
     <Compile Include="HandleRecord\DeleteRecord.cs" />
     <Compile Include="HandleRecord\HandleRecordBass.cs" />
     <Compile Include="HandleRecord\InsertRecord.cs" />
+    <Compile Include="HandleRecord\ListViewSort.cs" />
     <Compile Include="Mplayer.cs" />
     <Compile Include="PictureRefresh.cs" />
     <Compile Include="PictureShowCut.cs">

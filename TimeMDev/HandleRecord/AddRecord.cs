@@ -27,7 +27,7 @@ namespace TimeMDev.HandleRecord
             this.listSingleSentence = listSingleSentence;
             this.yyListView = yyListView;
             this.type = 0;
-            this.yyListView.YYInsertLine
+            
         }
         public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, int count)
         {

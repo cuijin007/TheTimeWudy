@@ -8,18 +8,35 @@ namespace TimeMDev.HandleRecord
     public class DeleteRecord:HandleRecordBass
     {
         int index;
-        public DeleteRecord(List<SingleSentence>listSingleSentence,int index)
+        YYListView yyListView;
+        List<SingleSentence> listSingleSentence;
+        SingleSentence sentenceSave;
+        public DeleteRecord(List<SingleSentence>listSingleSentence,YYListView yyListView,int index)
         {
             this.index = index;
-        }
-        public override void Execute()
-        {
-            
+            this.listSingleSentence = listSingleSentence;
+            this.yyListView = yyListView;
+
         }
 
+        /// <summary>
+        /// 正序执行删除
+        /// </summary>
+        public override void Execute()
+        {
+            int realIndex = this.yyListView.YYGetRealPosition(this.index);
+            this.sentenceSave = CopyObject.DeepCopy<SingleSentence>(this.listSingleSentence[realIndex]);
+            this.listSingleSentence.RemoveAt(realIndex);
+            this.yyListView.YYDeleteLine(index);
+        }
+        /// <summary>
+        /// 逆序反删除，即增加
+        /// </summary>
         public override void UnExecute()
         {
-           
+            this.yyListView.YYInsertLine(this.index, this.sentenceSave);
+            int realIndex = this.yyListView.YYGetRealPosition(this.index);
+            this.listSingleSentence.Insert(realIndex, this.sentenceSave);
         }
     }
 }
