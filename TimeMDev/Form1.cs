@@ -510,26 +510,38 @@ namespace TimeMDev
 
         private void zeroTime_Click(object sender, EventArgs e)
         {
+            List<HandleRecordBass> commands = new List<HandleRecordBass>();
             for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
             {
-                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                this.dataProcess.listSingleSentence[index2].startTime = 0;
-                this.dataProcess.listSingleSentence[index2].endTime = 0;
-                int index = this.listView1.SelectedIndices[i];
-                this.listView1.YYZero(index, 1);
+                //int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+                //this.dataProcess.listSingleSentence[index2].startTime = 0;
+                //this.dataProcess.listSingleSentence[index2].endTime = 0;
+                //int index = this.listView1.SelectedIndices[i];
+                //this.listView1.YYZero(index, 1);
+                ZeroRecord zeroRecord = new ZeroRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[i], 1);
+                commands.Add(zeroRecord);
             }
+            this.commandManage.CommandRun(commands);
             this.listView1.YYRefresh();
         }
 
         private void zeroContentContext_Click(object sender, EventArgs e)
         {
+            //for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            //{
+            //    int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+            //    this.dataProcess.listSingleSentence[index2].content = "";
+            //    int index = this.listView1.SelectedIndices[i];
+            //    this.listView1.YYZero(index, 0);
+            //}
+            //this.listView1.YYRefresh();
+            List<HandleRecordBass> commands = new List<HandleRecordBass>();
             for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
             {
-                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                this.dataProcess.listSingleSentence[index2].content = "";
-                int index = this.listView1.SelectedIndices[i];
-                this.listView1.YYZero(index, 0);
+                ZeroRecord zeroRecord = new ZeroRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[i], 0);
+                commands.Add(zeroRecord);
             }
+            this.commandManage.CommandRun(commands);
             this.listView1.YYRefresh();
         }
 

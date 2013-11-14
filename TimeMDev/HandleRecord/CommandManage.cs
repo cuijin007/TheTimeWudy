@@ -34,6 +34,18 @@ namespace TimeMDev.HandleRecord
                 this.stackHaveDone.RemoveAt(0);
             }
         }
+        public void CommandRun(List<HandleRecordBass> command)
+        {
+            for (int i = 0; i < command.Count; i++)
+            {
+                command[i].Execute();
+            }
+            this.stackHaveDone.Add(command);
+            if (stackHaveDone.Count > this.stackSize)
+            {
+                this.stackHaveDone.RemoveAt(0);
+            }
+        }
         public void CommandRunNoRedo(params HandleRecordBass[] command)
         {
             for (int i = 0; i < command.Length; i++)
@@ -46,7 +58,7 @@ namespace TimeMDev.HandleRecord
             if(this.stackHaveDone.Count>0)
             {
                 List<HandleRecordBass> functions = this.stackHaveDone[this.stackHaveDone.Count - 1];
-                for (int i = functions.Count-1; i>0; i--)
+                for (int i = functions.Count-1; i>=0; i--)
                 {
                     functions[i].UnExecute();
                 }
