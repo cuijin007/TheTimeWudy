@@ -46,7 +46,7 @@ namespace TimeMDev.HandleRecord
             if(this.stackHaveDone.Count>0)
             {
                 List<HandleRecordBass> functions = this.stackHaveDone[this.stackHaveDone.Count - 1];
-                for (int i = 0; i < functions.Count; i++)
+                for (int i = functions.Count-1; i>0; i--)
                 {
                     functions[i].UnExecute();
                 }

@@ -11,23 +11,26 @@ namespace TimeMDev.HandleRecord
         SingleSentence sentence;
         YYListView yyListView;
         int index;
-        public InsertRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, SingleSentence sentence)
+        int showPosition;
+        public InsertRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int showPosition, int index, SingleSentence sentence)
         {
             this.listSingleSentence = listSingleSentence;
             this.yyListView = yyListView;
             this.sentence = sentence;
             this.index = index;
+            this.showPosition = showPosition;
         }
         public override void Execute()
         {
-            this.yyListView.YYInsertLine(this.index, this.sentence);
-            this.listSingleSentence.Insert(yyListView.YYGetRealPosition(this.index), this.sentence);
+            //this.yyListView.YYInsertLine(this.index, this.sentence);
+            this.yyListView.YYInsertLine(this.showPosition, this.index, this.sentence);
+            this.listSingleSentence.Insert(this.showPosition, this.sentence);
         }
 
         public override void UnExecute()
         {
             this.yyListView.YYDeleteLine(index);
-            this.listSingleSentence.RemoveAt(yyListView.YYGetRealPosition(this.index));
+            this.listSingleSentence.RemoveAt(this.showPosition);
         }
     }
 }

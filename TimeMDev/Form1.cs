@@ -427,6 +427,7 @@ namespace TimeMDev
         ///以下，ListViewMenu的响应函数
         private void addOneLineContext_Click(object sender, EventArgs e)
         {
+            /*
             if(this.listView1.SelectedIndices.Count>0)
             {
                 //this.listView1.Items.Insert(this.listView1.SelectedItems[this.listView1.SelectedItems.Count-1]
@@ -440,10 +441,18 @@ namespace TimeMDev
                 this.SetListViewData(this.dataProcess.listSingleSentence);
                 this.listView1.YYRefresh();
            }
+             * */
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                AddBlankRecord addBlankRecord = new AddBlankRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], 1, 1000, true);
+                this.commandManage.CommandRun(addBlankRecord);
+                this.listView1.YYRefresh();
+            }
         }
 
         private void addMutiLineContext_Click(object sender, EventArgs e)
         {
+            
             int indexSave;
             if (this.listView1.SelectedIndices.Count > 0)
             {
@@ -452,6 +461,10 @@ namespace TimeMDev
             AddMutiLinesParameter addMutiLinesParameter = new AddMutiLinesParameter();
             (new AddMutiLinesForm(addMutiLinesParameter)).ShowDialog();
             int index = this.listView1.SelectedIndices[this.listView1.SelectedIndices.Count - 1];
+            AddBlankRecord addBlankRecord = new AddBlankRecord(this.dataProcess.listSingleSentence, this.listView1, index, addMutiLinesParameter.lineCount, addMutiLinesParameter.timeSpiltLength, addMutiLinesParameter.isBlank);
+            this.commandManage.CommandRun(addBlankRecord);
+            this.listView1.YYRefresh();
+            /*
             index++;
             double startTime= this.dataProcess.listSingleSentence[index].endTime;
             if (addMutiLinesParameter.isConfirm == true)
@@ -480,6 +493,7 @@ namespace TimeMDev
                 this.listView1.yyItems[index].Focused = true;
                 this.listView1.YYRefresh();
             }
+             */
         }
 
         private void deleteLineContext_Click(object sender, EventArgs e)

@@ -218,7 +218,7 @@ namespace TimeMDev
             for (int i = 0; i < this.yyItems.Count; i++)
             {
                 int position = Int32.Parse(yyItems[i].SubItems[0].Text);
-                if (position > Int32.Parse(yyItems[index-1].SubItems[0].Text))
+                if (position > Int32.Parse(yyItems[index].SubItems[0].Text))
                 {
                     yyItems[i].SubItems[0].Text = position + count + "";
                 }
@@ -234,10 +234,10 @@ namespace TimeMDev
                 {
                     item.SubItems[3].Text="空白内容行"+i+1;
                 }
-                item.SubItems[0].Text=Int32.Parse(this.yyItems[index-1].SubItems[0].Text)+i+1+"";
-                item.SubItems[1].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index-1+i].SubItems[2].Text));
-                item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index-1+i].SubItems[2].Text)+1);
-                this.yyItems.Insert(index+i,item);
+                item.SubItems[0].Text=Int32.Parse(this.yyItems[index].SubItems[0].Text)+i+1+"";
+                item.SubItems[1].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text));
+                item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text)+1);
+                this.yyItems.Insert(index+i+1,item);
             }
         }
         /// <summary>
