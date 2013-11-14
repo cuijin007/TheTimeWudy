@@ -34,6 +34,13 @@ namespace TimeMDev.HandleRecord
                 this.stackHaveDone.RemoveAt(0);
             }
         }
+        public void CommandRunNoRedo(params HandleRecordBass[] command)
+        {
+            for (int i = 0; i < command.Length; i++)
+            {
+                command[i].Execute();
+            }
+        }
         public void Undo()
         {
             if(this.stackHaveDone.Count>0)
@@ -48,6 +55,7 @@ namespace TimeMDev.HandleRecord
                 {
                     this.stackNeedDone.RemoveAt(0);
                 }
+                this.stackHaveDone.RemoveAt(this.stackHaveDone.Count - 1);
             }
         }
         public void Redo()
@@ -64,6 +72,7 @@ namespace TimeMDev.HandleRecord
                 {
                     this.stackHaveDone.RemoveAt(0);
                 }
+                this.stackNeedDone.RemoveAt(this.stackNeedDone.Count - 1);
             }
         }
     }

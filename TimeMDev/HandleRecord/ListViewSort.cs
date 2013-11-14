@@ -19,11 +19,12 @@ namespace TimeMDev.HandleRecord
        int sortStyle;
        SortOrder sortOrder;
        YYListView yyListView;
+       List<ListViewItem> itemsSave;
        public ListViewSort(YYListView yyListView,int columnToSort,int sortStyle,SortOrder sortOrder)
        {
-           this._columnToSort = this.yyListView.ColumnToSort;
-           this._sortOrder = this.yyListView.Order;
-           this._sortStyle = this.yyListView.SortStyle;
+           //this._columnToSort = this.yyListView.ColumnToSort;
+           //this._sortOrder = this.yyListView.Order;
+           //this._sortStyle = this.yyListView.SortStyle;
            this.columnToSort = columnToSort;
            this.sortOrder = sortOrder;
            this.sortStyle = sortStyle;
@@ -34,6 +35,7 @@ namespace TimeMDev.HandleRecord
        /// </summary>
         public override void Execute()
         {
+            this.itemsSave = CopyObject.DeepCopy<List<ListViewItem>>(this.yyListView.yyItems);
             this.yyListView.Order = this.sortOrder;
             this.yyListView.ColumnToSort = this.columnToSort;
             this.yyListView.SortStyle = this.sortStyle;
@@ -49,15 +51,17 @@ namespace TimeMDev.HandleRecord
             {
                 this.yyListView.SortStyle = 0;
             }
-            this.yyListView.Sort();
+            this.yyListView.YYSort();
+            
         }
 
         public override void UnExecute()
         {
-            this.yyListView.SortStyle = this._sortStyle;
-            this.yyListView.Order = this._sortOrder;
-            this.yyListView.ColumnToSort = this._columnToSort;
-            this.yyListView.Sort();
+            //this.yyListView.SortStyle = this._sortStyle;
+            //this.yyListView.Order = this._sortOrder;
+            //this.yyListView.ColumnToSort = this._columnToSort;
+            //this.yyListView.Sort();
+            this.yyListView.yyItems = CopyObject.DeepCopy<List<ListViewItem>>(this.itemsSave);
         }
     }
 }

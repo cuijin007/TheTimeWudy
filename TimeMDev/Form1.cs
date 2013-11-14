@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using TimeMDev.HandleRecord;
 
 namespace TimeMDev
 {
@@ -26,7 +27,7 @@ namespace TimeMDev
         }
         MPlayer mplayer;
         TimeLineReadWrite timeLineReadWrite = new TimeLineReadWrite();
-
+        CommandManage commandManage = new CommandManage(10);
         string originalSubtitlePath, moviePath, movieName,temporarySubtitlePath;
 
         public int interval;
@@ -280,6 +281,7 @@ namespace TimeMDev
                 //使能 listviewmenu
                 //this.SetListviewMenuEnable(true);
             }
+            
             this.rateShow.Focus();
         }
 
@@ -372,7 +374,9 @@ namespace TimeMDev
             {
                 this.listView1.Order = SortOrder.Ascending;
             }
-            this.listView1.YYSort();
+            //this.listView1.YYSort();
+            ListViewSort sort = new ListViewSort(this.listView1, e.Column, this.listView1.SortStyle, this.listView1.Order);
+            this.commandManage.CommandRun(sort);
         }
 
         private void listViewMenu_Opening(object sender, CancelEventArgs e)
@@ -652,6 +656,18 @@ namespace TimeMDev
         private void findErrorItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             (new ErrorCheckingForm(this)).Show();
+        }
+
+        private void revocationItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.commandManage.Undo();
+            this.listView1.YYRefresh();
+        }
+
+        private void redoItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.commandManage.Redo();
+            this.listView1.YYRefresh();
         }
 
         

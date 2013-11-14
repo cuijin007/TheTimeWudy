@@ -939,12 +939,14 @@
             this.revocationItem.Caption = "撤销(&U)";
             this.revocationItem.Id = 14;
             this.revocationItem.Name = "revocationItem";
+            this.revocationItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.revocationItem_ItemClick);
             // 
             // redoItem
             // 
             this.redoItem.Caption = "重做(R)";
             this.redoItem.Id = 15;
             this.redoItem.Name = "redoItem";
+            this.redoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.redoItem_ItemClick);
             // 
             // cutItem
             // 
