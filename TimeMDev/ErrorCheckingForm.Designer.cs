@@ -47,6 +47,10 @@
             this.chineseContainsEnglishCheck = new System.Windows.Forms.CheckBox();
             this.chineseContainEnglishColor = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.closeForm = new System.Windows.Forms.Button();
+            this.handleOverlap = new System.Windows.Forms.Button();
+            this.selectAll = new System.Windows.Forms.Button();
+            this.checkAll = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timeLengthSmallBox = new System.Windows.Forms.TextBox();
@@ -59,10 +63,6 @@
             this.listViewShow = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.ColumnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.checkAll = new System.Windows.Forms.Button();
-            this.selectAll = new System.Windows.Forms.Button();
-            this.handleOverlap = new System.Windows.Forms.Button();
-            this.closeForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.textLengthColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startBigerColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.overLapColor)).BeginInit();
@@ -304,6 +304,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "检查项目";
             // 
+            // closeForm
+            // 
+            this.closeForm.Location = new System.Drawing.Point(276, 260);
+            this.closeForm.Name = "closeForm";
+            this.closeForm.Size = new System.Drawing.Size(54, 23);
+            this.closeForm.TabIndex = 6;
+            this.closeForm.Text = "关闭";
+            this.closeForm.UseVisualStyleBackColor = true;
+            this.closeForm.Click += new System.EventHandler(this.closeForm_Click);
+            // 
+            // handleOverlap
+            // 
+            this.handleOverlap.Location = new System.Drawing.Point(170, 260);
+            this.handleOverlap.Name = "handleOverlap";
+            this.handleOverlap.Size = new System.Drawing.Size(100, 23);
+            this.handleOverlap.TabIndex = 6;
+            this.handleOverlap.Text = "自动消除重叠";
+            this.handleOverlap.UseVisualStyleBackColor = true;
+            this.handleOverlap.Click += new System.EventHandler(this.handleOverlap_Click);
+            // 
+            // selectAll
+            // 
+            this.selectAll.Location = new System.Drawing.Point(68, 260);
+            this.selectAll.Name = "selectAll";
+            this.selectAll.Size = new System.Drawing.Size(100, 23);
+            this.selectAll.TabIndex = 6;
+            this.selectAll.Text = "选择所有结果行";
+            this.selectAll.UseVisualStyleBackColor = true;
+            this.selectAll.Click += new System.EventHandler(this.selectAll_Click);
+            // 
+            // checkAll
+            // 
+            this.checkAll.Location = new System.Drawing.Point(16, 260);
+            this.checkAll.Name = "checkAll";
+            this.checkAll.Size = new System.Drawing.Size(46, 23);
+            this.checkAll.TabIndex = 6;
+            this.checkAll.Text = "检查";
+            this.checkAll.UseVisualStyleBackColor = true;
+            this.checkAll.Click += new System.EventHandler(this.checkAll_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -386,6 +426,7 @@
             this.listViewShow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.ColumnHeader2});
+            this.listViewShow.FullRowSelect = true;
             this.listViewShow.Location = new System.Drawing.Point(355, 13);
             this.listViewShow.Name = "listViewShow";
             this.listViewShow.Size = new System.Drawing.Size(268, 298);
@@ -402,46 +443,6 @@
             this.ColumnHeader2.Text = "错误类型";
             this.ColumnHeader2.Width = 201;
             // 
-            // checkAll
-            // 
-            this.checkAll.Location = new System.Drawing.Point(16, 260);
-            this.checkAll.Name = "checkAll";
-            this.checkAll.Size = new System.Drawing.Size(46, 23);
-            this.checkAll.TabIndex = 6;
-            this.checkAll.Text = "检查";
-            this.checkAll.UseVisualStyleBackColor = true;
-            this.checkAll.Click += new System.EventHandler(this.checkAll_Click);
-            // 
-            // selectAll
-            // 
-            this.selectAll.Location = new System.Drawing.Point(68, 260);
-            this.selectAll.Name = "selectAll";
-            this.selectAll.Size = new System.Drawing.Size(100, 23);
-            this.selectAll.TabIndex = 6;
-            this.selectAll.Text = "选择所有结果行";
-            this.selectAll.UseVisualStyleBackColor = true;
-            this.selectAll.Click += new System.EventHandler(this.selectAll_Click);
-            // 
-            // handleOverlap
-            // 
-            this.handleOverlap.Location = new System.Drawing.Point(170, 260);
-            this.handleOverlap.Name = "handleOverlap";
-            this.handleOverlap.Size = new System.Drawing.Size(100, 23);
-            this.handleOverlap.TabIndex = 6;
-            this.handleOverlap.Text = "自动消除重叠";
-            this.handleOverlap.UseVisualStyleBackColor = true;
-            this.handleOverlap.Click += new System.EventHandler(this.handleOverlap_Click);
-            // 
-            // closeForm
-            // 
-            this.closeForm.Location = new System.Drawing.Point(276, 260);
-            this.closeForm.Name = "closeForm";
-            this.closeForm.Size = new System.Drawing.Size(54, 23);
-            this.closeForm.TabIndex = 6;
-            this.closeForm.Text = "关闭";
-            this.closeForm.UseVisualStyleBackColor = true;
-            this.closeForm.Click += new System.EventHandler(this.closeForm_Click);
-            // 
             // ErrorCheckingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -451,6 +452,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ErrorCheckingForm";
             this.Text = "错误检查";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.textLengthColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startBigerColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.overLapColor)).EndInit();

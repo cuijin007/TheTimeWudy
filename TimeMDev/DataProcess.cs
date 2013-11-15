@@ -623,7 +623,14 @@ namespace TimeMDev
                 List<SingleSentence> sentences = (List<SingleSentence>)Clipboard.GetData(format.Name);
                 for (int i = 0; i < sentences.Count; i++)
                 {
-                    this.listSingleSentence.Insert(index + i, sentences[i]);
+                    if (index + i < this.listSingleSentence.Count)
+                    {
+                        this.listSingleSentence.Insert(index + i, sentences[i]);
+                    }
+                    else
+                    {
+                        this.listSingleSentence.Add(sentences[i]);
+                    }
                 }
                 return true;
             }

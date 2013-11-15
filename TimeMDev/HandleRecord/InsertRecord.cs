@@ -24,13 +24,13 @@ namespace TimeMDev.HandleRecord
         {
             //this.yyListView.YYInsertLine(this.index, this.sentence);
             this.yyListView.YYInsertLine(this.showPosition, this.index, this.sentence);
-            this.listSingleSentence.Insert(this.showPosition, this.sentence);
+            this.listSingleSentence.Insert(this.index, this.sentence);
         }
 
         public override void UnExecute()
         {
-            this.yyListView.YYDeleteLine(index);
-            this.listSingleSentence.RemoveAt(this.showPosition);
+            this.yyListView.YYDeleteLine(this.showPosition);
+            this.listSingleSentence.RemoveAt(this.index);
         }
     }
 }

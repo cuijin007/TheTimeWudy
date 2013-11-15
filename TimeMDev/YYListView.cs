@@ -354,7 +354,14 @@ namespace TimeMDev
             item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
             item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
             item.SubItems[3].Text = singleSentence.content;
-            this.yyItems.Insert(showPosition, item);
+            if (showPosition < this.yyItems.Count)
+            {
+                this.yyItems.Insert(showPosition, item);
+            }
+            else
+            {
+                this.yyItems.Add(item);
+            }
         }
         #region RedoUndoInterface 成员
 

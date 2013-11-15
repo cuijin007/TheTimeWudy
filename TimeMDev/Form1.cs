@@ -505,6 +505,7 @@ namespace TimeMDev
                 listCommand.Add(deleteRecord);
             }
             this.commandManage.CommandRun(listCommand);
+            this.listView1.YYRefresh();
        }
 
         private void zeroTime_Click(object sender, EventArgs e)
@@ -512,11 +513,6 @@ namespace TimeMDev
             List<HandleRecordBass> commands = new List<HandleRecordBass>();
             for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
             {
-                //int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                //this.dataProcess.listSingleSentence[index2].startTime = 0;
-                //this.dataProcess.listSingleSentence[index2].endTime = 0;
-                //int index = this.listView1.SelectedIndices[i];
-                //this.listView1.YYZero(index, 1);
                 ZeroRecord zeroRecord = new ZeroRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[i], 1);
                 commands.Add(zeroRecord);
             }
@@ -526,14 +522,6 @@ namespace TimeMDev
 
         private void zeroContentContext_Click(object sender, EventArgs e)
         {
-            //for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
-            //{
-            //    int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-            //    this.dataProcess.listSingleSentence[index2].content = "";
-            //    int index = this.listView1.SelectedIndices[i];
-            //    this.listView1.YYZero(index, 0);
-            //}
-            //this.listView1.YYRefresh();
             List<HandleRecordBass> commands = new List<HandleRecordBass>();
             for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
             {
@@ -613,7 +601,7 @@ namespace TimeMDev
         private void copyContext_Click(object sender, EventArgs e)
         {
             CopyRecord copyRecord = new CopyRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices);
-            this.commandManage.CommandRun(copyRecord);
+            this.commandManage.CommandRunNoRedo(copyRecord);
             this.listView1.YYRefresh();
         }
 
@@ -626,7 +614,7 @@ namespace TimeMDev
 
         private void pasteContext_Click(object sender, EventArgs e)
         {
-            PasteRecord pasteRecord=new PasteRecord(this.dataProcess,this.listView1,this.listView1.SelectedIndices[0]);
+            PasteRecord pasteRecord=new PasteRecord(this.dataProcess,this.listView1,this.listView1.SelectedIndices[0]+1);
             this.commandManage.CommandRun(pasteRecord);
             this.listView1.YYRefresh();
         }
