@@ -99,10 +99,13 @@
     <Compile Include="HandleRecord\AddRecord.cs" />
     <Compile Include="HandleRecord\ChangeRecord.cs" />
     <Compile Include="HandleRecord\CommandManage.cs" />
+    <Compile Include="HandleRecord\CopyRecord.cs" />
+    <Compile Include="HandleRecord\CutRecord.cs" />
     <Compile Include="HandleRecord\DeleteRecord.cs" />
     <Compile Include="HandleRecord\HandleRecordBass.cs" />
     <Compile Include="HandleRecord\InsertRecord.cs" />
     <Compile Include="HandleRecord\ListViewSort.cs" />
+    <Compile Include="HandleRecord\PasteRecord.cs" />
     <Compile Include="HandleRecord\ZeroRecord.cs" />
     <Compile Include="Mplayer.cs" />
     <Compile Include="PictureRefresh.cs" />

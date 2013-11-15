@@ -498,15 +498,22 @@ namespace TimeMDev
 
         private void deleteLineContext_Click(object sender, EventArgs e)
         {
-            for (int i = this.listView1.SelectedIndices.Count-1; i >=0; i--)
+            //for (int i = this.listView1.SelectedIndices.Count-1; i >=0; i--)
+            //{
+            //    int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+            //    this.dataProcess.listSingleSentence.RemoveAt(index2);
+            //    int index = this.listView1.SelectedIndices[i];
+            //    this.listView1.YYDeleteLine(index);
+            //}
+            //this.listView1.YYRefresh();
+            List<HandleRecordBass> listCommand=new List<HandleRecordBass>();
+            for(int i=0;i<this.listView1.SelectedIndices.Count;i++)
             {
-                int index2 = int.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                this.dataProcess.listSingleSentence.RemoveAt(index2);
-                int index = this.listView1.SelectedIndices[i];
-                this.listView1.YYDeleteLine(index);
+                DeleteRecord deleteRecord = new DeleteRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[i]);
+                listCommand.Add(deleteRecord);
             }
-            this.listView1.YYRefresh();
-        }
+            this.commandManage.CommandRun(listCommand);
+       }
 
         private void zeroTime_Click(object sender, EventArgs e)
         {
@@ -547,17 +554,24 @@ namespace TimeMDev
 
         private void undoContext_Click(object sender, EventArgs e)
         {
-            this.dataProcess._Undo();
+            //this.dataProcess._Undo();
+            //这里是什么情况
+            this.commandManage.Undo();
         }
-
+        /// <summary>
+        /// 自定义拆分
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void customSpiltContext_Click(object sender, EventArgs e)
         {
-            if(this.listView1.SelectedIndices.Count>0)
+            List<HandleRecordBass> listCommand = new List<HandleRecordBass>();
+            if (this.listView1.SelectedIndices.Count > 0)
             {
                 SpiltParameter spiltParameter = new SpiltParameter();
-                
+
                 int index = Int32.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[0]].Text);
-                spiltParameter.beforeSpilt= this.dataProcess.listSingleSentence[index].content;
+                spiltParameter.beforeSpilt = this.dataProcess.listSingleSentence[index].content;
                 this.Capture = false;
                 (new CustomSpilt(spiltParameter)).ShowDialog();
                 if (spiltParameter.confirm == true)
@@ -577,10 +591,8 @@ namespace TimeMDev
                     }
 
                     int showPosition = this.listView1.SelectedIndices[0];
-                    this.dataProcess.listSingleSentence.RemoveAt(index);
-                   
-                    //this.listView1.yyItems.RemoveAt(this.listView1.SelectedIndices[0]);
-                    this.listView1.YYDeleteLine(this.listView1.SelectedIndices[0]);
+                    DeleteRecord deleteRecord = new DeleteRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0]);
+                    listCommand.Add(deleteRecord);
                     for (int i = 0; i < count; i++)
                     {
                         SingleSentence singleSentence = new SingleSentence();
@@ -597,67 +609,76 @@ namespace TimeMDev
                         singleSentence.startTime = startTime + ((endTime - startTime) / count) * i;
                         singleSentence.endTime = startTime + ((endTime - startTime) / count) * (i + 1);
                         singleSentence.content = content;
-                        this.dataProcess.listSingleSentence.Insert(index+i, singleSentence);
-                        this.listView1.YYInsertLine(showPosition+i, index+i, singleSentence);
+                        InsertRecord insertRecord = new InsertRecord(this.dataProcess.listSingleSentence, this.listView1, showPosition + i, index + i, singleSentence);
+                        listCommand.Add(insertRecord);
                     }
+                    this.commandManage.CommandRun(listCommand);
                 }
-                
+                this.listView1.YYRefresh();
             }
-            this.listView1.Invalidate();
         }
 
         private void copyContext_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedIndices.Count > 0)
-            {
-                int[] index = new int[this.listView1.SelectedIndices.Count];
-                for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
-                {
-                    index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                }
-                this.dataProcess._Copy(index);
-            }
-            this.listView1.Invalidate();
+            //if (this.listView1.SelectedIndices.Count > 0)
+            //{
+            //    int[] index = new int[this.listView1.SelectedIndices.Count];
+            //    for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
+            //    {
+            //        index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+            //    }
+            //    this.dataProcess._Copy(index);
+            //}
+            //this.listView1.Invalidate();
+            CopyRecord copyRecord = new CopyRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices);
+            this.commandManage.CommandRun(copyRecord);
+            this.listView1.YYRefresh();
         }
 
         private void cutContext_Click(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedIndices.Count > 0)
-            {
-                int[] index = new int[this.listView1.SelectedIndices.Count];
-                for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
-                {
-                    index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
-                }
-                this.dataProcess._Cut(index);
+            //if (this.listView1.SelectedIndices.Count > 0)
+            //{
+            //    int[] index = new int[this.listView1.SelectedIndices.Count];
+            //    for (int i = 0; i < this.listView1.SelectedIndices.Count;i++ )
+            //    {
+            //        index[i] = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[i]].SubItems[0].Text);
+            //    }
+            //    this.dataProcess._Cut(index);
                 
-                for(int j=this.listView1.SelectedIndices.Count-1;j>=0;j--)
-                {
-                    this.listView1.YYDeleteLine(this.listView1.SelectedIndices[j]);
-                }
-            }
-            this.listView1.Invalidate();
+            //    for(int j=this.listView1.SelectedIndices.Count-1;j>=0;j--)
+            //    {
+            //        this.listView1.YYDeleteLine(this.listView1.SelectedIndices[j]);
+            //    }
+            //}
+            //this.listView1.Invalidate();
+            CutRecord cutRecord = new CutRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices);
+            this.commandManage.CommandRun(cutRecord);
+            this.listView1.YYRefresh();
         }
 
         private void pasteContext_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
-                List<SingleSentence> sentences = (List<SingleSentence>)Clipboard.GetData(format.Name);
-                if (this.listView1.SelectedIndices.Count > 0)
-                {
-                    int index = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[0].Text);
-                    this.dataProcess._Paste(index);
-                    for (int i = 0; i < sentences.Count; i++)
-                    {
-                        this.listView1.YYInsertLine(this.listView1.SelectedIndices[0], index, sentences[i]);
-                    }
-                }
-            }
-            catch
-            {}
-            this.listView1.Invalidate();
+            //try
+            //{
+            //    DataFormats.Format format = new DataFormats.Format("cuijin", 891008);
+            //    List<SingleSentence> sentences = (List<SingleSentence>)Clipboard.GetData(format.Name);
+            //    if (this.listView1.SelectedIndices.Count > 0)
+            //    {
+            //        int index = int.Parse(listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[0].Text);
+            //        this.dataProcess._Paste(index);
+            //        for (int i = 0; i < sentences.Count; i++)
+            //        {
+            //            this.listView1.YYInsertLine(this.listView1.SelectedIndices[0], index, sentences[i]);
+            //        }
+            //    }
+            //}
+            //catch
+            //{}
+            //this.listView1.Invalidate();
+            PasteRecord pasteRecord=new PasteRecord(this.dataProcess,this.listView1,this.listView1.SelectedIndices[0]);
+            this.commandManage.CommandRun(pasteRecord);
+            this.listView1.YYRefresh();
         }
 
         private void checkAllContext_Click(object sender, EventArgs e)
