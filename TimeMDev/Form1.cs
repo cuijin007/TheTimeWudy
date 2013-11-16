@@ -655,6 +655,11 @@ namespace TimeMDev
             this.listView1.YYRefresh();
         }
 
+        private void replaceItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (new ReplaceForm(this.commandManage, this)).Show();
+        }
+
         
     }
 }

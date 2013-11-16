@@ -106,6 +106,8 @@
     <Compile Include="HandleRecord\InsertRecord.cs" />
     <Compile Include="HandleRecord\ListViewSort.cs" />
     <Compile Include="HandleRecord\PasteRecord.cs" />
+    <Compile Include="HandleRecord\ReplaceMutiRecordContent.cs" />
+    <Compile Include="HandleRecord\ReplaceRecordContent.cs" />
     <Compile Include="HandleRecord\ZeroRecord.cs" />
     <Compile Include="Mplayer.cs" />
     <Compile Include="PictureRefresh.cs" />

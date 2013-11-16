@@ -989,6 +989,7 @@
             this.replaceItem.Caption = "替换(R)";
             this.replaceItem.Id = 22;
             this.replaceItem.Name = "replaceItem";
+            this.replaceItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.replaceItem_ItemClick);
             // 
             // sortItem
             // 

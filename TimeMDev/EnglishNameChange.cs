@@ -150,6 +150,11 @@ namespace TimeMDev
         {
             this.names.Sort(new NameTableCompare()); 
         }
+        public void WriteAndShowNameList()
+        {
+            this.WriteAllNameToFile();
+            this.CallTxtEditor(this.path);
+        }
         /// <summary>
         /// 生成名单，并将名单写入文件
         /// </summary>

@@ -28,49 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.replaceBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.replaceButton = new System.Windows.Forms.Button();
+            this.listViewShow = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.addTemplate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.allRadio = new System.Windows.Forms.RadioButton();
+            this.selectedRadio = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.englishCheck = new System.Windows.Forms.CheckBox();
+            this.chineseCheck = new System.Windows.Forms.CheckBox();
+            this.caseSensitiveCheck = new System.Windows.Forms.CheckBox();
+            this.replaceAllCheck = new System.Windows.Forms.CheckBox();
+            this.deleteTemplate = new System.Windows.Forms.Button();
+            this.loadTemplate = new System.Windows.Forms.Button();
+            this.saveTemplate = new System.Windows.Forms.Button();
+            this.closeTemplate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // searchBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(193, 21);
-            this.textBox1.TabIndex = 0;
+            this.searchBox.Location = new System.Drawing.Point(12, 31);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(193, 21);
+            this.searchBox.TabIndex = 0;
             // 
-            // textBox2
+            // replaceBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(193, 21);
-            this.textBox2.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "查找";
-            this.button1.UseVisualStyleBackColor = true;
+            this.replaceBox.Location = new System.Drawing.Point(12, 80);
+            this.replaceBox.Name = "replaceBox";
+            this.replaceBox.Size = new System.Drawing.Size(193, 21);
+            this.replaceBox.TabIndex = 0;
             // 
             // label1
             // 
@@ -90,45 +86,60 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "替换为：";
             // 
-            // button2
+            // replaceButton
             // 
-            this.button2.Location = new System.Drawing.Point(158, 134);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(93, 27);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "替换";
-            this.button2.UseVisualStyleBackColor = true;
+            this.replaceButton.Location = new System.Drawing.Point(337, 112);
+            this.replaceButton.Name = "replaceButton";
+            this.replaceButton.Size = new System.Drawing.Size(85, 27);
+            this.replaceButton.TabIndex = 1;
+            this.replaceButton.Text = "替换";
+            this.replaceButton.UseVisualStyleBackColor = true;
+            this.replaceButton.Click += new System.EventHandler(this.replaceButton_Click);
             // 
-            // button3
+            // listViewShow
             // 
-            this.button3.Location = new System.Drawing.Point(337, 134);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 27);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "全部替换";
-            this.button3.UseVisualStyleBackColor = true;
+            this.listViewShow.CheckBoxes = true;
+            this.listViewShow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listViewShow.FullRowSelect = true;
+            this.listViewShow.Location = new System.Drawing.Point(6, 155);
+            this.listViewShow.Name = "listViewShow";
+            this.listViewShow.Size = new System.Drawing.Size(325, 238);
+            this.listViewShow.TabIndex = 3;
+            this.listViewShow.UseCompatibleStateImageBehavior = false;
+            this.listViewShow.View = System.Windows.Forms.View.Details;
             // 
-            // listView1
+            // columnHeader1
             // 
-            this.listView1.Location = new System.Drawing.Point(6, 167);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(325, 226);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.columnHeader1.Text = "选中";
+            this.columnHeader1.Width = 44;
             // 
-            // button4
+            // columnHeader2
             // 
-            this.button4.Location = new System.Drawing.Point(337, 185);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(84, 25);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "导入模板";
-            this.button4.UseVisualStyleBackColor = true;
+            this.columnHeader2.Text = "查找内容";
+            this.columnHeader2.Width = 123;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "替换为";
+            this.columnHeader3.Width = 128;
+            // 
+            // addTemplate
+            // 
+            this.addTemplate.Location = new System.Drawing.Point(337, 155);
+            this.addTemplate.Name = "addTemplate";
+            this.addTemplate.Size = new System.Drawing.Size(84, 25);
+            this.addTemplate.TabIndex = 4;
+            this.addTemplate.Text = "加入模板<<";
+            this.addTemplate.UseVisualStyleBackColor = true;
+            this.addTemplate.Click += new System.EventHandler(this.addTemplate_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.allRadio);
+            this.groupBox1.Controls.Add(this.selectedRadio);
             this.groupBox1.Location = new System.Drawing.Point(211, 22);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(81, 79);
@@ -136,10 +147,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "替换范围";
             // 
+            // allRadio
+            // 
+            this.allRadio.AutoSize = true;
+            this.allRadio.Checked = true;
+            this.allRadio.Location = new System.Drawing.Point(6, 43);
+            this.allRadio.Name = "allRadio";
+            this.allRadio.Size = new System.Drawing.Size(59, 16);
+            this.allRadio.TabIndex = 0;
+            this.allRadio.TabStop = true;
+            this.allRadio.Text = "所有行";
+            this.allRadio.UseVisualStyleBackColor = true;
+            // 
+            // selectedRadio
+            // 
+            this.selectedRadio.AutoSize = true;
+            this.selectedRadio.Location = new System.Drawing.Point(6, 20);
+            this.selectedRadio.Name = "selectedRadio";
+            this.selectedRadio.Size = new System.Drawing.Size(59, 16);
+            this.selectedRadio.TabIndex = 0;
+            this.selectedRadio.TabStop = true;
+            this.selectedRadio.Text = "选择行";
+            this.selectedRadio.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.englishCheck);
+            this.groupBox2.Controls.Add(this.chineseCheck);
             this.groupBox2.Location = new System.Drawing.Point(298, 22);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(123, 79);
@@ -147,89 +181,113 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "针对内容";
             // 
-            // radioButton1
+            // englishCheck
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 16);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "选择行";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.englishCheck.AutoSize = true;
+            this.englishCheck.Location = new System.Drawing.Point(6, 44);
+            this.englishCheck.Name = "englishCheck";
+            this.englishCheck.Size = new System.Drawing.Size(72, 16);
+            this.englishCheck.TabIndex = 0;
+            this.englishCheck.Text = "英文部分";
+            this.englishCheck.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // chineseCheck
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 43);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 16);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "所有行";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.chineseCheck.AutoSize = true;
+            this.chineseCheck.Location = new System.Drawing.Point(6, 21);
+            this.chineseCheck.Name = "chineseCheck";
+            this.chineseCheck.Size = new System.Drawing.Size(72, 16);
+            this.chineseCheck.TabIndex = 0;
+            this.chineseCheck.Text = "中文部分";
+            this.chineseCheck.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // caseSensitiveCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "中文部分";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.caseSensitiveCheck.AutoSize = true;
+            this.caseSensitiveCheck.Checked = true;
+            this.caseSensitiveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.caseSensitiveCheck.Location = new System.Drawing.Point(14, 112);
+            this.caseSensitiveCheck.Name = "caseSensitiveCheck";
+            this.caseSensitiveCheck.Size = new System.Drawing.Size(84, 16);
+            this.caseSensitiveCheck.TabIndex = 0;
+            this.caseSensitiveCheck.Text = "区分大小写";
+            this.caseSensitiveCheck.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // replaceAllCheck
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 44);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 16);
-            this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "英文部分";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.replaceAllCheck.AutoSize = true;
+            this.replaceAllCheck.Location = new System.Drawing.Point(109, 112);
+            this.replaceAllCheck.Name = "replaceAllCheck";
+            this.replaceAllCheck.Size = new System.Drawing.Size(96, 16);
+            this.replaceAllCheck.TabIndex = 0;
+            this.replaceAllCheck.Text = "使用批量替换";
+            this.replaceAllCheck.UseVisualStyleBackColor = true;
+            this.replaceAllCheck.CheckedChanged += new System.EventHandler(this.replaceAllCheck_CheckedChanged);
             // 
-            // checkBox3
+            // deleteTemplate
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(14, 112);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(84, 16);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.Text = "区分大小写";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.deleteTemplate.Location = new System.Drawing.Point(337, 186);
+            this.deleteTemplate.Name = "deleteTemplate";
+            this.deleteTemplate.Size = new System.Drawing.Size(84, 25);
+            this.deleteTemplate.TabIndex = 4;
+            this.deleteTemplate.Text = "移除模板>>";
+            this.deleteTemplate.UseVisualStyleBackColor = true;
+            this.deleteTemplate.Click += new System.EventHandler(this.deleteTemplate_Click);
             // 
-            // checkBox4
+            // loadTemplate
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(109, 112);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(96, 16);
-            this.checkBox4.TabIndex = 0;
-            this.checkBox4.Text = "使用批量替换";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.loadTemplate.Location = new System.Drawing.Point(337, 295);
+            this.loadTemplate.Name = "loadTemplate";
+            this.loadTemplate.Size = new System.Drawing.Size(84, 25);
+            this.loadTemplate.TabIndex = 4;
+            this.loadTemplate.Text = "载入模板";
+            this.loadTemplate.UseVisualStyleBackColor = true;
+            this.loadTemplate.Click += new System.EventHandler(this.loadTemplate_Click);
+            // 
+            // saveTemplate
+            // 
+            this.saveTemplate.Location = new System.Drawing.Point(337, 330);
+            this.saveTemplate.Name = "saveTemplate";
+            this.saveTemplate.Size = new System.Drawing.Size(84, 25);
+            this.saveTemplate.TabIndex = 4;
+            this.saveTemplate.Text = "保存模板";
+            this.saveTemplate.UseVisualStyleBackColor = true;
+            this.saveTemplate.Click += new System.EventHandler(this.saveTemplate_Click);
+            // 
+            // closeTemplate
+            // 
+            this.closeTemplate.Location = new System.Drawing.Point(337, 368);
+            this.closeTemplate.Name = "closeTemplate";
+            this.closeTemplate.Size = new System.Drawing.Size(84, 25);
+            this.closeTemplate.TabIndex = 4;
+            this.closeTemplate.Text = "关闭模板";
+            this.closeTemplate.UseVisualStyleBackColor = true;
+            this.closeTemplate.Click += new System.EventHandler(this.closeTemplate_Click);
             // 
             // ReplaceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 405);
-            this.Controls.Add(this.checkBox4);
+            this.ClientSize = new System.Drawing.Size(425, 142);
+            this.Controls.Add(this.replaceAllCheck);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.caseSensitiveCheck);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.closeTemplate);
+            this.Controls.Add(this.saveTemplate);
+            this.Controls.Add(this.loadTemplate);
+            this.Controls.Add(this.deleteTemplate);
+            this.Controls.Add(this.addTemplate);
+            this.Controls.Add(this.listViewShow);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.replaceButton);
+            this.Controls.Add(this.replaceBox);
+            this.Controls.Add(this.searchBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ReplaceForm";
             this.Text = "替换";
+            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -241,22 +299,27 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.TextBox replaceBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button replaceButton;
+        private System.Windows.Forms.ListView listViewShow;
+        private System.Windows.Forms.Button addTemplate;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton allRadio;
+        private System.Windows.Forms.RadioButton selectedRadio;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox englishCheck;
+        private System.Windows.Forms.CheckBox chineseCheck;
+        private System.Windows.Forms.CheckBox caseSensitiveCheck;
+        private System.Windows.Forms.CheckBox replaceAllCheck;
+        private System.Windows.Forms.Button deleteTemplate;
+        private System.Windows.Forms.Button loadTemplate;
+        private System.Windows.Forms.Button saveTemplate;
+        private System.Windows.Forms.Button closeTemplate;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
