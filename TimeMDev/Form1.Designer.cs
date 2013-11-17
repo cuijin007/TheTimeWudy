@@ -977,6 +977,7 @@
             this.findItem.Caption = "查找(&F)";
             this.findItem.Id = 20;
             this.findItem.Name = "findItem";
+            this.findItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.findItem_ItemClick);
             // 
             // findNextItem
             // 

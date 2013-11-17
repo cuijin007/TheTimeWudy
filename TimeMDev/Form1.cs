@@ -660,6 +660,11 @@ namespace TimeMDev
             (new ReplaceForm(this.commandManage, this)).Show();
         }
 
+        private void findItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (new FindForm(this)).Show();
+        }
+
         
     }
 }

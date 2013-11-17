@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace TimeMDev
 {
@@ -437,6 +438,65 @@ namespace TimeMDev
 
         #endregion
 
+
+
+        const Int32 LVM_FIRST = 0x1000;
+        const Int32 LVM_SCROLL = LVM_FIRST + 20;
+        #region 滚动代码
+        [DllImport("user32")]
+        static extern IntPtr SendMessage(IntPtr Handle, Int32 msg, IntPtr wParam,
+        IntPtr lParam);
+
+        private void ScrollHorizontal(int pixelsToScroll)
+        {
+            SendMessage(this.Handle, LVM_SCROLL, (IntPtr)pixelsToScroll,
+            IntPtr.Zero);
+        }
+
+        /// <span class="code-SummaryComment"><summary></span>
+        /// Ensure visible of a ListViewItem and SubItem Index.
+        /// <span class="code-SummaryComment"></summary></span>
+        /// <span class="code-SummaryComment"><param name="item"></param></span>
+        /// <span class="code-SummaryComment"><param name="subItemIndex"></param></span>
+        public void EnsureVisible(ListViewItem item, int subItemIndex)
+        {
+            if (item == null || subItemIndex > item.SubItems.Count - 1)
+            {
+                throw new ArgumentException();
+            }
+
+            // scroll to the item row.
+            item.EnsureVisible();
+            Rectangle bounds = item.SubItems[subItemIndex].Bounds;
+
+            // need to set width from columnheader, first subitem includes
+            // all subitems.
+            bounds.Width = this.Columns[subItemIndex].Width;
+
+            ScrollToRectangle(bounds);
+        }
+
+        /// <span class="code-SummaryComment"><summary></span>
+        /// Scrolls the listview.
+        /// <span class="code-SummaryComment"></summary></span>
+        /// <span class="code-SummaryComment"><param name="bounds"></param></span>
+        private void ScrollToRectangle(Rectangle bounds)
+        {
+            int scrollToLeft = bounds.X + bounds.Width+20;
+            if (scrollToLeft > this.Bounds.Width)
+            {
+                this.ScrollHorizontal(scrollToLeft - this.Bounds.Width);
+            }
+            else
+            {
+                int scrollToRight = bounds.X-20;
+                if (scrollToRight < 0)
+                {
+                    this.ScrollHorizontal(scrollToRight);
+                }
+            }
+        }
+        #endregion
     }
 }
 
