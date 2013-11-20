@@ -116,6 +116,10 @@
     <Compile Include="HandleRecord\ReplaceRecordContent.cs" />
     <Compile Include="HandleRecord\ZeroRecord.cs" />
     <Compile Include="Mplayer.cs" />
+    <Compile Include="Notification\HandleMessageBase.cs" />
+    <Compile Include="Notification\NotificationCenter.cs" />
+    <Compile Include="Notification\TextBoxNotify.cs" />
+    <Compile Include="Notification\YYListViewNotification.cs" />
     <Compile Include="PictureRefresh.cs" />
     <Compile Include="PictureShowCut.cs">
       <SubType>UserControl</SubType>
