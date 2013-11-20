@@ -12,7 +12,14 @@ namespace TimeMDev
         public string content;
         public double startTime, endTime;
         public int count;
+        /// <summary>
+        /// 是否判断选中
+        /// </summary>
         public bool isSelected = false;
+        /// <summary>
+        /// 是否在外界选中 
+        /// </summary>
+        public bool isSelected2 = false;
         public bool isKeyBoard = false;
         //所有的需要的ass需要的变量。
         public string layer;

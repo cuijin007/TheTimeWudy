@@ -21,6 +21,52 @@ namespace TimeMDev
         public bool runMark = true;
         bool isRefreshContentShow = true;
         public int slideCount=-1;//从dataProcess赋值给他，他知道选的是哪个
+       
+
+        #region 外界选中和刷新部分的变量初始化
+        /// <summary>
+       /// 存储刷新的list
+       /// </summary>
+       private List<int> selectedIndex=new List<int>();
+       /// <summary>
+       /// 刷新标志
+       /// </summary>
+       bool selectedRefreshMark;//是不是要刷新的标志
+       /// <summary>
+       /// 获取选中的那些条目的消息(不设置更新标志)
+       /// </summary>
+       public List<int> SelectedIndexInfo
+        {
+            get 
+            {
+                return this.selectedIndex;
+            }
+            set
+            {
+                this.selectedIndex = value;
+            }
+        }
+       /// <summary>
+       /// 获取选中的条目，（设置更新，外界会随着更新）
+       /// </summary>
+       public List<int> SelectedIndexWidthChange
+       {
+           get
+           {
+               this.selectedRefreshMark = true;
+               return this.selectedIndex;
+           }
+           set
+           {
+               this.selectedRefreshMark = true;
+               this.selectedIndex = value;
+           }
+       }
+       /// <summary>
+       /// 是否要跟踪刷新
+       /// </summary>
+       public bool isTrackFollow=false;
+        #endregion
        public List<SingleSentence> listSingleSentence=new List<SingleSentence>();
        public List<SlideInfo> listSlideInfo = new List<SlideInfo>();
        public SingleSentence temporaryTimeLine = new SingleSentence();
@@ -152,7 +198,10 @@ namespace TimeMDev
             this.brushWordSelected=new SolidBrush(this.colorWordSelected);
             this.brushLine=new SolidBrush(this.colorLine);
         }
-        private void DrawBitmap()
+       /// <summary>
+       /// 绘制界面
+       /// </summary>
+       private void DrawBitmap()
         {
             while (this.runMark)
             {
@@ -264,7 +313,10 @@ namespace TimeMDev
             }
          
         }
-        private void DrawDetailWord()
+       /// <summary>
+       /// 绘制具体的位置以及上面的字符
+       /// </summary>
+       private void DrawDetailWord()
         {
             int startNum = 0;
             int endNum = 0;
@@ -303,6 +355,7 @@ namespace TimeMDev
                 //遍历所有的数组，而不是找起始位和停止位。2013-10-14
                 if (this.listSingleSentence[i].endTime >= this.NowTime || this.listSingleSentence[i].startTime > this.NowTime + (width / oneUnitPix) * unitBelow)
                 {
+                    ///一下对判断是不是选中进行了判断。
                     if (this.selectedTime <= this.listSingleSentence[i].endTime && this.selectedTime >= this.listSingleSentence[i].startTime)
                     {
                         this.listSingleSentence[i].isSelected = true;
@@ -335,6 +388,11 @@ namespace TimeMDev
                         else
                         {
                             graphics.FillRectangle(brushDetail, startPosition, detailS, endPosition - startPosition, detailE - detailS);
+                        }
+                        ///增加新的选中项,如果在选中队列中则置成另一种颜色
+                        if (this.selectedIndex.Contains(i))
+                        {
+                            graphics.FillRectangle(brushDetailSelected, startPosition, detailS, endPosition - startPosition, detailE - detailS);
                         }
                         //以上是绘制图形，现在是绘制图像
                         string str = listSingleSentence[i].content;
@@ -438,7 +496,10 @@ namespace TimeMDev
            string TimeStr = hour + ":" + minute + ":" + second + "," + minsec;
            return TimeStr;
         }
-        private void TimeLineOut()
+       /// <summary>
+       /// 刷新控件
+       /// </summary>
+       private void TimeLineOut()
         {
             int count = -1;
             for (int i = 0; i < this.listSingleSentence.Count; i++)
@@ -571,9 +632,80 @@ namespace TimeMDev
             }
             return true;
         }
+
+        int selectedShowSave = 0;
+       /// <summary>
+       /// 设置除了pictureShow以外的其他的那些控件
+       /// </summary>
+        private void SetFormControl()
+        {
+            int selectedShow = 0;
+            List<int> selected2Show = new List<int>();
+            ///首先判定哪个singleSentence是现在正在读取的
+            for (int i = 0; i < this.listSingleSentence.Count; i++)
+            {
+                if (listSingleSentence[i].startTime < this.selectedTime && listSingleSentence[i].endTime > this.selectedTime)
+                {
+                    listSingleSentence[i].isSelected = true;
+                    selectedShow = i;
+                }
+                else
+                {
+                    listSingleSentence[i].isSelected = false;
+                }
+            }
+            if (!(this.selectedShowSave == selectedShow)&&this.isTrackFollow)
+            {
+                this.selectedShowSave = selectedShow;
+                this.form1.timeEditStart.Text = TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime);
+                this.form1.timeEditEnd.Text = TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime);
+                this.form1.numEdit.Text = selectedShow + "";
+                this.form1.contentEdit.Text = this.listSingleSentence[selectedShow].content;
+                this.form1.listView1.YYClearSelected();
+                int showPosition = this.form1.listView1.YYGetShowPosition(selectedShow);
+                if (showPosition >= 0)
+                {
+                    this.form1.listView1.YYSetSelected(showPosition);
+                    this.form1.listView1.YYEnsurVisible(showPosition);
+                }
+            }
+           if (this.selectedRefreshMark) 
+           {
+               this.form1.listView1.YYClearSelected();
+               //if(this.)
+           }
+        }
+
+        #region 一些类里面的小工具
+        /// <summary>
+       /// 比较两个list
+       /// </summary>
+       /// <returns></returns>
+        private bool CompareList(List<int> a,List<int> b)
+        {
+            if (a.Count != b.Count)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < a.Count; i++)
+                {
+                    if (!b.Contains(a[i]))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        # endregion
+
+        }
+       
     }
     
-}
+
 
 
 

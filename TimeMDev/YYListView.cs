@@ -496,7 +496,58 @@ namespace TimeMDev
                 }
             }
         }
+        /// <summary>
+        /// 滚动到指定位置
+        /// </summary>
+        /// <param name="showPosition"></param>
+        public void YYEnsurVisible(int showPosition)
+        {
+            this.EnsureVisible(yyItems[showPosition], 0);
+        }
         #endregion
+
+        /// <summary>
+        /// 获取显示的实际位置
+        /// </summary>
+        /// <param name="index">真实位置</param>
+        /// <returns>返回的listview中的实际位置，序号>0为正确</returns>
+        public int YYGetShowPosition(int index)
+        {
+            for (int i = 0; i < this.yyItems.Count;i++ )
+            {
+                if (int.Parse(this.yyItems[i].SubItems[0].Text) == index)
+                {
+                    return i;
+                }
+            }
+            return -1;
+
+        }
+
+        /// <summary>
+        /// 清空所有行的选中标记
+        /// </summary>
+        public void YYClearSelected()
+        {
+            for (int i = 0; i < yyItems.Count; i++)
+            {
+                this.yyItems[i].Selected = false;
+            }
+        }
+        /// <summary>
+        /// 设置选中项
+        /// </summary>
+        /// <param name="showPosition">选中项</param>
+        /// <returns></returns>
+        public bool YYSetSelected(int showPosition)
+        {
+            if (showPosition < this.yyItems.Count)
+            {
+                this.yyItems[showPosition].Selected = true;
+                return true;
+            }
+            return false;
+        }
     }
 }
 
