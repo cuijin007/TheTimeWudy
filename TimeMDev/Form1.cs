@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using TimeMDev.HandleRecord;
+using TimeMDev.Notification;
 
 namespace TimeMDev
 {
@@ -51,7 +52,21 @@ namespace TimeMDev
 
             //初始的时候禁止listviewmenu显示
             //this.SetListviewMenuEnable(false);
+            this.NotificationInit();
         }
+        
+        /// <summary>
+        /// 通知中心初始化,将控件初始化进入通知中心
+        /// </summary>
+        public void NotificationInit()
+        {
+            NotificationCenter.AddNotificationCell("timeEditEnd", new TextBoxNotify(this.timeEditEnd));
+            NotificationCenter.AddNotificationCell("timeEditStart", new TextBoxNotify(this.timeEditStart));
+            NotificationCenter.AddNotificationCell("numEdit", new TextBoxNotify(this.numEdit));
+            NotificationCenter.AddNotificationCell("contentEdit", new TextBoxNotify(this.contentEdit));
+            NotificationCenter.AddNotificationCell("yyListView", new YYListViewNotification(this.listView1));
+        }
+
         private void startMplayerFristTimeLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.StartMplayerFristTime();
@@ -664,7 +679,6 @@ namespace TimeMDev
         {
             (new FindForm(this)).Show();
         }
-
-        
+       
     }
 }

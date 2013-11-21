@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TimeMDev.HandleRecord;
 
 namespace TimeMDev
 {
@@ -22,16 +23,18 @@ namespace TimeMDev
         double detailSelectedTimeBuffer, detailNowTimeBuffer;//detailSelectedTimeBuffer为选择时间缓冲区，detailnowtimebuffer为现有时间暂存区
         double timeBuffer;
         public List<SingleSentence> listSingleSentence = new List<SingleSentence>();
-
+        private SingleSentence sentenceSave;
         Cursor cursor;
         MPlayer mplayer;
-        public DataProcess(PictureRefresh pictureRefresh, Cursor cursor, MPlayer mplayer, YYListView listView)
+        CommandManage commandManage;
+        public DataProcess(PictureRefresh pictureRefresh, Cursor cursor, MPlayer mplayer, YYListView listView,CommandManage commandManage )
         {
             this.pictureRefresh = pictureRefresh;
             this.cursor = cursor;
             this.mplayer = mplayer;
             this.mplayer.DplayerRateAction = this.GetTimeAction;
             this.listView = listView;
+            this.commandManage = commandManage;
         }
         public void Init()
         {
@@ -193,6 +196,7 @@ namespace TimeMDev
                     this.slideEndBuffer = pictureRefresh.listSingleSentence[slideCount].endTime;
                 }
             }
+            this.sentenceSave = CopyObject.DeepCopy<SingleSentence>(this.pictureRefresh.listSingleSentence[slideCount]);
         }
         /// <summary>
         /// 点中滑块的函数操作
@@ -235,6 +239,7 @@ namespace TimeMDev
         /// <param name="e"></param>
         public void SlideActionOver(object sender, MouseEventArgs e)
         {
+            /*
             if (this.slideCount >= 0)
             {
                 string[] item = new string[5];
@@ -258,7 +263,12 @@ namespace TimeMDev
             }
             this.slideCount = -1;
             this.pictureRefresh.slideCount = -1;
-
+            */
+            SingleSentence sentence=CopyObject.DeepCopy<>
+            if (this.slideCount >= 0)
+            {
+                commandManage.CommandRun(new 
+            }
 
           //  this.mplayer.LoadTimeLine(
         }

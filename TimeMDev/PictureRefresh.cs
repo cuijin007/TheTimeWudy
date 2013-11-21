@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using TimeMDev.Notification;
 
 namespace TimeMDev
 {
@@ -654,8 +655,9 @@ namespace TimeMDev
                     listSingleSentence[i].isSelected = false;
                 }
             }
-            if (!(this.selectedShowSave == selectedShow)&&this.isTrackFollow)
+            if (!(this.selectedShowSave == selectedShow) && this.isTrackFollow)
             {
+                /*
                 this.selectedShowSave = selectedShow;
                 this.form1.timeEditStart.Text = TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime);
                 this.form1.timeEditEnd.Text = TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime);
@@ -674,6 +676,28 @@ namespace TimeMDev
                this.form1.listView1.YYClearSelected();
                //if(this.)
            }
+                 **/
+                NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
+                NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
+                NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
+                NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedShow);
+            }
+            if (this.selectedRefreshMark)
+            {
+                if (this.selectedIndex.Count > 0)
+                {
+                    NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].startTime));
+                    NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count - 1]].endTime));
+                    NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].content);
+                    NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex[selectedIndex.Count-1]);
+                    NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedIndex[selectedIndex.Count-1]);
+                }
+            }
+
+            this.form1.movieTrack.Maximum = (int)totalTime;
+            this.form1.movieTrack.Value = (int)this.selectedTime;
+            this.form1.interval = (int)totalTime / 100;
+
         }
 
         #region 一些类里面的小工具
