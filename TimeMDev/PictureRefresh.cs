@@ -403,7 +403,7 @@ namespace TimeMDev
                             int wordNum = (int)(str.Length * (endPosition - startPosition) / sizeF.Width);
                             str = str.Remove(wordNum);
                         }
-                        if (this.listSingleSentence[i].isSelected)
+                        if (this.listSingleSentence[i].isSelected||this.selectedIndex.Contains(i))
                         {
                             graphics.DrawString(str, new Font("微软雅黑", 10), brushWordSelected, startPosition, detailS + 10);
                         }
@@ -485,7 +485,8 @@ namespace TimeMDev
             {
                 this.form1.nowTimeShow.Text = this.TimeOut(this.selectedTime);
             }
-            this.TimeLineOut();
+           // this.TimeLineOut();//这个是以前的刷新其他控件的代码
+            this.SetFormControl();
         }
         private string TimeOut(double time)
         {
@@ -655,7 +656,8 @@ namespace TimeMDev
                     listSingleSentence[i].isSelected = false;
                 }
             }
-            if (!(this.selectedShowSave == selectedShow) && this.isTrackFollow)
+            //if (!(this.selectedShowSave == selectedShow) && this.isTrackFollow)
+            if (!(this.selectedShowSave == selectedShow))
             {
                 /*
                 this.selectedShowSave = selectedShow;
@@ -677,6 +679,7 @@ namespace TimeMDev
                //if(this.)
            }
                  **/
+                this.selectedShowSave = selectedShow;
                 NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
                 NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
                 NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
@@ -689,9 +692,11 @@ namespace TimeMDev
                     NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].startTime));
                     NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count - 1]].endTime));
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].content);
-                    NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex[selectedIndex.Count-1]);
+                    NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex);
                     NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedIndex[selectedIndex.Count-1]);
                 }
+                //置空标志，每次改变只发送一次通知
+                this.selectedRefreshMark = false;
             }
 
             this.form1.movieTrack.Maximum = (int)totalTime;

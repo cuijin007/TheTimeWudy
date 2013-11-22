@@ -196,7 +196,10 @@ namespace TimeMDev
                     this.slideEndBuffer = pictureRefresh.listSingleSentence[slideCount].endTime;
                 }
             }
-            this.sentenceSave = CopyObject.DeepCopy<SingleSentence>(this.pictureRefresh.listSingleSentence[slideCount]);
+            if (slideCount > 0)
+            {
+                this.sentenceSave = CopyObject.DeepCopy<SingleSentence>(this.pictureRefresh.listSingleSentence[slideCount]);
+            }
         }
         /// <summary>
         /// 点中滑块的函数操作
@@ -264,11 +267,16 @@ namespace TimeMDev
             this.slideCount = -1;
             this.pictureRefresh.slideCount = -1;
             */
-            SingleSentence sentence=CopyObject.DeepCopy<>
-            if (this.slideCount >= 0)
+            if (this.slideCount > 0)
             {
-                commandManage.CommandRun(new 
+                SingleSentence sentenceBuf = CopyObject.DeepCopy<SingleSentence>(this.listSingleSentence[slideCount]);
+                this.listSingleSentence[slideCount] = this.sentenceSave;
+                if (this.slideCount >= 0)
+                {
+                    commandManage.CommandRun(new ChangeRecord(this.listSingleSentence, this.listView, this.listView.YYGetShowPosition(this.slideCount), sentenceBuf));
+                }
             }
+            this.listView.YYRefresh();
 
           //  this.mplayer.LoadTimeLine(
         }

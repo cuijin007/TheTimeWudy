@@ -118,6 +118,7 @@
     <Compile Include="Mplayer.cs" />
     <Compile Include="Notification\HandleMessageBase.cs" />
     <Compile Include="Notification\NotificationCenter.cs" />
+    <Compile Include="Notification\PictureRefreshNotify.cs" />
     <Compile Include="Notification\TextBoxNotify.cs" />
     <Compile Include="Notification\YYListViewNotification.cs" />
     <Compile Include="PictureRefresh.cs" />

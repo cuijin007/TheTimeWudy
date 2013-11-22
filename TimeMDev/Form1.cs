@@ -42,7 +42,7 @@ namespace TimeMDev
         {
             this.pictureRefresh = new PictureRefresh(this);
             this.mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());//给Mplayer初始化播放的输出位置
-            dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
+            dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
             dataProcess.DataInit();
             this.rateShow.MouseWheel+=new MouseEventHandler(rateShow_MouseWheel);
             originalSubtitlePath = "";
@@ -263,7 +263,7 @@ namespace TimeMDev
             dialog.Filter = "字幕文件|*.srt;*.ass";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
+                dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
                 dataProcess.DataInit();
                 this.dataProcess.Init();
                 pictureRefresh.Start();
@@ -678,6 +678,23 @@ namespace TimeMDev
         private void findItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             (new FindForm(this)).Show();
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            List<int> listIndex = new List<int>();
+            for (int i = 0; i < this.listView1.SelectedIndices.Count;i++)
+            {
+                listIndex.Add(this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[i]));
+            }
+            this.pictureRefresh.SelectedIndexWidthChange=listIndex;
+            if (listIndex.Count > 0)
+            {
+                //把坐标时间弄过去
+                this.pictureRefresh.NowTime = this.dataProcess.listSingleSentence[
+                  listIndex[listIndex.Count-1]
+                    ].startTime;
+            }
         }
        
     }
