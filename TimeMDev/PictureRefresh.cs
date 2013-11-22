@@ -680,10 +680,14 @@ namespace TimeMDev
            }
                  **/
                 this.selectedShowSave = selectedShow;
-                NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
-                NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
-                NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
-                NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedShow);
+                if (selectedShow > 0)
+                {
+                    NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
+                    NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
+                    NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
+                    NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedShow);
+                    NotificationCenter.SendMessage("yyListView", "Refresh", 1);
+                }
             }
             if (this.selectedRefreshMark)
             {
@@ -694,6 +698,7 @@ namespace TimeMDev
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].content);
                     NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex);
                     NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedIndex[selectedIndex.Count-1]);
+                    NotificationCenter.SendMessage("yyListView", "Refresh", 1);
                 }
                 //置空标志，每次改变只发送一次通知
                 this.selectedRefreshMark = false;

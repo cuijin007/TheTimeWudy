@@ -235,7 +235,7 @@ namespace TimeMDev
                 //this.mplayer.RemoveTimeLine();
             }
 
-            this.dataProcess._Save();
+            //this.dataProcess._Save();
         }
         void rateShow_MouseWheel(object sender, MouseEventArgs e)
         {
