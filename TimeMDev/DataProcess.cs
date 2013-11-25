@@ -445,7 +445,10 @@ namespace TimeMDev
                                         itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
                                         itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                         itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
-                                        itemStr[4] = "";
+                                        itemStr[4] = this.pictureRefresh.temporaryTimeLine.everyLineLength;
+                                        itemStr[5] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.timeLength);
+                                        itemStr[6] = this.pictureRefresh.temporaryTimeLine.lineNum+"";
+                                       
                                         ListViewItem item = new ListViewItem(itemStr);
                                         this.listView.yyItems.Insert(i - 1, item);
                                         this.listView.YYRefresh();
@@ -506,7 +509,9 @@ namespace TimeMDev
                                             itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
                                             itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                             itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
-                                            itemStr[4] = "";
+                                            itemStr[4] = this.pictureRefresh.temporaryTimeLine.everyLineLength;
+                                            itemStr[5] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.timeLength);
+                                            itemStr[6] = this.pictureRefresh.temporaryTimeLine.lineNum + "";
                                             ListViewItem item = new ListViewItem(itemStr);
                                             this.listView.yyItems.Insert(i - 1, item);
                                             this.listView.YYRefresh();

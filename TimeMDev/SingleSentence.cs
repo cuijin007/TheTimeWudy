@@ -9,9 +9,34 @@ namespace TimeMDev
     [Serializable]
     public class SingleSentence
     {
-        public string content;
+        private string contentSave;
+        public string content
+        {
+            get
+            {
+                return contentSave;
+            }
+            set
+            {
+                this.contentSave = value;
+                this.CaculateString(out this.lineNum, out this.everyLineLength, this.contentSave);
+            }
+        }
+       
         public double startTime, endTime;
+        /// <summary>
+        /// 时长
+        /// </summary>
+        public double timeLength
+        {
+            get
+            {
+                return endTime - startTime;
+            }
+        }
         public int count;
+        public int lineNum;
+        public string everyLineLength;
         /// <summary>
         /// 是否判断选中
         /// </summary>
@@ -36,6 +61,29 @@ namespace TimeMDev
         public object Clone()
         {
             return this.MemberwiseClone();
+        }
+        /// <summary>
+        /// 计算行数和每行的长度
+        /// </summary>
+        /// <param name="lineNum"></param>
+        /// <param name="everyLineLength"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        private bool CaculateString(out int lineNum,out string everyLineLength,string content)
+        {
+            lineNum=0;
+            everyLineLength = "";
+            string[] spiltChar=new string[1];
+            spiltChar[0]="\r\n";
+            string[] spilt=content.Split(spiltChar,StringSplitOptions.None);
+            lineNum = spilt.Length;
+           
+            for (int i = 0; i < spilt.Length; i++)
+            {
+                everyLineLength += spilt[i].Length;
+                everyLineLength += "\r\n";
+            }
+            return true;
         }
     }
 

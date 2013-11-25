@@ -38,11 +38,14 @@ namespace TimeMDev.HandleRecord
             {
                 this.yyListView.yyItems[showPosition].SubItems[3].Text = "";
                 this.listSingleSentence[index].content = "";
+                this.yyListView.yyItems[showPosition].SubItems[4].Text = this.listSingleSentence[index].everyLineLength;
+                this.yyListView.yyItems[showPosition].SubItems[6].Text = this.listSingleSentence[index].lineNum+""; 
             }
             if (style == 1)
             {
-                this.yyListView.yyItems[showPosition].SubItems[1].Text = TimeLineReadWrite.TimeOut(0); ;
+                this.yyListView.yyItems[showPosition].SubItems[1].Text = TimeLineReadWrite.TimeOut(0); 
                 this.yyListView.yyItems[showPosition].SubItems[2].Text = TimeLineReadWrite.TimeOut(0);
+                this.yyListView.yyItems[showPosition].SubItems[5].Text = this.listSingleSentence[index].timeLength; 
                 this.listSingleSentence[index].startTime=0;
                 this.listSingleSentence[index].endTime = 0;
             }

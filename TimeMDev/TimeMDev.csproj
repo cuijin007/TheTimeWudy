@@ -111,9 +111,12 @@
     <Compile Include="HandleRecord\HandleRecordBass.cs" />
     <Compile Include="HandleRecord\InsertRecord.cs" />
     <Compile Include="HandleRecord\ListViewSort.cs" />
+    <Compile Include="HandleRecord\MergeToOne.cs" />
     <Compile Include="HandleRecord\PasteRecord.cs" />
     <Compile Include="HandleRecord\ReplaceMutiRecordContent.cs" />
     <Compile Include="HandleRecord\ReplaceRecordContent.cs" />
+    <Compile Include="HandleRecord\Turn23To25FPS.cs" />
+    <Compile Include="HandleRecord\Turn25To23FPS.cs" />
     <Compile Include="HandleRecord\ZeroRecord.cs" />
     <Compile Include="Mplayer.cs" />
     <Compile Include="Notification\HandleMessageBase.cs" />

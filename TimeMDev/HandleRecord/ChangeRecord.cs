@@ -27,6 +27,9 @@ namespace TimeMDev.HandleRecord
             this.yyListView.yyItems[this.index].SubItems[1].Text = TimeLineReadWrite.TimeOut(this.sentence.startTime);
             this.yyListView.yyItems[this.index].SubItems[2].Text = TimeLineReadWrite.TimeOut(this.sentence.endTime);
             this.yyListView.yyItems[this.index].SubItems[3].Text = this.sentence.content;
+            this.yyListView.yyItems[this.index].SubItems[4].Text = this.sentence.everyLineLength;
+            this.yyListView.yyItems[this.index].SubItems[5].Text = TimeLineReadWrite.TimeOut(this.sentence.timeLength);
+            this.yyListView.yyItems[this.index].SubItems[6].Text = this.sentence.lineNum+"";
             this.listSingleSentence[realIndex] = sentence;
         }
 
@@ -36,6 +39,9 @@ namespace TimeMDev.HandleRecord
             this.yyListView.yyItems[this.index].SubItems[1].Text = TimeLineReadWrite.TimeOut(this.sentenceSave.startTime);
             this.yyListView.yyItems[this.index].SubItems[2].Text = TimeLineReadWrite.TimeOut(this.sentenceSave.endTime);
             this.yyListView.yyItems[this.index].SubItems[3].Text = this.sentenceSave.content;
+            this.yyListView.yyItems[this.index].SubItems[4].Text = this.sentence.everyLineLength;
+            this.yyListView.yyItems[this.index].SubItems[5].Text = TimeLineReadWrite.TimeOut(this.sentence.timeLength);
+            this.yyListView.yyItems[this.index].SubItems[6].Text = this.sentence.lineNum + "";
             this.listSingleSentence[realIndex] = this.sentenceSave;
         }
     }

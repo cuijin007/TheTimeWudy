@@ -268,11 +268,14 @@ namespace TimeMDev
             if(style==0)
             {
                 this.yyItems[index].SubItems[3].Text = "";
+                this.yyItems[index].SubItems[4].Text = "";
+                this.yyItems[index].SubItems[6].Text = "";
             }
             if (style == 1)
             {
                 this.yyItems[index].SubItems[2].Text = "";
                 this.yyItems[index].SubItems[1].Text = "";
+                this.yyItems[index].SubItems[5].Text = "";
             }
         }
         /// <summary>

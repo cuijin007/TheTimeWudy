@@ -313,7 +313,7 @@ namespace TimeMDev
             this.listView1.yyItems.Clear();
             this.listView1.YYRefresh();
             this.InitListView();
-            string[] showBuffer = new string[5];
+            string[] showBuffer = new string[this.listView1.Columns.Count];
             ItemsCollect = new List<ListViewItem>();
             ListViewItem[] itemsCollect2 = new ListViewItem[listSingleSentence.Count];
             for (int i = 1; i < listSingleSentence.Count - 1; i++)
@@ -323,7 +323,10 @@ namespace TimeMDev
                 showBuffer[1] = TimeOut(listSingleSentence[i].startTime);
                 showBuffer[2] = TimeOut(listSingleSentence[i].endTime);
                 showBuffer[3] = listSingleSentence[i].content;
-                showBuffer[4] = "0";
+                showBuffer[4] = listSingleSentence[i].everyLineLength;
+                showBuffer[5] = TimeLineReadWrite.TimeOut(listSingleSentence[i].timeLength);
+                showBuffer[6] = listSingleSentence[i].lineNum+"";
+               
                 this.listView1.yyItems.Add(new ListViewItem(showBuffer));
             }
             this.listView1.YYRefresh();
@@ -353,8 +356,11 @@ namespace TimeMDev
             this.listView1.Columns.Add("序号", 50);
             this.listView1.Columns.Add("开始", 80);
             this.listView1.Columns.Add("停止", 80);
-            this.listView1.Columns.Add("内容", this.listView1.Width - 240);
-            this.listView1.Columns.Add("标记", 0);
+            this.listView1.Columns.Add("内容", this.listView1.Width - 330);
+            //2013-11-25添加
+            this.listView1.Columns.Add("字符", 40);
+            this.listView1.Columns.Add("时长", 40);
+            this.listView1.Columns.Add("行数", 40);
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)
