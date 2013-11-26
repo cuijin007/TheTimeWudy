@@ -63,6 +63,10 @@ namespace TimeMDev.HandleRecord
                     contentBuf=regex.Replace(contentBuf, this.replaceParameter[i].replaceWord);
                 }
                 this.yyListView.yyItems[this.showPosition].SubItems[3].Text = contentBuf;
+                SingleSentence sentenceBuf = new SingleSentence();
+                sentenceBuf.content = contentBuf;
+                this.yyListView.yyItems[this.showPosition].SubItems[4].Text = sentenceBuf.everyLineLength;
+                this.yyListView.yyItems[this.showPosition].SubItems[6].Text = sentenceBuf.lineNum+"";
                 this.listSentences[this.yyListView.YYGetRealPosition(this.showPosition)].content = contentBuf;
             }
         }
@@ -70,6 +74,10 @@ namespace TimeMDev.HandleRecord
         public override void UnExecute()
         {
             this.yyListView.yyItems[this.showPosition].SubItems[3].Text = this.contentSave;
+            SingleSentence sentenceBuf = new SingleSentence();
+            sentenceBuf.content = this.contentSave;
+            this.yyListView.yyItems[this.showPosition].SubItems[4].Text = sentenceBuf.everyLineLength;
+            this.yyListView.yyItems[this.showPosition].SubItems[6].Text = sentenceBuf.lineNum + "";
             this.listSentences[this.yyListView.YYGetRealPosition(this.showPosition)].content = this.contentSave;
         }
     }

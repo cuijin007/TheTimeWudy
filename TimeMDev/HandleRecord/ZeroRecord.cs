@@ -45,7 +45,7 @@ namespace TimeMDev.HandleRecord
             {
                 this.yyListView.yyItems[showPosition].SubItems[1].Text = TimeLineReadWrite.TimeOut(0); 
                 this.yyListView.yyItems[showPosition].SubItems[2].Text = TimeLineReadWrite.TimeOut(0);
-                this.yyListView.yyItems[showPosition].SubItems[5].Text = this.listSingleSentence[index].timeLength; 
+                this.yyListView.yyItems[showPosition].SubItems[5].Text = TimeLineReadWrite.TimeOut(this.listSingleSentence[index].timeLength); 
                 this.listSingleSentence[index].startTime=0;
                 this.listSingleSentence[index].endTime = 0;
             }

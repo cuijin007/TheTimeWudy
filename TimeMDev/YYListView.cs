@@ -224,6 +224,7 @@ namespace TimeMDev
                     yyItems[i].SubItems[0].Text = position + count + "";
                 }
             }
+            SingleSentence singleSentenceBuf = new SingleSentence();
             for(int i=0;i<count;i++)
             {
                 ListViewItem item=(ListViewItem)this.yyItems[0].Clone();
@@ -238,6 +239,14 @@ namespace TimeMDev
                 item.SubItems[0].Text=Int32.Parse(this.yyItems[index].SubItems[0].Text)+i+1+"";
                 item.SubItems[1].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text));
                 item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text)+1);
+
+                singleSentenceBuf.content = item.SubItems[3].Text;
+                singleSentenceBuf.startTime = TimeLineReadWrite.TimeIn(this.yyItems[index + i].SubItems[2].Text);
+                singleSentenceBuf.endTime = TimeLineReadWrite.TimeIn(this.yyItems[index + i].SubItems[2].Text);
+
+                item.SubItems[4].Text = singleSentenceBuf.everyLineLength;
+                item.SubItems[5].Text = singleSentenceBuf.timeLength + "";
+                item.SubItems[6].Text = TimeLineReadWrite.TimeOut(singleSentenceBuf.lineNum) + "";
                 this.yyItems.Insert(index+i+1,item);
             }
         }
@@ -265,17 +274,21 @@ namespace TimeMDev
         /// <param name="style">0，清空内容，1，清空时间</param>
         public void YYZero(int index,int style)
         {
+            SingleSentence singleSentence = new SingleSentence();
+            singleSentence.content = "";
             if(style==0)
             {
                 this.yyItems[index].SubItems[3].Text = "";
-                this.yyItems[index].SubItems[4].Text = "";
-                this.yyItems[index].SubItems[6].Text = "";
+                this.yyItems[index].SubItems[4].Text =TimeLineReadWrite.TimeOut(singleSentence.timeLength);
+                this.yyItems[index].SubItems[6].Text = singleSentence.lineNum+"";
             }
+            singleSentence.startTime = 0;
+            singleSentence.endTime = 0;
             if (style == 1)
             {
-                this.yyItems[index].SubItems[2].Text = "";
-                this.yyItems[index].SubItems[1].Text = "";
-                this.yyItems[index].SubItems[5].Text = "";
+                this.yyItems[index].SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
+                this.yyItems[index].SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
+                this.yyItems[index].SubItems[5].Text = TimeLineReadWrite.TimeOut(singleSentence.timeLength);
             }
         }
         /// <summary>
@@ -323,6 +336,9 @@ namespace TimeMDev
             item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
             item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
             item.SubItems[3].Text = singleSentence.content;
+            item.SubItems[4].Text = singleSentence.everyLineLength;
+            item.SubItems[5].Text = TimeLineReadWrite.TimeOut(singleSentence.timeLength);
+            item.SubItems[6].Text = singleSentence.lineNum+"";
             this.yyItems.Insert(showPosition, item);
 
         }
@@ -358,6 +374,9 @@ namespace TimeMDev
             item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
             item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
             item.SubItems[3].Text = singleSentence.content;
+            item.SubItems[4].Text = singleSentence.everyLineLength;
+            item.SubItems[5].Text = TimeLineReadWrite.TimeOut(singleSentence.timeLength);
+            item.SubItems[6].Text = singleSentence.lineNum + "";
             if (showPosition < this.yyItems.Count)
             {
                 this.yyItems.Insert(showPosition, item);
