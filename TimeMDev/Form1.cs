@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using TimeMDev.HandleRecord;
 using TimeMDev.Notification;
+using TimeMDev.ConfigSave;
 
 namespace TimeMDev
 {
@@ -19,6 +20,7 @@ namespace TimeMDev
         int startLocationX;
         bool startMark = false;
         DataProcess dataProcess;
+        RecentFile recentFile;
         public DataProcess DataProcessGet
         {
             get
@@ -53,6 +55,8 @@ namespace TimeMDev
             //初始的时候禁止listviewmenu显示
             //this.SetListviewMenuEnable(false);
             this.NotificationInit();
+
+            this.recentFile = new RecentFile(this.fileMenu);
         }
         
         /// <summary>

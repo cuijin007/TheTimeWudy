@@ -71,7 +71,8 @@
     </Compile>
     <Compile Include="AddMutiLinesParameter.cs" />
     <Compile Include="CCHandle.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="ConfigSave\RecentFile.cs" />
+    <Compile Include="ConfigSave\Config.cs" />
     <Compile Include="CopyObject.cs" />
     <Compile Include="CopyPasteInterface.cs" />
     <Compile Include="CustomSpilt.cs">
@@ -139,9 +140,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomSpilt.resx">
       <DependentUpon>CustomSpilt.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorCheckingForm.resx">
       <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>

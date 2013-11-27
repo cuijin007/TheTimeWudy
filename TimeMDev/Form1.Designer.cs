@@ -807,7 +807,7 @@
             this.barButtonItem80,
             this.ccRemoveDuplicateItemL});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 107;
+            this.barManager1.MaxItemId = 108;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
