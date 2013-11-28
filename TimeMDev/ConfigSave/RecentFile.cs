@@ -12,8 +12,16 @@ namespace TimeMDev.ConfigSave
         /// 最多有五个变量
         /// </summary>
         public static int fileNameCount = 5;
+        /// <summary>
+        /// 最近打开文件
+        /// </summary>
         private static List<string> recentFileList=new List<string>();
         private static List<BarButtonItem> items = new List<BarButtonItem>();
+        /// <summary>
+        /// 点击那些按钮之后的响应
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public delegate void OnItemClick(object sender, ItemClickEventArgs e);
         OnItemClick OnItemClickAction;
         public static List<string> RecentFileList
@@ -69,6 +77,10 @@ namespace TimeMDev.ConfigSave
             }
             Config.DefaultConfig["RecentFile"] = buf;
         }
+        /// <summary>
+        /// 修改显示的内容
+        /// </summary>
+        /// <param name="barSubItem"></param>
         private void ChangeShow(BarSubItem barSubItem)
         {
             //barSubItem.RemoveLink(barSubItem);
