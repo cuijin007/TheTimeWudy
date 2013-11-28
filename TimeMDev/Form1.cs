@@ -20,6 +20,9 @@ namespace TimeMDev
         int startLocationX;
         bool startMark = false;
         DataProcess dataProcess;
+        /// <summary>
+        /// 最近打开的文件
+        /// </summary>
         RecentFile recentFile;
         public DataProcess DataProcessGet
         {
@@ -56,7 +59,6 @@ namespace TimeMDev
             //this.SetListviewMenuEnable(false);
             this.NotificationInit();
 
-            this.recentFile = new RecentFile(this.fileMenu);
         }
         
         /// <summary>
@@ -299,9 +301,13 @@ namespace TimeMDev
 
                 //使能 listviewmenu
                 //this.SetListviewMenuEnable(true);
+                //增加最近打开的文件
+                this.recentFile.AddRecentFile(dialog.FileName);
             }
             
             this.rateShow.Focus();
+
+           
         }
 
 
@@ -705,6 +711,11 @@ namespace TimeMDev
                   listIndex[listIndex.Count-1]
                     ].startTime;
             }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.recentFile = new RecentFile(this.fileMenu);
         }
        
     }

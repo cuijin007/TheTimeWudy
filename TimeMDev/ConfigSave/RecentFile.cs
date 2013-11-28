@@ -74,19 +74,24 @@ namespace TimeMDev.ConfigSave
             //barSubItem.RemoveLink(barSubItem);
             //BarManager bm = new BarManager();
             //bm.
-            for(int i=0;i<barSubItem.ItemLinks.Count;i++)
+            for (int i = 0; i < barSubItem.ItemLinks.Count; i++)
             {
-                if(barSubItem.ItemLinks[i].Caption.StartsWith("|"))
+                if (barSubItem.ItemLinks[i].Caption.StartsWith("|"))
                 {
                     barSubItem.RemoveLink(barSubItem.ItemLinks[i]);
+                    i--;
                 }
             }
             for (int j =  recentFileList.Count-1; j >= 0; j--)
             {
                 BarButtonItem item=new BarButtonItem();
-                item.Caption="!"+recentFileList[j];
+                item.Caption="|"+recentFileList[j];
                 item.ItemClick += new ItemClickEventHandler(item_ItemClick);
                 barSubItem.InsertItem(barSubItem.ItemLinks[barSubItem.ItemLinks.Count - 2], item);
+                if (j == 0)
+                {
+                    barSubItem.ItemLinks[barSubItem.ItemLinks.Count - 2 - recentFileList.Count].BeginGroup = true;
+                }
             }
         }
         /// <summary>
@@ -107,13 +112,23 @@ namespace TimeMDev.ConfigSave
         /// <param name="file"></param>
         public void AddRecentFile(string file)
         {
-            recentFileList.Add(file);
-            if (recentFileList.Count > fileNameCount)
+            if (!recentFileList.Contains(file))
             {
-                recentFileList.RemoveAt(0);
+                recentFileList.Add(file);
+                if (recentFileList.Count > fileNameCount)
+                {
+                    recentFileList.RemoveAt(0);
+                }
+                this.WriteItemSave();
             }
-            this.WriteItemSave();
+            this.ChangeShow(this.barSubItem);
         }
-    
+        /// <summary>
+        /// 刷新show
+        /// </summary>
+        public void RefreshShow()
+        {
+            this.ChangeShow(this.barSubItem);
+        }
     }
 }
