@@ -491,7 +491,11 @@ namespace TimeMDev
             }
             AddMutiLinesParameter addMutiLinesParameter = new AddMutiLinesParameter();
             (new AddMutiLinesForm(addMutiLinesParameter)).ShowDialog();
-            int index = this.listView1.SelectedIndices[this.listView1.SelectedIndices.Count - 1];
+            int index = this.listView1.yyItems.Count-1; 
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                index = this.listView1.SelectedIndices[this.listView1.SelectedIndices.Count - 1];
+            }
             AddBlankRecord addBlankRecord = new AddBlankRecord(this.dataProcess.listSingleSentence, this.listView1, index, addMutiLinesParameter.lineCount, addMutiLinesParameter.timeSpiltLength, addMutiLinesParameter.isBlank);
             this.commandManage.CommandRun(addBlankRecord);
             this.listView1.YYRefresh();
