@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Threading;
+using Microsoft.VisualBasic;
 
 namespace TimeMDev
 {
@@ -270,7 +271,24 @@ namespace TimeMDev
             }
             return false;
         }
-    
-    
+
+        /// <summary>
+        /// 转换为简体中文
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToSChinese(string str)
+        {
+            return Strings.StrConv(str, VbStrConv.SimplifiedChinese, 0);
+        }
+        /// <summary>
+        /// 转换为繁体中文
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ToTChinese(string str)
+        {
+            return Strings.StrConv(str, VbStrConv.TraditionalChinese, 0);
+        }
     }
 }
