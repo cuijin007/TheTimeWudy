@@ -90,6 +90,9 @@
     <Compile Include="ErrorCheckingForm.Designer.cs">
       <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileReadWriteFloder\AllFileInterface.cs" />
+    <Compile Include="FileReadWriteFloder\FileReadAss.cs" />
+    <Compile Include="FileReadWriteFloder\FileReadSrt.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,7 +199,7 @@
     <Compile Include="SingleSentence.cs" />
     <Compile Include="SlideInfo.cs" />
     <Compile Include="SpiltParameter.cs" />
-    <Compile Include="TimeLineReadWrite.cs" />
+    <Compile Include="FileReadWriteFloder\TimeLineReadWrite.cs" />
     <Compile Include="TimeOperation.cs" />
     <Compile Include="YYListView.cs">
       <SubType>Component</SubType>
@@ -206,9 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
