@@ -9,7 +9,18 @@ namespace TimeMDev.FileReadWriteFloder
     {
         #region FileReadFunction 成员
 
-        public void Read(List<SingleSentence> listSingleSentence, System.IO.StreamReader streamReader)
+        public void Read(List<SingleSentence> listSingleSentence, System.IO.StreamReader streamReader, ref string scriptInfo, ref string styles)
+        {
+            this.ReadSrt(listSingleSentence, streamReader);
+            
+        }
+        #endregion
+        /// <summary>
+        /// 读取srt
+        /// </summary>
+        /// <param name="listSingleSentence"></param>
+        /// <param name="streamReader"></param>
+        private void ReadSrt(List<SingleSentence> listSingleSentence, System.IO.StreamReader streamReader)
         {
             string content;
             bool runMark = true;
@@ -80,7 +91,11 @@ namespace TimeMDev.FileReadWriteFloder
                 }
             }
 
-        #endregion
+
         }
+    
+        
+    
     }
+
 }

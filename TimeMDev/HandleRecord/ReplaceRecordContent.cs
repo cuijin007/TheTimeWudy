@@ -53,8 +53,6 @@ namespace TimeMDev.HandleRecord
                 }
                 if (replaceParameter[i].caseSensitive)
                 {
-                    //contentBuf = contentBuf.ToLower();
-                    //Regex.Replace(contentBuf,
                     contentBuf = contentBuf.Replace(this.replaceParameter[i].orginalWord, this.replaceParameter[i].replaceWord);
                 }
                 else

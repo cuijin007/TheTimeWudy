@@ -8,7 +8,7 @@ namespace TimeMDev.FileReadWriteFloder
 {
     public interface FileReadFunction
     {
-        void Read(List<SingleSentence> listSingleSentence, StreamReader streamReader);
+        void Read(List<SingleSentence> listSingleSentence, StreamReader streamReader, ref string scriptInfo, ref string styles);
     }
     class AllFileInterface
     {

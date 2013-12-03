@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="FileReadWriteFloder\AllFileInterface.cs" />
     <Compile Include="FileReadWriteFloder\FileReadAss.cs" />
+    <Compile Include="FileReadWriteFloder\FileReadOridinary.cs" />
     <Compile Include="FileReadWriteFloder\FileReadSrt.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
