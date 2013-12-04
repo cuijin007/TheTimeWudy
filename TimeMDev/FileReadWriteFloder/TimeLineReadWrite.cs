@@ -66,7 +66,7 @@ namespace TimeMDev
         public void ReadAllTimeline()
         {
             fileStream = new FileStream(this.filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            this.encoding = this.GetEncoding(fileStream);
+            this.encoding = GetEncoding(fileStream);
             streamReader = new StreamReader(fileStream, this.encoding);
             string content;
             bool runMark = true;
@@ -218,7 +218,7 @@ namespace TimeMDev
             File.Create(path);
         }
         //获取字符编码
-        public Encoding GetEncoding(FileStream fs)
+        static public Encoding GetEncoding(FileStream fs)
         {
             byte[] bytes = new byte[2];
             fs.Read(bytes, 0, 2);
@@ -251,7 +251,7 @@ namespace TimeMDev
         public void ReadAllTimeLineAss()
         {
             fileStream = new FileStream(this.filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            this.encoding = this.GetEncoding(fileStream);
+            this.encoding = GetEncoding(fileStream);
             streamReader = new StreamReader(fileStream, this.encoding);
             bool runMark=true;
             int readPositionState=0;//读取的位置的变量
@@ -420,7 +420,7 @@ namespace TimeMDev
             }
             return true;
         }
-        private static string TimeOutAss(double time)
+        public static string TimeOutAss(double time)
         {
             time = ((double)((int)(time * 1000))) / 1000;
             int hour = (int)time / 3600;

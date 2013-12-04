@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace TimeMDev.FileReadWriteFloder
 {
@@ -9,10 +10,15 @@ namespace TimeMDev.FileReadWriteFloder
     {
         #region FileReadFunction 成员
 
-        public void Read(List<SingleSentence> listSingleSentence, System.IO.StreamReader streamReader, ref string scriptInfo, ref string styles)
+        public void Read(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, ref Encoding encoding, ref string scriptInfo, ref string styles)
         {
+            fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            encoding = TimeLineReadWrite.GetEncoding(fileStream);
+            StreamReader streamReader = new StreamReader(fileStream, encoding); 
             this.ReadSrt(listSingleSentence, streamReader);
-            
+
+            streamReader.Close();
+            fileStream.Close();
         }
         #endregion
         /// <summary>

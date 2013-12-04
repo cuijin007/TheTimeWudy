@@ -94,6 +94,10 @@
     <Compile Include="FileReadWriteFloder\FileReadAss.cs" />
     <Compile Include="FileReadWriteFloder\FileReadOridinary.cs" />
     <Compile Include="FileReadWriteFloder\FileReadSrt.cs" />
+    <Compile Include="FileReadWriteFloder\FileWriteAss.cs" />
+    <Compile Include="FileReadWriteFloder\FileWriteMutiLanguage.cs" />
+    <Compile Include="FileReadWriteFloder\FileWriteSegmentation.cs" />
+    <Compile Include="FileReadWriteFloder\FileWriteSrt.cs" />
     <Compile Include="FindForm.cs">
       <SubType>Form</SubType>
     </Compile>
