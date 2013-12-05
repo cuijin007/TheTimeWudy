@@ -24,6 +24,7 @@ namespace TimeMDev.FileReadWriteFloder
             for (int i = 0; i < count; i++)
             {
                 listDest.Add(source[startPos + i]);
+
             }
         }
 
@@ -40,12 +41,14 @@ namespace TimeMDev.FileReadWriteFloder
                 if (this.isAss == 1)
                 {
                     fileWriteFunction = new FileWriteAss();
+                    fileWriteFunction.Write(listSingleSentence, fileStream, filepath.Replace(".ass", (i + 1) + ".ass"), encoding, ref scriptInfo, ref styles);
                 }
                 else
                 {
                     fileWriteFunction = new FileWriteSrt();
+                    fileWriteFunction.Write(listSingleSentence, fileStream, filepath.Replace(".srt", (i + 1) + ".srt"), encoding, ref scriptInfo, ref styles);
                 }
-                fileWriteFunction.Write(listSingleSentence, fileStream, filepath.Replace(".ass",i+1+".ass"), encoding, ref scriptInfo, ref styles);
+                //fileWriteFunction.Write(listSingleSentence, fileStream, filepath.Replace(".ass",i+1+".ass"), encoding, ref scriptInfo, ref styles);
             }
         }
 

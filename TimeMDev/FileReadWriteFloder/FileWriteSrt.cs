@@ -8,13 +8,32 @@ namespace TimeMDev.FileReadWriteFloder
 {
     public class FileWriteSrt:FileWriteFunction
     {
-        public event ContentFunctionD ContentFunction; 
+        Encoding encoding;
+        public event ContentFunctionD ContentFunction;
+
+        public FileWriteSrt()
+        {
+ 
+        }
+        public FileWriteSrt(Encoding encoding)
+        {
+            this.encoding = encoding;
+        }
+        
         #region FileWriteFunction 成员
 
         public void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
         {
             fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            StreamWriter streamWriter = new StreamWriter(fileStream, encoding);
+            StreamWriter streamWriter;
+            if (this.encoding == null)
+            {
+                streamWriter = new StreamWriter(fileStream, encoding);
+            }
+            else
+            {
+                streamWriter = new StreamWriter(fileStream, this.encoding);
+            }
             this.WriteSrt(listSingleSentence, streamWriter, ref scriptInfo, ref styles);
             streamWriter.Close();
             fileStream.Close();
