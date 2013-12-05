@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using TimeMDev.FileReadWriteFloder;
 
 namespace TimeMDev
 {
@@ -476,6 +477,21 @@ namespace TimeMDev
             fileStream.Close();
         }
 
-        
+        /// <summary>
+        /// 读取
+        /// </summary>
+        /// <param name="fileReadFunction"></param>
+        public void Read(FileReadFunction fileReadFunction)
+        {
+            fileReadFunction.Read(this.listSingleSentence, this.fileStream, this.filePath, ref this.encoding,ref this.scriptInfo, ref this.styles);
+        }
+        /// <summary>
+        /// 写入
+        /// </summary>
+        /// <param name="fileWriteFunction"></param>
+        public void Write(FileWriteFunction fileWriteFunction)
+        {
+            fileWriteFunction.Write(this.listSingleSentence, this.fileStream, this.filePath, this.encoding, ref this.scriptInfo, ref styles);
+        }
     }
 }

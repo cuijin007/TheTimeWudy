@@ -90,6 +90,12 @@
     <Compile Include="ErrorCheckingForm.Designer.cs">
       <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportForm.Designer.cs">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileReadWriteFloder\AllFileInterface.cs" />
     <Compile Include="FileReadWriteFloder\FileReadAss.cs" />
     <Compile Include="FileReadWriteFloder\FileReadOridinary.cs" />
@@ -153,6 +159,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorCheckingForm.resx">
       <DependentUpon>ErrorCheckingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportForm.resx">
+      <DependentUpon>ExportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FindForm.resx">
