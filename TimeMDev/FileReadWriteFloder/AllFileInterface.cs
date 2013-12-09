@@ -21,5 +21,5 @@ namespace TimeMDev.FileReadWriteFloder
     class AllFileInterface
     {
     }
-    public delegate string ContentFunctionD(string input);
+    public delegate string ContentFunctionD(ref string input);
 }

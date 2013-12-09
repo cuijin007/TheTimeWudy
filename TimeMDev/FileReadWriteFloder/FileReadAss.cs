@@ -22,6 +22,13 @@ namespace TimeMDev.FileReadWriteFloder
                                         "\r\nTimer:100.0000";
         string styles = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding" +
                                 "\r\nStyle: Default,方正黑体简体,21,&H00FFFFFF,&HF0000000,&H006C3300,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,1,2,5,5,5,134";
+
+        private bool Additional=false;
+        public FileReadAss(bool Additional)
+        {
+            this.Additional = Additional;
+        }
+        
         private List<SingleSentence> listSingleSentence;
         #region FileReadFunction 成员
        public void Read(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, ref Encoding encoding, ref string scriptInfo, ref string styles)
@@ -113,7 +120,11 @@ namespace TimeMDev.FileReadWriteFloder
             {
                 getPos[i] = -1;
             }
-            this.listSingleSentence.Clear();
+            ///追加
+            if (this.Additional)
+            {
+                this.listSingleSentence.Clear();
+            }
             SingleSentence singleSentenceS = new SingleSentence();
             singleSentenceS.content = "";
             singleSentenceS.startTime = 0;

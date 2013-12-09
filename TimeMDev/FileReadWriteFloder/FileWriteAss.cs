@@ -9,6 +9,7 @@ namespace TimeMDev.FileReadWriteFloder
     public class FileWriteAss:FileWriteFunction
     {
         Encoding encoding;
+        AssInfo assInfo;
         public event ContentFunctionD ContentFunction; 
         #region FileWriteFunction 成员
         public  void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
@@ -23,7 +24,7 @@ namespace TimeMDev.FileReadWriteFloder
             {
                 streamWriter = new StreamWriter(fileStream, this.encoding);
             }
-            this.WriteAss(listSingleSentence, streamWriter, ref scriptInfo, ref styles);
+            this.WriteAss(listSingleSentence, streamWriter, this.assInfo);
             streamWriter.Close();
             fileStream.Close();
         }
@@ -37,14 +38,19 @@ namespace TimeMDev.FileReadWriteFloder
         {
             this.encoding = encoding;
         }
-        private void WriteAss(List<SingleSentence> listSingleSentence, System.IO.StreamWriter streamWriter, ref string scriptInfo, ref string styles)
+        public FileWriteAss(Encoding encoding, AssInfo assInfo)
+        {
+            this.encoding = encoding;
+            this.assInfo = assInfo;
+        }
+        private void WriteAss(List<SingleSentence> listSingleSentence, System.IO.StreamWriter streamWriter, AssInfo assInfo)
         {
             streamWriter.WriteLine("[Script Info]");
-            streamWriter.WriteLine(scriptInfo);
+            streamWriter.WriteLine(assInfo.ScriptInfo);
             streamWriter.WriteLine("[V4+ Styles]");
-            streamWriter.WriteLine(styles);
+            streamWriter.WriteLine(assInfo.v4Style);
             streamWriter.WriteLine("[Events]");
-            streamWriter.WriteLine("Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text");
+            streamWriter.WriteLine(assInfo.eventContent);
             string line = "";
             for (int i = 1; i < listSingleSentence.Count; i++)
             {
@@ -64,7 +70,8 @@ namespace TimeMDev.FileReadWriteFloder
                 }
                 else
                 {
-                    line += this.ContentFunction(listSingleSentence[i].content);
+                    string buf = listSingleSentence[i].content;
+                    line += this.ContentFunction(ref buf);
                 }
                 line = line.Replace("\r\n", "\\N");
                 streamWriter.WriteLine(line);

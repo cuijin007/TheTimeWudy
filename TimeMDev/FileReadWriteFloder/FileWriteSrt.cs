@@ -72,11 +72,13 @@ namespace TimeMDev.FileReadWriteFloder
                 //写内容
                 if (this.ContentFunction == null)
                 {
-                    streamWriter.WriteLine(listSingleSentence[i].content);
+                    string buf = listSingleSentence[i].content;
+                    streamWriter.WriteLine(buf);
                 }
                 else
                 {
-                    streamWriter.WriteLine(this.ContentFunction(listSingleSentence[i].content));
+                    string buf = listSingleSentence[i].content;
+                    streamWriter.WriteLine(this.ContentFunction(ref buf));
                 }
                 streamWriter.WriteLine("");
             }

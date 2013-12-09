@@ -8,7 +8,7 @@ using TimeMDev.FileReadWriteFloder;
 
 namespace TimeMDev
 {
-    class TimeLineReadWrite
+    public class TimeLineReadWrite
     {
         public List<SingleSentence> listSingleSentence = new List<SingleSentence>();
         public Encoding encoding = Encoding.Default;

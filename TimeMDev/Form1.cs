@@ -721,6 +721,17 @@ namespace TimeMDev
         {
             this.recentFile = new RecentFile(this.fileMenu);
         }
+
+        private void fileSplitSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (new FileCutForm(this.timeLineReadWrite)).ShowDialog();
+
+        }
+
+        private void exportMutiSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (new ExportForm(this.timeLineReadWrite)).ShowDialog();
+        }
        
     }
 }

@@ -13,7 +13,8 @@ namespace TimeMDev.FileReadWriteFloder
         int chineseType;
         int englishType;
         int isAss;
-        private event ContentFunctionD ContentFunction; 
+        private event ContentFunctionD ContentFunction;
+        AssInfo assInfo=new AssInfo();
         /// <summary>
         /// 初始化多路输出
         /// </summary>
@@ -28,6 +29,22 @@ namespace TimeMDev.FileReadWriteFloder
             this.englishType = englishType;
             this.isAss = isAss;
         }
+        /// <summary>
+        /// 初始化多路输出
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="chineseType"></param>
+        /// <param name="englishType"></param>
+        /// <param name="isAss"></param>
+        /// <param name="assInfo"></param>
+        public FileWriteMutiLanguage(string filePath, int chineseType, int englishType, int isAss,AssInfo assInfo)
+        {
+            this.filePath = filePath;
+            this.chineseType = chineseType;
+            this.englishType = englishType;
+            this.isAss = isAss;
+            this.assInfo = assInfo;
+        }
         #region FileWriteFunctionMutiLanguage 成员
         /// <summary>
         /// 写文件
@@ -38,8 +55,8 @@ namespace TimeMDev.FileReadWriteFloder
         /// <param name="styles"></param>
         public void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
         {
-            fileStream = new FileStream(this.filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            StreamWriter streamWriter = new StreamWriter(fileStream,this.encoding);
+           // fileStream = new FileStream(this.filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+           // StreamWriter streamWriter = new StreamWriter(fileStream,this.encoding);
             switch (this.chineseType)
             {
                 case 0:
@@ -73,7 +90,7 @@ namespace TimeMDev.FileReadWriteFloder
             FileWriteFunction fileWriteFunction;
             if (this.isAss == 1)
             {
-                FileWriteAss fileWriteAss = new FileWriteAss();
+                FileWriteAss fileWriteAss = new FileWriteAss(this.encoding,this.assInfo);
                 fileWriteAss.ContentFunction += ContentFunction;
                 fileWriteFunction = fileWriteAss;
             }
@@ -84,8 +101,8 @@ namespace TimeMDev.FileReadWriteFloder
                 fileWriteFunction = fileWriteSrt;
             }
             fileWriteFunction.Write(listSingleSentence, fileStream, this.filePath, this.encoding, ref scriptInfo, ref styles);
-            streamWriter.Close();
-            fileStream.Close();
+            //streamWriter.Close();
+            //fileStream.Close();
         }
         #endregion
         /// <summary>
@@ -93,7 +110,7 @@ namespace TimeMDev.FileReadWriteFloder
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private string ChangeSToT(string input)
+        private string ChangeSToT(ref string input)
         {
             return CCHandle.ToTChinese(input);
         }
@@ -102,7 +119,7 @@ namespace TimeMDev.FileReadWriteFloder
         /// </summary>
         /// <param name="input">输入</param>
         /// <returns></returns>
-        private string RemoveChinese(string input)
+        private string RemoveChinese(ref string input)
         {
             string chinese,english;
             CCHandle.SpiltRule(input, out chinese, out english);
@@ -113,7 +130,7 @@ namespace TimeMDev.FileReadWriteFloder
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private string RemoveEnglish(string input)
+        private string RemoveEnglish(ref string input)
         {
             string chinese, english;
             CCHandle.SpiltRule(input, out chinese, out english);
@@ -124,9 +141,9 @@ namespace TimeMDev.FileReadWriteFloder
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private string ChangeTToS(string input)
+        private string ChangeTToS(ref string input)
         {
-            return CCHandle.ToTChinese(input);
+            return CCHandle.ToSChinese(input);
         }
     
         

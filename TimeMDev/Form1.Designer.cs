@@ -890,6 +890,7 @@
             this.fileSplitSaveItem.Caption = "文件分割另存为...";
             this.fileSplitSaveItem.Id = 8;
             this.fileSplitSaveItem.Name = "fileSplitSaveItem";
+            this.fileSplitSaveItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileSplitSaveItem_ItemClick);
             // 
             // saveAsMacUTF8Item
             // 
@@ -902,6 +903,7 @@
             this.exportMutiSaveItem.Caption = "批量导出多版本...";
             this.exportMutiSaveItem.Id = 10;
             this.exportMutiSaveItem.Name = "exportMutiSaveItem";
+            this.exportMutiSaveItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportMutiSaveItem_ItemClick);
             // 
             // closeItem
             // 
