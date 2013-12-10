@@ -69,7 +69,7 @@ namespace TimeMDev.HandleRecord
         public override void UnExecute()
         {
             this.listSingleSentence.RemoveAt(this.listSingleSentence.Count - 1);
-            this.yyListView.Items.RemoveAt(yyListView.Items.Count - 1);
+            this.yyListView.YYDeleteLine(this.yyListView.yyItems.Count - 1);
         }
     }
 }

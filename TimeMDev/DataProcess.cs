@@ -43,17 +43,17 @@ namespace TimeMDev
         public void DataInit()
         {
             pictureRefresh.listSingleSentence = this.listSingleSentence;
-            if (this.pictureRefresh.listSingleSentence == null)
+            if (this.pictureRefresh.listSingleSentence == null)//崔进修改于2013-12-10
             {
                 pictureRefresh.listSingleSentence = new List<SingleSentence>();
                 SingleSentence singleSentence = new SingleSentence();
-                singleSentence.content = "请勿点击时间轴，请载入字幕文件";
+                singleSentence.content = "TEXT";
                 singleSentence.startTime = 0;
                 singleSentence.endTime = 0.01;
                 pictureRefresh.listSingleSentence.Add(singleSentence);
 
                 SingleSentence singleSentence3 = new SingleSentence();
-                singleSentence3.content = "请勿点击时间轴，请载入字幕文件";
+                singleSentence3.content = "TEXT";
                 singleSentence3.startTime = 36000;
                 singleSentence3.endTime = 36000;
                 pictureRefresh.listSingleSentence.Add(singleSentence3);

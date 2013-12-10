@@ -533,6 +533,8 @@ namespace TimeMDev
                     }
                     this.form1.timeEditStart.Text = this.TimeOut(listSingleSentence[count].startTime);
                     this.form1.timeEditEnd.Text = this.TimeOut(listSingleSentence[count].endTime);
+                    //cj-2013-12-10
+                    this.form1.numEdit.Text = count+ "";
                     //this.form1.numEdit.Text = count + 1 + "";
                     this.form1.numEdit.Text = count+"";//修改于2013-4-10
                 }
@@ -553,6 +555,8 @@ namespace TimeMDev
                     this.form1.contentEdit.Text = listSingleSentence[this.slideCount].content;
                     this.form1.timeEditStart.Text = this.TimeOut(listSingleSentence[this.slideCount].startTime);
                     this.form1.timeEditEnd.Text = this.TimeOut(listSingleSentence[this.slideCount].endTime);
+                    //cj-2013-12-10
+                    //this.form1.numEdit.Text = this.slideCount + "";
                     //this.form1.numEdit.Text = this.slideCount + 1 + "";
                     this.form1.numEdit.Text = this.slideCount + "";//2013-4-10
                 }
@@ -685,6 +689,7 @@ namespace TimeMDev
                     NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
                     NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
+                    NotificationCenter.SendMessage("numEdit", "SetText", selectedShow+"");
                     NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedShow);
                     NotificationCenter.SendMessage("yyListView", "Refresh", 1);
                 }
@@ -696,6 +701,7 @@ namespace TimeMDev
                     NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].startTime));
                     NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count - 1]].endTime));
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].content);
+                    NotificationCenter.SendMessage("numEdit", "SetText", (selectedIndex[selectedIndex.Count - 1]) + "");
                     NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex);
                     NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedIndex[selectedIndex.Count-1]);
                     NotificationCenter.SendMessage("yyListView", "Refresh", 1);

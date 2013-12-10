@@ -42,9 +42,12 @@ namespace TimeMDev.HandleRecord
             }
             if (function != null)
             {
+                string save = this.timeLineReadWrite.filePath;
+                this.timeLineReadWrite.filePath = this.additionalSubtitlePath;
                 this.timeLineReadWrite.Read(function);
+                this.timeLineReadWrite.filePath = save;
             }
-            for (int i = 0; i < listSingleSentenceBuf.Count; i++)
+            for (int i = 1; i < listSingleSentenceBuf.Count; i++)
             {
                 AddRecord addRecord = new AddRecord(this.timeLineReadWrite.listSingleSentence, this.yyListView, listSingleSentenceBuf[i]);
                 this.listFunction.Add(addRecord);

@@ -13,6 +13,7 @@ namespace TimeMDev.FileReadWriteFloder
         public FileReadSrt(bool Additional,List<SingleSentence> listSingleSentence)
         {
             this.Additional = Additional;
+            this.listSingleSentence = listSingleSentence;
         }
         public FileReadSrt()
         {
@@ -41,7 +42,7 @@ namespace TimeMDev.FileReadWriteFloder
             bool runMark = true;
             string[] spiltChar = { ":", ",", "，", " --> " };
             //判断是不是追加
-            if (!this.Additional)
+            if (this.Additional)
             {
                 listSingleSentence.Clear();
             }

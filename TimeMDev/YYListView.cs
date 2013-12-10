@@ -393,7 +393,7 @@ namespace TimeMDev
         public void YYAddLine(SingleSentence singleSentence)
         {
             ListViewItem item = (ListViewItem)this.yyItems[0].Clone();
-            item.SubItems[0].Text = this.yyItems.Count + "";
+            item.SubItems[0].Text = this.yyItems.Count+1 + "";
             item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
             item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
             item.SubItems[3].Text = singleSentence.content;

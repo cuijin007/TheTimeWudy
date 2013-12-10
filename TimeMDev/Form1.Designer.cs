@@ -596,6 +596,7 @@
             this.confirmChange.TabIndex = 17;
             this.confirmChange.Text = "修改";
             this.confirmChange.UseVisualStyleBackColor = true;
+            this.confirmChange.Click += new System.EventHandler(this.confirmChange_Click);
             // 
             // timeEditStart
             // 
@@ -853,6 +854,7 @@
             this.newSubtitleItem.Caption = "新建字幕";
             this.newSubtitleItem.Id = 2;
             this.newSubtitleItem.Name = "newSubtitleItem";
+            this.newSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.newSubtitleItem_ItemClick);
             // 
             // loadSubtitleItem
             // 

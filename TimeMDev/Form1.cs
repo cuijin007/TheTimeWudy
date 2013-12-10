@@ -10,6 +10,7 @@ using System.IO;
 using TimeMDev.HandleRecord;
 using TimeMDev.Notification;
 using TimeMDev.ConfigSave;
+using TimeMDev.FileReadWriteFloder;
 
 namespace TimeMDev
 {
@@ -274,7 +275,7 @@ namespace TimeMDev
                 this.dataProcess.Init();
                 pictureRefresh.Start();
                 this.mplayer.Pause();//要求打开的时候是停止的。
-
+                
                 this.timeLineReadWrite = new TimeLineReadWrite();
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
                 if (dialog.FileName.EndsWith("srt"))
@@ -725,7 +726,6 @@ namespace TimeMDev
         private void fileSplitSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             (new FileCutForm(this.timeLineReadWrite)).ShowDialog();
-
         }
 
         private void exportMutiSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -742,6 +742,86 @@ namespace TimeMDev
                 this.commandManage.CommandRun(new AdditionalSubtitle(this.timeLineReadWrite,this.listView1,dialog.FileName));
             }
             this.listView1.YYRefresh();
+        }
+
+        private void newSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "字幕文件|*.srt;*.ass";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                AddMutiLinesParameter addMutiLinesParameter = new AddMutiLinesParameter();
+                AddMutiLinesForm addMutiLinesForm = new AddMutiLinesForm(addMutiLinesParameter);
+                addMutiLinesForm.ShowDialog();
+                if (addMutiLinesParameter.isConfirm)
+                {
+                    dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
+                    dataProcess.DataInit();
+                    this.dataProcess.Init();
+                    pictureRefresh.Start();
+                    this.mplayer.Pause();//要求打开的时候是停止的。
+                    this.timeLineReadWrite = new TimeLineReadWrite();
+                    this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
+                    this.timeLineReadWrite.filePath = dialog.FileName;
+                    //dataProcess.DataInit();
+
+                    this.originalSubtitlePath = dialog.FileName;//保存一个初始值。
+                    if (this.moviePath.Equals(""))
+                    {
+                        //还要修改后缀
+                        //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                        this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                    }
+                    else
+                    {
+                        this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                    }
+                    this.rateShow.Focus();
+                    this.timeLineReadWrite.listSingleSentence.Clear();
+                    //2013-12-10 新增
+                    this.timeLineReadWrite.listSingleSentence.Add(new SingleSentence());
+                    for (int i = 0; i < addMutiLinesParameter.lineCount; i++)
+                    {
+                        SingleSentence sentence = new SingleSentence();
+                        sentence.startTime = 0 + i * addMutiLinesParameter.timeSpiltLength;
+                        sentence.endTime = sentence.startTime + addMutiLinesParameter.timeSpiltLength;
+                        this.timeLineReadWrite.listSingleSentence.Add(sentence);
+                    }
+                    this.timeLineReadWrite.listSingleSentence.Add(new SingleSentence());
+                    
+                    this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+                    if (dialog.FileName.EndsWith("srt"))
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteSrt());
+                    }
+                    if (dialog.FileName.EndsWith("ass"))
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteAss());
+                    }
+
+                    this.recentFile.AddRecentFile(dialog.FileName);
+                }
+            }
+
+            this.rateShow.Focus();
+            this.listView1.YYRefresh();
+        }
+
+        private void confirmChange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
+                sentence.startTime = TimeLineReadWrite.TimeInAss(timeEditStart.Text);
+                sentence.endTime = TimeLineReadWrite.TimeInAss(timeEditEnd.Text);
+                sentence.content = contentEdit.Text;
+                ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
+                this.commandManage.CommandRun(record);
+            }
+            catch
+            {
+                MessageBox.Show("输入格式有问题");
+            }
         }
        
     }

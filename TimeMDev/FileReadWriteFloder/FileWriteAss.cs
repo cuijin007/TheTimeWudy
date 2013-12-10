@@ -9,7 +9,7 @@ namespace TimeMDev.FileReadWriteFloder
     public class FileWriteAss:FileWriteFunction
     {
         Encoding encoding;
-        AssInfo assInfo;
+        AssInfo assInfo=new AssInfo();
         public event ContentFunctionD ContentFunction; 
         #region FileWriteFunction 成员
         public  void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
