@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem81 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Srt_英文",
             "ANSI"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem82 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Srt_中文简体",
             "ANSI"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem83 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Srt_中文繁体",
             "ANSI"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem84 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "Srt_中文简体_英文",
             "ANSI"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem85 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
             "Srt_中文繁体_英文",
             "ANSI"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem86 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ass_英文",
-            "Unicode"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem87 = new System.Windows.Forms.ListViewItem(new string[] {
+            "UNICODE"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ass_中文简体",
-            "Unicode"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem88 = new System.Windows.Forms.ListViewItem(new string[] {
+            "UNICODE"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ass_中文繁体",
-            "Unicode"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem89 = new System.Windows.Forms.ListViewItem(new string[] {
+            "UNICODE"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ass_中文简体_英文",
-            "Unicode"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem90 = new System.Windows.Forms.ListViewItem(new string[] {
+            "UNICODE"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
             "Ass_中文繁体_英文",
-            "Unicode"}, -1);
+            "UNICODE"}, -1);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.selectedOther = new System.Windows.Forms.Button();
             this.selectAll = new System.Windows.Forms.Button();
@@ -79,6 +79,7 @@
             this.pathOut = new System.Windows.Forms.TextBox();
             this.confirm = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
+            this.setUTF8 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.setUTF8);
             this.groupBox1.Controls.Add(this.selectedOther);
             this.groupBox1.Controls.Add(this.selectAll);
             this.groupBox1.Controls.Add(this.setUnicode);
@@ -100,7 +102,7 @@
             // 
             // selectedOther
             // 
-            this.selectedOther.Location = new System.Drawing.Point(332, 122);
+            this.selectedOther.Location = new System.Drawing.Point(332, 161);
             this.selectedOther.Name = "selectedOther";
             this.selectedOther.Size = new System.Drawing.Size(75, 23);
             this.selectedOther.TabIndex = 2;
@@ -110,7 +112,7 @@
             // 
             // selectAll
             // 
-            this.selectAll.Location = new System.Drawing.Point(332, 93);
+            this.selectAll.Location = new System.Drawing.Point(332, 132);
             this.selectAll.Name = "selectAll";
             this.selectAll.Size = new System.Drawing.Size(75, 23);
             this.selectAll.TabIndex = 2;
@@ -144,27 +146,27 @@
             this.listViewShow.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            listViewItem81.StateImageIndex = 0;
-            listViewItem82.StateImageIndex = 0;
-            listViewItem83.StateImageIndex = 0;
-            listViewItem84.StateImageIndex = 0;
-            listViewItem85.StateImageIndex = 0;
-            listViewItem86.StateImageIndex = 0;
-            listViewItem87.StateImageIndex = 0;
-            listViewItem88.StateImageIndex = 0;
-            listViewItem89.StateImageIndex = 0;
-            listViewItem90.StateImageIndex = 0;
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
+            listViewItem4.StateImageIndex = 0;
+            listViewItem5.StateImageIndex = 0;
+            listViewItem6.StateImageIndex = 0;
+            listViewItem7.StateImageIndex = 0;
+            listViewItem8.StateImageIndex = 0;
+            listViewItem9.StateImageIndex = 0;
+            listViewItem10.StateImageIndex = 0;
             this.listViewShow.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem81,
-            listViewItem82,
-            listViewItem83,
-            listViewItem84,
-            listViewItem85,
-            listViewItem86,
-            listViewItem87,
-            listViewItem88,
-            listViewItem89,
-            listViewItem90});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10});
             this.listViewShow.Location = new System.Drawing.Point(7, 21);
             this.listViewShow.Name = "listViewShow";
             this.listViewShow.Size = new System.Drawing.Size(319, 207);
@@ -307,6 +309,16 @@
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
+            // setUTF8
+            // 
+            this.setUTF8.Location = new System.Drawing.Point(333, 79);
+            this.setUTF8.Name = "setUTF8";
+            this.setUTF8.Size = new System.Drawing.Size(127, 23);
+            this.setUTF8.TabIndex = 3;
+            this.setUTF8.Text = "设置为UTF-8编码";
+            this.setUTF8.UseVisualStyleBackColor = true;
+            this.setUTF8.Click += new System.EventHandler(this.setUTF8_Click);
+            // 
             // ExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -352,5 +364,6 @@
         private System.Windows.Forms.TextBox pathOut;
         private System.Windows.Forms.Button confirm;
         private System.Windows.Forms.Button cancel;
+        private System.Windows.Forms.Button setUTF8;
     }
 }

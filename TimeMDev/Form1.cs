@@ -732,6 +732,17 @@ namespace TimeMDev
         {
             (new ExportForm(this.timeLineReadWrite)).ShowDialog();
         }
+
+        private void addSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "字幕文件|*.srt;*.ass";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.commandManage.CommandRun(new AdditionalSubtitle(this.timeLineReadWrite,this.listView1,dialog.FileName));
+            }
+            this.listView1.YYRefresh();
+        }
        
     }
 }

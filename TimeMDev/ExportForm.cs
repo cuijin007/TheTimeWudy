@@ -67,7 +67,11 @@ namespace TimeMDev
             (new SetAssForm(this.assInfo)).ShowDialog();
         }
 
-
+        /// <summary>
+        /// 确认按钮，判断语言，判断中英文组合，判断编码
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void confirm_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < this.listViewShow.CheckedIndices.Count; i++)
@@ -87,9 +91,13 @@ namespace TimeMDev
                 {
                     encoding = Encoding.Default;                    
                 }
-                if (this.listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[1].Text.Equals("Unicode"))
+                if (this.listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[1].Text.Equals("UNICODE"))
                 {
                     encoding = Encoding.Unicode;
+                }
+                if (this.listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[1].Text.Equals("UTF-8"))
+                {
+                    encoding = Encoding.UTF8;
                 }
                 if (listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[0].Text.Contains("英文"))
                 {
@@ -122,6 +130,14 @@ namespace TimeMDev
         private void cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void setUTF8_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.listViewShow.SelectedIndices.Count; i++)
+            {
+                this.listViewShow.Items[this.listViewShow.SelectedIndices[i]].SubItems[1].Text = "UTF-8";
+            }
         }
     }
 }

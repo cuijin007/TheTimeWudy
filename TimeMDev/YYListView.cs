@@ -386,6 +386,24 @@ namespace TimeMDev
                 this.yyItems.Add(item);
             }
         }
+        /// <summary>
+        /// 插入一个新行
+        /// </summary>
+        /// <param name="singleSentence"></param>
+        public void YYAddLine(SingleSentence singleSentence)
+        {
+            ListViewItem item = (ListViewItem)this.yyItems[0].Clone();
+            item.SubItems[0].Text = this.yyItems.Count + "";
+            item.SubItems[1].Text = TimeLineReadWrite.TimeOut(singleSentence.startTime);
+            item.SubItems[2].Text = TimeLineReadWrite.TimeOut(singleSentence.endTime);
+            item.SubItems[3].Text = singleSentence.content;
+            item.SubItems[4].Text = singleSentence.everyLineLength;
+            item.SubItems[5].Text = TimeLineReadWrite.TimeOut(singleSentence.timeLength);
+            item.SubItems[6].Text = singleSentence.lineNum + "";
+            this.yyItems.Add(item);
+        }
+        
+        
         #region RedoUndoInterface 成员
 
         private List<List<ListViewItem>> undoStack = new List<List<ListViewItem>>();

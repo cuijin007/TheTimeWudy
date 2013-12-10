@@ -9,9 +9,13 @@ namespace TimeMDev.FileReadWriteFloder
     public class FileReadSrt : FileReadFunction
     {
         bool Additional;
-        public FileReadSrt(bool Additional)
+        List<SingleSentence> listSingleSentence;
+        public FileReadSrt(bool Additional,List<SingleSentence> listSingleSentence)
         {
             this.Additional = Additional;
+        }
+        public FileReadSrt()
+        {
         }
         #region FileReadFunction 成员
 
@@ -31,15 +35,20 @@ namespace TimeMDev.FileReadWriteFloder
         /// </summary>
         /// <param name="listSingleSentence"></param>
         /// <param name="streamReader"></param>
-        private void ReadSrt(List<SingleSentence> listSingleSentence, System.IO.StreamReader streamReader)
+        private void ReadSrt(List<SingleSentence> listSingleSentenceMain, System.IO.StreamReader streamReader)
         {
             string content;
             bool runMark = true;
             string[] spiltChar = { ":", ",", "，", " --> " };
             //判断是不是追加
-            if (this.Additional)
+            if (!this.Additional)
             {
                 listSingleSentence.Clear();
+            }
+            else
+            {
+                this.listSingleSentence = listSingleSentenceMain;
+                this.listSingleSentence.Clear();
             }
             //用之前先把这个东西初始化一下。有一个空的字节。
             SingleSentence singleSentenceS = new SingleSentence();

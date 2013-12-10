@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A5672B97-7DDB-46ED-A2E6-8DA68CFD7FD6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="AddMutiLinesParameter.cs" />
     <Compile Include="CCHandle.cs" />
+    <Compile Include="ChooseEncodingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseEncodingForm.Designer.cs">
+      <DependentUpon>ChooseEncodingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigSave\RecentFile.cs" />
     <Compile Include="ConfigSave\Config.cs" />
     <Compile Include="CopyObject.cs" />
@@ -124,6 +130,7 @@
     </Compile>
     <Compile Include="GdiplusMethods.cs" />
     <Compile Include="HandleRecord\AddBlankRecord.cs" />
+    <Compile Include="HandleRecord\AdditionalSubtitle.cs" />
     <Compile Include="HandleRecord\AddRecord.cs" />
     <Compile Include="HandleRecord\ChangeRecord.cs" />
     <Compile Include="HandleRecord\CommandManage.cs" />
@@ -158,6 +165,9 @@
     <EmbeddedResource Include="AddMutiLinesForm.resx">
       <DependentUpon>AddMutiLinesForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChooseEncodingForm.resx">
+      <DependentUpon>ChooseEncodingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomSpilt.resx">
       <DependentUpon>CustomSpilt.cs</DependentUpon>

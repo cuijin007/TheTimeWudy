@@ -872,6 +872,7 @@
             this.addSubtitleItem.Caption = "追加字幕";
             this.addSubtitleItem.Id = 5;
             this.addSubtitleItem.Name = "addSubtitleItem";
+            this.addSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addSubtitleItem_ItemClick);
             // 
             // saveSubtitleItem
             // 

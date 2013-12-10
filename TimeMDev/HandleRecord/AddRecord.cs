@@ -16,79 +16,60 @@ namespace TimeMDev.HandleRecord
         int type;//类型
         List<SingleSentence> listSingleSentence;
         YYListView yyListView;
+        SingleSentence singleSentence;
         /// <summary>
         /// 增加一条记录
         /// </summary>
         /// <param name="listSingleSentence"></param>
         /// <param name="yyListView"></param>
         /// <param name="index">yyListView的记录index</param>
-        public AddRecord(List<SingleSentence> listSingleSentence,YYListView yyListView,int index)
-        {
-            this.listSingleSentence = listSingleSentence;
-            this.yyListView = yyListView;
-            this.type = 0;
+        //public AddRecord(List<SingleSentence> listSingleSentence,YYListView yyListView,int index)
+        //{
+        //    this.listSingleSentence = listSingleSentence;
+        //    this.yyListView = yyListView;
+        //    this.type = 0;
             
-        }
-        public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, int count)
+        //}
+        //public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, int count)
+        //{
+        //    this.listSingleSentence = listSingleSentence;
+        //    this.yyListView = yyListView;
+        //    this.type = 1;
+        //}
+        //public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index,string content)
+        //{
+        //    this.listSingleSentence = listSingleSentence;
+        //    this.yyListView = yyListView;
+        //    this.type = 2;
+        //}
+        //public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, int count,string content)
+        //{
+        //    this.listSingleSentence = listSingleSentence;
+        //    this.yyListView = yyListView;
+        //    this.type = 3;
+        //}
+        //public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int[] index)
+        //{
+        //    this.listSingleSentence = listSingleSentence;
+        //    this.yyListView = yyListView;
+        //    this.type = 4;
+        //}
+        public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, SingleSentence singleSentence)
         {
             this.listSingleSentence = listSingleSentence;
             this.yyListView = yyListView;
-            this.type = 1;
+            this.singleSentence = singleSentence;
         }
-        public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index,string content)
-        {
-            this.listSingleSentence = listSingleSentence;
-            this.yyListView = yyListView;
-            this.type = 2;
-        }
-        public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int index, int count,string content)
-        {
-            this.listSingleSentence = listSingleSentence;
-            this.yyListView = yyListView;
-            this.type = 3;
-        }
-        public AddRecord(List<SingleSentence> listSingleSentence, YYListView yyListView, int[] index)
-        {
-            this.listSingleSentence = listSingleSentence;
-            this.yyListView = yyListView;
-            this.type = 4;
-        }
-        /// <summary>
-        /// 增加
-        /// </summary>
-        private void Add()
-        {
-            if (this.type == 0)
-            {
-                
-            }
-        }
-        /// <summary>
-        /// 反增加
-        /// </summary>
-        private void UnAdd()
-        {
- 
-        }
-
-
-        private void DataAdd()
-        {
-                
-        }
-        private void ShowAdd()
-        {
-            
-        }
-
         public override void Execute()
         {
-            
+            this.listSingleSentence.Add(this.singleSentence);
+            this.yyListView.YYAddLine(this.singleSentence);
         }
 
         public override void UnExecute()
         {
-            
+            this.listSingleSentence.RemoveAt(this.listSingleSentence.Count - 1);
+            this.yyListView.Items.RemoveAt(yyListView.Items.Count - 1);
         }
     }
 }

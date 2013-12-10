@@ -24,19 +24,26 @@ namespace TimeMDev.FileReadWriteFloder
                                 "\r\nStyle: Default,方正黑体简体,21,&H00FFFFFF,&HF0000000,&H006C3300,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,1,2,5,5,5,134";
 
         private bool Additional=false;
-        public FileReadAss(bool Additional)
+        public FileReadAss(bool Additional, List<SingleSentence> listSingleSentence)
         {
             this.Additional = Additional;
+            this.listSingleSentence = listSingleSentence;
         }
-        
+        public FileReadAss()
+        {
+        }
         private List<SingleSentence> listSingleSentence;
         #region FileReadFunction 成员
        public void Read(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, ref Encoding encoding, ref string scriptInfo, ref string styles)
         {
             fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             encoding = TimeLineReadWrite.GetEncoding(fileStream);
-            StreamReader streamReader = new StreamReader(fileStream, encoding); 
-           this.listSingleSentence = listSingleSentence;
+            StreamReader streamReader = new StreamReader(fileStream, encoding);
+           //如果不追加，则采用之前的listsinglesentence
+           if (!this.Additional)
+            {
+                this.listSingleSentence = listSingleSentence;
+            }
             if (this.ReadHeadInfo(streamReader))
             {
                 this.ReadAllEvent(streamReader);
