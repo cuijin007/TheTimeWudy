@@ -6,6 +6,7 @@ using DevExpress.XtraBars;
 
 namespace TimeMDev.ConfigSave
 {
+    public delegate void OnItemClick(object sender, ItemClickEventArgs e);
     public class RecentFile
     {
         /// <summary>
@@ -22,8 +23,8 @@ namespace TimeMDev.ConfigSave
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public delegate void OnItemClick(object sender, ItemClickEventArgs e);
-        OnItemClick OnItemClickAction;
+
+        public OnItemClick OnItemClickAction;
         public static List<string> RecentFileList
         {
             get 

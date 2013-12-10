@@ -59,7 +59,12 @@ namespace TimeMDev
             //初始的时候禁止listviewmenu显示
             //this.SetListviewMenuEnable(false);
             this.NotificationInit();
+            this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
+        }
 
+        void recentFile_OnItemClickAction(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            e.Item.Caption
         }
         
         /// <summary>
