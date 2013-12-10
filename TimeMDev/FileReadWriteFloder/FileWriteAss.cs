@@ -10,10 +10,15 @@ namespace TimeMDev.FileReadWriteFloder
     {
         Encoding encoding;
         AssInfo assInfo=new AssInfo();
-        public event ContentFunctionD ContentFunction; 
+        public event ContentFunctionD ContentFunction;
+        string path;
         #region FileWriteFunction 成员
         public  void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
         {
+            if (this.path != null)
+            {
+                filePath = path;
+            }
             fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter streamWriter;
             if (this.encoding == null)
@@ -37,6 +42,17 @@ namespace TimeMDev.FileReadWriteFloder
         public FileWriteAss(Encoding encoding)
         {
             this.encoding = encoding;
+        }
+        public FileWriteAss(Encoding encoding, string path,AssInfo assInfo)
+        {
+            this.encoding = encoding;
+            this.path = path;
+            this.assInfo = assInfo;
+        }
+        public FileWriteAss(Encoding encoding, string path)
+        {
+            this.encoding = encoding;
+            this.path = path;
         }
         public FileWriteAss(Encoding encoding, AssInfo assInfo)
         {

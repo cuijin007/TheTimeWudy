@@ -207,6 +207,10 @@ namespace TimeMDev
         private void quitItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.mplayer.getPositionMark = false;
+            if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
+            {
+                this.Close();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -824,6 +828,19 @@ namespace TimeMDev
                 MessageBox.Show("输入格式有问题");
             }
 
+
+        }
+
+        private void saveSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string buf=this.timeLineReadWrite.filePath;
+            this.timeLineReadWrite.filePath=this.originalSubtitlePath;
+            this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default));
+            this.timeLineReadWrite.filePath = buf;
+        }
+
+        private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
 
         }
        

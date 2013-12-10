@@ -147,6 +147,12 @@
     <Compile Include="HandleRecord\Turn23To25FPS.cs" />
     <Compile Include="HandleRecord\Turn25To23FPS.cs" />
     <Compile Include="HandleRecord\ZeroRecord.cs" />
+    <Compile Include="IfSaveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IfSaveForm.Designer.cs">
+      <DependentUpon>IfSaveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mplayer.cs" />
     <Compile Include="Notification\HandleMessageBase.cs" />
     <Compile Include="Notification\NotificationCenter.cs" />
@@ -193,6 +199,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="IfSaveForm.resx">
+      <DependentUpon>IfSaveForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PictureShowCut.resx">
       <DependentUpon>PictureShowCut.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -206,6 +215,9 @@
     <EmbeddedResource Include="ReplaceForm.resx">
       <DependentUpon>ReplaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveAsForm.resx">
+      <DependentUpon>SaveAsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetAssForm.resx">
       <DependentUpon>SetAssForm.cs</DependentUpon>
@@ -234,6 +246,12 @@
     </Compile>
     <Compile Include="ReplaceForm.Designer.cs">
       <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveAsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveAsForm.Designer.cs">
+      <DependentUpon>SaveAsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SetAssForm.cs">
       <SubType>Form</SubType>

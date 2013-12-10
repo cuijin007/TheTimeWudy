@@ -881,12 +881,14 @@
             this.saveSubtitleItem.Caption = "保存字幕...";
             this.saveSubtitleItem.Id = 6;
             this.saveSubtitleItem.Name = "saveSubtitleItem";
+            this.saveSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveSubtitleItem_ItemClick);
             // 
             // saveAsItem
             // 
             this.saveAsItem.Caption = "另存为...";
             this.saveAsItem.Id = 7;
             this.saveAsItem.Name = "saveAsItem";
+            this.saveAsItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAsItem_ItemClick);
             // 
             // fileSplitSaveItem
             // 

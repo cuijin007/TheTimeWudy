@@ -10,7 +10,7 @@ namespace TimeMDev.FileReadWriteFloder
     {
         Encoding encoding;
         public event ContentFunctionD ContentFunction;
-
+        string path;
         public FileWriteSrt()
         {
  
@@ -19,11 +19,21 @@ namespace TimeMDev.FileReadWriteFloder
         {
             this.encoding = encoding;
         }
+        public FileWriteSrt(Encoding encoding,string path)
+        {
+            this.encoding = encoding;
+            this.path = path;
+        }
         
         #region FileWriteFunction 成员
 
         public void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
         {
+            ///后增加的，用于直接写入
+            if (path != null)
+            {
+                filePath = path;
+            }
             fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter streamWriter;
             if (this.encoding == null)

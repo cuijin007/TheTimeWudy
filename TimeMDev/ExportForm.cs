@@ -139,5 +139,10 @@ namespace TimeMDev
                 this.listViewShow.Items[this.listViewShow.SelectedIndices[i]].SubItems[1].Text = "UTF-8";
             }
         }
+
+        private void selectePath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

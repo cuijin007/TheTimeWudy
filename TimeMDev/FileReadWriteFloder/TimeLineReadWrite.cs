@@ -493,5 +493,19 @@ namespace TimeMDev
         {
             fileWriteFunction.Write(this.listSingleSentence, this.fileStream, this.filePath, this.encoding, ref this.scriptInfo, ref styles);
         }
+
+        public bool DeleteBuf(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    
     }
 }

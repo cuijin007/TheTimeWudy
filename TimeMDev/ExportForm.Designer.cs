@@ -59,6 +59,7 @@
             "Ass_中文繁体_英文",
             "UNICODE"}, -1);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.setUTF8 = new System.Windows.Forms.Button();
             this.selectedOther = new System.Windows.Forms.Button();
             this.selectAll = new System.Windows.Forms.Button();
             this.setUnicode = new System.Windows.Forms.Button();
@@ -79,7 +80,6 @@
             this.pathOut = new System.Windows.Forms.TextBox();
             this.confirm = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
-            this.setUTF8 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,6 +99,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文件格式";
+            // 
+            // setUTF8
+            // 
+            this.setUTF8.Location = new System.Drawing.Point(333, 79);
+            this.setUTF8.Name = "setUTF8";
+            this.setUTF8.Size = new System.Drawing.Size(127, 23);
+            this.setUTF8.TabIndex = 3;
+            this.setUTF8.Text = "设置为UTF-8编码";
+            this.setUTF8.UseVisualStyleBackColor = true;
+            this.setUTF8.Click += new System.EventHandler(this.setUTF8_Click);
             // 
             // selectedOther
             // 
@@ -279,6 +289,7 @@
             this.selectePath.TabIndex = 1;
             this.selectePath.Text = "……";
             this.selectePath.UseVisualStyleBackColor = true;
+            this.selectePath.Click += new System.EventHandler(this.selectePath_Click);
             // 
             // pathOut
             // 
@@ -308,16 +319,6 @@
             this.cancel.Text = "取消";
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
-            // 
-            // setUTF8
-            // 
-            this.setUTF8.Location = new System.Drawing.Point(333, 79);
-            this.setUTF8.Name = "setUTF8";
-            this.setUTF8.Size = new System.Drawing.Size(127, 23);
-            this.setUTF8.TabIndex = 3;
-            this.setUTF8.Text = "设置为UTF-8编码";
-            this.setUTF8.UseVisualStyleBackColor = true;
-            this.setUTF8.Click += new System.EventHandler(this.setUTF8_Click);
             // 
             // ExportForm
             // 
