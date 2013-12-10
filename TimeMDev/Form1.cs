@@ -817,11 +817,14 @@ namespace TimeMDev
                 sentence.content = contentEdit.Text;
                 ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
                 this.commandManage.CommandRun(record);
+                this.listView1.YYRefresh();
             }
             catch
             {
                 MessageBox.Show("输入格式有问题");
             }
+
+
         }
        
     }
