@@ -24,7 +24,7 @@ namespace TimeMDev.ConfigSave
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        public OnItemClick OnItemClickAction;
+        public event OnItemClick OnItemClickAction;
         public static List<string> RecentFileList
         {
             get 
