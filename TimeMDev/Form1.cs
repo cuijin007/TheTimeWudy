@@ -59,12 +59,55 @@ namespace TimeMDev
             //初始的时候禁止listviewmenu显示
             //this.SetListviewMenuEnable(false);
             this.NotificationInit();
-            this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
+            //this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
+            this.commandManage.AfterRunCommandFunction += new AfterRunCommandFuncionD(commandManage_AfterRunCommandFunction);
+        }
+        /// <summary>
+        /// 每个command执行完之后的动作
+        /// </summary>
+        void commandManage_AfterRunCommandFunction()
+        {
+            this.timeLineReadWrite.Write(new FileWriteAss());
+            this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
         }
 
         void recentFile_OnItemClickAction(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            e.Item.Caption
+            string path = e.Item.Caption.Replace("|", "");
+            if (File.Exists(path))
+            {
+                dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
+                dataProcess.DataInit();
+                this.dataProcess.Init();
+                pictureRefresh.Start();
+                this.mplayer.Pause();//要求打开的时候是停止的。
+
+                this.timeLineReadWrite = new TimeLineReadWrite();
+                this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
+                if (path.EndsWith("srt"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeline();
+                }
+                if (path.EndsWith("ass"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                }
+                this.originalSubtitlePath = path;//保存一个初始值。
+                if (this.moviePath.Equals(""))
+                {
+                    //还要修改后缀
+                    //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                }
+                else
+                {
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                }
+                this.rateShow.Focus();
+                this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+            }
+            this.rateShow.Focus();
+
         }
         
         /// <summary>
@@ -242,7 +285,7 @@ namespace TimeMDev
         {
             this.dataProcess.MouseUp(sender, e);
             //this.timeLineReadWrite.WriteAllTimeline();
-            this.timeLineReadWrite.WriteAllTimelineAss();
+            //this.timeLineReadWrite.WriteAllTimelineAss();
             //2013-10-3尝试一下看会不会崩溃
             if (mplayer != null)
             {
@@ -730,6 +773,7 @@ namespace TimeMDev
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.recentFile = new RecentFile(this.fileMenu);
+            this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
         }
 
         private void fileSplitSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -846,7 +890,7 @@ namespace TimeMDev
 
         private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            (new SaveAsForm(this.timeLineReadWrite)).ShowDialog();
         }
        
     }

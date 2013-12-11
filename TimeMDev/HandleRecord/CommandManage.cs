@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TimeMDev.HandleRecord
 {
+    public delegate void AfterRunCommandFuncionD();
     /// <summary>
     /// 命令模式操作管理类
     /// </summary>
@@ -13,6 +14,10 @@ namespace TimeMDev.HandleRecord
         //做了和没做的堆栈
         List<List<HandleRecordBass>> stackHaveDone;
         List<List<HandleRecordBass>> stackNeedDone;
+        /// <summary>
+        /// 每个动作完了之后都会执行的函数,初步用于保存，和load
+        /// </summary>
+        public event AfterRunCommandFuncionD AfterRunCommandFunction; 
         int stackSize;
         public CommandManage(int stackSize)
         {
@@ -33,6 +38,10 @@ namespace TimeMDev.HandleRecord
             {
                 this.stackHaveDone.RemoveAt(0);
             }
+            if (AfterRunCommandFunction != null)
+            {
+                AfterRunCommandFunction();
+            }
         }
         public void CommandRun(List<HandleRecordBass> command)
         {
@@ -45,12 +54,20 @@ namespace TimeMDev.HandleRecord
             {
                 this.stackHaveDone.RemoveAt(0);
             }
+            if (AfterRunCommandFunction != null)
+            {
+                AfterRunCommandFunction();
+            }
         }
         public void CommandRunNoRedo(params HandleRecordBass[] command)
         {
             for (int i = 0; i < command.Length; i++)
             {
                 command[i].Execute();
+            }
+            if (AfterRunCommandFunction != null)
+            {
+                AfterRunCommandFunction();
             }
         }
         public void Undo()
@@ -69,6 +86,10 @@ namespace TimeMDev.HandleRecord
                 }
                 this.stackHaveDone.RemoveAt(this.stackHaveDone.Count - 1);
             }
+            if (AfterRunCommandFunction != null)
+            {
+                AfterRunCommandFunction();
+            }
         }
         public void Redo()
         {
@@ -85,6 +106,10 @@ namespace TimeMDev.HandleRecord
                     this.stackHaveDone.RemoveAt(0);
                 }
                 this.stackNeedDone.RemoveAt(this.stackNeedDone.Count - 1);
+            }
+            if (AfterRunCommandFunction != null)
+            {
+                AfterRunCommandFunction();
             }
         }
     }

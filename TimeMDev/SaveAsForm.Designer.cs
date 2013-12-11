@@ -85,7 +85,7 @@
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.comboEncodingChoose);
             this.Name = "SaveAsForm";
-            this.Text = "SaveAsForm";
+            this.Text = "保存";
             this.ResumeLayout(false);
             this.PerformLayout();
 
