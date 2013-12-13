@@ -1160,6 +1160,7 @@
             this.translationTimeItem.Caption = "平移时间";
             this.translationTimeItem.Id = 42;
             this.translationTimeItem.Name = "translationTimeItem";
+            this.translationTimeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.translationTimeItem_ItemClick);
             // 
             // alignNowTimeItem
             // 

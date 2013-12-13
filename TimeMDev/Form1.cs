@@ -892,6 +892,11 @@ namespace TimeMDev
         {
             (new SaveAsForm(this.timeLineReadWrite)).ShowDialog();
         }
+
+        private void translationTimeItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
        
     }
 }
