@@ -67,8 +67,8 @@ namespace TimeMDev
         /// </summary>
         void commandManage_AfterRunCommandFunction()
         {
-            //this.timeLineReadWrite.Write(new FileWriteSrt());
-            this.timeLineReadWrite.WriteAllTimeline();
+            this.timeLineReadWrite.Write(new FileWriteSrt());
+            //this.timeLineReadWrite.WriteAllTimeline();
             this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
         }
 
