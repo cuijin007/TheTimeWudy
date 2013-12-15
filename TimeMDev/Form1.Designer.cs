@@ -1195,42 +1195,49 @@
             this.nowLineStartItem.Caption = "当前行的开始";
             this.nowLineStartItem.Id = 54;
             this.nowLineStartItem.Name = "nowLineStartItem";
+            this.nowLineStartItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nowLineStartItem_ItemClick);
             // 
             // nowLineEndItem
             // 
             this.nowLineEndItem.Caption = "当前行的结束";
             this.nowLineEndItem.Id = 55;
             this.nowLineEndItem.Name = "nowLineEndItem";
+            this.nowLineEndItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nowLineEndItem_ItemClick);
             // 
             // onlyNowLineItem
             // 
             this.onlyNowLineItem.Caption = "仅当前行";
             this.onlyNowLineItem.Id = 56;
             this.onlyNowLineItem.Name = "onlyNowLineItem";
+            this.onlyNowLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.onlyNowLineItem_ItemClick);
             // 
             // afterNowLineItem
             // 
             this.afterNowLineItem.Caption = "当前行之后";
             this.afterNowLineItem.Id = 57;
             this.afterNowLineItem.Name = "afterNowLineItem";
+            this.afterNowLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.afterNowLineItem_ItemClick);
             // 
             // allLineItem
             // 
             this.allLineItem.Caption = "所有行";
             this.allLineItem.Id = 58;
             this.allLineItem.Name = "allLineItem";
+            this.allLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.allLineItem_ItemClick);
             // 
             // lastSignItem
             // 
             this.lastSignItem.Caption = "至上一个标记";
             this.lastSignItem.Id = 59;
             this.lastSignItem.Name = "lastSignItem";
+            this.lastSignItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.lastSignItem_ItemClick);
             // 
             // alignLineItem
             // 
             this.alignLineItem.Caption = "前后标记中对其";
             this.alignLineItem.Id = 60;
             this.alignLineItem.Name = "alignLineItem";
+            this.alignLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.alignLineItem_ItemClick);
             // 
             // to23FPSItem
             // 
@@ -1249,12 +1256,14 @@
             this.extendShowItem.Caption = "延长显示";
             this.extendShowItem.Id = 46;
             this.extendShowItem.Name = "extendShowItem";
+            this.extendShowItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.extendShowItem_ItemClick);
             // 
             // changeUpandDownItem
             // 
             this.changeUpandDownItem.Caption = "交换上下行";
             this.changeUpandDownItem.Id = 47;
             this.changeUpandDownItem.Name = "changeUpandDownItem";
+            this.changeUpandDownItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.changeUpandDownItem_ItemClick);
             // 
             // lastLineItem
             // 
@@ -1323,6 +1332,7 @@
             this.addEditorItem.Caption = "添加制作人员";
             this.addEditorItem.Id = 66;
             this.addEditorItem.Name = "addEditorItem";
+            this.addEditorItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addEditorItem_ItemClick);
             // 
             // compareSubtitleItem
             // 

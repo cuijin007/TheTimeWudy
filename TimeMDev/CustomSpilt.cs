@@ -43,7 +43,14 @@ namespace TimeMDev
             chinese = chinese.Replace("\r\n","");
             english = english.Replace("\r\n","");
             this.pictureShowCut.Capture = true;
-            this.pictureShowCut.Init(chinese, english);
+            if (this.spiltParameter.beforeSpilt.StartsWith(chinese))
+            {
+                this.pictureShowCut.Init(chinese, english);
+            }
+            else
+            {
+                this.pictureShowCut.Init(english, chinese);
+            }
         }
     }
 }

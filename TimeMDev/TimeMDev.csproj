@@ -102,6 +102,12 @@
     <Compile Include="ExportForm.Designer.cs">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtendForm.Designer.cs">
+      <DependentUpon>ExtendForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileCutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,18 @@
     <Compile Include="IfSaveForm.Designer.cs">
       <DependentUpon>IfSaveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertEditorForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertEditorForm1.Designer.cs">
+      <DependentUpon>InsertEditorForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertEditorForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertEditorForm2.Designer.cs">
+      <DependentUpon>InsertEditorForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mplayer.cs" />
     <Compile Include="Notification\HandleMessageBase.cs" />
     <Compile Include="Notification\NotificationCenter.cs" />
@@ -188,6 +206,10 @@
       <DependentUpon>ExportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExtendForm.resx">
+      <DependentUpon>ExtendForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FileCutForm.resx">
       <DependentUpon>FileCutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -202,6 +224,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IfSaveForm.resx">
       <DependentUpon>IfSaveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertEditorForm1.resx">
+      <DependentUpon>InsertEditorForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertEditorForm2.resx">
+      <DependentUpon>InsertEditorForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PictureShowCut.resx">
       <DependentUpon>PictureShowCut.cs</DependentUpon>

@@ -290,5 +290,28 @@ namespace TimeMDev
         {
             return Strings.StrConv(str, VbStrConv.TraditionalChinese, 0);
         }
+
+        /// <summary>
+        /// 去掉首部的换行符
+        /// </summary>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public static string TrimEnterStart(string str)
+        {
+            str = str.TrimStart('\r', '\n');
+            str = str.TrimStart('\r', '\n');
+            return str;
+        }
+        /// <summary>
+        /// 去掉末尾的换行符
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string TrimEnterEnd(string str)
+        {
+            str = str.TrimEnd('\r', '\n');
+            str = str.TrimEnd('\r', '\n');
+            return str;
+        }
     }
 }

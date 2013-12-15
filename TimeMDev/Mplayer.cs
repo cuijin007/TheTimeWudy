@@ -18,7 +18,7 @@ namespace TimeMDev
         public bool getPositionMark = true;
         public double totalTime=60*60*4;
         public playerRateAction DplayerRateAction;
-        double nowTime;
+        public double nowTime;
         int wid;
         int playStep;//开始的步骤,0：读取总时间，1：开始播放
         int PlayStep 

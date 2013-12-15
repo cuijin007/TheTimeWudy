@@ -67,7 +67,7 @@ namespace TimeMDev
         /// </summary>
         void commandManage_AfterRunCommandFunction()
         {
-            this.timeLineReadWrite.Write(new FileWriteAss());
+         //   this.timeLineReadWrite.Write(new FileWriteSrt());
             this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
         }
 
@@ -969,6 +969,7 @@ namespace TimeMDev
                      this.listView1.YYRefresh();
                 }
             }
+            this.listView1.YYRefresh();
         }
 
         private void listView1_DoubleClickAction(int showPosition)
@@ -984,6 +985,204 @@ namespace TimeMDev
             }
             this.commandManage.CommandRun(new SetSelectedState(this.timeLineReadWrite.listSingleSentence, this.listView1, showPosition, state));
             this.listView1.YYRefresh();
+        }
+
+        private void nowLineStartItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.mplayer != null&&this.listView1.SelectedIndices.Count>0)
+            {
+                SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
+                singleSentence.startTime = this.mplayer.nowTime;
+                if (singleSentence.endTime < singleSentence.startTime)
+                {
+                    singleSentence.endTime = singleSentence.startTime;
+                }
+                ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], singleSentence);
+                this.commandManage.CommandRun(changeRecord);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void nowLineEndItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.mplayer != null && this.listView1.SelectedIndices.Count > 0)
+            {
+                SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
+                singleSentence.endTime = this.mplayer.nowTime;
+                ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], singleSentence);
+                this.commandManage.CommandRun(changeRecord);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void onlyNowLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(this.listView1.SelectedIndices.Count>0)
+            {
+                SingleSentence singleSentence=CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
+                double diff = this.mplayer.nowTime - singleSentence.startTime;
+                singleSentence.startTime += diff;
+                singleSentence.endTime += diff;
+                this.commandManage.CommandRun(new ChangeRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[0],singleSentence));
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void afterNowLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                List<HandleRecordBass> command = new List<HandleRecordBass>();
+                Double Diff = this.mplayer.nowTime - this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                for (int i = this.listView1.SelectedIndices[0]; i < this.listView1.yyItems.Count; i++)
+                {
+                    SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                    singleSentence.startTime += Diff;
+                    singleSentence.endTime += Diff;
+                    command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                }
+                this.commandManage.CommandRun(command);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void allLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                List<HandleRecordBass> command = new List<HandleRecordBass>();
+                Double Diff = this.mplayer.nowTime - this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                for (int i = 0; i < this.listView1.yyItems.Count; i++)
+                {
+                    SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                    singleSentence.startTime += Diff;
+                    singleSentence.endTime += Diff;
+                    command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                }
+                this.commandManage.CommandRun(command);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void lastSignItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                List<HandleRecordBass> command = new List<HandleRecordBass>();
+                Double Diff = this.mplayer.nowTime - this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                int startPosition = 0;
+                for (int i = this.listView1.SelectedIndices[0]; i >= 0; i--)
+                {
+                    if (this.listView1.yyItems[i].Checked)
+                    {
+                        startPosition = i;
+                        break;
+                    }
+                }
+                for (int i = startPosition; i < this.listView1.SelectedIndices[0]; i++)
+                    {
+                        SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                        singleSentence.startTime += Diff;
+                        singleSentence.endTime += Diff;
+                        command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                    }
+                this.commandManage.CommandRun(command);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void alignLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                List<HandleRecordBass> command = new List<HandleRecordBass>();
+                Double Diff = this.mplayer.nowTime - this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                int startPosition = 0;
+                int endPosition = this.listView1.yyItems.Count - 1;
+                for (int i = this.listView1.SelectedIndices[0]; i >= 0; i--)
+                {
+                    if (this.listView1.yyItems[i].Checked)
+                    {
+                        startPosition = i;
+                        break;
+                    }
+                }
+                for (int i = this.listView1.SelectedIndices[0]; i < this.listView1.yyItems.Count; i++)
+                {
+                    if (this.listView1.yyItems[i].Checked)
+                    {
+                        endPosition = i;
+                        break;
+                    }
+                }
+                for (int i = startPosition; i <endPosition; i++)
+                    {
+                        SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                        singleSentence.startTime += Diff;
+                        singleSentence.endTime += Diff;
+                        command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                    }
+                this.commandManage.CommandRun(command);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void extendShowItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ExtendFormPara extendFormPara = new ExtendFormPara();
+            ExtendForm extendForm = new ExtendForm(extendFormPara);
+            List<HandleRecordBass> command = new List<HandleRecordBass>();
+            if (extendForm.DialogResult == DialogResult.OK)
+            {
+                 if (this.listView1.SelectedIndices.Count > 0)
+                {
+                    for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+                    {
+                        SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
+                        singleSentence.endTime += extendFormPara.time;
+                        ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], singleSentence);
+                        command.Add(changeRecord);
+                    }
+                }
+            }
+            this.commandManage.CommandRun(command);
+            this.listView1.YYRefresh();
+        }
+
+        private void changeUpandDownItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            List<HandleRecordBass> command = new List<HandleRecordBass>();
+            for (int i = 0; i < this.listView1.yyItems.Count; i++)
+            {
+                SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                string english, chinese;
+                CCHandle.SpiltRule(sentence.content, out chinese, out english);
+                chinese = CCHandle.TrimEnterStart(chinese);
+                chinese = CCHandle.TrimEnterEnd(chinese);
+                english = CCHandle.TrimEnterStart(english);
+                english = CCHandle.TrimEnterEnd(english);
+                if (sentence.content.StartsWith(chinese))
+                {
+                    sentence.content = english + "\r\n" + chinese;
+                }
+                else
+                {
+                    sentence.content = chinese + "\r\n" + english;
+                }
+                ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, sentence);
+                command.Add(changeRecord);
+            }
+            this.commandManage.CommandRun(command);
+            this.listView1.YYRefresh();
+        }
+
+        private void addEditorItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TimeMDev.InsertEditorForm1.InsertEditorForm1Para para=new InsertEditorForm1.InsertEditorForm1Para();
+            if ((new InsertEditorForm1(para)).ShowDialog() == DialogResult.OK)
+            {
+                (new InsertEditorForm2(para.time, this.timeLineReadWrite, this.listView1, this.commandManage)).ShowDialog();
+            }
         }
 
        
