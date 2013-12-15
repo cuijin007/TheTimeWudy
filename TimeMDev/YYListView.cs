@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace TimeMDev
 {
+    public delegate void DDoubleClickAction(int showPosition);
     public class YYListView:ListView,RedoUndoInterface,CopyPasteInterface
     {
         public List<int> SignPosition;//变颜色的位置
@@ -18,6 +19,7 @@ namespace TimeMDev
         public Brush OtherSelected;
         public Brush SeletedLineColor = Brushes.Blue;
         public List<ListViewItem> yyItems = new List<ListViewItem>();
+        public event DDoubleClickAction DoubleClickAction;
         int itemHeight=1;
         YYListViewColumnSorter yyListViewColumnSorter = new YYListViewColumnSorter();
         YYListViewColumnSorterVirtual yyListViewColumnSorterVirtual = new YYListViewColumnSorterVirtual();
@@ -120,9 +122,10 @@ namespace TimeMDev
                     TextFormatFlags.Left);             
             }            
         }
+        
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
-            if (e.X-this.Bounds.X >= this.Columns[0].Width - 0)
+            if (e.X - this.Bounds.X >= this.Columns[0].Width - 0)
             {
                 base.OnMouseDoubleClick(e);
             }
@@ -130,13 +133,9 @@ namespace TimeMDev
             {
                 int orderNum = (e.Y - this.Bounds.Y) / this.itemHeight;
                 orderNum += this.TopItem.Index;
-                if (this.Items[orderNum].Checked == true)
+                if (this.DoubleClickAction != null)
                 {
-                    this.Items[orderNum].Checked = false;
-                }
-                else
-                {
-                    this.Items[orderNum].Checked= true;
+                    this.DoubleClickAction(orderNum);//cj 2013-12-15
                 }
             }
         }

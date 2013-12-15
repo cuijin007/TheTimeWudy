@@ -892,11 +892,100 @@ namespace TimeMDev
         {
             (new SaveAsForm(this.timeLineReadWrite)).ShowDialog();
         }
-
+        /// <summary>
+        /// 平移时间
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void translationTimeItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
 
+                TranslateFormPara translateFormPara = new TranslateFormPara();
+                translateFormPara.time = this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+
+                if (new TranslateForm(translateFormPara).ShowDialog() == DialogResult.OK)
+                {
+                    List<HandleRecordBass> command = new List<HandleRecordBass>();
+                    double Diff=translateFormPara.time-this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                    if (translateFormPara.state == TranslateFormPara.SELECTEDLINE)//只更改选中行
+                    {
+                        SingleSentence singleSentence=CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
+                        singleSentence.startTime+=Diff;
+                        singleSentence.endTime+=Diff;
+                        command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[0],singleSentence));
+                    }
+                     if (translateFormPara.state == TranslateFormPara.AFTERSELECTED)//在选中的行之后
+                    {
+                         for(int i=this.listView1.SelectedIndices[0];i<this.listView1.yyItems.Count;i++)
+                         {
+                            SingleSentence singleSentence=CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                            singleSentence.startTime+=Diff;
+                            singleSentence.endTime+=Diff;
+                            command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,i,singleSentence));
+                         }
+                     }
+                     if (translateFormPara.state == TranslateFormPara.ALLLINE)//所有行
+                     {
+                         for (int i = 0; i < this.listView1.yyItems.Count; i++)
+                         {
+                             SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                             singleSentence.startTime += Diff;
+                             singleSentence.endTime += Diff;
+                             command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                         }
+                     }
+                     if (translateFormPara.state == TranslateFormPara.BETWEENSELECTED)//两个被选中行之间的所有的时间的更改
+                     {
+                         int startPosition = 0;
+                         int endPosition = this.listView1.yyItems.Count-1;
+                         for (int i = this.listView1.SelectedIndices[0]; i >= 0; i--)
+                         {
+                             if (this.listView1.yyItems[i].Checked)
+                             {
+                                 startPosition = i;
+                                 break;
+                             }
+                         }
+                         for (int i = this.listView1.SelectedIndices[0]; i < this.listView1.yyItems.Count; i++)
+                         {
+                             if (this.listView1.yyItems[i].Checked)
+                             {
+                                 endPosition = i;
+                                 break;
+                             }
+                         }
+
+                         for (int i = startPosition; i <= endPosition; i++)
+                         {
+                             SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                             singleSentence.startTime += Diff;
+                             singleSentence.endTime += Diff;
+                             command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                         }
+                     }
+                     this.commandManage.CommandRun(command);
+                     this.listView1.YYRefresh();
+                }
+            }
         }
+
+        private void listView1_DoubleClickAction(int showPosition)
+        {
+            bool state;
+            if (this.listView1.yyItems[showPosition].Checked)
+            {
+                state = false;
+            }
+            else
+            {
+                state = true;
+            }
+            this.commandManage.CommandRun(new SetSelectedState(this.timeLineReadWrite.listSingleSentence, this.listView1, showPosition, state));
+            this.listView1.YYRefresh();
+        }
+
        
     }
 }

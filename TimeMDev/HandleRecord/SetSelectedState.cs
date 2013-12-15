@@ -12,24 +12,27 @@ namespace TimeMDev.HandleRecord
     {
         List<SingleSentence> listSingleSentence;
         YYListView yyListView;
-        int index;
         int realPosition;
+        int showPosition;
         bool state;
         public SetSelectedState(List<SingleSentence> listSingleSentence, YYListView yyListView, int showPosition,bool state)
         {
             this.listSingleSentence = listSingleSentence;
             this.yyListView = yyListView;
-            this.index = index;
-            this.realPosition = realPosition;
+            this.showPosition = showPosition;
+            this.realPosition = this.yyListView.YYGetRealPosition(showPosition);
             this.state = state;
         }
         public override void Execute()
         {
-
+            this.listSingleSentence[this.realPosition].Checked = state;
+            this.yyListView.yyItems[this.showPosition].Checked = state;
         }
         
         public override void UnExecute()
         {
+            this.listSingleSentence[this.realPosition].Checked = !state;
+            this.yyListView.yyItems[this.showPosition].Checked = !state;
         }
     }
 }

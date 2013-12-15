@@ -22,7 +22,8 @@ namespace TimeMDev
                 this.CaculateString(out this.lineNum, out this.everyLineLength, this.contentSave);
             }
         }
-       
+        public bool Checked = false;
+
         public double startTime, endTime;
         /// <summary>
         /// 时长
