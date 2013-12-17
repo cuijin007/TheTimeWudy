@@ -11,6 +11,14 @@ namespace TimeMDev
     public class MPlayer
     {
         public delegate void  playerRateAction(double time,double totalTime);
+        /// <summary>
+        /// 字幕同步标志
+        /// </summary>
+        public static  bool RefreshMark
+        {
+            get;
+            set;
+        }
         public bool isPlaying = true;
         Thread mplayerPlay;
         string moviePath;
@@ -146,7 +154,10 @@ namespace TimeMDev
                     if (this.DplayerRateAction != null)
                     {
                         this.nowTime = time;
-                        this.DplayerRateAction(time, this.totalTime);
+                        if (MPlayer.RefreshMark)//视频同步
+                        {
+                            this.DplayerRateAction(time, this.totalTime);
+                        }
                     }
                     else
                     {
@@ -372,6 +383,15 @@ namespace TimeMDev
            this.mplayer.StandardInput.Flush();
        }
 
+       public void StepPlay()
+       {
+           if (this.mplayer != null)
+           {
+               this.mplayer.StandardInput.WriteLine("frame_step "); 
+               this.mplayer.StandardInput.Flush();
+           }
+       }
+
        public void MPlayerQuit()
        {
            if (this.mplayer != null)
@@ -386,6 +406,8 @@ namespace TimeMDev
                }
            }
        }
+        
+
     }
     
 }

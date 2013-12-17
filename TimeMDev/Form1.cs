@@ -11,6 +11,7 @@ using TimeMDev.HandleRecord;
 using TimeMDev.Notification;
 using TimeMDev.ConfigSave;
 using TimeMDev.FileReadWriteFloder;
+using DevExpress.XtraBars;
 
 namespace TimeMDev
 {
@@ -48,9 +49,9 @@ namespace TimeMDev
         {
             this.pictureRefresh = new PictureRefresh(this);
             this.mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());//给Mplayer初始化播放的输出位置
-            dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
+            dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
             dataProcess.DataInit();
-            this.rateShow.MouseWheel+=new MouseEventHandler(rateShow_MouseWheel);
+            this.rateShow.MouseWheel += new MouseEventHandler(rateShow_MouseWheel);
             originalSubtitlePath = "";
             moviePath = "";
             //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory+"\\save\\noname.srt";
@@ -61,6 +62,10 @@ namespace TimeMDev
             this.NotificationInit();
             //this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
             this.commandManage.AfterRunCommandFunction += new AfterRunCommandFuncionD(commandManage_AfterRunCommandFunction);
+            if (File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml"))
+            {
+                this.dockManager1.RestoreLayoutFromXml(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml");
+            }
         }
         /// <summary>
         /// 每个command执行完之后的动作
@@ -264,9 +269,11 @@ namespace TimeMDev
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this.dockManager1.SaveLayoutToXml(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml");
             this.pictureRefresh.runMark = false;
             this.mplayer.getPositionMark = false;
             this.mplayer.MPlayerQuit();
+            
         }
 
         private void rateShow_Click(object sender, EventArgs e)
@@ -1012,6 +1019,12 @@ namespace TimeMDev
                 singleSentence.endTime = this.mplayer.nowTime;
                 ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], singleSentence);
                 this.commandManage.CommandRun(changeRecord);
+
+                if (this.listView1.SelectedIndices[0] < this.listView1.yyItems.Count - 1)
+                {
+                    NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", this.listView1.SelectedIndices[0]+1);
+                    NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", this.listView1.SelectedIndices[0]+1);
+                }
             }
             this.listView1.YYRefresh();
         }
@@ -1185,6 +1198,147 @@ namespace TimeMDev
                 (new InsertEditorForm2(para.time, this.timeLineReadWrite, this.listView1, this.commandManage)).ShowDialog();
             }
         }
+
+        private void toolStripLoadFile_Click(object sender, EventArgs e)
+        {
+            this.openVideoItem_ItemClick(null, null);
+        }
+
+        private void toolStripPlay_Click(object sender, EventArgs e)
+        {
+            this.pauseVideoItem_ItemClick(null, null);
+        }
+
+        private void toolStripPause_Click(object sender, EventArgs e)
+        {
+            this.pauseVideoItem_ItemClick(null, null);
+        }
+
+        private void toolStripBack5_Click(object sender, EventArgs e)
+        {
+            this.backOneSecItem_ItemClick(null, null);
+        }
+
+        private void toolStripForward5_Click(object sender, EventArgs e)
+        {
+            this.forwardOneSecItem_ItemClick(null, null);
+        }
+
+        private void toolStripBack10_Click(object sender, EventArgs e)
+        {
+            this.back5SecItem_ItemClick(null, null);
+        }
+
+        private void toolStripForward10_Click(object sender, EventArgs e)
+        {
+            this.forward5SecItem_ItemClick(null, null);
+        }
+
+        private void barButtonItemOneFrame_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.mplayer.StepPlay();
+        }
+
+        private void toolStrip1Step_Click(object sender, EventArgs e)
+        {
+            this.barButtonItemOneFrame_ItemClick(null, null);
+        }
+
+        private void toolStripSyn_Click(object sender, EventArgs e)
+        {
+            this.subSyncItem_ItemClick(null, null);
+        }
+
+        private void subSyncItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MPlayer.RefreshMark)
+            {
+                MPlayer.RefreshMark = false;
+                this.subSyncItem.ButtonStyle = BarButtonStyle.Check;
+                this.toolStripSyn.Checked = true;
+            }
+            else
+            {
+                MPlayer.RefreshMark = true;
+                this.subSyncItem.ButtonStyle = BarButtonStyle.Default;
+                this.toolStripSyn.Checked = false;
+            }
+        }
+
+        private void toolStripAlignNow_Click(object sender, EventArgs e)
+        {
+            this.onlyNowLineItem_ItemClick(null, null);
+        }
+
+        private void toolStripAlignAfter_Click(object sender, EventArgs e)
+        {
+            this.afterNowLineItem_ItemClick(null, null);
+        }
+
+        private void toolStripAlighAll_Click(object sender, EventArgs e)
+        {
+            this.allLineItem_ItemClick(null, null);
+        }
+
+        private void toolStripAlighStart_Click(object sender, EventArgs e)
+        {
+            this.nowLineStartItem_ItemClick(null, null);
+        }
+
+        private void toolStripAlighEnd_Click(object sender, EventArgs e)
+        {
+            this.nowLineEndItem_ItemClick(null, null);
+        }
+
+        private void addOneLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.addOneLineContext_Click(null, null);
+        }
+
+        private void toolStripAddOne_Click(object sender, EventArgs e)
+        {
+            this.addOneLineItem_ItemClick(null, null);
+        }
+
+        private void addMutiLineItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.addMutiLineContext_Click(null, null);
+        }
+
+        private void toolStripAddMuti_Click(object sender, EventArgs e)
+        {
+            this.addMutiLineItem_ItemClick(null, null);
+        }
+
+        private void toolStripSign_Click(object sender, EventArgs e)
+        {
+            List<HandleRecordBass> command = new List<HandleRecordBass>();
+            for (int i = 0; i < this.listView1.SelectedIndices.Count; i++)
+            {
+                bool state;
+                if (this.listView1.yyItems[this.listView1.SelectedIndices[i]].Checked)
+                {
+                    state = false;
+                }
+                else
+                {
+                    state = true;
+                }
+                command.Add(new SetSelectedState(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[i],state));
+            }
+            this.commandManage.CommandRun(command);
+        }
+
+        private void toolStripSaveAuto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripSync_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
        
     }

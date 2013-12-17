@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -57,13 +58,43 @@
             this.findErrorLink = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.startMplayerFristTimeLink = new DevExpress.XtraNavBar.NavBarItem();
+            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.videoPanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.videoPlayPanel = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nowTimeLineShow = new System.Windows.Forms.Label();
             this.movieTrack = new System.Windows.Forms.TrackBar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.toolStripPanel1 = new System.Windows.Forms.ToolStripPanel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLoadFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripPlay = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPause = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripBack5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripForward5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBack10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripForward10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip1Step = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSyn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripAlignNow = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAlignAfter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAlighAll = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripAlighStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAlighEnd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripAddOne = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAddMuti = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSaveAuto = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSign = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSync = new System.Windows.Forms.ToolStripButton();
             this.modifySubtitlePanel = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel4_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.contentEdit = new System.Windows.Forms.TextBox();
@@ -160,8 +191,8 @@
             this.backOneSecItem = new DevExpress.XtraBars.BarButtonItem();
             this.forward5SecItem = new DevExpress.XtraBars.BarButtonItem();
             this.back5SecItem = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem70 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem71 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemOneFrame = new DevExpress.XtraBars.BarButtonItem();
+            this.subSyncItem = new DevExpress.XtraBars.BarButtonItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.softwareOptionItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewOptionItem = new DevExpress.XtraBars.BarButtonItem();
@@ -217,15 +248,19 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panelContainer1 = new DevExpress.XtraBars.Docking.DockPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
+            this.panelContainer1.SuspendLayout();
             this.videoPanel.SuspendLayout();
             this.dockPanel3_Container.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.movieTrack)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.toolStripPanel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.modifySubtitlePanel.SuspendLayout();
             this.dockPanel4_Container.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -236,7 +271,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.textTimeLinePanel)).BeginInit();
             this.textTimeLinePanel.SuspendLayout();
             this.listViewMenu.SuspendLayout();
-            this.panelContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -456,6 +490,19 @@
             this.startMplayerFristTimeLink.Name = "startMplayerFristTimeLink";
             this.startMplayerFristTimeLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.startMplayerFristTimeLink_LinkClicked);
             // 
+            // panelContainer1
+            // 
+            this.panelContainer1.Controls.Add(this.videoPanel);
+            this.panelContainer1.Controls.Add(this.modifySubtitlePanel);
+            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
+            this.panelContainer1.FloatVertical = true;
+            this.panelContainer1.ID = new System.Guid("69606b57-fcf3-4d4d-a7a3-7e75373d77e5");
+            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
+            this.panelContainer1.Name = "panelContainer1";
+            this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
+            this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
+            this.panelContainer1.Text = "panelContainer1";
+            // 
             // videoPanel
             // 
             this.videoPanel.Controls.Add(this.dockPanel3_Container);
@@ -463,18 +510,18 @@
             this.videoPanel.ID = new System.Guid("b4edf9e8-4959-4e1d-8ef7-e802000544ee");
             this.videoPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPanel.Name = "videoPanel";
-            this.videoPanel.OriginalSize = new System.Drawing.Size(250, 252);
-            this.videoPanel.Size = new System.Drawing.Size(334, 252);
+            this.videoPanel.OriginalSize = new System.Drawing.Size(493, 252);
+            this.videoPanel.Size = new System.Drawing.Size(519, 252);
             this.videoPanel.Text = " 视频播放";
             // 
             // dockPanel3_Container
             // 
             this.dockPanel3_Container.Controls.Add(this.videoPlayPanel);
-            this.dockPanel3_Container.Controls.Add(this.panel2);
             this.dockPanel3_Container.Controls.Add(this.panel1);
+            this.dockPanel3_Container.Controls.Add(this.panel2);
             this.dockPanel3_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(326, 225);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(511, 225);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // videoPlayPanel
@@ -483,26 +530,17 @@
             this.videoPlayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPlayPanel.Name = "videoPlayPanel";
-            this.videoPlayPanel.Size = new System.Drawing.Size(326, 168);
+            this.videoPlayPanel.Size = new System.Drawing.Size(511, 168);
             this.videoPlayPanel.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 168);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(326, 32);
-            this.panel2.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.nowTimeLineShow);
             this.panel1.Controls.Add(this.movieTrack);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 200);
+            this.panel1.Location = new System.Drawing.Point(0, 168);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(326, 25);
+            this.panel1.Size = new System.Drawing.Size(511, 25);
             this.panel1.TabIndex = 0;
             // 
             // nowTimeLineShow
@@ -513,7 +551,7 @@
             this.nowTimeLineShow.ForeColor = System.Drawing.Color.Yellow;
             this.nowTimeLineShow.Location = new System.Drawing.Point(0, 0);
             this.nowTimeLineShow.Name = "nowTimeLineShow";
-            this.nowTimeLineShow.Size = new System.Drawing.Size(326, 1);
+            this.nowTimeLineShow.Size = new System.Drawing.Size(511, 1);
             this.nowTimeLineShow.TabIndex = 7;
             this.nowTimeLineShow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -524,11 +562,311 @@
             this.movieTrack.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.movieTrack.Location = new System.Drawing.Point(0, 1);
             this.movieTrack.Name = "movieTrack";
-            this.movieTrack.Size = new System.Drawing.Size(326, 24);
+            this.movieTrack.Size = new System.Drawing.Size(511, 24);
             this.movieTrack.TabIndex = 0;
             this.movieTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.movieTrack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movieTrack_MouseDown);
             this.movieTrack.MouseUp += new System.Windows.Forms.MouseEventHandler(this.movieTrack_MouseUp);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.toolStripPanel1);
+            this.panel2.Controls.Add(this.toolStrip2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 193);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(511, 32);
+            this.panel2.TabIndex = 0;
+            // 
+            // toolStripPanel1
+            // 
+            this.toolStripPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripPanel1.Controls.Add(this.toolStrip1);
+            this.toolStripPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStripPanel1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripPanel1.Name = "toolStripPanel1";
+            this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.toolStripPanel1.Size = new System.Drawing.Size(263, 32);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLoadFile,
+            this.toolStripSeparator5,
+            this.toolStripPlay,
+            this.toolStripPause,
+            this.toolStripSeparator6,
+            this.toolStripBack5,
+            this.toolStripForward5,
+            this.toolStripBack10,
+            this.toolStripForward10,
+            this.toolStripSeparator7,
+            this.toolStrip1Step,
+            this.toolStripSyn,
+            this.toolStripSeparator8});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(263, 23);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLoadFile
+            // 
+            this.toolStripLoadFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLoadFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLoadFile.Image")));
+            this.toolStripLoadFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLoadFile.Name = "toolStripLoadFile";
+            this.toolStripLoadFile.Size = new System.Drawing.Size(23, 20);
+            this.toolStripLoadFile.Text = "toolStripButton1";
+            this.toolStripLoadFile.ToolTipText = "打开";
+            this.toolStripLoadFile.Click += new System.EventHandler(this.toolStripLoadFile_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripPlay
+            // 
+            this.toolStripPlay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripPlay.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPlay.Image")));
+            this.toolStripPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripPlay.Name = "toolStripPlay";
+            this.toolStripPlay.Size = new System.Drawing.Size(23, 20);
+            this.toolStripPlay.Text = "toolStripButton2";
+            this.toolStripPlay.ToolTipText = "播放";
+            this.toolStripPlay.Click += new System.EventHandler(this.toolStripPlay_Click);
+            // 
+            // toolStripPause
+            // 
+            this.toolStripPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripPause.Image = ((System.Drawing.Image)(resources.GetObject("toolStripPause.Image")));
+            this.toolStripPause.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripPause.Name = "toolStripPause";
+            this.toolStripPause.Size = new System.Drawing.Size(23, 20);
+            this.toolStripPause.Text = "toolStripButton3";
+            this.toolStripPause.ToolTipText = "暂停";
+            this.toolStripPause.Click += new System.EventHandler(this.toolStripPause_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripBack5
+            // 
+            this.toolStripBack5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBack5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBack5.Image")));
+            this.toolStripBack5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBack5.Name = "toolStripBack5";
+            this.toolStripBack5.Size = new System.Drawing.Size(23, 20);
+            this.toolStripBack5.Text = "toolStripButton4";
+            this.toolStripBack5.ToolTipText = "快退1S";
+            this.toolStripBack5.Click += new System.EventHandler(this.toolStripBack5_Click);
+            // 
+            // toolStripForward5
+            // 
+            this.toolStripForward5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripForward5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripForward5.Image")));
+            this.toolStripForward5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripForward5.Name = "toolStripForward5";
+            this.toolStripForward5.Size = new System.Drawing.Size(23, 20);
+            this.toolStripForward5.Text = "快进5S";
+            this.toolStripForward5.ToolTipText = "快进1S";
+            this.toolStripForward5.Click += new System.EventHandler(this.toolStripForward5_Click);
+            // 
+            // toolStripBack10
+            // 
+            this.toolStripBack10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBack10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBack10.Image")));
+            this.toolStripBack10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBack10.Name = "toolStripBack10";
+            this.toolStripBack10.Size = new System.Drawing.Size(23, 20);
+            this.toolStripBack10.Text = "快退10S";
+            this.toolStripBack10.ToolTipText = "快退5S";
+            this.toolStripBack10.Click += new System.EventHandler(this.toolStripBack10_Click);
+            // 
+            // toolStripForward10
+            // 
+            this.toolStripForward10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripForward10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripForward10.Image")));
+            this.toolStripForward10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripForward10.Name = "toolStripForward10";
+            this.toolStripForward10.Size = new System.Drawing.Size(23, 20);
+            this.toolStripForward10.Text = "快进10S";
+            this.toolStripForward10.ToolTipText = "快进5S";
+            this.toolStripForward10.Click += new System.EventHandler(this.toolStripForward10_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStrip1Step
+            // 
+            this.toolStrip1Step.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStrip1Step.Image = ((System.Drawing.Image)(resources.GetObject("toolStrip1Step.Image")));
+            this.toolStrip1Step.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStrip1Step.Name = "toolStrip1Step";
+            this.toolStrip1Step.Size = new System.Drawing.Size(23, 20);
+            this.toolStrip1Step.Text = "下一帧";
+            this.toolStrip1Step.Click += new System.EventHandler(this.toolStrip1Step_Click);
+            // 
+            // toolStripSyn
+            // 
+            this.toolStripSyn.CheckOnClick = true;
+            this.toolStripSyn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSyn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSyn.Image")));
+            this.toolStripSyn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSyn.Name = "toolStripSyn";
+            this.toolStripSyn.Size = new System.Drawing.Size(23, 20);
+            this.toolStripSyn.Text = "同步";
+            this.toolStripSyn.Click += new System.EventHandler(this.toolStripSyn_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripAlignNow,
+            this.toolStripAlignAfter,
+            this.toolStripAlighAll,
+            this.toolStripSeparator9,
+            this.toolStripAlighStart,
+            this.toolStripAlighEnd,
+            this.toolStripSeparator10,
+            this.toolStripAddOne,
+            this.toolStripAddMuti,
+            this.toolStripSeparator11,
+            this.toolStripSaveAuto,
+            this.toolStripSign,
+            this.toolStripSync});
+            this.toolStrip2.Location = new System.Drawing.Point(237, 3);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(260, 25);
+            this.toolStrip2.TabIndex = 1;
+            // 
+            // toolStripAlignNow
+            // 
+            this.toolStripAlignNow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAlignNow.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAlignNow.Image")));
+            this.toolStripAlignNow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAlignNow.Name = "toolStripAlignNow";
+            this.toolStripAlignNow.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAlignNow.Text = "将播放器的时间同步到此时间轴";
+            this.toolStripAlignNow.Click += new System.EventHandler(this.toolStripAlignNow_Click);
+            // 
+            // toolStripAlignAfter
+            // 
+            this.toolStripAlignAfter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAlignAfter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAlignAfter.Image")));
+            this.toolStripAlignAfter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAlignAfter.Name = "toolStripAlignAfter";
+            this.toolStripAlignAfter.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAlignAfter.Text = "以当前的播放器时间对其以后的时间";
+            this.toolStripAlignAfter.Click += new System.EventHandler(this.toolStripAlignAfter_Click);
+            // 
+            // toolStripAlighAll
+            // 
+            this.toolStripAlighAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAlighAll.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAlighAll.Image")));
+            this.toolStripAlighAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAlighAll.Name = "toolStripAlighAll";
+            this.toolStripAlighAll.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAlighAll.Text = "以现在播放器时间对其所有时间";
+            this.toolStripAlighAll.Click += new System.EventHandler(this.toolStripAlighAll_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripAlighStart
+            // 
+            this.toolStripAlighStart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAlighStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAlighStart.Image")));
+            this.toolStripAlighStart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAlighStart.Name = "toolStripAlighStart";
+            this.toolStripAlighStart.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAlighStart.Text = "对其开始时间";
+            this.toolStripAlighStart.Click += new System.EventHandler(this.toolStripAlighStart_Click);
+            // 
+            // toolStripAlighEnd
+            // 
+            this.toolStripAlighEnd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAlighEnd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAlighEnd.Image")));
+            this.toolStripAlighEnd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAlighEnd.Name = "toolStripAlighEnd";
+            this.toolStripAlighEnd.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAlighEnd.Text = "对其结束时间";
+            this.toolStripAlighEnd.Click += new System.EventHandler(this.toolStripAlighEnd_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripAddOne
+            // 
+            this.toolStripAddOne.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAddOne.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAddOne.Image")));
+            this.toolStripAddOne.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAddOne.Name = "toolStripAddOne";
+            this.toolStripAddOne.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAddOne.Text = "增加一行";
+            this.toolStripAddOne.Click += new System.EventHandler(this.toolStripAddOne_Click);
+            // 
+            // toolStripAddMuti
+            // 
+            this.toolStripAddMuti.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAddMuti.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAddMuti.Image")));
+            this.toolStripAddMuti.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAddMuti.Name = "toolStripAddMuti";
+            this.toolStripAddMuti.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAddMuti.Text = "增加多行";
+            this.toolStripAddMuti.Click += new System.EventHandler(this.toolStripAddMuti_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSaveAuto
+            // 
+            this.toolStripSaveAuto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSaveAuto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSaveAuto.Image")));
+            this.toolStripSaveAuto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSaveAuto.Name = "toolStripSaveAuto";
+            this.toolStripSaveAuto.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSaveAuto.Text = "自动保存";
+            this.toolStripSaveAuto.Click += new System.EventHandler(this.toolStripSaveAuto_Click);
+            // 
+            // toolStripSign
+            // 
+            this.toolStripSign.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSign.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSign.Image")));
+            this.toolStripSign.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSign.Name = "toolStripSign";
+            this.toolStripSign.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSign.Text = "toolStripButton14";
+            this.toolStripSign.Click += new System.EventHandler(this.toolStripSign_Click);
+            // 
+            // toolStripSync
+            // 
+            this.toolStripSync.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripSync.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSync.Name = "toolStripSync";
+            this.toolStripSync.Size = new System.Drawing.Size(23, 22);
+            this.toolStripSync.Text = "toolStripButton1";
+            this.toolStripSync.Click += new System.EventHandler(this.toolStripSync_Click);
             // 
             // modifySubtitlePanel
             // 
@@ -536,10 +874,10 @@
             this.modifySubtitlePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.modifySubtitlePanel.FloatVertical = true;
             this.modifySubtitlePanel.ID = new System.Guid("d5f1cb44-9ef1-4a4b-bac9-7abcb6e9fee2");
-            this.modifySubtitlePanel.Location = new System.Drawing.Point(334, 0);
+            this.modifySubtitlePanel.Location = new System.Drawing.Point(519, 0);
             this.modifySubtitlePanel.Name = "modifySubtitlePanel";
-            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.modifySubtitlePanel.Size = new System.Drawing.Size(721, 252);
+            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(562, 252);
+            this.modifySubtitlePanel.Size = new System.Drawing.Size(536, 252);
             this.modifySubtitlePanel.Text = "修改字幕";
             // 
             // dockPanel4_Container
@@ -548,7 +886,7 @@
             this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(713, 225);
+            this.dockPanel4_Container.Size = new System.Drawing.Size(528, 225);
             this.dockPanel4_Container.TabIndex = 0;
             // 
             // contentEdit
@@ -557,7 +895,7 @@
             this.contentEdit.Location = new System.Drawing.Point(123, 0);
             this.contentEdit.Multiline = true;
             this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(590, 225);
+            this.contentEdit.Size = new System.Drawing.Size(405, 225);
             this.contentEdit.TabIndex = 16;
             // 
             // panel3
@@ -770,8 +1108,8 @@
             this.backOneSecItem,
             this.forward5SecItem,
             this.back5SecItem,
-            this.barButtonItem70,
-            this.barButtonItem71,
+            this.barButtonItemOneFrame,
+            this.subSyncItem,
             this.optionMenu,
             this.softwareOptionItem,
             this.viewOptionItem,
@@ -1078,12 +1416,14 @@
             this.addOneLineItem.Caption = "插入单行字幕";
             this.addOneLineItem.Id = 33;
             this.addOneLineItem.Name = "addOneLineItem";
+            this.addOneLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addOneLineItem_ItemClick);
             // 
             // addMutiLineItem
             // 
             this.addMutiLineItem.Caption = "插入多行字幕";
             this.addMutiLineItem.Id = 34;
             this.addMutiLineItem.Name = "addMutiLineItem";
+            this.addMutiLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addMutiLineItem_ItemClick);
             // 
             // customSplitItem
             // 
@@ -1360,8 +1700,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.backOneSecItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.forward5SecItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.back5SecItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem70),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem71, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemOneFrame),
+            new DevExpress.XtraBars.LinkPersistInfo(this.subSyncItem, true)});
             this.videoMenu.Name = "videoMenu";
             // 
             // openVideoItem
@@ -1413,17 +1753,19 @@
             this.back5SecItem.Name = "back5SecItem";
             this.back5SecItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.back5SecItem_ItemClick);
             // 
-            // barButtonItem70
+            // barButtonItemOneFrame
             // 
-            this.barButtonItem70.Caption = "前进一帧";
-            this.barButtonItem70.Id = 79;
-            this.barButtonItem70.Name = "barButtonItem70";
+            this.barButtonItemOneFrame.Caption = "前进一帧";
+            this.barButtonItemOneFrame.Id = 79;
+            this.barButtonItemOneFrame.Name = "barButtonItemOneFrame";
+            this.barButtonItemOneFrame.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemOneFrame_ItemClick);
             // 
-            // barButtonItem71
+            // subSyncItem
             // 
-            this.barButtonItem71.Caption = "字幕同步";
-            this.barButtonItem71.Id = 80;
-            this.barButtonItem71.Name = "barButtonItem71";
+            this.subSyncItem.Caption = "字幕同步";
+            this.subSyncItem.Id = 80;
+            this.subSyncItem.Name = "subSyncItem";
+            this.subSyncItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_ItemClick);
             // 
             // optionMenu
             // 
@@ -1827,19 +2169,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // panelContainer1
-            // 
-            this.panelContainer1.Controls.Add(this.videoPanel);
-            this.panelContainer1.Controls.Add(this.modifySubtitlePanel);
-            this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
-            this.panelContainer1.FloatVertical = true;
-            this.panelContainer1.ID = new System.Guid("69606b57-fcf3-4d4d-a7a3-7e75373d77e5");
-            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
-            this.panelContainer1.Name = "panelContainer1";
-            this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
-            this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
-            this.panelContainer1.Text = "panelContainer1";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1861,10 +2190,19 @@
             this.dockPanel1.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            this.panelContainer1.ResumeLayout(false);
             this.videoPanel.ResumeLayout(false);
             this.dockPanel3_Container.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.movieTrack)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.toolStripPanel1.ResumeLayout(false);
+            this.toolStripPanel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.modifySubtitlePanel.ResumeLayout(false);
             this.dockPanel4_Container.ResumeLayout(false);
             this.dockPanel4_Container.PerformLayout();
@@ -1877,7 +2215,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.textTimeLinePanel)).EndInit();
             this.textTimeLinePanel.ResumeLayout(false);
             this.listViewMenu.ResumeLayout(false);
-            this.panelContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1979,8 +2316,8 @@
         private DevExpress.XtraBars.BarButtonItem backOneSecItem;
         private DevExpress.XtraBars.BarButtonItem forward5SecItem;
         private DevExpress.XtraBars.BarButtonItem back5SecItem;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem70;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem71;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemOneFrame;
+        private DevExpress.XtraBars.BarButtonItem subSyncItem;
         private DevExpress.XtraBars.BarSubItem optionMenu;
         private DevExpress.XtraBars.BarButtonItem softwareOptionItem;
         private DevExpress.XtraBars.BarButtonItem viewOptionItem;
@@ -2073,6 +2410,35 @@
         private System.Windows.Forms.ToolStripMenuItem alignAllLineContext;
         private DevExpress.XtraBars.BarButtonItem ccRemoveDuplicateItemL;
         private DevExpress.XtraBars.Docking.DockPanel panelContainer1;
+        private System.Windows.Forms.ToolStripPanel toolStripPanel1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripLoadFile;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton toolStripPlay;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton toolStripPause;
+        private System.Windows.Forms.ToolStripButton toolStripBack5;
+        private System.Windows.Forms.ToolStripButton toolStripForward5;
+        private System.Windows.Forms.ToolStripButton toolStripBack10;
+        private System.Windows.Forms.ToolStripButton toolStripForward10;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton toolStrip1Step;
+        private System.Windows.Forms.ToolStripButton toolStripSyn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton toolStripAlignNow;
+        private System.Windows.Forms.ToolStripButton toolStripAlignAfter;
+        private System.Windows.Forms.ToolStripButton toolStripAlighAll;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripButton toolStripAlighStart;
+        private System.Windows.Forms.ToolStripButton toolStripAlighEnd;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripButton toolStripAddOne;
+        private System.Windows.Forms.ToolStripButton toolStripAddMuti;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripButton toolStripSaveAuto;
+        private System.Windows.Forms.ToolStripButton toolStripSign;
+        private System.Windows.Forms.ToolStripButton toolStripSync;
     }
 }
 

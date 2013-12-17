@@ -487,6 +487,7 @@ namespace TimeMDev
             }
            // this.TimeLineOut();//这个是以前的刷新其他控件的代码
             this.SetFormControl();
+            this.RefreshMovieTrack();
         }
         private string TimeOut(double time)
         {
@@ -710,12 +711,18 @@ namespace TimeMDev
                 this.selectedRefreshMark = false;
             }
 
-            this.form1.movieTrack.Maximum = (int)totalTime;
-            this.form1.movieTrack.Value = (int)this.selectedTime;
-            this.form1.interval = (int)totalTime / 100;
 
         }
 
+       /// <summary>
+       /// 刷新movietrack
+       /// </summary>
+        public void RefreshMovieTrack()
+        {
+            this.form1.movieTrack.Maximum = (int)totalTime;
+            this.form1.movieTrack.Value = (int)this.selectedTime;
+            this.form1.interval = (int)totalTime / 100;
+        }
         #region 一些类里面的小工具
         /// <summary>
        /// 比较两个list

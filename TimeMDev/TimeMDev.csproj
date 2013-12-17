@@ -172,6 +172,12 @@
     <Compile Include="InsertEditorForm2.Designer.cs">
       <DependentUpon>InsertEditorForm2.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovieControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MovieControlPanel.Designer.cs">
+      <DependentUpon>MovieControlPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mplayer.cs" />
     <Compile Include="Notification\HandleMessageBase.cs" />
     <Compile Include="Notification\NotificationCenter.cs" />
@@ -193,6 +199,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChooseEncodingForm.resx">
       <DependentUpon>ChooseEncodingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomSpilt.resx">
       <DependentUpon>CustomSpilt.cs</DependentUpon>
@@ -224,6 +231,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IfSaveForm.resx">
       <DependentUpon>IfSaveForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertEditorForm1.resx">
       <DependentUpon>InsertEditorForm1.cs</DependentUpon>
@@ -231,6 +239,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InsertEditorForm2.resx">
       <DependentUpon>InsertEditorForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovieControlPanel.resx">
+      <DependentUpon>MovieControlPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PictureShowCut.resx">
@@ -249,6 +261,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaveAsForm.resx">
       <DependentUpon>SaveAsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SetAssForm.resx">
       <DependentUpon>SetAssForm.cs</DependentUpon>
@@ -266,6 +279,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
