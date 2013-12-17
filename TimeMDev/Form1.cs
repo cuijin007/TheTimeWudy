@@ -1022,7 +1022,12 @@ namespace TimeMDev
 
                 if (this.listView1.SelectedIndices[0] < this.listView1.yyItems.Count - 1)
                 {
-                    NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", this.listView1.SelectedIndices[0]+1);
+                    List<int> list = new List<int>();
+                    list.Add(this.listView1.SelectedIndices[0] + 1);
+                    //NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
+                    int index = this.listView1.SelectedIndices[0] + 1;
+                    this.listView1.YYClearSelected();
+                    this.listView1.YYSetSelected(index);
                     NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", this.listView1.SelectedIndices[0]+1);
                 }
             }
@@ -1254,15 +1259,16 @@ namespace TimeMDev
             if (MPlayer.RefreshMark)
             {
                 MPlayer.RefreshMark = false;
-                this.subSyncItem.ButtonStyle = BarButtonStyle.Check;
-                this.toolStripSyn.Checked = true;
+                this.toolStripSyn.Checked = false;
+                this.subSyncItem.Checked = false;
             }
             else
             {
                 MPlayer.RefreshMark = true;
-                this.subSyncItem.ButtonStyle = BarButtonStyle.Default;
-                this.toolStripSyn.Checked = false;
-            }
+                this.subSyncItem.Checked = true;
+                this.toolStripSyn.Checked = true;
+            }           
+            
         }
 
         private void toolStripAlignNow_Click(object sender, EventArgs e)
@@ -1337,6 +1343,41 @@ namespace TimeMDev
         private void toolStripSync_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void subSyncItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void autoModeItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void merageAccurateLineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 自动更改的标记位
+        /// </summary>
+        int autoChangePos = 0;
+        private void nextItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.autoModeItem.Checked)
+            {
+                if (autoChangePos == 0)
+                {
+                    this.nowLineStartItem_ItemClick(null, null);
+                    autoChangePos = 1;
+                }
+                else
+                {
+                    this.nowLineEndItem_ItemClick(null, null);
+                    autoChangePos = 0;
+                }
+            }
         }
 
 

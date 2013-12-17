@@ -157,7 +157,7 @@
             this.clearContentItem = new DevExpress.XtraBars.BarButtonItem();
             this.translationTimeItem = new DevExpress.XtraBars.BarButtonItem();
             this.alignNowTimeItem = new DevExpress.XtraBars.BarSubItem();
-            this.autoModeItem = new DevExpress.XtraBars.BarButtonItem();
+            this.autoModeItem = new DevExpress.XtraBars.BarCheckItem();
             this.nextItem = new DevExpress.XtraBars.BarButtonItem();
             this.nowLineStartItem = new DevExpress.XtraBars.BarButtonItem();
             this.nowLineEndItem = new DevExpress.XtraBars.BarButtonItem();
@@ -192,7 +192,7 @@
             this.forward5SecItem = new DevExpress.XtraBars.BarButtonItem();
             this.back5SecItem = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemOneFrame = new DevExpress.XtraBars.BarButtonItem();
-            this.subSyncItem = new DevExpress.XtraBars.BarButtonItem();
+            this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.softwareOptionItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewOptionItem = new DevExpress.XtraBars.BarButtonItem();
@@ -588,7 +588,7 @@
             this.toolStripPanel1.Name = "toolStripPanel1";
             this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.toolStripPanel1.Size = new System.Drawing.Size(263, 32);
+            this.toolStripPanel1.Size = new System.Drawing.Size(232, 32);
             // 
             // toolStrip1
             // 
@@ -610,7 +610,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(263, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(232, 23);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1081,7 +1081,6 @@
             this.nextLineItem,
             this.combineOneLineItem,
             this.combineMutiLineItem,
-            this.autoModeItem,
             this.nextItem,
             this.nowLineStartItem,
             this.nowLineEndItem,
@@ -1109,7 +1108,6 @@
             this.forward5SecItem,
             this.back5SecItem,
             this.barButtonItemOneFrame,
-            this.subSyncItem,
             this.optionMenu,
             this.softwareOptionItem,
             this.viewOptionItem,
@@ -1131,9 +1129,11 @@
             this.barButtonItem78,
             this.barButtonItem79,
             this.barButtonItem80,
-            this.ccRemoveDuplicateItemL});
+            this.ccRemoveDuplicateItemL,
+            this.subSyncItem,
+            this.autoModeItem});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 108;
+            this.barManager1.MaxItemId = 110;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -1508,14 +1508,16 @@
             // autoModeItem
             // 
             this.autoModeItem.Caption = "自动模式";
-            this.autoModeItem.Id = 52;
+            this.autoModeItem.Id = 109;
             this.autoModeItem.Name = "autoModeItem";
+            this.autoModeItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.autoModeItem_CheckedChanged);
             // 
             // nextItem
             // 
             this.nextItem.Caption = "下一个";
             this.nextItem.Id = 53;
             this.nextItem.Name = "nextItem";
+            this.nextItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nextItem_ItemClick);
             // 
             // nowLineStartItem
             // 
@@ -1647,6 +1649,7 @@
             this.merageAccurateLineItem.Caption = "合并精轴";
             this.merageAccurateLineItem.Id = 64;
             this.merageAccurateLineItem.Name = "merageAccurateLineItem";
+            this.merageAccurateLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.merageAccurateLineItem_ItemClick);
             // 
             // twoLanMerageItem
             // 
@@ -1763,9 +1766,10 @@
             // subSyncItem
             // 
             this.subSyncItem.Caption = "字幕同步";
-            this.subSyncItem.Id = 80;
+            this.subSyncItem.Id = 108;
             this.subSyncItem.Name = "subSyncItem";
             this.subSyncItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_ItemClick);
+            this.subSyncItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_CheckedChanged);
             // 
             // optionMenu
             // 
@@ -2289,7 +2293,6 @@
         private DevExpress.XtraBars.BarButtonItem nextLineItem;
         private DevExpress.XtraBars.BarButtonItem combineOneLineItem;
         private DevExpress.XtraBars.BarButtonItem combineMutiLineItem;
-        private DevExpress.XtraBars.BarButtonItem autoModeItem;
         private DevExpress.XtraBars.BarButtonItem nextItem;
         private DevExpress.XtraBars.BarButtonItem nowLineStartItem;
         private DevExpress.XtraBars.BarButtonItem nowLineEndItem;
@@ -2317,7 +2320,6 @@
         private DevExpress.XtraBars.BarButtonItem forward5SecItem;
         private DevExpress.XtraBars.BarButtonItem back5SecItem;
         private DevExpress.XtraBars.BarButtonItem barButtonItemOneFrame;
-        private DevExpress.XtraBars.BarButtonItem subSyncItem;
         private DevExpress.XtraBars.BarSubItem optionMenu;
         private DevExpress.XtraBars.BarButtonItem softwareOptionItem;
         private DevExpress.XtraBars.BarButtonItem viewOptionItem;
@@ -2439,6 +2441,8 @@
         private System.Windows.Forms.ToolStripButton toolStripSaveAuto;
         private System.Windows.Forms.ToolStripButton toolStripSign;
         private System.Windows.Forms.ToolStripButton toolStripSync;
+        private DevExpress.XtraBars.BarCheckItem subSyncItem;
+        private DevExpress.XtraBars.BarCheckItem autoModeItem;
     }
 }
 

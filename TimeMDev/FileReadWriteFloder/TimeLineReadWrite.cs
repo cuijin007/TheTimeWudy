@@ -434,7 +434,7 @@ namespace TimeMDev
         public static double TimeInAss(string time)
         {
             string[] timeBuffer;
-            string[] spiltChar = { ".", "。", ":" };
+            string[] spiltChar = { ".", "。",",", ":" };
             timeBuffer = time.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
             if (timeBuffer.Length < 4)
             {
