@@ -1380,6 +1380,186 @@ namespace TimeMDev
             }
         }
 
+        private void openSubtitleLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.loadSubtitleItem_ItemClick(null, null);
+        }
+
+        private void openVideoLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.openVideoItem_ItemClick(null, null);
+        }
+
+        private void newSubtitleLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.newSubtitleItem_ItemClick(null, null);
+        }
+
+        private void loadTxtLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.loadTranslationItem_ItemClick(null, null);
+        }
+
+        private void loadTranslationItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            LoadTranslationFormPara para = new LoadTranslationFormPara();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "翻译稿|*.txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                para.path = dialog.FileName;
+                if ((new LoadTranslationForm(para)).ShowDialog() == DialogResult.OK)
+                {
+                        dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
+                        dataProcess.DataInit();
+                        this.dataProcess.Init();
+                        pictureRefresh.Start();
+                        this.mplayer.Pause();//要求打开的时候是停止的。
+
+                        this.timeLineReadWrite = new TimeLineReadWrite();
+                        this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
+                        string pathSave = timeLineReadWrite.filePath;
+                        
+                        this.timeLineReadWrite.filePath = para.path;
+                        this.timeLineReadWrite.Read(new FileReadOridinary(para.isBlank));
+                        this.timeLineReadWrite.filePath = pathSave;
+
+                        this.rateShow.Focus();
+                        this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+                        this.listView1.YYRefresh();
+                }
+            }
+        }
+
+        private void addSubtitleLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.addSubtitleItem_ItemClick(null, null);
+        }
+
+        private void ccHandleLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.ccSubtitleHandleItem_ItemClick(null, null);
+        }
+
+        private void exportSubtitleItem_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.exportMutiSaveItem_ItemClick(null, null);
+        }
+
+        private void saveSubtitleLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.saveSubtitleItem_ItemClick(null, null);
+        }
+
+        private void merageToEndLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.combineOneLineItem_ItemClick(null, null);
+        }
+
+        private void combineOneLineContext_Click(object sender, EventArgs e)
+        {
+            this.combineOneLineItem_ItemClick(null, null);
+        }
+
+        private void combineOneLineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                this.commandManage.CommandRun(new MergeToOne(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], this.listView1.SelectedIndices, true));
+            }
+        }
+
+        private void subtitleCombineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.commandManage.CommandRun(new RemoveRecordEnter(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices));
+            this.listView1.YYRefresh();
+        }
+
+        private void combineMutiLineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                this.commandManage.CommandRun(new MergeToOne(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], this.listView1.SelectedIndices, false));
+            }
+        }
+
+        private void combineMutiLineContext_Click(object sender, EventArgs e)
+        {
+            this.combineMutiLineItem_ItemClick(null, null);
+        }
+
+        private void merageToNewLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.combineMutiLineItem_ItemClick(null, null);
+        }
+
+        private void cutLineLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.customSpiltContext_Click(null, null);
+        }
+
+        private void alignNowLineLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.onlyNowLineItem_ItemClick(null, null);
+        }
+
+        private void alignNextLineLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.afterNowLineItem_ItemClick(null, null);
+        }
+
+        private void alignAllLineLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.allLineItem_ItemClick(null, null);
+        }
+
+        private void alignToBeforeSignLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.lastSignItem_ItemClick(null, null);
+        }
+
+        private void alignToAfterSignLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                List<HandleRecordBass> command = new List<HandleRecordBass>();
+                Double Diff = this.mplayer.nowTime - this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])].startTime;
+                int endPosition = 0;
+                for (int i = this.listView1.SelectedIndices[0]; i < this.listView1.SelectedIndices.Count; i++)
+                {
+                    if (this.listView1.yyItems[i].Checked)
+                    {
+                        endPosition = i;
+                        break;
+                    }
+                }
+                for (int i = this.listView1.SelectedIndices[0]; i <= endPosition; i++)
+                {
+                    SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(i)]);
+                    singleSentence.startTime += Diff;
+                    singleSentence.endTime += Diff;
+                    command.Add(new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, i, singleSentence));
+                }
+                this.commandManage.CommandRun(command);
+            }
+            this.listView1.YYRefresh();
+        }
+
+        private void translationTimeLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.translationTimeItem_ItemClick(null, null);
+        }
+
+        private void mergeTwoLanLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+          
+        }
+
+        private void findErrorLink_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.findErrorItem_ItemClick(null, null);
+        }
+
 
        
     }

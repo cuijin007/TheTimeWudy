@@ -6,9 +6,16 @@ using System.IO;
 
 namespace TimeMDev.FileReadWriteFloder
 {
+    /// <summary>
+    /// 读取翻译稿
+    /// </summary>
     class FileReadOridinary:FileReadFunction
     {
         private bool BlankInterval;
+        /// <summary>
+        /// 是否按行读取
+        /// </summary>
+        /// <param name="BlankInterval"></param>
         public FileReadOridinary(bool BlankInterval)
         {
             this.BlankInterval = BlankInterval;

@@ -148,6 +148,7 @@
     <Compile Include="HandleRecord\ListViewSort.cs" />
     <Compile Include="HandleRecord\MergeToOne.cs" />
     <Compile Include="HandleRecord\PasteRecord.cs" />
+    <Compile Include="HandleRecord\RemoveRecordEnter.cs" />
     <Compile Include="HandleRecord\ReplaceMutiRecordContent.cs" />
     <Compile Include="HandleRecord\ReplaceRecordContent.cs" />
     <Compile Include="HandleRecord\SetSelectedState.cs" />
@@ -171,6 +172,12 @@
     </Compile>
     <Compile Include="InsertEditorForm2.Designer.cs">
       <DependentUpon>InsertEditorForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadTranslationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadTranslationForm.Designer.cs">
+      <DependentUpon>LoadTranslationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MovieControlPanel.cs">
       <SubType>UserControl</SubType>
@@ -239,6 +246,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InsertEditorForm2.resx">
       <DependentUpon>InsertEditorForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadTranslationForm.resx">
+      <DependentUpon>LoadTranslationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MovieControlPanel.resx">

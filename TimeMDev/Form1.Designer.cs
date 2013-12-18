@@ -296,7 +296,7 @@
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(131, 200);
             this.dockPanel1.Size = new System.Drawing.Size(131, 551);
-            this.dockPanel1.Text = "Tasks pane";
+            this.dockPanel1.Text = "功能栏";
             // 
             // dockPanel1_Container
             // 
@@ -346,7 +346,6 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "打开字幕";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.openSubtitleLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.openVideoLink),
@@ -362,45 +361,54 @@
             // 
             this.openSubtitleLink.Caption = "打开字幕";
             this.openSubtitleLink.Name = "openSubtitleLink";
+            this.openSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.openSubtitleLink_LinkClicked);
             // 
             // openVideoLink
             // 
             this.openVideoLink.Caption = "打开视频";
             this.openVideoLink.Name = "openVideoLink";
+            this.openVideoLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.openVideoLink_LinkClicked);
             // 
             // newSubtitleLink
             // 
             this.newSubtitleLink.Caption = "新字幕";
             this.newSubtitleLink.Name = "newSubtitleLink";
+            this.newSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.newSubtitleLink_LinkClicked);
             // 
             // loadTxtLink
             // 
             this.loadTxtLink.Caption = "导入文本";
             this.loadTxtLink.Name = "loadTxtLink";
+            this.loadTxtLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.loadTxtLink_LinkClicked);
             // 
             // addSubtitleLink
             // 
             this.addSubtitleLink.Caption = "追加字幕";
             this.addSubtitleLink.Name = "addSubtitleLink";
+            this.addSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.addSubtitleLink_LinkClicked);
             // 
             // ccHandleLink
             // 
             this.ccHandleLink.Caption = "CC处理";
             this.ccHandleLink.Name = "ccHandleLink";
+            this.ccHandleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ccHandleLink_LinkClicked);
             // 
             // exportSubtitleItem
             // 
             this.exportSubtitleItem.Caption = "输出字幕";
             this.exportSubtitleItem.Name = "exportSubtitleItem";
+            this.exportSubtitleItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.exportSubtitleItem_LinkClicked);
             // 
             // saveSubtitleLink
             // 
             this.saveSubtitleLink.Caption = "保存字幕";
             this.saveSubtitleLink.Name = "saveSubtitleLink";
+            this.saveSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.saveSubtitleLink_LinkClicked);
             // 
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "字幕编辑";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.merageToEndLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.merageToNewLink),
@@ -411,20 +419,24 @@
             // 
             this.merageToEndLink.Caption = "合并至单行尾部";
             this.merageToEndLink.Name = "merageToEndLink";
+            this.merageToEndLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.merageToEndLink_LinkClicked);
             // 
             // merageToNewLink
             // 
             this.merageToNewLink.Caption = "合并至新行";
             this.merageToNewLink.Name = "merageToNewLink";
+            this.merageToNewLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.merageToNewLink_LinkClicked);
             // 
             // cutLineLink
             // 
             this.cutLineLink.Caption = "拆分字幕";
             this.cutLineLink.Name = "cutLineLink";
+            this.cutLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.cutLineLink_LinkClicked);
             // 
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "时间轴编辑";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNowLineLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNextLineLink),
@@ -440,41 +452,50 @@
             // 
             this.alignNowLineLink.Caption = "对齐当前行";
             this.alignNowLineLink.Name = "alignNowLineLink";
+            this.alignNowLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignNowLineLink_LinkClicked);
             // 
             // alignNextLineLink
             // 
             this.alignNextLineLink.Caption = "对齐后续行";
             this.alignNextLineLink.Name = "alignNextLineLink";
+            this.alignNextLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignNextLineLink_LinkClicked);
             // 
             // alignAllLineLink
             // 
             this.alignAllLineLink.Caption = "对齐全部行";
             this.alignAllLineLink.Name = "alignAllLineLink";
+            this.alignAllLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignAllLineLink_LinkClicked);
             // 
             // alignToBeforeSignLink
             // 
             this.alignToBeforeSignLink.Caption = "对齐至前标记";
             this.alignToBeforeSignLink.Name = "alignToBeforeSignLink";
+            this.alignToBeforeSignLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignToBeforeSignLink_LinkClicked);
             // 
             // alignToAfterSignLink
             // 
             this.alignToAfterSignLink.Caption = "对齐至后标记";
             this.alignToAfterSignLink.Name = "alignToAfterSignLink";
+            this.alignToAfterSignLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignToAfterSignLink_LinkClicked);
             // 
             // translationTimeLink
             // 
             this.translationTimeLink.Caption = "平移时间";
             this.translationTimeLink.Name = "translationTimeLink";
+            this.translationTimeLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.translationTimeLink_LinkClicked);
             // 
             // mergeTwoLanLink
             // 
             this.mergeTwoLanLink.Caption = "双语合并";
             this.mergeTwoLanLink.Name = "mergeTwoLanLink";
+            this.mergeTwoLanLink.Visible = false;
+            this.mergeTwoLanLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.mergeTwoLanLink_LinkClicked);
             // 
             // findErrorLink
             // 
             this.findErrorLink.Caption = "检查除错";
             this.findErrorLink.Name = "findErrorLink";
+            this.findErrorLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.findErrorLink_LinkClicked);
             // 
             // navBarGroup4
             // 
@@ -588,7 +609,7 @@
             this.toolStripPanel1.Name = "toolStripPanel1";
             this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.toolStripPanel1.Size = new System.Drawing.Size(232, 32);
+            this.toolStripPanel1.Size = new System.Drawing.Size(263, 32);
             // 
             // toolStrip1
             // 
@@ -610,7 +631,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(232, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(263, 23);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1193,6 +1214,7 @@
             this.loadTranslationItem.Caption = "导入翻译稿";
             this.loadTranslationItem.Id = 4;
             this.loadTranslationItem.Name = "loadTranslationItem";
+            this.loadTranslationItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadTranslationItem_ItemClick);
             // 
             // addSubtitleItem
             // 
@@ -1445,18 +1467,21 @@
             this.combineOneLineItem.Caption = "合并为单行显示";
             this.combineOneLineItem.Id = 50;
             this.combineOneLineItem.Name = "combineOneLineItem";
+            this.combineOneLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.combineOneLineItem_ItemClick);
             // 
             // combineMutiLineItem
             // 
             this.combineMutiLineItem.Caption = "合并为多行显示";
             this.combineMutiLineItem.Id = 51;
             this.combineMutiLineItem.Name = "combineMutiLineItem";
+            this.combineMutiLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.combineMutiLineItem_ItemClick);
             // 
             // subtitleCombineItem
             // 
             this.subtitleCombineItem.Caption = "字幕行合并为单行";
             this.subtitleCombineItem.Id = 37;
             this.subtitleCombineItem.Name = "subtitleCombineItem";
+            this.subtitleCombineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subtitleCombineItem_ItemClick);
             // 
             // deleteItem
             // 
@@ -1649,6 +1674,7 @@
             this.merageAccurateLineItem.Caption = "合并精轴";
             this.merageAccurateLineItem.Id = 64;
             this.merageAccurateLineItem.Name = "merageAccurateLineItem";
+            this.merageAccurateLineItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.merageAccurateLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.merageAccurateLineItem_ItemClick);
             // 
             // twoLanMerageItem
@@ -1656,6 +1682,7 @@
             this.twoLanMerageItem.Caption = "双语字幕合并";
             this.twoLanMerageItem.Id = 65;
             this.twoLanMerageItem.Name = "twoLanMerageItem";
+            this.twoLanMerageItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // addEditorItem
             // 
@@ -2077,12 +2104,14 @@
             this.combineOneLineContext.Name = "combineOneLineContext";
             this.combineOneLineContext.Size = new System.Drawing.Size(228, 22);
             this.combineOneLineContext.Text = "合并为单行显示";
+            this.combineOneLineContext.Click += new System.EventHandler(this.combineOneLineContext_Click);
             // 
             // combineMutiLineContext
             // 
             this.combineMutiLineContext.Name = "combineMutiLineContext";
             this.combineMutiLineContext.Size = new System.Drawing.Size(228, 22);
             this.combineMutiLineContext.Text = "合并为多行显示";
+            this.combineMutiLineContext.Click += new System.EventHandler(this.combineMutiLineContext_Click);
             // 
             // toolStripSeparator2
             // 
