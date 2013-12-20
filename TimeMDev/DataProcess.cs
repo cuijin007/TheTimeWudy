@@ -442,8 +442,8 @@ namespace TimeMDev
                                     {
                                         string[] itemStr = new string[5];
                                         itemStr[0] = i + "";
-                                        itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
-                                        itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
+                                        itemStr[1] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
+                                        itemStr[2] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                         itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
                                         itemStr[4] = this.pictureRefresh.temporaryTimeLine.everyLineLength;
                                         itemStr[5] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.timeLength);
@@ -506,8 +506,8 @@ namespace TimeMDev
                                         {
                                             string[] itemStr = new string[5];
                                             itemStr[0] = i + "";
-                                            itemStr[1] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
-                                            itemStr[2] = this.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
+                                            itemStr[1] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.startTime);
+                                            itemStr[2] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.endTime);
                                             itemStr[3] = this.pictureRefresh.temporaryTimeLine.content;
                                             itemStr[4] = this.pictureRefresh.temporaryTimeLine.everyLineLength;
                                             itemStr[5] = TimeLineReadWrite.TimeOut(this.pictureRefresh.temporaryTimeLine.timeLength);
@@ -558,31 +558,31 @@ namespace TimeMDev
             this.mplayer.SeekPosition(this.pictureRefresh.listSingleSentence[index].startTime + 0.01);
             this.pictureRefresh.NowTime = this.pictureRefresh.listSingleSentence[index].startTime;
         }
-        public string TimeOut(double time)
-        {
-            time = ((double)((int)(time * 1000))) / 1000;
-            int hour = (int)time / 3600;
-            int minute = (int)(time - 3600 * hour) / 60;
-            int second = (int)(time - 3600 * hour - 60 * minute);
-            int minsec = (int)((time - (int)time) * 1000);
-            string TimeStr = hour + ":" + minute + ":" + second + "," + minsec;
-            return TimeStr;
-        }
-        public double TimeIn(string time)
-        {
-            string[] timeBuffer;
-            string[] spiltChar = { ",", "，", ":" };
-            timeBuffer = time.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
-            if (timeBuffer.Length < 4)
-            {
-                return -1;
-            }
-            else
-            {
-                double timedouble = Double.Parse(timeBuffer[0]) * 3600 + Double.Parse(timeBuffer[1]) * 60 + Double.Parse(timeBuffer[2]) + Double.Parse(timeBuffer[3]) * 0.001;
-                return timedouble;
-            }
-        }
+        //public string TimeOut(double time)
+        //{
+        //    time = ((double)((int)(time * 1000))) / 1000;
+        //    int hour = (int)time / 3600;
+        //    int minute = (int)(time - 3600 * hour) / 60;
+        //    int second = (int)(time - 3600 * hour - 60 * minute);
+        //    int minsec = (int)((time - (int)time) * 1000);
+        //    string TimeStr = hour + ":" + minute + ":" + second + "," + minsec;
+        //    return TimeStr;
+        //}
+        //public double TimeIn(string time)
+        //{
+        //    string[] timeBuffer;
+        //    string[] spiltChar = { ",", "，", ":" };
+        //    timeBuffer = time.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
+        //    if (timeBuffer.Length < 4)
+        //    {
+        //        return -1;
+        //    }
+        //    else
+        //    {
+        //        double timedouble = Double.Parse(timeBuffer[0]) * 3600 + Double.Parse(timeBuffer[1]) * 60 + Double.Parse(timeBuffer[2]) + Double.Parse(timeBuffer[3]) * 0.001;
+        //        return timedouble;
+        //    }
+        //}
 
 
         /// <summary>

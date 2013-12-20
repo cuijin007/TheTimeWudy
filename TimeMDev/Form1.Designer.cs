@@ -360,55 +360,63 @@
             // openSubtitleLink
             // 
             this.openSubtitleLink.Caption = "打开字幕";
+            this.openSubtitleLink.LargeImage = ((System.Drawing.Image)(resources.GetObject("openSubtitleLink.LargeImage")));
             this.openSubtitleLink.Name = "openSubtitleLink";
+            this.openSubtitleLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("openSubtitleLink.SmallImage")));
             this.openSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.openSubtitleLink_LinkClicked);
             // 
             // openVideoLink
             // 
             this.openVideoLink.Caption = "打开视频";
             this.openVideoLink.Name = "openVideoLink";
+            this.openVideoLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("openVideoLink.SmallImage")));
             this.openVideoLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.openVideoLink_LinkClicked);
             // 
             // newSubtitleLink
             // 
             this.newSubtitleLink.Caption = "新字幕";
             this.newSubtitleLink.Name = "newSubtitleLink";
+            this.newSubtitleLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("newSubtitleLink.SmallImage")));
             this.newSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.newSubtitleLink_LinkClicked);
             // 
             // loadTxtLink
             // 
             this.loadTxtLink.Caption = "导入文本";
             this.loadTxtLink.Name = "loadTxtLink";
+            this.loadTxtLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("loadTxtLink.SmallImage")));
             this.loadTxtLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.loadTxtLink_LinkClicked);
             // 
             // addSubtitleLink
             // 
             this.addSubtitleLink.Caption = "追加字幕";
             this.addSubtitleLink.Name = "addSubtitleLink";
+            this.addSubtitleLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("addSubtitleLink.SmallImage")));
             this.addSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.addSubtitleLink_LinkClicked);
             // 
             // ccHandleLink
             // 
             this.ccHandleLink.Caption = "CC处理";
             this.ccHandleLink.Name = "ccHandleLink";
+            this.ccHandleLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("ccHandleLink.SmallImage")));
             this.ccHandleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ccHandleLink_LinkClicked);
             // 
             // exportSubtitleItem
             // 
             this.exportSubtitleItem.Caption = "输出字幕";
             this.exportSubtitleItem.Name = "exportSubtitleItem";
+            this.exportSubtitleItem.SmallImage = ((System.Drawing.Image)(resources.GetObject("exportSubtitleItem.SmallImage")));
             this.exportSubtitleItem.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.exportSubtitleItem_LinkClicked);
             // 
             // saveSubtitleLink
             // 
             this.saveSubtitleLink.Caption = "保存字幕";
             this.saveSubtitleLink.Name = "saveSubtitleLink";
+            this.saveSubtitleLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("saveSubtitleLink.SmallImage")));
             this.saveSubtitleLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.saveSubtitleLink_LinkClicked);
             // 
             // navBarGroup2
             // 
             this.navBarGroup2.Caption = "字幕编辑";
-            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.merageToEndLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.merageToNewLink),
@@ -419,24 +427,26 @@
             // 
             this.merageToEndLink.Caption = "合并至单行尾部";
             this.merageToEndLink.Name = "merageToEndLink";
+            this.merageToEndLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("merageToEndLink.SmallImage")));
             this.merageToEndLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.merageToEndLink_LinkClicked);
             // 
             // merageToNewLink
             // 
             this.merageToNewLink.Caption = "合并至新行";
             this.merageToNewLink.Name = "merageToNewLink";
+            this.merageToNewLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("merageToNewLink.SmallImage")));
             this.merageToNewLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.merageToNewLink_LinkClicked);
             // 
             // cutLineLink
             // 
             this.cutLineLink.Caption = "拆分字幕";
             this.cutLineLink.Name = "cutLineLink";
+            this.cutLineLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("cutLineLink.SmallImage")));
             this.cutLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.cutLineLink_LinkClicked);
             // 
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "时间轴编辑";
-            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNowLineLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNextLineLink),
@@ -452,36 +462,42 @@
             // 
             this.alignNowLineLink.Caption = "对齐当前行";
             this.alignNowLineLink.Name = "alignNowLineLink";
+            this.alignNowLineLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("alignNowLineLink.SmallImage")));
             this.alignNowLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignNowLineLink_LinkClicked);
             // 
             // alignNextLineLink
             // 
             this.alignNextLineLink.Caption = "对齐后续行";
             this.alignNextLineLink.Name = "alignNextLineLink";
+            this.alignNextLineLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("alignNextLineLink.SmallImage")));
             this.alignNextLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignNextLineLink_LinkClicked);
             // 
             // alignAllLineLink
             // 
             this.alignAllLineLink.Caption = "对齐全部行";
             this.alignAllLineLink.Name = "alignAllLineLink";
+            this.alignAllLineLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("alignAllLineLink.SmallImage")));
             this.alignAllLineLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignAllLineLink_LinkClicked);
             // 
             // alignToBeforeSignLink
             // 
             this.alignToBeforeSignLink.Caption = "对齐至前标记";
             this.alignToBeforeSignLink.Name = "alignToBeforeSignLink";
+            this.alignToBeforeSignLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("alignToBeforeSignLink.SmallImage")));
             this.alignToBeforeSignLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignToBeforeSignLink_LinkClicked);
             // 
             // alignToAfterSignLink
             // 
             this.alignToAfterSignLink.Caption = "对齐至后标记";
             this.alignToAfterSignLink.Name = "alignToAfterSignLink";
+            this.alignToAfterSignLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("alignToAfterSignLink.SmallImage")));
             this.alignToAfterSignLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.alignToAfterSignLink_LinkClicked);
             // 
             // translationTimeLink
             // 
             this.translationTimeLink.Caption = "平移时间";
             this.translationTimeLink.Name = "translationTimeLink";
+            this.translationTimeLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("translationTimeLink.SmallImage")));
             this.translationTimeLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.translationTimeLink_LinkClicked);
             // 
             // mergeTwoLanLink
@@ -495,6 +511,7 @@
             // 
             this.findErrorLink.Caption = "检查除错";
             this.findErrorLink.Name = "findErrorLink";
+            this.findErrorLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("findErrorLink.SmallImage")));
             this.findErrorLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.findErrorLink_LinkClicked);
             // 
             // navBarGroup4
@@ -609,7 +626,7 @@
             this.toolStripPanel1.Name = "toolStripPanel1";
             this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.toolStripPanel1.Size = new System.Drawing.Size(263, 32);
+            this.toolStripPanel1.Size = new System.Drawing.Size(232, 32);
             // 
             // toolStrip1
             // 
@@ -631,7 +648,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(263, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(232, 23);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -877,7 +894,7 @@
             this.toolStripSign.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSign.Name = "toolStripSign";
             this.toolStripSign.Size = new System.Drawing.Size(23, 22);
-            this.toolStripSign.Text = "toolStripButton14";
+            this.toolStripSign.Text = "标记当前行";
             this.toolStripSign.Click += new System.EventHandler(this.toolStripSign_Click);
             // 
             // toolStripSync
