@@ -434,15 +434,17 @@ namespace TimeMDev
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (e.Column == 0)
+            int columnNum = e.Column;
+            if (e.Column == 0||e.Column==6)
             {
                 this.listView1.SortStyle = 2;
             }
-            else if (e.Column == 3)
+            else if (e.Column == 3&&e.Column==4)
             {
+                columnNum = 3;
                 this.listView1.SortStyle = 1;
             }
-            else
+            else if(e.Column==2||e.Column==1||e.Column==5)
             {
                 this.listView1.SortStyle = 0;
             }
@@ -460,7 +462,7 @@ namespace TimeMDev
                 this.listView1.Order = SortOrder.Ascending;
             }
             //this.listView1.YYSort();
-            ListViewSort sort = new ListViewSort(this.listView1, e.Column, this.listView1.SortStyle, this.listView1.Order);
+            ListViewSort sort = new ListViewSort(this.listView1, columnNum, this.listView1.SortStyle, this.listView1.Order);
             this.commandManage.CommandRun(sort);
         }
 
