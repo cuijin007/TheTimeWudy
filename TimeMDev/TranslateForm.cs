@@ -17,7 +17,7 @@ namespace TimeMDev
         {
             InitializeComponent();
             this.translateFormPara = translateFormPara;
-            this.nowTime.Text = TimeLineReadWrite.TimeOutAss(translateFormPara.time);
+            this.nowTime.Text = TimeLineReadWrite.TimeOut(translateFormPara.time);
         }
 
         private void confirm_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace TimeMDev
 
         public void SetPara()
         {
-            this.translateFormPara.time = TimeLineReadWrite.TimeInAss(this.nowTime.Text);
+            this.translateFormPara.time = TimeLineReadWrite.TimeIn(this.nowTime.Text);
             if (this.selectedLine.Checked)
             {
                 this.translateFormPara.state = TranslateFormPara.SELECTEDLINE;

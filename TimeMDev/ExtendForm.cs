@@ -20,7 +20,7 @@ namespace TimeMDev
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            this.extendFormPara.time=TimeLineReadWrite.TimeInAss(this.nowTime.Text);
+            this.extendFormPara.time=TimeLineReadWrite.TimeIn(this.nowTime.Text);
             this.DialogResult=DialogResult.OK;
             this.Close();
         }

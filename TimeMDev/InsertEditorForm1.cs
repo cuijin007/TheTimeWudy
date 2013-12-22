@@ -20,14 +20,14 @@ namespace TimeMDev
 
         private void confirm_Click(object sender, EventArgs e)
         {
-            this.insertEditorForm1Para.time = TimeLineReadWrite.TimeInAss(this.nowTime.Text);
+            this.insertEditorForm1Para.time = TimeLineReadWrite.TimeIn(this.nowTime.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void cancel_Click(object sender, EventArgs e)
         {
-            this.insertEditorForm1Para.time = TimeLineReadWrite.TimeInAss(this.nowTime.Text);
+            this.insertEditorForm1Para.time = TimeLineReadWrite.TimeIn(this.nowTime.Text);
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }

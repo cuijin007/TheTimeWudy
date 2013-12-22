@@ -55,7 +55,7 @@ namespace TimeMDev
                 {
                     string[] str = new string[2];
                     str[0] = (i + 1)+"";
-                    str[1] = TimeLineReadWrite.TimeOutAss(this.timeLineReadWrite.listSingleSentence[i + 1].startTime - this.timeLineReadWrite.listSingleSentence[i].endTime);
+                    str[1] = TimeLineReadWrite.TimeOut(this.timeLineReadWrite.listSingleSentence[i + 1].startTime - this.timeLineReadWrite.listSingleSentence[i].endTime);
                     this.listViewShow.Items.Add(new ListViewItem(str));
                 }
             }

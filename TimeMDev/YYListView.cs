@@ -237,7 +237,7 @@ namespace TimeMDev
                 }
                 item.SubItems[0].Text=Int32.Parse(this.yyItems[index].SubItems[0].Text)+i+1+"";
                 item.SubItems[1].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text));
-                item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text)+1);
+                item.SubItems[2].Text=TimeLineReadWrite.TimeOut(TimeLineReadWrite.TimeIn(this.yyItems[index+i].SubItems[2].Text)+timeSpilt);//cj-2013-12-22
 
                 singleSentenceBuf.content = item.SubItems[3].Text;
                 singleSentenceBuf.startTime = TimeLineReadWrite.TimeIn(this.yyItems[index + i].SubItems[2].Text);

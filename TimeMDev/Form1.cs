@@ -220,7 +220,8 @@ namespace TimeMDev
                     this.mplayer.SeekPosition(this.movieTrack.Value);
                     this.nowTrackerPosition = this.movieTrack.Value;
                 }
-                this.nowTimeShow.Text = this.TimeOut(this.movieTrack.Value);
+                //this.nowTimeShow.Text = this.TimeOut(this.movieTrack.Value);
+                this.nowTimeLineShow.Text = TimeLineReadWrite.TimeOut(this.movieTrack.Value);
             }
         }
         
@@ -311,16 +312,6 @@ namespace TimeMDev
             this.dataProcess.MouseWheel(sender, e);
         }
 
-        private string TimeOut(double time)
-        {
-            time = ((double)((int)(time * 1000))) / 1000;
-            int hour = (int)time / 3600;
-            int minute = (int)(time - 3600 * hour) / 60;
-            int second = (int)(time - 3600 * hour - 60 * minute);
-            int minsec = (int)((time - (int)time) * 1000);
-            string TimeStr = hour + ":" + minute + ":" + second + "," + minsec;
-            return TimeStr;
-        }
         /// <summary>
         /// 打开字幕
         /// </summary>
@@ -393,8 +384,8 @@ namespace TimeMDev
             {
                 //showBuffer[0] = i + 1 + "";
                 showBuffer[0] = i + "";//2013-4-10
-                showBuffer[1] = TimeOut(listSingleSentence[i].startTime);
-                showBuffer[2] = TimeOut(listSingleSentence[i].endTime);
+                showBuffer[1] = TimeLineReadWrite.TimeOut(listSingleSentence[i].startTime);
+                showBuffer[2] = TimeLineReadWrite.TimeOut(listSingleSentence[i].endTime);
                 showBuffer[3] = listSingleSentence[i].content;
                 showBuffer[4] = listSingleSentence[i].everyLineLength;
                 showBuffer[5] = TimeLineReadWrite.TimeOut(listSingleSentence[i].timeLength);
@@ -538,7 +529,7 @@ namespace TimeMDev
              * */
             if (this.listView1.SelectedIndices.Count > 0)
             {
-                AddBlankRecord addBlankRecord = new AddBlankRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], 1, 1000, true);
+                AddBlankRecord addBlankRecord = new AddBlankRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], 1, 1, true);
                 this.commandManage.CommandRun(addBlankRecord);
                 this.listView1.YYRefresh();
             }
@@ -875,8 +866,8 @@ namespace TimeMDev
             try
             {
                 SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
-                sentence.startTime = TimeLineReadWrite.TimeInAss(timeEditStart.Text);
-                sentence.endTime = TimeLineReadWrite.TimeInAss(timeEditEnd.Text);
+                sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
+                sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
                 sentence.content = contentEdit.Text;
                 ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
                 this.commandManage.CommandRun(record);
@@ -1335,6 +1326,7 @@ namespace TimeMDev
                 command.Add(new SetSelectedState(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[i],state));
             }
             this.commandManage.CommandRun(command);
+            this.listView1.YYRefresh();
         }
 
         private void toolStripSaveAuto_Click(object sender, EventArgs e)

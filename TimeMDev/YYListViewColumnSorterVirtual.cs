@@ -24,62 +24,69 @@ namespace TimeMDev
 
         public int Compare(ListViewItem x, ListViewItem y)
         {
-            int compareResult = 0;
-            ListViewItem listViewItemX = (ListViewItem)x;
-            ListViewItem listViewItemY = (ListViewItem)y;
-            if (this.SortSytle == 0)
+            try
             {
-                //compareResult = this.objectCompare.Compare(TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text),TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text));
-                if (TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text) >= TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text))
+                int compareResult = 0;
+                ListViewItem listViewItemX = (ListViewItem)x;
+                ListViewItem listViewItemY = (ListViewItem)y;
+                if (this.SortSytle == 0)//比较时间
                 {
-                    compareResult = 1;
+                    //compareResult = this.objectCompare.Compare(TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text),TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text));
+                    if (TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text) >= TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text))
+                    {
+                        compareResult = 1;
+                    }
+                    else
+                    {
+                        compareResult = -1;
+                    }
                 }
-                else
+                else if (this.SortSytle == 1)//比较字符长度
                 {
-                    compareResult = -1;
+                    //compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text.Length, listViewItemY.SubItems[this.ColumnToSort].Text.Length);
+                    if (listViewItemX.SubItems[this.ColumnToSort].Text.Length >= listViewItemY.SubItems[this.ColumnToSort].Text.Length)
+                    {
+                        compareResult = 1;
+                    }
+                    else
+                    {
+                        compareResult = -1;
+                    }
                 }
-            }
-            else if (this.SortSytle == 1)
-            {
-                //compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text.Length, listViewItemY.SubItems[this.ColumnToSort].Text.Length);
-                if (TimeLineReadWrite.TimeIn(listViewItemX.SubItems[this.ColumnToSort].Text) >= TimeLineReadWrite.TimeIn(listViewItemY.SubItems[this.ColumnToSort].Text))
+                else if (this.SortSytle == 2)//单纯的比较两个值
                 {
-                    compareResult = 1;
-                }
-                else
-                {
-                    compareResult = -1;
-                }
-            }
-            else if (this.SortSytle == 2)
-            {
-                int xNum, yNum;
-                try
-                {
-                    xNum = Int16.Parse(listViewItemX.SubItems[this.ColumnToSort].Text);
-                    yNum = Int16.Parse(listViewItemY.SubItems[this.ColumnToSort].Text);
-                    compareResult = this.objectCompare.Compare(xNum, yNum);
-                }
-                catch
-                {
+                    int xNum, yNum;
+                    try
+                    {
+                        xNum = Int16.Parse(listViewItemX.SubItems[this.ColumnToSort].Text);
+                        yNum = Int16.Parse(listViewItemY.SubItems[this.ColumnToSort].Text);
+                        compareResult = this.objectCompare.Compare(xNum, yNum);
+                    }
+                    catch
+                    {
 
+                    }
+                }
+                else
+                {
+                    compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text, listViewItemY.SubItems[this.ColumnToSort].Text);
+                }
+                if (this.Order == SortOrder.Ascending)
+                {
+                    return compareResult;
+                }
+                else if (this.Order == SortOrder.Descending)
+                {
+                    return (-compareResult);
+                }
+                else
+                {
+                    return 0;
                 }
             }
-            else
+            catch
             {
-                compareResult = this.objectCompare.Compare(listViewItemX.SubItems[this.ColumnToSort].Text, listViewItemY.SubItems[this.ColumnToSort].Text);
-            }
-            if (this.Order == SortOrder.Ascending)
-            {
-                return compareResult;
-            }
-            else if (this.Order == SortOrder.Descending)
-            {
-                return (-compareResult);
-            }
-            else
-            {
-                return 0;
+                return 1;
             }
         }
         public int SortColumn

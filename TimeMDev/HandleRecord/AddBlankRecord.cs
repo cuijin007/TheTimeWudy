@@ -42,7 +42,7 @@ namespace TimeMDev.HandleRecord
             {
                 SingleSentence sentence = new SingleSentence();
                 sentence.startTime = time;
-                sentence.endTime = time + this.timeSpilt;
+                sentence.endTime = time + this.timeSpilt;//2013-12-22解决了插入bug
                 if (this.style)
                 {
                     sentence.content = "";
