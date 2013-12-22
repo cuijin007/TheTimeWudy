@@ -128,7 +128,8 @@ namespace TimeMDev
                         }
                         fristSentence = false;
                     }
-
+                    //2013-12-22修改了末尾增加一行的bug
+                    singleSentence.content = CCHandle.TrimEnterEnd(singleSentence.content);
                     //取内容
                     this.listSingleSentence.Add(singleSentence);
                 }
@@ -411,6 +412,9 @@ namespace TimeMDev
                          singleSentence.content=Regex.Replace(singleSentence.content, @"\{.*\}", "");
                          singleSentence.content=singleSentence.content.Replace("\\N","\r\n");
                     }
+                     //2013-12-22修改了末尾增加一行的bug
+                     singleSentence.content = CCHandle.TrimEnterEnd(singleSentence.content);
+
                     this.listSingleSentence.Add(singleSentence);
                 }
                 catch

@@ -106,6 +106,8 @@ namespace TimeMDev.FileReadWriteFloder
                         }
                         fristSentence = false;
                     }
+                    //2013-12-22修改了末尾增加一行的bug
+                    singleSentence.content = CCHandle.TrimEnterEnd(singleSentence.content);
 
                     //取内容
                     listSingleSentence.Add(singleSentence);

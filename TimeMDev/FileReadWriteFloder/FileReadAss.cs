@@ -217,6 +217,9 @@ namespace TimeMDev.FileReadWriteFloder
                         singleSentence.content = Regex.Replace(singleSentence.content, @"\{.*\}", "");
                         singleSentence.content = singleSentence.content.Replace("\\N", "\r\n");
                     }
+                    //2013-12-22修改了末尾增加一行的bug
+                    singleSentence.content = CCHandle.TrimEnterEnd(singleSentence.content);
+
                     this.listSingleSentence.Add(singleSentence);
                 }
                 catch
