@@ -12,6 +12,7 @@ using TimeMDev.Notification;
 using TimeMDev.ConfigSave;
 using TimeMDev.FileReadWriteFloder;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Docking;
 
 namespace TimeMDev
 {
@@ -86,8 +87,8 @@ namespace TimeMDev
                 dataProcess.DataInit();
                 this.dataProcess.Init();
                 pictureRefresh.Start();
-                this.mplayer.Pause();//要求打开的时候是停止的。
-
+                //this.mplayer.Pause();//要求打开的时候是停止的。
+                this.mplayer.StepPlay();//要求打开的时候是停止的。
                 this.timeLineReadWrite = new TimeLineReadWrite();
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
                 if (path.EndsWith("srt"))
@@ -169,6 +170,7 @@ namespace TimeMDev
                 {
                     mplayer.Clear();
                     mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    this.dataProcess.mplayer = this.mplayer;
                     //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
                     dataProcess.DataInit();
                 }
@@ -177,8 +179,8 @@ namespace TimeMDev
                 this.dataProcess.Init();
                 pictureRefresh.Start();
                 this.rateShow.Focus();
-                this.mplayer.Pause();//要求打开的时候是停止的。
-
+               // this.mplayer.Pause();//要求打开的时候是停止的。
+                this.mplayer.StepPlay();//要求打开的时候是停止的。
                 this.moviePath = Path.GetDirectoryName(dialog.FileName);
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
@@ -1414,8 +1416,8 @@ namespace TimeMDev
                         dataProcess.DataInit();
                         this.dataProcess.Init();
                         pictureRefresh.Start();
-                        this.mplayer.Pause();//要求打开的时候是停止的。
-
+                        //this.mplayer.Pause();//要求打开的时候是停止的。
+                        this.mplayer.StepPlay();//要求打开的时候是停止的。
                         this.timeLineReadWrite = new TimeLineReadWrite();
                         this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
                         string pathSave = timeLineReadWrite.filePath;
@@ -1561,6 +1563,74 @@ namespace TimeMDev
         }
 
 
+
+        private void functionPanel_ClosedPanel(object sender, DockPanelEventArgs e)
+        {
+            this.FunctionActiveItem.Checked = false;
+        }
+
+        private void videoPanel_ClosedPanel(object sender, DockPanelEventArgs e)
+        {
+            this.videoActiveItem.Checked = false;
+        }
+
+        private void modifySubtitlePanel_ClosedPanel(object sender, DockPanelEventArgs e)
+        {
+            this.subtitleEditItem.Checked = false;
+        }
+
+        private void picTimeLinePanel_ClosedPanel(object sender, DockPanelEventArgs e)
+        {
+            this.subtitleShowActiveItem.Checked = false;
+        }
+
+        private void FunctionActiveItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            if (!this.FunctionActiveItem.Checked)
+            {
+                this.functionPanel.Visibility = DockVisibility.Hidden;
+            }
+            else
+            {
+                this.functionPanel.Visibility = DockVisibility.Visible;
+            }
+        }
+
+        private void subtitleEditItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            if (!this.subtitleEditItem.Checked)
+            {
+                this.modifySubtitlePanel.Visibility = DockVisibility.Hidden;
+            }
+            else
+            {
+                this.modifySubtitlePanel.Visibility = DockVisibility.Visible;
+            }
+        }
+
+        private void videoActiveItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            if (!this.videoActiveItem.Checked)
+            {
+                this.videoPanel.Visibility = DockVisibility.Hidden;
+            }
+            else
+            {
+                this.videoPanel.Visibility = DockVisibility.Visible;
+            }
+        }
+
+        private void subtitleShowActiveItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            if (!this.subtitleShowActiveItem.Checked)
+            {
+                this.picTimeLinePanel.Visibility = DockVisibility.Hidden;
+            }
+            else
+            {
+                this.picTimeLinePanel.Visibility = DockVisibility.Visible;
+            }
+        }
        
     }
 }

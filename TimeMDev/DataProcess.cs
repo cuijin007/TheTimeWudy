@@ -25,7 +25,7 @@ namespace TimeMDev
         public List<SingleSentence> listSingleSentence = new List<SingleSentence>();
         private SingleSentence sentenceSave;
         Cursor cursor;
-        MPlayer mplayer;
+        public MPlayer mplayer;
         CommandManage commandManage;
         public DataProcess(PictureRefresh pictureRefresh, Cursor cursor, MPlayer mplayer, YYListView listView,CommandManage commandManage )
         {
@@ -103,6 +103,7 @@ namespace TimeMDev
             if (clickState == 2)
             {
                 this.SlideAction(sender, e);
+                this.pictureRefresh.IsRefreshContentShow2 = true;
             }
             if (clickState == 3)
             {

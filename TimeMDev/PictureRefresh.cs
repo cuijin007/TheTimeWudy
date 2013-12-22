@@ -22,8 +22,12 @@ namespace TimeMDev
         public bool runMark = true;
         bool isRefreshContentShow = true;
         public int slideCount=-1;//从dataProcess赋值给他，他知道选的是哪个
-       
-
+        public bool IsRefreshContentShow2
+        {
+            get;
+            set;
+        }
+        
         #region 外界选中和刷新部分的变量初始化
         /// <summary>
        /// 存储刷新的list
@@ -206,7 +210,7 @@ namespace TimeMDev
         {
             while (this.runMark)
             {
-                if (this.height != pictureBox.Height || this.width != pictureBox.Width)
+                if ((this.height != pictureBox.Height || this.width != pictureBox.Width)&&(pictureBox.Height>0&&pictureBox.Width>0))//cj-2013-12-22
                 {
                     bitmap = new Bitmap(this.pictureBox.Width, this.pictureBox.Height);
                     this.graphics = Graphics.FromImage(this.bitmap);
@@ -710,7 +714,15 @@ namespace TimeMDev
                 //置空标志，每次改变只发送一次通知
                 this.selectedRefreshMark = false;
             }
-
+            ///cj-2013-12-22新增通知增加的变量，进行编辑窗口的内容更新
+            if (this.IsRefreshContentShow2)
+            {
+                NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
+                NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
+                NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
+                NotificationCenter.SendMessage("numEdit", "SetText", selectedShow + "");
+                this.IsRefreshContentShow2 = false;
+            }
 
         }
 
