@@ -211,14 +211,19 @@ namespace TimeMDev
         {
             chinese = "";
             english = "";
-            MatchCollection matchCollection = Regex.Matches(content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
+            MatchCollection matchCollection = Regex.Matches("崔进抗八代"+content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
             if (matchCollection.Count > 0)
             {
                 chinese = matchCollection[0].ToString();
+                chinese = chinese.Replace("崔进抗八代", "");
             }
             if (!chinese.Equals(""))
             {
                 english = content.Replace(chinese, "");
+            }
+            else
+            {
+                english = content;
             }
         }
 
