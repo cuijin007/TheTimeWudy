@@ -1625,6 +1625,11 @@ namespace TimeMDev
                 this.picTimeLinePanel.Visibility = DockVisibility.Visible;
             }
         }
+
+        private void barButtonItem80_ItemClick(object sender, ItemClickEventArgs e)
+        {
+           
+        }
        
     }
 }
