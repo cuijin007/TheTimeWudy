@@ -1628,6 +1628,9 @@ namespace TimeMDev
 
         private void barButtonItem80_ItemClick(object sender, ItemClickEventArgs e)
         {
+            //(new SetShortCutForm(this.topBar)).ShowDialog();
+            //this.topBar.
+           // this.fileMenu.ItemLinks
            
         }
        

@@ -19,29 +19,23 @@ namespace TimeMDev
         public SetShortCutForm(Bar topBar)
         {
             InitializeComponent();
-            this.topBar = topBar;
-            this.InitMainCombo();
-            this.mainCombo.SelectedIndex = 0;
-            this.InitSubItemCombo();
-            this.subCombo.SelectedIndex = 0;
-            this.SetOldKey();
         }
 
         private void addShortCut_Click(object sender, EventArgs e)
         {
             if (this.count == 1)
             {
-                this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ItemShortcut = new BarShortcut(keys1);
+                //this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].= new BarShortcut(keys1);
             }
             if (this.count == 2)
             {
-                this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ItemShortcut = new BarShortcut(keys1, keys2);
+               // this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ItemShortcut = new BarShortcut(keys1, keys2);
             }
         }
 
         private void clearShortCut_Click(object sender, EventArgs e)
         {
-            this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ItemShortcut = new BarShortcut();
+          //  this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ItemShortcut = new BarShortcut();
         }
 
         private void InitMainCombo()
@@ -62,7 +56,10 @@ namespace TimeMDev
         }
         private void SetOldKey()
         {
-            this.nowKey.Text=this.topBar.ItemLinks[this.mainCombo.SelectedIndex].Links[this.subCombo.SelectedIndex].ShortCutDisplayText;
+            if (this.mainCombo.SelectedIndex >= 0 && this.subCombo.SelectedIndex >= 0)
+            {
+                //this.nowKey.Text = this.topBar.ItemLinks[i];
+            }
         }
         private void SetShortCutForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -97,5 +94,8 @@ namespace TimeMDev
         {
             this.SetOldKey();
         }
+
+
+        p
     }
 }
