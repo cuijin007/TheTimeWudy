@@ -12,6 +12,7 @@
     <AssemblyName>TimeMDev</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>1_TimeM.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -360,6 +361,7 @@
     <Compile Include="YYListViewColumnSorterVirtual.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1_TimeM.ico" />
     <Content Include="config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
