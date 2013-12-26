@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TimeMDev.ShortCut;
+using System.Collections;
 
 namespace TimeMDev
 {
     public delegate void UpdateInformer();
+
 
     public partial class ShortCutSettingsForm : Form
     {
@@ -19,11 +21,39 @@ namespace TimeMDev
         private bool changed = false;
         private Keys curKey;
         public UpdateInformer update;
-        
+        private string[] captions;
+        private Hashtable mapping;
+        private String text;
+
+        public Hashtable Caption2id
+        {
+            get
+            {
+                return mapping;
+            }
+            set
+            {
+                if (mapping == value)
+                {
+                    return;
+                }
+                mapping = value;
+                CalculateCaptions();
+            }
+        }
+        private void CalculateCaptions()
+        {
+            captions = new string[mapping.Count];
+            int i = 0;
+            foreach (DictionaryEntry entry in mapping)//initialize data for list
+            {
+                captions[i++] = ShortcutUtils.Entry2ListCaption(entry);
+            }
+            Array.Sort(captions);
+        }
         public ShortCutSettingsForm()
         {
             InitializeComponent();
-            shortcuts = ShortCuts.getShortCuts();
         }
 
         private void key_KeyDown(object sender, KeyEventArgs e)
@@ -41,7 +71,7 @@ namespace TimeMDev
 
             curKey |= e.KeyCode;
 
-            this.keyInp.Text = this.readableShortcut(curKey);
+            this.keyInp.Text = ShortcutUtils.readableShortcut(curKey);
         }
 
         private void ShortCutSettingsForm_Load(object sender, EventArgs e)
@@ -51,29 +81,43 @@ namespace TimeMDev
 
         private void shortCutsLst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            id = (int)this.Caption2id[shortCutsLst.Text];
-            Keys key = this.shortcuts.getShortCut(id);
-            string shortcut = this.readableShortcut(key);
-            if(key == (Keys)0)
+            if (!shortCutsLst.Text.Equals(""))
             {
-                shortcut = "无";
+                text = shortCutsLst.Text;
+                id = (int)this.Caption2id[ShortcutUtils.Caption2Hashkey(text)];
+                Keys key = ShortCuts.Get(id);
+                string shortcut = ShortcutUtils.readableShortcut(key);
+                if (key == (Keys)0)
+                {
+                    shortcut = "无";
+                }
+                this.keyInp.Text = shortcut;
+                this.keyInp.Focus();
             }
-            this.keyInp.Text = shortcut;
         }
 
-        private String readableShortcut(Keys key)
-        {
-            return key.ToString().Replace(",", " +");
-        }
+        
         private void okBtn_Click(object sender, EventArgs e)
         {
-            shortcuts.changeKey(id, curKey);
+            if (ShortCuts.Exist(curKey))
+            {
+                MessageBox.Show("快捷键冲突");
+                this.keyInp.Text = "";
+                this.keyInp.Focus();
+                return;
+            }
+            ShortCuts.Change(id, curKey);
+
+            CalculateCaptions();
+            this.shortCutsLst.Items.Clear();
+            this.shortCutsLst.Items.AddRange(captions);
+
             changed = true;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            ShortCuts.write(shortcuts);
+            ShortCuts.Write();
             changed = false;
         }
 

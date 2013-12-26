@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using TimeMDev.ShortCut;
-using System;
+﻿
 namespace TimeMDev
 {
     partial class ShortCutSettingsForm
@@ -97,31 +95,9 @@ namespace TimeMDev
         private System.Windows.Forms.TextBox keyInp;
         private DevExpress.XtraEditors.SimpleButton okBtn;
         private DevExpress.XtraEditors.ListBoxControl shortCutsLst;
-        private string[] captions;
-        private Hashtable mapping;
-        private ShortCuts shortcuts;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
 
-        public Hashtable Caption2id { 
-            get
-            {
-                return mapping;
-            }
-            set
-            {
-             if (mapping == value)
-             {
-                 return;
-             }
-            mapping = value;
-            captions = new string[mapping.Count];
-            int i = 0;
-            foreach (DictionaryEntry entry in mapping)//initialize data for list
-            {
-                captions[i++] = entry.Key.ToString();
-            }
-            Array.Sort(captions);
-        } }
+     
 
     }
 }

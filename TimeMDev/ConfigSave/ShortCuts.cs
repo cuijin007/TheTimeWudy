@@ -21,15 +21,30 @@ namespace TimeMDev.ShortCut
         {
             mapping = new Hashtable();
         }
-        public void addShortCut(int id, Keys key)
+        public static void Add(int id, Keys key)
+        {
+            init();
+            instance.addShortCut(id, key);
+        }
+        private void addShortCut(int id, Keys key)
         {
             mapping.Add(id, key);
         }
-        public void removeShortCut(int id)
+        public static void Remove(int id)
+        {
+            init();
+            instance.removeShortCut(id);
+        }
+        private void removeShortCut(int id)
         {
             mapping.Remove(id);
         }
-        public Keys getShortCut(int id)
+        public static Keys Get(int id)
+        {
+            init();
+            return instance.getShortCut(id);
+        }
+        private Keys getShortCut(int id)
         {
             if (mapping.Contains(id))
             {
@@ -40,11 +55,32 @@ namespace TimeMDev.ShortCut
                 return (Keys)0;
             }
         }
-        public void changeKey(int id, Keys key)
+        public static void Change(int id, Keys key)
+        {
+            init();
+            instance.changeKey(id, key);
+        }
+        private void changeKey(int id, Keys key)
         {
             mapping[id] = key;
         }
-        public static ShortCuts read()
+        public static bool Exist(Keys key)
+        {
+            init();
+            return instance.KeyExist(key);
+        }
+        private bool KeyExist(Keys key)
+        {
+            return mapping.ContainsValue(key);
+        }
+        private static void init()
+        {
+            if (instance == null)
+            {
+                instance = read();
+            }
+        }
+        private static ShortCuts read()
         {
             FileStream fs;
             try
@@ -60,7 +96,12 @@ namespace TimeMDev.ShortCut
                 return new ShortCuts();
             }
         }
-        public static void write(ShortCuts shortcuts)
+        public static void Write()
+        {
+            init();
+            write(instance);
+        }
+        private static void write(ShortCuts shortcuts)
         {
             FileStream fs = new FileStream(System.AppDomain.CurrentDomain.BaseDirectory + "ShortCutsSettings.dat",FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
@@ -69,12 +110,9 @@ namespace TimeMDev.ShortCut
             instance = shortcuts;//update data in memory
         }
 
-        public static ShortCuts getShortCuts()
+        private static ShortCuts getShortCuts()
         {
-            if (instance == null)
-            {
-                instance = read();
-            }
+            init();
             return instance;
         }
     }

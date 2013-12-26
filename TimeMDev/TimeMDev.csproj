@@ -81,6 +81,7 @@
     <Compile Include="ConfigSave\RecentFile.cs" />
     <Compile Include="ConfigSave\Config.cs" />
     <Compile Include="ConfigSave\ShortCuts.cs" />
+    <Compile Include="ConfigSave\ShortcutUtils.cs" />
     <Compile Include="CopyObject.cs" />
     <Compile Include="CopyPasteInterface.cs" />
     <Compile Include="CustomSpilt.cs">

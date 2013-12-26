@@ -13,9 +13,9 @@ using TimeMDev.ConfigSave;
 using TimeMDev.FileReadWriteFloder;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking;
-using TimeMDev.ShortCut;
 using System.Collections;
 using Microsoft.Win32;
+using TimeMDev.ShortCut;
 
 namespace TimeMDev
 {
@@ -1753,8 +1753,6 @@ namespace TimeMDev
         {
             //bind shortcuts
 
-            ShortCuts shortcuts = ShortCuts.getShortCuts();
-
             caption2id = new Hashtable();
             String sub = "";//menu name
             int idBase = 0;//menu id
@@ -1775,11 +1773,12 @@ namespace TimeMDev
                         caption2id.Add(sub + this.get2Dig(item.Id - idBase) + item.Caption, item.Id);//for display in shortcut settings
                         //shown as menuindex menu - commandindex command
                     }
-                    Keys key = shortcuts.getShortCut(item.Id);
+                    Keys key = ShortCuts.Get(item.Id);
                     if (key != (Keys)0)
                     {
                         item.ItemShortcut = new BarShortcut(key);
                     }
+
                 }
             }
         }
