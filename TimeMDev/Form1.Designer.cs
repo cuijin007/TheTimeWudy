@@ -1288,6 +1288,8 @@
             this.closeItem.Caption = "关闭";
             this.closeItem.Id = 11;
             this.closeItem.Name = "closeItem";
+            this.closeItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.closeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.closeItem_ItemClick);
             // 
             // quitItem
             // 
@@ -2268,6 +2270,7 @@
             this.Text = "Form1";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.functionPanel.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);

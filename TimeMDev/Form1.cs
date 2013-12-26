@@ -1632,6 +1632,25 @@ namespace TimeMDev
             //this.topBar.
            // this.fileMenu.ItemLinks
         }
+
+        private void closeItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.mplayer.getPositionMark = false;
+            if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
+            {
+                //this.Close();
+                base.OnFormClosing(e);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
        
     }
 }
