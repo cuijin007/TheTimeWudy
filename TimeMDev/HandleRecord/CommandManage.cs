@@ -11,6 +11,10 @@ namespace TimeMDev.HandleRecord
     /// </summary>
     public class CommandManage
     {
+        /// <summary>
+        /// 是否需要保存
+        /// </summary>
+        public bool NeedSave{get;set;}
         //做了和没做的堆栈
         List<List<HandleRecordBass>> stackHaveDone;
         List<List<HandleRecordBass>> stackNeedDone;
@@ -24,6 +28,7 @@ namespace TimeMDev.HandleRecord
             this.stackSize = stackSize;
             this.stackHaveDone = new List<List<HandleRecordBass>>();
             this.stackNeedDone = new List<List<HandleRecordBass>>();
+            NeedSave=false;
         }
         public void CommandRun(params HandleRecordBass[] command)
         {
@@ -42,6 +47,7 @@ namespace TimeMDev.HandleRecord
             {
                 AfterRunCommandFunction();
             }
+            NeedSave=true;
         }
         public void CommandRun(List<HandleRecordBass> command)
         {
@@ -58,6 +64,7 @@ namespace TimeMDev.HandleRecord
             {
                 AfterRunCommandFunction();
             }
+            NeedSave=true;
         }
         public void CommandRunNoRedo(params HandleRecordBass[] command)
         {
@@ -90,6 +97,7 @@ namespace TimeMDev.HandleRecord
             {
                 AfterRunCommandFunction();
             }
+            NeedSave=false;
         }
         public void Redo()
         {
@@ -111,6 +119,7 @@ namespace TimeMDev.HandleRecord
             {
                 AfterRunCommandFunction();
             }
+            NeedSave=true;
         }
     }
 }

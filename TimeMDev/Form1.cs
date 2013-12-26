@@ -39,7 +39,7 @@ namespace TimeMDev
         }
         MPlayer mplayer;
         TimeLineReadWrite timeLineReadWrite = new TimeLineReadWrite();
-        CommandManage commandManage = new CommandManage(10);
+        public CommandManage commandManage = new CommandManage(10);
         string originalSubtitlePath, moviePath, movieName,temporarySubtitlePath;
 
         public int interval;
@@ -167,7 +167,8 @@ namespace TimeMDev
                 if (mplayer == null)
                 {
                     mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
-                    //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
+                    this.mplayer.DplayerRateAction = this.dataProcess.GetTimeAction;
+                    //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
                     dataProcess.DataInit();
                 }
                 else
@@ -175,7 +176,8 @@ namespace TimeMDev
                     mplayer.Clear();
                     mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
                     this.dataProcess.mplayer = this.mplayer;
-                    //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1);
+                    this.mplayer.DplayerRateAction = this.dataProcess.GetTimeAction;
+                    //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
                     dataProcess.DataInit();
                 }
                 this.mplayer.StartPlay(dialog.FileName);
@@ -191,6 +193,7 @@ namespace TimeMDev
                 //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
                 this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
             }
 
         }
@@ -268,7 +271,7 @@ namespace TimeMDev
         private void quitItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.mplayer.getPositionMark = false;
-            if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
+            //if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
             {
                 this.Close();
             }
@@ -361,6 +364,7 @@ namespace TimeMDev
                 //this.SetListviewMenuEnable(true);
                 //增加最近打开的文件
                 this.recentFile.AddRecentFile(dialog.FileName);
+                this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
             }
             
             this.rateShow.Focus();
@@ -895,11 +899,15 @@ namespace TimeMDev
             this.timeLineReadWrite.filePath=this.originalSubtitlePath;
             this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default));
             this.timeLineReadWrite.filePath = buf;
+            this.commandManage.NeedSave = false;
         }
 
         private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            (new SaveAsForm(this.timeLineReadWrite)).ShowDialog();
+            if ((new SaveAsForm(this.timeLineReadWrite)).ShowDialog() == DialogResult.OK)
+            {
+                this.commandManage.NeedSave = false;
+            }
         }
         /// <summary>
         /// 平移时间
@@ -1647,13 +1655,16 @@ namespace TimeMDev
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.mplayer.getPositionMark = false;
-            if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
+            if (commandManage.NeedSave)
             {
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
+                if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -1802,6 +1813,40 @@ namespace TimeMDev
              RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
              string s = key.GetValue("").ToString();
              System.Diagnostics.Process.Start(s.Substring(0, s.Length - 5), "http://www.yyets.com");
+        }
+
+        private void to23FPSItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.commandManage.CommandRun(new Turn25To23FPS(this.timeLineReadWrite.listSingleSentence, this.listView1));
+        }
+
+        private void to25FPSItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.commandManage.CommandRun(new Turn23To25FPS(this.timeLineReadWrite.listSingleSentence, this.listView1));
+        }
+
+        private void deleteItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if(this.listView1.SelectedIndices.Count>0)
+            {
+            this.commandManage.CommandRun(new DeleteRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[0]));
+            }
+        }
+
+        private void lastLineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.listView1.VisiblePosition + 1 < this.listView1.Items.Count)
+            {
+                NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", this.listView1.VisiblePosition+1);
+            }
+        }
+
+        private void nextLineItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.listView1.VisiblePosition - 1 >=0)
+            {
+                NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", this.listView1.VisiblePosition - 1);
+            }
         }
 
     }

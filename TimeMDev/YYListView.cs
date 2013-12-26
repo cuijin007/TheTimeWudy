@@ -58,7 +58,7 @@ namespace TimeMDev
             this.Singular = Brushes.LightSeaGreen;
             this.Plural = Brushes.White;
             this.OtherSelected = Brushes.DarkGreen;
-            this.VisibleBrush = Brushes.LightCyan;
+            this.VisibleBrush = Brushes.LightBlue;
             this.ListViewItemSorter = yyListViewColumnSorter;
 
             this.VirtualMode = true;

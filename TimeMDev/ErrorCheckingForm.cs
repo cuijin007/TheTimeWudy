@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TimeMDev.Notification;
+using TimeMDev.HandleRecord;
 
 namespace TimeMDev
 {
@@ -33,12 +35,16 @@ namespace TimeMDev
 
         private void selectAll_Click(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < this.listViewShow.Items.Count; i++)
+            {
+                this.listViewShow.Items[i].Selected = true;
+            }
         }
 
         private void handleOverlap_Click(object sender, EventArgs e)
         {
-
+            this.formMain.commandManage.CommandRun(new HandleOverLapRecord(this.formMain.DataProcessGet.listSingleSentence,this.formMain.listView1));
+            this.formMain.listView1.YYRefresh();
         }
         /// <summary>
         /// 检查所有的字幕，找出有问题的部分
@@ -242,6 +248,28 @@ namespace TimeMDev
             {
                 this.AddNewItemInListview(index, "有全角符号", this.fullWidthSymbolColor.BackColor);
             }
+        }
+
+        private void listViewShow_ItemActivate(object sender, EventArgs e)
+        {
+            
+            //NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", selectedIndex);
+            //NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", selectedIndex[selectedIndex.Count - 1]);
+        }
+
+        private void listViewShow_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+           
+            List<int> list = new List<int>();
+            for (int i = 0; i < this.listViewShow.Items.Count; i++)
+            {
+                if (this.listViewShow.Items[i].Selected)
+                {
+                    list.Add(int.Parse(this.listViewShow.Items[i].SubItems[0].Text));
+                }
+            }
+            NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
+            NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", int.Parse(this.listViewShow.Items[e.ItemIndex].SubItems[0].Text));
         }
     }
 }

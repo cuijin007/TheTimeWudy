@@ -1519,12 +1519,14 @@
             this.deleteItem.Caption = "删除";
             this.deleteItem.Id = 38;
             this.deleteItem.Name = "deleteItem";
+            this.deleteItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteItem_ItemClick);
             // 
             // delete2Item
             // 
             this.delete2Item.Caption = "删除...";
             this.delete2Item.Id = 39;
             this.delete2Item.Name = "delete2Item";
+            this.delete2Item.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // clearTimeItem
             // 
@@ -1629,12 +1631,14 @@
             this.to23FPSItem.Caption = "25FPS转换为23.976FPS";
             this.to23FPSItem.Id = 44;
             this.to23FPSItem.Name = "to23FPSItem";
+            this.to23FPSItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.to23FPSItem_ItemClick);
             // 
             // to25FPSItem
             // 
             this.to25FPSItem.Caption = "23.976FPS转换为25FPS";
             this.to25FPSItem.Id = 45;
             this.to25FPSItem.Name = "to25FPSItem";
+            this.to25FPSItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.to25FPSItem_ItemClick);
             // 
             // extendShowItem
             // 
@@ -1655,12 +1659,14 @@
             this.lastLineItem.Caption = "上一行";
             this.lastLineItem.Id = 48;
             this.lastLineItem.Name = "lastLineItem";
+            this.lastLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.lastLineItem_ItemClick);
             // 
             // nextLineItem
             // 
             this.nextLineItem.Caption = "下一行";
             this.nextLineItem.Id = 49;
             this.nextLineItem.Name = "nextLineItem";
+            this.nextLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nextLineItem_ItemClick);
             // 
             // toolMenu
             // 
@@ -1948,12 +1954,14 @@
             this.statusItem.Caption = "状态栏";
             this.statusItem.Id = 95;
             this.statusItem.Name = "statusItem";
+            this.statusItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barSubItem15
             // 
             this.barSubItem15.Caption = "应用程序外观";
             this.barSubItem15.Id = 100;
             this.barSubItem15.Name = "barSubItem15";
+            this.barSubItem15.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // helpMenu
             // 
@@ -2276,7 +2284,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "测试版Beta";
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

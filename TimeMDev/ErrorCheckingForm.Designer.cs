@@ -433,6 +433,8 @@
             this.listViewShow.TabIndex = 4;
             this.listViewShow.UseCompatibleStateImageBehavior = false;
             this.listViewShow.View = System.Windows.Forms.View.Details;
+            this.listViewShow.ItemActivate += new System.EventHandler(this.listViewShow_ItemActivate);
+            this.listViewShow.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewShow_ItemSelectionChanged);
             // 
             // columnHeader1
             // 

@@ -57,11 +57,13 @@ namespace TimeMDev
         }
         public void Clear()
         {
+            this.getPositionMark = false;
             if(mplayer!=null)
             {
                 try
                 {
                     this.mplayer.Kill();
+                    
                 }
                 catch
                 {

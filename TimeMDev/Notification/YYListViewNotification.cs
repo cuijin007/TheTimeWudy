@@ -38,6 +38,7 @@ namespace TimeMDev.Notification
                 int showPosition = this.yyListView.YYGetShowPosition(index);
                 //this.yyListView.YYEnsurVisible(showPosition);
                 this.yyListView.EnsureVisible(showPosition);
+                this.yyListView.VisiblePosition = showPosition;
                 return true;
             }
             return false;

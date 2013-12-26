@@ -40,6 +40,7 @@ namespace TimeMDev
             }
             this.timeLineReadWrite.filePath = buf;
             MessageBox.Show("保存成功");
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
         /// <summary>

@@ -364,7 +364,7 @@ namespace TimeMDev
                 }
             }
         }
-        private void GetTimeAction(double time, double totalTime)
+        public void GetTimeAction(double time, double totalTime)
         {
             this.pictureRefresh.totalTime = totalTime;
             double showTime = pictureRefresh.width * pictureRefresh.UnitBelow / pictureRefresh.OneUnitPix;
