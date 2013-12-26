@@ -194,12 +194,12 @@
             this.barButtonItemOneFrame = new DevExpress.XtraBars.BarButtonItem();
             this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
-            this.softwareOptionItem = new DevExpress.XtraBars.BarButtonItem();
+            this.shorCutItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewOptionItem = new DevExpress.XtraBars.BarButtonItem();
             this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
             this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
             this.publishMenu = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem74 = new DevExpress.XtraBars.BarButtonItem();
+            this.webSiteItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewMenu = new DevExpress.XtraBars.BarSubItem();
             this.toolsSelectedItem = new DevExpress.XtraBars.BarSubItem();
             this.FunctionActiveItem = new DevExpress.XtraBars.BarCheckItem();
@@ -450,7 +450,6 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "时间轴编辑";
-            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNowLineLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNextLineLink),
@@ -529,7 +528,9 @@
             // startMplayerFristTimeLink
             // 
             this.startMplayerFristTimeLink.Caption = "首次打开软件";
+            this.startMplayerFristTimeLink.LargeImage = ((System.Drawing.Image)(resources.GetObject("startMplayerFristTimeLink.LargeImage")));
             this.startMplayerFristTimeLink.Name = "startMplayerFristTimeLink";
+            this.startMplayerFristTimeLink.SmallImage = ((System.Drawing.Image)(resources.GetObject("startMplayerFristTimeLink.SmallImage")));
             this.startMplayerFristTimeLink.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.startMplayerFristTimeLink_LinkClicked);
             // 
             // panelContainer1
@@ -1156,12 +1157,12 @@
             this.back5SecItem,
             this.barButtonItemOneFrame,
             this.optionMenu,
-            this.softwareOptionItem,
+            this.shorCutItem,
             this.viewOptionItem,
             this.hideEffectsItem,
             this.saveAutoItem,
             this.publishMenu,
-            this.barButtonItem74,
+            this.webSiteItem,
             this.viewMenu,
             this.helpMenu,
             this.toolsSelectedItem,
@@ -1833,49 +1834,54 @@
             this.optionMenu.Caption = "设置(&S)";
             this.optionMenu.Id = 81;
             this.optionMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.softwareOptionItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.shorCutItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.viewOptionItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.hideEffectsItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoItem)});
             this.optionMenu.Name = "optionMenu";
             // 
-            // softwareOptionItem
+            // shorCutItem
             // 
-            this.softwareOptionItem.Caption = "软件选项(&D)";
-            this.softwareOptionItem.Id = 82;
-            this.softwareOptionItem.Name = "softwareOptionItem";
+            this.shorCutItem.Caption = "快捷键选项(&D)";
+            this.shorCutItem.Id = 82;
+            this.shorCutItem.Name = "shorCutItem";
+            this.shorCutItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.shorCutItem_ItemClick);
             // 
             // viewOptionItem
             // 
             this.viewOptionItem.Caption = "设置查看SSA/ASS";
             this.viewOptionItem.Id = 83;
             this.viewOptionItem.Name = "viewOptionItem";
+            this.viewOptionItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // hideEffectsItem
             // 
             this.hideEffectsItem.Caption = "隐藏特效代码";
             this.hideEffectsItem.Id = 86;
             this.hideEffectsItem.Name = "hideEffectsItem";
+            this.hideEffectsItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // saveAutoItem
             // 
             this.saveAutoItem.Caption = "自动保存";
             this.saveAutoItem.Id = 88;
             this.saveAutoItem.Name = "saveAutoItem";
+            this.saveAutoItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // publishMenu
             // 
             this.publishMenu.Caption = "字幕发布站(&P)";
             this.publishMenu.Id = 89;
             this.publishMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem74)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.webSiteItem)});
             this.publishMenu.Name = "publishMenu";
             // 
-            // barButtonItem74
+            // webSiteItem
             // 
-            this.barButtonItem74.Caption = "人人影视";
-            this.barButtonItem74.Id = 90;
-            this.barButtonItem74.Name = "barButtonItem74";
+            this.webSiteItem.Caption = "人人影视";
+            this.webSiteItem.Id = 90;
+            this.webSiteItem.Name = "webSiteItem";
+            this.webSiteItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.webSiteItem_ItemClick);
             // 
             // viewMenu
             // 
@@ -2053,7 +2059,7 @@
             this.listView1.ColumnToSort = 0;
             this.listView1.ContextMenuStrip = this.listViewMenu;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listView1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(2, 23);
             this.listView1.Name = "listView1";
@@ -2247,7 +2253,7 @@
             // imageList2
             // 
             this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList2.ImageSize = new System.Drawing.Size(255, 50);
+            this.imageList2.ImageSize = new System.Drawing.Size(255, 40);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // imageList1
@@ -2405,12 +2411,12 @@
         private DevExpress.XtraBars.BarButtonItem back5SecItem;
         private DevExpress.XtraBars.BarButtonItem barButtonItemOneFrame;
         private DevExpress.XtraBars.BarSubItem optionMenu;
-        private DevExpress.XtraBars.BarButtonItem softwareOptionItem;
+        private DevExpress.XtraBars.BarButtonItem shorCutItem;
         private DevExpress.XtraBars.BarButtonItem viewOptionItem;
         private DevExpress.XtraBars.BarCheckItem hideEffectsItem;
         private DevExpress.XtraBars.BarCheckItem saveAutoItem;
         private DevExpress.XtraBars.BarSubItem publishMenu;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem74;
+        private DevExpress.XtraBars.BarButtonItem webSiteItem;
         private DevExpress.XtraBars.BarSubItem viewMenu;
         private DevExpress.XtraBars.BarSubItem toolsSelectedItem;
         private DevExpress.XtraBars.BarCheckItem barCheckItem4;

@@ -13,6 +13,9 @@ using TimeMDev.ConfigSave;
 using TimeMDev.FileReadWriteFloder;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking;
+using TimeMDev.ShortCut;
+using System.Collections;
+using Microsoft.Win32;
 
 namespace TimeMDev
 {
@@ -40,6 +43,7 @@ namespace TimeMDev
         string originalSubtitlePath, moviePath, movieName,temporarySubtitlePath;
 
         public int interval;
+        private Hashtable caption2id;
         public Form1()
         {
             InitializeComponent();
@@ -777,6 +781,8 @@ namespace TimeMDev
         {
             this.recentFile = new RecentFile(this.fileMenu);
             this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
+
+            this.bindShortCuts();
         }
 
         private void fileSplitSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1643,8 +1649,7 @@ namespace TimeMDev
             this.mplayer.getPositionMark = false;
             if ((new IfSaveForm(this.timeLineReadWrite, this.originalSubtitlePath)).ShowDialog() != DialogResult.Cancel)
             {
-                //this.Close();
-                base.OnFormClosing(e);
+                e.Cancel = false;
             }
             else
             {
@@ -1736,6 +1741,69 @@ namespace TimeMDev
             
             this.rateShow.Focus();
         }
-       
+
+        private void shorCutItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ShortCutSettingsForm shortcutSettings = new ShortCutSettingsForm();
+            shortcutSettings.Caption2id = this.caption2id;
+            shortcutSettings.update = new UpdateInformer(this.bindShortCuts);
+            shortcutSettings.ShowDialog();
+        }
+        public void bindShortCuts()
+        {
+            //bind shortcuts
+
+            ShortCuts shortcuts = ShortCuts.getShortCuts();
+
+            caption2id = new Hashtable();
+            String sub = "";//menu name
+            int idBase = 0;//menu id
+            int menuCount = 1;
+
+            foreach (BarItem item in this.barManager1.Items)
+            {
+                if (item is BarSubItem)
+                {
+                    idBase = item.Id;
+                    sub = this.get2Dig(menuCount) + item.Caption + " - ";
+                    ++menuCount;
+                }
+                else if (item is BarButtonItem)
+                {
+                    if (item.Id > 0)
+                    {
+                        caption2id.Add(sub + this.get2Dig(item.Id - idBase) + item.Caption, item.Id);//for display in shortcut settings
+                        //shown as menuindex menu - commandindex command
+                    }
+                    Keys key = shortcuts.getShortCut(item.Id);
+                    if (key != (Keys)0)
+                    {
+                        item.ItemShortcut = new BarShortcut(key);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 补齐
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        private String get2Dig(int val)
+        {
+            String result = val.ToString();
+            if (result.Length == 1)
+            {
+                result = "0" + result;
+            }
+            return result;
+        }
+
+        private void webSiteItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+             RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+             string s = key.GetValue("").ToString();
+             System.Diagnostics.Process.Start(s.Substring(0, s.Length - 5), "http://www.yyets.com");
+        }
+
     }
 }
