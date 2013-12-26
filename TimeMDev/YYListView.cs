@@ -14,6 +14,7 @@ namespace TimeMDev
         public List<int> SignPosition;//变颜色的位置
         public Brush Selected;
         public Brush NoSelected;
+        public Brush VisibleBrush;
         public Brush Singular;
         public Brush Plural;
         public Brush OtherSelected;
@@ -40,6 +41,14 @@ namespace TimeMDev
            get { return yyListViewColumnSorterVirtual.Order; }
            set { this.yyListViewColumnSorterVirtual.Order = value; }
        }
+       /// <summary>
+       /// 设置显示焦点的位置
+       /// </summary>
+        public int VisiblePosition
+       {
+           get;
+           set;
+       }
         public YYListView()
         {
             this.OwnerDraw = true;
@@ -49,6 +58,7 @@ namespace TimeMDev
             this.Singular = Brushes.LightSeaGreen;
             this.Plural = Brushes.White;
             this.OtherSelected = Brushes.DarkGreen;
+            this.VisibleBrush = Brushes.LightCyan;
             this.ListViewItemSorter = yyListViewColumnSorter;
 
             this.VirtualMode = true;
@@ -88,6 +98,10 @@ namespace TimeMDev
                 else
                 {
                     g.FillRectangle(this.NoSelected, bounds);
+                }
+                if (e.ItemIndex == this.VisiblePosition)
+                {
+                    g.FillRectangle(this.VisibleBrush, bounds);
                 }
                 e.DrawText(TextFormatFlags.HorizontalCenter);
             }
@@ -541,7 +555,9 @@ namespace TimeMDev
         /// <param name="showPosition"></param>
         public void YYEnsurVisible(int showPosition)
         {
+            this.VisiblePosition = showPosition;
             this.EnsureVisible(yyItems[showPosition], 0);
+
         }
         #endregion
 
