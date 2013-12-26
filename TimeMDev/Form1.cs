@@ -1651,6 +1651,91 @@ namespace TimeMDev
                 e.Cancel = true;
             }
         }
+
+        private void videoPanel_DragEnter(object sender, DragEventArgs e)
+        {
+        }
+
+        private void videoPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            string path = "";
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            path = s[0];
+            if (mplayer == null)
+            {
+                mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                dataProcess.DataInit();
+            }
+            else
+            {
+                mplayer.Clear();
+                mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                this.dataProcess.mplayer = this.mplayer;
+                dataProcess.DataInit();
+            }
+            this.mplayer.StartPlay(path);
+            this.mplayer.GetTotalTime();
+            this.dataProcess.Init();
+            pictureRefresh.Start();
+            this.rateShow.Focus();
+            this.mplayer.StepPlay();//要求打开的时候是停止的。
+            this.moviePath = Path.GetDirectoryName(path);
+            this.movieName = Path.GetFileNameWithoutExtension(path);
+            //到时候还要根据是什么类型的进行修改
+            //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+            this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+            this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+        }
+
+        private void listView1_DragDrop(object sender, DragEventArgs e)
+        {
+             string path = "";
+            string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            path = s[0];
+            if (path.EndsWith(".srt") || path.EndsWith(".ass"))
+            {
+                dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
+                dataProcess.DataInit();
+                this.dataProcess.Init();
+                pictureRefresh.Start();
+                this.mplayer.Pause();//要求打开的时候是停止的。
+
+                this.timeLineReadWrite = new TimeLineReadWrite();
+                this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
+                if (path.EndsWith("srt"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeline();
+                }
+                if (path.EndsWith("ass"))
+                {
+                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                }
+                this.originalSubtitlePath = path;//保存一个初始值。
+                if (this.moviePath.Equals(""))
+                {
+                    //还要修改后缀
+                    //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                }
+                else
+                {
+                    this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+                }
+                this.rateShow.Focus();
+                this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+
+                //使能 listviewmenu
+                //this.SetListviewMenuEnable(true);
+                //增加最近打开的文件
+                this.recentFile.AddRecentFile(path);
+            }
+            else
+            {
+                MessageBox.Show("请拖入.srt或.ass字幕");
+            }
+            
+            this.rateShow.Focus();
+        }
        
     }
 }

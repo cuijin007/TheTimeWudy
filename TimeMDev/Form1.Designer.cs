@@ -556,6 +556,8 @@
             this.videoPanel.Size = new System.Drawing.Size(388, 252);
             this.videoPanel.Text = " 视频播放";
             this.videoPanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.videoPanel_ClosedPanel);
+            this.videoPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragEnter);
+            this.videoPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragDrop);
             // 
             // dockPanel3_Container
             // 
@@ -2068,6 +2070,7 @@
             this.listView1.VisiblePosition = 0;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             this.listView1.DoubleClickAction += new TimeMDev.DDoubleClickAction(this.listView1_DoubleClickAction);
+            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
