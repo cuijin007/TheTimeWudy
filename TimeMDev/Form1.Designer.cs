@@ -450,6 +450,7 @@
             // navBarGroup3
             // 
             this.navBarGroup3.Caption = "时间轴编辑";
+            this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNowLineLink),
             new DevExpress.XtraNavBar.NavBarItemLink(this.alignNextLineLink),
@@ -2062,6 +2063,7 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.VirtualMode = true;
+            this.listView1.VisiblePosition = 0;
             this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             this.listView1.DoubleClickAction += new TimeMDev.DDoubleClickAction(this.listView1_DoubleClickAction);
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
