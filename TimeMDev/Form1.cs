@@ -780,7 +780,7 @@ namespace TimeMDev
                     ].startTime;
             }
         }
-
+       
         private void Form1_Shown(object sender, EventArgs e)
         {
             this.recentFile = new RecentFile(this.fileMenu);
@@ -1570,8 +1570,6 @@ namespace TimeMDev
             this.findErrorItem_ItemClick(null, null);
         }
 
-
-
         private void functionPanel_ClosedPanel(object sender, DockPanelEventArgs e)
         {
             this.FunctionActiveItem.Checked = false;
@@ -1835,7 +1833,7 @@ namespace TimeMDev
 
         private void lastLineItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (this.listView1.VisiblePosition + 1 < this.listView1.Items.Count)
+            if (this.listView1.VisiblePosition + 1 < this.listView1.yyItems.Count)
             {
                 NotificationCenter.SendMessage("yyListView", "EnsureVisibleByIndex", this.listView1.VisiblePosition+1);
             }
@@ -1873,5 +1871,38 @@ namespace TimeMDev
             }
         }
 
+        private void clearTimeItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.zeroTime_Click(null, null);
+        }
+
+        private void clearContentItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.zeroContentContext_Click(null, null);
+        }
+
+
+        #region 判断在listview选中几个值的情况下，哪些快捷键需要显示
+        /// <summary>
+        /// 设置按钮是否是可执行的
+        /// </summary>
+        private void SetItemEnable()
+        {
+            if (this.listView1.yyItems.Count == 0)
+            {
+                this.addOneLineItem.Enabled = false;
+                this.addOneLineContext.Enabled = false;
+                this.addMutiLineItem.Enabled = false;
+                this.addMutiLineContext.Enabled = false;
+                this.moveTimeContext.Enabled = false;
+                
+            }
+        }
+        #endregion
+
+        private void moveTimeContext_Click(object sender, EventArgs e)
+        {
+            this.translationTimeItem_ItemClick(null, null);
+        }
     }
 }
