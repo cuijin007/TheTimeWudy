@@ -120,7 +120,7 @@ namespace TimeMDev
                 {
                     g.FillRectangle(this.OtherSelected, bounds);
                 }
-                if (this.Items[e.ItemIndex].Selected == true)
+                if (this.yyItems[e.ItemIndex].Selected == true)
                 {
                     g.FillRectangle(this.OtherSelected, bounds);
                 }

@@ -39,18 +39,18 @@ namespace TimeMDev.HandleRecord
             this.yyListView.Order = this.sortOrder;
             this.yyListView.ColumnToSort = this.columnToSort;
             this.yyListView.SortStyle = this.sortStyle;
-            if (columnToSort == 0)
-            {
-                this.yyListView.SortStyle = 2;
-            }
-            else if (columnToSort == 3)
-            {
-                this.yyListView.SortStyle = 1;
-            }
-            else
-            {
-                this.yyListView.SortStyle = 0;
-            }
+            //if (columnToSort == 0)
+            //{
+            //    this.yyListView.SortStyle = 2;
+            //}
+            //else if (columnToSort == 3)
+            //{
+            //    this.yyListView.SortStyle = 1;
+            //}
+            //else
+            //{
+            //    this.yyListView.SortStyle = 0;
+            //}
             this.yyListView.YYSort();
             
         }

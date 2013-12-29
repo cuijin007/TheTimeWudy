@@ -444,6 +444,7 @@ namespace TimeMDev
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
            // this.listView1.SignItem();
+            mplayer.SeekPosition(TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[1].Text));
         }
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -453,7 +454,7 @@ namespace TimeMDev
             {
                 this.listView1.SortStyle = 2;
             }
-            else if (e.Column == 3&&e.Column==4)
+            else if (e.Column == 3||e.Column==4)
             {
                 columnNum = 3;
                 this.listView1.SortStyle = 1;
@@ -462,7 +463,7 @@ namespace TimeMDev
             {
                 this.listView1.SortStyle = 0;
             }
-            this.listView1.ColumnToSort = e.Column;
+            //this.listView1.ColumnToSort = e.Column;
             if (this.listView1.Order ==SortOrder.Ascending)
             {
                 this.listView1.Order = SortOrder.Descending;
@@ -604,7 +605,7 @@ namespace TimeMDev
         private void deleteLineContext_Click(object sender, EventArgs e)
         {
             List<HandleRecordBass> listCommand=new List<HandleRecordBass>();
-            for(int i=0;i<this.listView1.SelectedIndices.Count;i++)
+            for(int i=this.listView1.SelectedIndices.Count-1;i>=0;i--)
             {
                 DeleteRecord deleteRecord = new DeleteRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.SelectedIndices[i]);
                 listCommand.Add(deleteRecord);
@@ -1166,7 +1167,7 @@ namespace TimeMDev
             ExtendFormPara extendFormPara = new ExtendFormPara();
             ExtendForm extendForm = new ExtendForm(extendFormPara);
             List<HandleRecordBass> command = new List<HandleRecordBass>();
-            if (extendForm.DialogResult == DialogResult.OK)
+            if (extendForm.ShowDialog() == DialogResult.OK)
             {
                  if (this.listView1.SelectedIndices.Count > 0)
                 {
@@ -1953,6 +1954,24 @@ namespace TimeMDev
             {
                 MessageBox.Show("输入格式有问题");
             }
+
+        }
+
+        private void selectItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < this.listView1.yyItems.Count; i++)
+            {
+                //list.Add(this.listView1.YYGetRealPosition(i));
+                //this.listView1.yyItems[i].Selected = true;
+               // this.listView1.se
+            }
+            //NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
+            //if (this.listView1.yyItems.Count > 0)
+            //{
+            //    this.listView1.yyItems[this.listView1.yyItems.Count - 1].Focused = true;
+            //}
+            this.listView1.YYRefresh();
         }
 
     }
