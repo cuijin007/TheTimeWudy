@@ -55,9 +55,9 @@ namespace TimeMDev
             this.SignPosition = new List<int>();
             this.Selected = Brushes.Orange;
             this.NoSelected = Brushes.Gray;
-            this.Singular = Brushes.LightSeaGreen;
+            this.Singular = Brushes.LightBlue;
             this.Plural = Brushes.White;
-            this.OtherSelected = Brushes.DarkGreen;
+            this.OtherSelected = Brushes.BlueViolet;
             this.VisibleBrush = Brushes.LightBlue;
             this.ListViewItemSorter = yyListViewColumnSorter;
 

@@ -37,9 +37,10 @@ namespace TimeMDev
                     this.timeLineReadWrite.filePath = dialog.FileName;
                     this.timeLineReadWrite.Write(new FileWriteAss(this.GetEncoding()));
                 }
+                MessageBox.Show("保存成功");
             }
             this.timeLineReadWrite.filePath = buf;
-            MessageBox.Show("保存成功");
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

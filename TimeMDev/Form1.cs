@@ -1932,5 +1932,28 @@ namespace TimeMDev
         }
         #endregion
 
+        private void videoPlayPanel_Click(object sender, EventArgs e)
+        {
+            this.mplayer.Pause();
+        }
+
+        private void confirmChangeItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
+                sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
+                sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
+                sentence.content = contentEdit.Text;
+                ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
+                this.commandManage.CommandRun(record);
+                this.listView1.YYRefresh();
+            }
+            catch
+            {
+                MessageBox.Show("输入格式有问题");
+            }
+        }
+
     }
 }
