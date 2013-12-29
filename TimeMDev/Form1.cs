@@ -1834,10 +1834,11 @@ namespace TimeMDev
 
         private void deleteItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if(this.listView1.SelectedIndices.Count>0)
-            {
-            this.commandManage.CommandRun(new DeleteRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[0]));
-            }
+            //if(this.listView1.SelectedIndices.Count>0)
+            //{
+            //this.commandManage.CommandRun(new DeleteRecord(this.timeLineReadWrite.listSingleSentence,this.listView1,this.listView1.SelectedIndices[0]));
+            //}
+            this.deleteLineContext_Click(null, null);
         }
 
         private void lastLineItem_ItemClick(object sender, ItemClickEventArgs e)
@@ -1972,6 +1973,16 @@ namespace TimeMDev
             //    this.listView1.yyItems[this.listView1.yyItems.Count - 1].Focused = true;
             //}
             this.listView1.YYRefresh();
+        }
+
+        private void customSplitItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.customSpiltContext_Click(null, null);
+        }
+
+        private void contentEdit_Leave(object sender, EventArgs e)
+        {
+            this.confirmChange_Click(null, null);
         }
 
     }
