@@ -10,6 +10,7 @@ namespace TimeMDev
 {
     public class MPlayer
     {
+        static MPlayer instance;
         public delegate void  playerRateAction(double time,double totalTime);
         /// <summary>
         /// 字幕同步标志
@@ -25,9 +26,14 @@ namespace TimeMDev
         Process mplayer;
         public bool getPositionMark = true;
         public double totalTime=60*60*4;
-        public playerRateAction DplayerRateAction;
+        public playerRateAction DplayerRateAction,DplayerRateMovieTrackAction;
         public double nowTime;
-        int wid;
+        int wid
+        {
+            get { return Wid; }
+            set { Wid = value; }
+        }
+        public static int Wid;
         int playStep;//开始的步骤,0：读取总时间，1：开始播放
         int PlayStep 
         {
@@ -46,11 +52,20 @@ namespace TimeMDev
         }
         string appPath;
         DataReceivedEventHandler dataReceivedEventHandler;
-        public  MPlayer(int wid)
+        private  MPlayer(int wid)
         {
             this.wid = wid;//输出窗口
             this.appPath = System.AppDomain.CurrentDomain.BaseDirectory;
         }
+        public static MPlayer GetMPlayer()
+        {
+            if (instance == null)
+            {
+                instance = new MPlayer(Wid);
+            }
+            return instance;
+        }
+
         public void SetMoviePath(string moviePath)
         {
             this.moviePath=moviePath;
@@ -62,18 +77,21 @@ namespace TimeMDev
             {
                 try
                 {
+                    this.Quit();
                     this.mplayer.Kill();
-                    
                 }
                 catch
                 {
  
                 }
             }
+            this.mplayer = null;
+            this.mplayerPlay = null;
            
         }
         public void StartPlay(string moviePath)
         {
+            this.Clear();
             this.moviePath=moviePath;
             if (mplayer == null)
             {
@@ -95,12 +113,13 @@ namespace TimeMDev
             }
             if (this.mplayerPlay == null)
             {
+                this.getPositionMark = true;
                 this.mplayerPlay = new Thread(new ThreadStart(this.GetNowPostion));
                 this.mplayerPlay.Start();
             }
             else
             {
-                
+                this.getPositionMark = true;
             }
         }
 
@@ -160,6 +179,7 @@ namespace TimeMDev
                         {
                             this.DplayerRateAction(time, this.totalTime);
                         }
+                        this.DplayerRateMovieTrackAction(time, totalTime);
                     }
                     else
                     {
@@ -348,7 +368,10 @@ namespace TimeMDev
        public void LoadMovie(string path)
        {
            this.moviePath = path;
-           string LoadCommand = @"" + string.Format("loadfile \"{0}\"", path);
+           path = path.Replace(@"\", @"^o^");
+           path = path.Replace(@"^o^", @"\\");
+           //string LoadCommand = @"" + string.Format("loadfile \"{0}\"", path);
+           string LoadCommand = @"" + string.Format("loadfile " +path);
            this.mplayer.StandardInput.WriteLine(LoadCommand);
            this.mplayer.StandardInput.Flush();
        }
@@ -408,8 +431,13 @@ namespace TimeMDev
                }
            }
        }
-        
 
+       public void Quit()
+       {
+           string LoadCommand =string.Format("quit ");
+           this.mplayer.StandardInput.WriteLine(LoadCommand);
+           this.mplayer.StandardInput.Flush();
+       }
     }
     
 }

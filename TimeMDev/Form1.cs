@@ -53,7 +53,10 @@ namespace TimeMDev
         public void InitClass()
         {
             this.pictureRefresh = new PictureRefresh(this);
-            this.mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());//给Mplayer初始化播放的输出位置
+            //this.mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());//给Mplayer初始化播放的输出位置
+            MPlayer.Wid = this.videoPlayPanel.Handle.ToInt32();
+            this.mplayer = MPlayer.GetMPlayer();
+            this.mplayer.DplayerRateMovieTrackAction = this.RefreshTrackBar;
             dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
             dataProcess.DataInit();
             this.rateShow.MouseWheel += new MouseEventHandler(rateShow_MouseWheel);
@@ -148,11 +151,12 @@ namespace TimeMDev
             {
                 if (mplayer == null)
                 {
-                    mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    this.mplayer = MPlayer.GetMPlayer();
                 }
                 else
                 {
-                    mplayer.Clear();
+                    //mplayer.Clear();
                 }
                 this.mplayer.FristTimeStart(dialog.FileName);
             }
@@ -166,15 +170,17 @@ namespace TimeMDev
             {
                 if (mplayer == null)
                 {
-                    mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    this.mplayer = MPlayer.GetMPlayer();
                     this.mplayer.DplayerRateAction = this.dataProcess.GetTimeAction;
                     //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
                     dataProcess.DataInit();
                 }
                 else
                 {
-                    mplayer.Clear();
-                    mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    //mplayer.Clear();
+                    //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                    this.mplayer = MPlayer.GetMPlayer();
                     this.dataProcess.mplayer = this.mplayer;
                     this.mplayer.DplayerRateAction = this.dataProcess.GetTimeAction;
                     //dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1,this.commandManage);
@@ -1677,13 +1683,15 @@ namespace TimeMDev
             path = s[0];
             if (mplayer == null)
             {
-                mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                this.mplayer = MPlayer.GetMPlayer();
                 dataProcess.DataInit();
             }
             else
             {
-                mplayer.Clear();
-                mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                //mplayer.Clear();
+                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                this.mplayer = MPlayer.GetMPlayer();
                 this.dataProcess.mplayer = this.mplayer;
                 dataProcess.DataInit();
             }
@@ -1904,5 +1912,25 @@ namespace TimeMDev
         {
             this.translationTimeItem_ItemClick(null, null);
         }
+
+
+        #region 刷新TrackBar
+        public void RefreshTrackBar(double time,double totalTime)
+        {
+            this.movieTrack.Invoke(new DRefreshTrackBar(this.RefreshTrackBarAction),time,totalTime);
+        }
+        public delegate void DRefreshTrackBar(double time, double totalTime);
+        public void RefreshTrackBarAction(double time,double totalTime)
+        {
+            if (!this.movieTrack.Focused)
+            {
+                this.movieTrack.Maximum = (int)totalTime;
+                this.movieTrack.Value = (int)time;
+                this.interval = (int)totalTime / 100;
+                this.movieTrack.Refresh();
+            }
+        }
+        #endregion
+
     }
 }

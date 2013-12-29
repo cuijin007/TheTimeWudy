@@ -27,7 +27,6 @@ namespace TimeMDev
             get;
             set;
         }
-        
         #region 外界选中和刷新部分的变量初始化
         /// <summary>
        /// 存储刷新的list
@@ -731,9 +730,14 @@ namespace TimeMDev
        /// </summary>
         public void RefreshMovieTrack()
         {
-            this.form1.movieTrack.Maximum = (int)totalTime;
-            this.form1.movieTrack.Value = (int)this.selectedTime;
-            this.form1.interval = (int)totalTime / 100;
+            /*
+            if (!this.form1.movieTrack.Focused)
+            {
+                this.form1.movieTrack.Maximum = (int)totalTime;
+                this.form1.movieTrack.Value = (int)this.SelectedTime;
+                this.form1.interval = (int)totalTime / 100;
+            }
+             */
         }
         #region 一些类里面的小工具
         /// <summary>
