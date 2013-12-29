@@ -1989,7 +1989,6 @@ namespace TimeMDev
             this.listView1.YYRefresh();
         }
 
-<<<<<<< HEAD
         private void customSplitItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.customSpiltContext_Click(null, null);
@@ -1998,11 +1997,10 @@ namespace TimeMDev
         private void contentEdit_Leave(object sender, EventArgs e)
         {
             this.confirmChange_Click(null, null);
-=======
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
->>>>>>> 4879303e3793bb3497b3ca59ebdf39e8f65fdd1d
         }
 
     }
