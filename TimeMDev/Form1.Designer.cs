@@ -541,7 +541,7 @@
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.panelContainer1.FloatVertical = true;
             this.panelContainer1.ID = new System.Guid("69606b57-fcf3-4d4d-a7a3-7e75373d77e5");
-            this.panelContainer1.Location = new System.Drawing.Point(0, 24);
+            this.panelContainer1.Location = new System.Drawing.Point(0, 187);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
             this.panelContainer1.Size = new System.Drawing.Size(1186, 252);
@@ -555,8 +555,8 @@
             this.videoPanel.ID = new System.Guid("b4edf9e8-4959-4e1d-8ef7-e802000544ee");
             this.videoPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPanel.Name = "videoPanel";
-            this.videoPanel.OriginalSize = new System.Drawing.Size(133, 252);
-            this.videoPanel.Size = new System.Drawing.Size(118, 252);
+            this.videoPanel.OriginalSize = new System.Drawing.Size(92, 252);
+            this.videoPanel.Size = new System.Drawing.Size(81, 252);
             this.videoPanel.Text = " 视频播放";
             this.videoPanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.videoPanel_ClosedPanel);
             this.videoPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragEnter);
@@ -569,7 +569,7 @@
             this.dockPanel3_Container.Controls.Add(this.panel2);
             this.dockPanel3_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(110, 225);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(73, 225);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // videoPlayPanel
@@ -579,7 +579,7 @@
             this.videoPlayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPlayPanel.Name = "videoPlayPanel";
-            this.videoPlayPanel.Size = new System.Drawing.Size(110, 168);
+            this.videoPlayPanel.Size = new System.Drawing.Size(73, 168);
             this.videoPlayPanel.TabIndex = 1;
             this.videoPlayPanel.Click += new System.EventHandler(this.videoPlayPanel_Click);
             this.videoPlayPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragDrop);
@@ -592,7 +592,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 168);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(110, 25);
+            this.panel1.Size = new System.Drawing.Size(73, 25);
             this.panel1.TabIndex = 0;
             // 
             // nowTimeLineShow
@@ -603,7 +603,7 @@
             this.nowTimeLineShow.ForeColor = System.Drawing.Color.Yellow;
             this.nowTimeLineShow.Location = new System.Drawing.Point(0, 0);
             this.nowTimeLineShow.Name = "nowTimeLineShow";
-            this.nowTimeLineShow.Size = new System.Drawing.Size(110, 1);
+            this.nowTimeLineShow.Size = new System.Drawing.Size(73, 1);
             this.nowTimeLineShow.TabIndex = 7;
             this.nowTimeLineShow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -614,7 +614,7 @@
             this.movieTrack.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.movieTrack.Location = new System.Drawing.Point(0, 1);
             this.movieTrack.Name = "movieTrack";
-            this.movieTrack.Size = new System.Drawing.Size(110, 24);
+            this.movieTrack.Size = new System.Drawing.Size(73, 24);
             this.movieTrack.TabIndex = 0;
             this.movieTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.movieTrack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movieTrack_MouseDown);
@@ -628,7 +628,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 193);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(110, 32);
+            this.panel2.Size = new System.Drawing.Size(73, 32);
             this.panel2.TabIndex = 0;
             // 
             // toolStripPanel1
@@ -926,10 +926,10 @@
             this.modifySubtitlePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.modifySubtitlePanel.FloatVertical = true;
             this.modifySubtitlePanel.ID = new System.Guid("d5f1cb44-9ef1-4a4b-bac9-7abcb6e9fee2");
-            this.modifySubtitlePanel.Location = new System.Drawing.Point(118, 0);
+            this.modifySubtitlePanel.Location = new System.Drawing.Point(81, 0);
             this.modifySubtitlePanel.Name = "modifySubtitlePanel";
-            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(922, 252);
-            this.modifySubtitlePanel.Size = new System.Drawing.Size(937, 252);
+            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(963, 252);
+            this.modifySubtitlePanel.Size = new System.Drawing.Size(974, 252);
             this.modifySubtitlePanel.Text = "修改字幕";
             this.modifySubtitlePanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.modifySubtitlePanel_ClosedPanel);
             // 
@@ -939,7 +939,7 @@
             this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(929, 225);
+            this.dockPanel4_Container.Size = new System.Drawing.Size(966, 225);
             this.dockPanel4_Container.TabIndex = 0;
             // 
             // contentEdit
@@ -948,7 +948,7 @@
             this.contentEdit.Location = new System.Drawing.Point(123, 0);
             this.contentEdit.Multiline = true;
             this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(806, 225);
+            this.contentEdit.Size = new System.Drawing.Size(843, 225);
             this.contentEdit.TabIndex = 16;
             // 
             // panel3
@@ -1031,7 +1031,7 @@
             this.picTimeLinePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.picTimeLinePanel.FloatVertical = true;
             this.picTimeLinePanel.ID = new System.Guid("ee3c6f74-b203-46a9-b484-9a8d7ae5e6d0");
-            this.picTimeLinePanel.Location = new System.Drawing.Point(0, 276);
+            this.picTimeLinePanel.Location = new System.Drawing.Point(0, 24);
             this.picTimeLinePanel.Name = "picTimeLinePanel";
             this.picTimeLinePanel.OriginalSize = new System.Drawing.Size(200, 163);
             this.picTimeLinePanel.Size = new System.Drawing.Size(1186, 163);
@@ -1078,6 +1078,16 @@
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
             this.topBar,
             this.bar3});
+            this.barManager1.Categories.AddRange(new DevExpress.XtraBars.BarManagerCategory[] {
+            new DevExpress.XtraBars.BarManagerCategory("01文件", new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599")),
+            new DevExpress.XtraBars.BarManagerCategory("09帮助", new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b")),
+            new DevExpress.XtraBars.BarManagerCategory("08视图", new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9")),
+            new DevExpress.XtraBars.BarManagerCategory("07字幕发布站", new System.Guid("f3d86ef1-47ed-4e30-bb31-e49320e0f4f6")),
+            new DevExpress.XtraBars.BarManagerCategory("06设置", new System.Guid("f60b21c6-7a3e-445b-8dd7-4e017085e958")),
+            new DevExpress.XtraBars.BarManagerCategory("05视频", new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36")),
+            new DevExpress.XtraBars.BarManagerCategory("04工具", new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4")),
+            new DevExpress.XtraBars.BarManagerCategory("03字幕", new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667")),
+            new DevExpress.XtraBars.BarManagerCategory("02编辑", new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d"))});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -1217,6 +1227,7 @@
             // fileMenu
             // 
             this.fileMenu.Caption = "文件(F)";
+            this.fileMenu.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.fileMenu.Id = 1;
             this.fileMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.newSubtitleItem, DevExpress.XtraBars.BarItemPaintStyle.Standard),
@@ -1235,6 +1246,7 @@
             // newSubtitleItem
             // 
             this.newSubtitleItem.Caption = "新建字幕";
+            this.newSubtitleItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.newSubtitleItem.Id = 2;
             this.newSubtitleItem.Name = "newSubtitleItem";
             this.newSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.newSubtitleItem_ItemClick);
@@ -1242,6 +1254,7 @@
             // loadSubtitleItem
             // 
             this.loadSubtitleItem.Caption = "打开字幕";
+            this.loadSubtitleItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.loadSubtitleItem.Id = 3;
             this.loadSubtitleItem.Name = "loadSubtitleItem";
             this.loadSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadSubtitleItem_ItemClick);
@@ -1249,6 +1262,7 @@
             // loadTranslationItem
             // 
             this.loadTranslationItem.Caption = "导入翻译稿";
+            this.loadTranslationItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.loadTranslationItem.Id = 4;
             this.loadTranslationItem.Name = "loadTranslationItem";
             this.loadTranslationItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadTranslationItem_ItemClick);
@@ -1256,6 +1270,7 @@
             // addSubtitleItem
             // 
             this.addSubtitleItem.Caption = "追加字幕";
+            this.addSubtitleItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.addSubtitleItem.Id = 5;
             this.addSubtitleItem.Name = "addSubtitleItem";
             this.addSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addSubtitleItem_ItemClick);
@@ -1263,6 +1278,7 @@
             // saveSubtitleItem
             // 
             this.saveSubtitleItem.Caption = "保存字幕...";
+            this.saveSubtitleItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.saveSubtitleItem.Id = 6;
             this.saveSubtitleItem.Name = "saveSubtitleItem";
             this.saveSubtitleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveSubtitleItem_ItemClick);
@@ -1270,6 +1286,7 @@
             // saveAsItem
             // 
             this.saveAsItem.Caption = "另存为...";
+            this.saveAsItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.saveAsItem.Id = 7;
             this.saveAsItem.Name = "saveAsItem";
             this.saveAsItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAsItem_ItemClick);
@@ -1277,6 +1294,7 @@
             // fileSplitSaveItem
             // 
             this.fileSplitSaveItem.Caption = "文件分割另存为...";
+            this.fileSplitSaveItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.fileSplitSaveItem.Id = 8;
             this.fileSplitSaveItem.Name = "fileSplitSaveItem";
             this.fileSplitSaveItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileSplitSaveItem_ItemClick);
@@ -1284,12 +1302,14 @@
             // saveAsMacUTF8Item
             // 
             this.saveAsMacUTF8Item.Caption = "导出为Mac-UTF8格式...";
+            this.saveAsMacUTF8Item.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.saveAsMacUTF8Item.Id = 9;
             this.saveAsMacUTF8Item.Name = "saveAsMacUTF8Item";
             // 
             // exportMutiSaveItem
             // 
             this.exportMutiSaveItem.Caption = "批量导出多版本...";
+            this.exportMutiSaveItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.exportMutiSaveItem.Id = 10;
             this.exportMutiSaveItem.Name = "exportMutiSaveItem";
             this.exportMutiSaveItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportMutiSaveItem_ItemClick);
@@ -1305,6 +1325,7 @@
             // quitItem
             // 
             this.quitItem.Caption = "退出";
+            this.quitItem.CategoryGuid = new System.Guid("f0fd11d7-67ef-472f-9091-98b3e20d0599");
             this.quitItem.Id = 12;
             this.quitItem.Name = "quitItem";
             this.quitItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.quitItem_ItemClick);
@@ -1312,6 +1333,7 @@
             // editMenu
             // 
             this.editMenu.Caption = "编辑(E)";
+            this.editMenu.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.editMenu.Id = 13;
             this.editMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.revocationItem),
@@ -1330,6 +1352,7 @@
             // revocationItem
             // 
             this.revocationItem.Caption = "撤销(&U)";
+            this.revocationItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.revocationItem.Id = 14;
             this.revocationItem.Name = "revocationItem";
             this.revocationItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.revocationItem_ItemClick);
@@ -1337,6 +1360,7 @@
             // redoItem
             // 
             this.redoItem.Caption = "重做(R)";
+            this.redoItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.redoItem.Id = 15;
             this.redoItem.Name = "redoItem";
             this.redoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.redoItem_ItemClick);
@@ -1344,24 +1368,28 @@
             // cutItem
             // 
             this.cutItem.Caption = "剪切(&T)";
+            this.cutItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.cutItem.Id = 16;
             this.cutItem.Name = "cutItem";
             // 
             // copyItem
             // 
             this.copyItem.Caption = "复制(C)";
+            this.copyItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.copyItem.Id = 17;
             this.copyItem.Name = "copyItem";
             // 
             // pasteItem
             // 
             this.pasteItem.Caption = "粘贴(P)";
+            this.pasteItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.pasteItem.Id = 18;
             this.pasteItem.Name = "pasteItem";
             // 
             // selectItem
             // 
             this.selectItem.Caption = "全选(&S)";
+            this.selectItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.selectItem.Id = 19;
             this.selectItem.Name = "selectItem";
             this.selectItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.selectItem_ItemClick);
@@ -1369,6 +1397,7 @@
             // findItem
             // 
             this.findItem.Caption = "查找(&F)";
+            this.findItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.findItem.Id = 20;
             this.findItem.Name = "findItem";
             this.findItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.findItem_ItemClick);
@@ -1376,12 +1405,14 @@
             // findNextItem
             // 
             this.findNextItem.Caption = "查找下一个(F)";
+            this.findNextItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.findNextItem.Id = 21;
             this.findNextItem.Name = "findNextItem";
             // 
             // replaceItem
             // 
             this.replaceItem.Caption = "替换(R)";
+            this.replaceItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.replaceItem.Id = 22;
             this.replaceItem.Name = "replaceItem";
             this.replaceItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.replaceItem_ItemClick);
@@ -1389,6 +1420,7 @@
             // sortItem
             // 
             this.sortItem.Caption = "排序";
+            this.sortItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.sortItem.Id = 23;
             this.sortItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.sortByStartTimeItem),
@@ -1400,30 +1432,35 @@
             // sortByStartTimeItem
             // 
             this.sortByStartTimeItem.Caption = "按开始时间";
+            this.sortByStartTimeItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.sortByStartTimeItem.Id = 24;
             this.sortByStartTimeItem.Name = "sortByStartTimeItem";
             // 
             // sortByEndTimeItem
             // 
             this.sortByEndTimeItem.Caption = "按结束时间";
+            this.sortByEndTimeItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.sortByEndTimeItem.Id = 25;
             this.sortByEndTimeItem.Name = "sortByEndTimeItem";
             // 
             // sortByContentItem
             // 
             this.sortByContentItem.Caption = "按内容";
+            this.sortByContentItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.sortByContentItem.Id = 26;
             this.sortByContentItem.Name = "sortByContentItem";
             // 
             // sortByLengthItem
             // 
             this.sortByLengthItem.Caption = "按字符长度";
+            this.sortByLengthItem.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.sortByLengthItem.Id = 27;
             this.sortByLengthItem.Name = "sortByLengthItem";
             // 
             // barSubItem4
             // 
             this.barSubItem4.Caption = "标记";
+            this.barSubItem4.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.barSubItem4.Id = 28;
             this.barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem25),
@@ -1434,24 +1471,28 @@
             // barButtonItem25
             // 
             this.barButtonItem25.Caption = "标记";
+            this.barButtonItem25.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.barButtonItem25.Id = 29;
             this.barButtonItem25.Name = "barButtonItem25";
             // 
             // barButtonItem26
             // 
             this.barButtonItem26.Caption = "跳转到标记";
+            this.barButtonItem26.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.barButtonItem26.Id = 30;
             this.barButtonItem26.Name = "barButtonItem26";
             // 
             // barButtonItem27
             // 
             this.barButtonItem27.Caption = "跳转到下一个标记";
+            this.barButtonItem27.CategoryGuid = new System.Guid("1b711b26-bf74-44de-b2f7-d327c3d6126d");
             this.barButtonItem27.Id = 31;
             this.barButtonItem27.Name = "barButtonItem27";
             // 
             // subtitleMenu
             // 
             this.subtitleMenu.Caption = "字幕(I)";
+            this.subtitleMenu.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.subtitleMenu.Id = 32;
             this.subtitleMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.addOneLineItem),
@@ -1477,6 +1518,7 @@
             // addOneLineItem
             // 
             this.addOneLineItem.Caption = "插入单行字幕";
+            this.addOneLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.addOneLineItem.Id = 33;
             this.addOneLineItem.Name = "addOneLineItem";
             this.addOneLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addOneLineItem_ItemClick);
@@ -1484,6 +1526,7 @@
             // addMutiLineItem
             // 
             this.addMutiLineItem.Caption = "插入多行字幕";
+            this.addMutiLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.addMutiLineItem.Id = 34;
             this.addMutiLineItem.Name = "addMutiLineItem";
             this.addMutiLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addMutiLineItem_ItemClick);
@@ -1491,12 +1534,14 @@
             // customSplitItem
             // 
             this.customSplitItem.Caption = "自定义拆分";
+            this.customSplitItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.customSplitItem.Id = 35;
             this.customSplitItem.Name = "customSplitItem";
             // 
             // combineLineItem
             // 
             this.combineLineItem.Caption = "行合并";
+            this.combineLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.combineLineItem.Id = 36;
             this.combineLineItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.combineOneLineItem),
@@ -1506,6 +1551,7 @@
             // combineOneLineItem
             // 
             this.combineOneLineItem.Caption = "合并为单行显示";
+            this.combineOneLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.combineOneLineItem.Id = 50;
             this.combineOneLineItem.Name = "combineOneLineItem";
             this.combineOneLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.combineOneLineItem_ItemClick);
@@ -1513,6 +1559,7 @@
             // combineMutiLineItem
             // 
             this.combineMutiLineItem.Caption = "合并为多行显示";
+            this.combineMutiLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.combineMutiLineItem.Id = 51;
             this.combineMutiLineItem.Name = "combineMutiLineItem";
             this.combineMutiLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.combineMutiLineItem_ItemClick);
@@ -1520,6 +1567,7 @@
             // subtitleCombineItem
             // 
             this.subtitleCombineItem.Caption = "字幕行合并为单行";
+            this.subtitleCombineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.subtitleCombineItem.Id = 37;
             this.subtitleCombineItem.Name = "subtitleCombineItem";
             this.subtitleCombineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subtitleCombineItem_ItemClick);
@@ -1527,6 +1575,7 @@
             // deleteItem
             // 
             this.deleteItem.Caption = "删除";
+            this.deleteItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.deleteItem.Id = 38;
             this.deleteItem.Name = "deleteItem";
             this.deleteItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteItem_ItemClick);
@@ -1541,6 +1590,7 @@
             // clearTimeItem
             // 
             this.clearTimeItem.Caption = "时间清零";
+            this.clearTimeItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.clearTimeItem.Id = 40;
             this.clearTimeItem.Name = "clearTimeItem";
             this.clearTimeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearTimeItem_ItemClick);
@@ -1548,6 +1598,7 @@
             // clearContentItem
             // 
             this.clearContentItem.Caption = "内容清空";
+            this.clearContentItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.clearContentItem.Id = 41;
             this.clearContentItem.Name = "clearContentItem";
             this.clearContentItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.clearContentItem_ItemClick);
@@ -1555,6 +1606,7 @@
             // translationTimeItem
             // 
             this.translationTimeItem.Caption = "平移时间";
+            this.translationTimeItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.translationTimeItem.Id = 42;
             this.translationTimeItem.Name = "translationTimeItem";
             this.translationTimeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.translationTimeItem_ItemClick);
@@ -1562,6 +1614,7 @@
             // alignNowTimeItem
             // 
             this.alignNowTimeItem.Caption = "对其到当前播放时间";
+            this.alignNowTimeItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.alignNowTimeItem.Id = 43;
             this.alignNowTimeItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.autoModeItem),
@@ -1578,6 +1631,7 @@
             // autoModeItem
             // 
             this.autoModeItem.Caption = "自动模式";
+            this.autoModeItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.autoModeItem.Id = 109;
             this.autoModeItem.Name = "autoModeItem";
             this.autoModeItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.autoModeItem_CheckedChanged);
@@ -1585,6 +1639,7 @@
             // nextItem
             // 
             this.nextItem.Caption = "下一个";
+            this.nextItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.nextItem.Id = 53;
             this.nextItem.Name = "nextItem";
             this.nextItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nextItem_ItemClick);
@@ -1592,6 +1647,7 @@
             // nowLineStartItem
             // 
             this.nowLineStartItem.Caption = "当前行的开始";
+            this.nowLineStartItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.nowLineStartItem.Id = 54;
             this.nowLineStartItem.Name = "nowLineStartItem";
             this.nowLineStartItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nowLineStartItem_ItemClick);
@@ -1599,6 +1655,7 @@
             // nowLineEndItem
             // 
             this.nowLineEndItem.Caption = "当前行的结束";
+            this.nowLineEndItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.nowLineEndItem.Id = 55;
             this.nowLineEndItem.Name = "nowLineEndItem";
             this.nowLineEndItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nowLineEndItem_ItemClick);
@@ -1606,6 +1663,7 @@
             // onlyNowLineItem
             // 
             this.onlyNowLineItem.Caption = "仅当前行";
+            this.onlyNowLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.onlyNowLineItem.Id = 56;
             this.onlyNowLineItem.Name = "onlyNowLineItem";
             this.onlyNowLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.onlyNowLineItem_ItemClick);
@@ -1613,6 +1671,7 @@
             // afterNowLineItem
             // 
             this.afterNowLineItem.Caption = "当前行之后";
+            this.afterNowLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.afterNowLineItem.Id = 57;
             this.afterNowLineItem.Name = "afterNowLineItem";
             this.afterNowLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.afterNowLineItem_ItemClick);
@@ -1620,6 +1679,7 @@
             // allLineItem
             // 
             this.allLineItem.Caption = "所有行";
+            this.allLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.allLineItem.Id = 58;
             this.allLineItem.Name = "allLineItem";
             this.allLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.allLineItem_ItemClick);
@@ -1627,6 +1687,7 @@
             // lastSignItem
             // 
             this.lastSignItem.Caption = "至上一个标记";
+            this.lastSignItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.lastSignItem.Id = 59;
             this.lastSignItem.Name = "lastSignItem";
             this.lastSignItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.lastSignItem_ItemClick);
@@ -1634,6 +1695,7 @@
             // alignLineItem
             // 
             this.alignLineItem.Caption = "前后标记中对其";
+            this.alignLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.alignLineItem.Id = 60;
             this.alignLineItem.Name = "alignLineItem";
             this.alignLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.alignLineItem_ItemClick);
@@ -1641,6 +1703,7 @@
             // to23FPSItem
             // 
             this.to23FPSItem.Caption = "25FPS转换为23.976FPS";
+            this.to23FPSItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.to23FPSItem.Id = 44;
             this.to23FPSItem.Name = "to23FPSItem";
             this.to23FPSItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.to23FPSItem_ItemClick);
@@ -1648,6 +1711,7 @@
             // to25FPSItem
             // 
             this.to25FPSItem.Caption = "23.976FPS转换为25FPS";
+            this.to25FPSItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.to25FPSItem.Id = 45;
             this.to25FPSItem.Name = "to25FPSItem";
             this.to25FPSItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.to25FPSItem_ItemClick);
@@ -1655,6 +1719,7 @@
             // extendShowItem
             // 
             this.extendShowItem.Caption = "延长显示";
+            this.extendShowItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.extendShowItem.Id = 46;
             this.extendShowItem.Name = "extendShowItem";
             this.extendShowItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.extendShowItem_ItemClick);
@@ -1662,6 +1727,7 @@
             // changeUpandDownItem
             // 
             this.changeUpandDownItem.Caption = "交换上下行";
+            this.changeUpandDownItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.changeUpandDownItem.Id = 47;
             this.changeUpandDownItem.Name = "changeUpandDownItem";
             this.changeUpandDownItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.changeUpandDownItem_ItemClick);
@@ -1669,6 +1735,7 @@
             // lastLineItem
             // 
             this.lastLineItem.Caption = "上一行";
+            this.lastLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.lastLineItem.Id = 48;
             this.lastLineItem.Name = "lastLineItem";
             this.lastLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.lastLineItem_ItemClick);
@@ -1676,6 +1743,7 @@
             // nextLineItem
             // 
             this.nextLineItem.Caption = "下一行";
+            this.nextLineItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.nextLineItem.Id = 49;
             this.nextLineItem.Name = "nextLineItem";
             this.nextLineItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.nextLineItem_ItemClick);
@@ -1683,6 +1751,7 @@
             // confirmChangeItem
             // 
             this.confirmChangeItem.Caption = "编辑框确认更改";
+            this.confirmChangeItem.CategoryGuid = new System.Guid("8f52d4ec-9665-4e4a-9c18-d1b282354667");
             this.confirmChangeItem.Id = 112;
             this.confirmChangeItem.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F12));
             this.confirmChangeItem.Name = "confirmChangeItem";
@@ -1691,6 +1760,7 @@
             // toolMenu
             // 
             this.toolMenu.Caption = "工具(&T)";
+            this.toolMenu.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.toolMenu.Id = 61;
             this.toolMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ccSubtitleHandleItem),
@@ -1708,6 +1778,7 @@
             // ccSubtitleHandleItem
             // 
             this.ccSubtitleHandleItem.Caption = "CC字幕处理";
+            this.ccSubtitleHandleItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.ccSubtitleHandleItem.Id = 62;
             this.ccSubtitleHandleItem.Name = "ccSubtitleHandleItem";
             this.ccSubtitleHandleItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccSubtitleHandleItem_ItemClick);
@@ -1715,6 +1786,7 @@
             // ccRemoveDuplicateItem
             // 
             this.ccRemoveDuplicateItem.Caption = "CC字幕去重【横向】";
+            this.ccRemoveDuplicateItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.ccRemoveDuplicateItem.Id = 63;
             this.ccRemoveDuplicateItem.Name = "ccRemoveDuplicateItem";
             this.ccRemoveDuplicateItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccRemoveDuplicateItem_ItemClick);
@@ -1722,6 +1794,7 @@
             // ccRemoveDuplicateItemL
             // 
             this.ccRemoveDuplicateItemL.Caption = "CC字幕去重【纵向】";
+            this.ccRemoveDuplicateItemL.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.ccRemoveDuplicateItemL.Id = 106;
             this.ccRemoveDuplicateItemL.Name = "ccRemoveDuplicateItemL";
             this.ccRemoveDuplicateItemL.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ccRemoveDuplicateItemL_ItemClick);
@@ -1744,6 +1817,7 @@
             // addEditorItem
             // 
             this.addEditorItem.Caption = "添加制作人员";
+            this.addEditorItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.addEditorItem.Id = 66;
             this.addEditorItem.Name = "addEditorItem";
             this.addEditorItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addEditorItem_ItemClick);
@@ -1751,12 +1825,14 @@
             // compareSubtitleItem
             // 
             this.compareSubtitleItem.Caption = "字幕对比";
+            this.compareSubtitleItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.compareSubtitleItem.Id = 67;
             this.compareSubtitleItem.Name = "compareSubtitleItem";
             // 
             // findErrorItem
             // 
             this.findErrorItem.Caption = "检查除错";
+            this.findErrorItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.findErrorItem.Id = 68;
             this.findErrorItem.Name = "findErrorItem";
             this.findErrorItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.findErrorItem_ItemClick);
@@ -1764,6 +1840,7 @@
             // createEngNameItem
             // 
             this.createEngNameItem.Caption = "生成英文名列表";
+            this.createEngNameItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.createEngNameItem.Id = 69;
             this.createEngNameItem.Name = "createEngNameItem";
             this.createEngNameItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.createEngNameItem_ItemClick);
@@ -1771,6 +1848,7 @@
             // replaceEngNameItem
             // 
             this.replaceEngNameItem.Caption = "执行英文名替换";
+            this.replaceEngNameItem.CategoryGuid = new System.Guid("6dfcdeff-b295-4589-8701-b2d50fe7ead4");
             this.replaceEngNameItem.Id = 70;
             this.replaceEngNameItem.Name = "replaceEngNameItem";
             this.replaceEngNameItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.replaceEngNameItem_ItemClick);
@@ -1778,6 +1856,7 @@
             // videoMenu
             // 
             this.videoMenu.Caption = "视频(&V)";
+            this.videoMenu.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.videoMenu.Id = 71;
             this.videoMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.openVideoItem),
@@ -1794,6 +1873,7 @@
             // openVideoItem
             // 
             this.openVideoItem.Caption = "打开";
+            this.openVideoItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.openVideoItem.Id = 72;
             this.openVideoItem.Name = "openVideoItem";
             this.openVideoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.openVideoItem_ItemClick);
@@ -1801,6 +1881,7 @@
             // pauseVideoItem
             // 
             this.pauseVideoItem.Caption = "播放/暂停";
+            this.pauseVideoItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.pauseVideoItem.Id = 73;
             this.pauseVideoItem.Name = "pauseVideoItem";
             this.pauseVideoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.pauseVideoItem_ItemClick);
@@ -1808,6 +1889,7 @@
             // stopVideoItem
             // 
             this.stopVideoItem.Caption = "停止";
+            this.stopVideoItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.stopVideoItem.Id = 74;
             this.stopVideoItem.Name = "stopVideoItem";
             this.stopVideoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.stopVideoItem_ItemClick);
@@ -1815,6 +1897,7 @@
             // forwardOneSecItem
             // 
             this.forwardOneSecItem.Caption = "前进1秒";
+            this.forwardOneSecItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.forwardOneSecItem.Id = 75;
             this.forwardOneSecItem.Name = "forwardOneSecItem";
             this.forwardOneSecItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.forwardOneSecItem_ItemClick);
@@ -1822,6 +1905,7 @@
             // backOneSecItem
             // 
             this.backOneSecItem.Caption = "后退1秒";
+            this.backOneSecItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.backOneSecItem.Id = 76;
             this.backOneSecItem.Name = "backOneSecItem";
             this.backOneSecItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.backOneSecItem_ItemClick);
@@ -1829,6 +1913,7 @@
             // forward5SecItem
             // 
             this.forward5SecItem.Caption = "前进5秒";
+            this.forward5SecItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.forward5SecItem.Id = 77;
             this.forward5SecItem.Name = "forward5SecItem";
             this.forward5SecItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.forward5SecItem_ItemClick);
@@ -1836,6 +1921,7 @@
             // back5SecItem
             // 
             this.back5SecItem.Caption = "后退5秒";
+            this.back5SecItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.back5SecItem.Id = 78;
             this.back5SecItem.Name = "back5SecItem";
             this.back5SecItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.back5SecItem_ItemClick);
@@ -1843,6 +1929,7 @@
             // barButtonItemOneFrame
             // 
             this.barButtonItemOneFrame.Caption = "前进一帧";
+            this.barButtonItemOneFrame.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.barButtonItemOneFrame.Id = 79;
             this.barButtonItemOneFrame.Name = "barButtonItemOneFrame";
             this.barButtonItemOneFrame.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemOneFrame_ItemClick);
@@ -1850,6 +1937,7 @@
             // subSyncItem
             // 
             this.subSyncItem.Caption = "字幕同步";
+            this.subSyncItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
             this.subSyncItem.Id = 108;
             this.subSyncItem.Name = "subSyncItem";
             this.subSyncItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_ItemClick);
@@ -1858,6 +1946,7 @@
             // optionMenu
             // 
             this.optionMenu.Caption = "设置(&S)";
+            this.optionMenu.CategoryGuid = new System.Guid("f60b21c6-7a3e-445b-8dd7-4e017085e958");
             this.optionMenu.Id = 81;
             this.optionMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.shorCutItem),
@@ -1869,6 +1958,7 @@
             // shorCutItem
             // 
             this.shorCutItem.Caption = "快捷键选项(&D)";
+            this.shorCutItem.CategoryGuid = new System.Guid("f60b21c6-7a3e-445b-8dd7-4e017085e958");
             this.shorCutItem.Id = 82;
             this.shorCutItem.Name = "shorCutItem";
             this.shorCutItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.shorCutItem_ItemClick);
@@ -1905,6 +1995,7 @@
             // webSiteItem
             // 
             this.webSiteItem.Caption = "人人影视";
+            this.webSiteItem.CategoryGuid = new System.Guid("f3d86ef1-47ed-4e30-bb31-e49320e0f4f6");
             this.webSiteItem.Id = 90;
             this.webSiteItem.Name = "webSiteItem";
             this.webSiteItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.webSiteItem_ItemClick);
@@ -1922,6 +2013,7 @@
             // toolsSelectedItem
             // 
             this.toolsSelectedItem.Caption = "工具栏和停靠窗口";
+            this.toolsSelectedItem.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.toolsSelectedItem.Id = 94;
             this.toolsSelectedItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.FunctionActiveItem),
@@ -1934,6 +2026,7 @@
             // FunctionActiveItem
             // 
             this.FunctionActiveItem.Caption = "功能栏";
+            this.FunctionActiveItem.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.FunctionActiveItem.Checked = true;
             this.FunctionActiveItem.Id = 110;
             this.FunctionActiveItem.Name = "FunctionActiveItem";
@@ -1942,6 +2035,7 @@
             // subtitleEditItem
             // 
             this.subtitleEditItem.Caption = "字幕编辑窗口";
+            this.subtitleEditItem.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.subtitleEditItem.Checked = true;
             this.subtitleEditItem.Id = 97;
             this.subtitleEditItem.Name = "subtitleEditItem";
@@ -1950,6 +2044,7 @@
             // videoActiveItem
             // 
             this.videoActiveItem.Caption = "视频播放";
+            this.videoActiveItem.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.videoActiveItem.Checked = true;
             this.videoActiveItem.Id = 98;
             this.videoActiveItem.Name = "videoActiveItem";
@@ -1958,6 +2053,7 @@
             // subtitleShowActiveItem
             // 
             this.subtitleShowActiveItem.Caption = "可视化时间轴";
+            this.subtitleShowActiveItem.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.subtitleShowActiveItem.Checked = true;
             this.subtitleShowActiveItem.Id = 111;
             this.subtitleShowActiveItem.Name = "subtitleShowActiveItem";
@@ -1966,6 +2062,7 @@
             // barButtonItem75
             // 
             this.barButtonItem75.Caption = "自定义";
+            this.barButtonItem75.CategoryGuid = new System.Guid("e1773d28-e9ef-480c-b6cb-a59ab59945b9");
             this.barButtonItem75.Id = 99;
             this.barButtonItem75.Name = "barButtonItem75";
             // 
@@ -1986,6 +2083,7 @@
             // helpMenu
             // 
             this.helpMenu.Caption = "帮助(&H)";
+            this.helpMenu.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.helpMenu.Id = 93;
             this.helpMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem76),
@@ -1998,30 +2096,35 @@
             // barButtonItem76
             // 
             this.barButtonItem76.Caption = "YYeTs人人影视网站";
+            this.barButtonItem76.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem76.Id = 101;
             this.barButtonItem76.Name = "barButtonItem76";
             // 
             // barButtonItem77
             // 
             this.barButtonItem77.Caption = "意见反馈";
+            this.barButtonItem77.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem77.Id = 102;
             this.barButtonItem77.Name = "barButtonItem77";
             // 
             // barButtonItem78
             // 
             this.barButtonItem78.Caption = "使用教程";
+            this.barButtonItem78.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem78.Id = 103;
             this.barButtonItem78.Name = "barButtonItem78";
             // 
             // barButtonItem79
             // 
             this.barButtonItem79.Caption = "检查更新";
+            this.barButtonItem79.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem79.Id = 104;
             this.barButtonItem79.Name = "barButtonItem79";
             // 
             // barButtonItem80
             // 
             this.barButtonItem80.Caption = "关于Time Machine(&A)";
+            this.barButtonItem80.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem80.Id = 105;
             this.barButtonItem80.Name = "barButtonItem80";
             this.barButtonItem80.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem80_ItemClick);
@@ -2138,7 +2241,7 @@
             this.pasteContext,
             this.checkAllContext});
             this.listViewMenu.Name = "listViewMenu";
-            this.listViewMenu.Size = new System.Drawing.Size(229, 446);
+            this.listViewMenu.Size = new System.Drawing.Size(229, 424);
             this.listViewMenu.Opening += new System.ComponentModel.CancelEventHandler(this.listViewMenu_Opening);
             // 
             // addOneLineContext
@@ -2302,14 +2405,15 @@
             this.ClientSize = new System.Drawing.Size(1186, 598);
             this.Controls.Add(this.textTimeLinePanel);
             this.Controls.Add(this.functionPanel);
-            this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Form1";
             this.Text = "测试版Beta";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

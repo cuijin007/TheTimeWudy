@@ -1772,24 +1772,38 @@ namespace TimeMDev
             //bind shortcuts
 
             caption2id = new Hashtable();
-            String sub = "";//menu name
-            int idBase = 0;//menu id
-            int menuCount = 1;
+            Hashtable categoryCount = new Hashtable();
 
+            String sub = "";
             foreach (BarItem item in this.barManager1.Items)
             {
-                if (item is BarSubItem)
-                {
-                    idBase = item.Id;
-                    sub = this.get2Dig(menuCount) + item.Caption + " - ";
-                    ++menuCount;
-                }
-                else if (item is BarButtonItem)
+                if (item is BarButtonItem)
                 {
                     if (item.Id > 0)
                     {
-                        caption2id.Add(sub + this.get2Dig(item.Id - idBase) + item.Caption, item.Id);//for display in shortcut settings
-                        //shown as menuindex menu - commandindex command
+                        int order = 0;
+                        if (item.Category.Name != "error")
+                        {
+                            sub = item.Category.Name + " - ";
+                            if (categoryCount.ContainsKey(sub))
+                            {
+                                order = (int)categoryCount[sub] + 1;
+                            }
+                            else
+                            {
+                                order = 1;
+                            }
+                            categoryCount[sub] = order;
+                        }
+                        else
+                        {
+                            sub = "Category Bug,pls report to us.";
+                        }
+                        if (item.Visibility == BarItemVisibility.Always)
+                        {
+                            caption2id.Add(sub + this.get2Dig(order) + item.Caption, item.Id);//for display in shortcut settings
+                            //shown as menuindex menu - commandindex command
+                        }
                     }
                     Keys key = ShortCuts.Get(item.Id);
                     if (key != (Keys)0)
@@ -1972,6 +1986,11 @@ namespace TimeMDev
             //    this.listView1.yyItems[this.listView1.yyItems.Count - 1].Focused = true;
             //}
             this.listView1.YYRefresh();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
