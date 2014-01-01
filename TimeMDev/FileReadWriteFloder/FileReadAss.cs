@@ -23,6 +23,7 @@ namespace TimeMDev.FileReadWriteFloder
         string styles = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding" +
                                 "\r\nStyle: Default,方正黑体简体,21,&H00FFFFFF,&HF0000000,&H006C3300,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,1,2,5,5,5,134";
 
+        string format = "Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text";
         private bool Additional=false;
         public FileReadAss(bool Additional, List<SingleSentence> listSingleSentence)
         {
@@ -142,6 +143,7 @@ namespace TimeMDev.FileReadWriteFloder
             if (str.StartsWith("Format:"))
             {
                 str = str.Replace("Format", "");
+                this.format=str;
                 str = str.Replace(" ", "");
                 dictionaryType = str.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < markStr.Length; i++)
@@ -228,6 +230,13 @@ namespace TimeMDev.FileReadWriteFloder
                     break;
                 }
             }
+            if(this.listSingleSentence.Count>0)
+            {
+                TimeLineReadWrite.GetAssInfo().EnglishHead = this.listSingleSentence[this.listSingleSentence.Count / 2].effect;
+            }
+            TimeLineReadWrite.GetAssInfo().ScriptInfo = this.scriptInfo;
+            TimeLineReadWrite.GetAssInfo().v4Style = this.styles;
+            TimeLineReadWrite.GetAssInfo().eventContent = this.format;
             return true;
         }
     }

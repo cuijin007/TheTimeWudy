@@ -433,6 +433,7 @@ namespace TimeMDev
             int second = (int)(time - 3600 * hour - 60 * minute);
             //int minsec = (int)((time - (int)time) * 1000);
             int minsec = (int)(time * 1000 - ((int)time) * 1000);//2013-12-22将原有的转换函数转变否则会出现700转为699的问题
+            minsec = minsec / 10;//2014-1-1修改两位时间问题
             string TimeStr = hour + ":" + minute.ToString().PadLeft(2, '0') + ":" + second.ToString().PadLeft(2, '0') + "." + minsec.ToString().PadLeft(2, '0');
             return TimeStr;
         }
@@ -447,7 +448,7 @@ namespace TimeMDev
             }
             else
             {
-                double timedouble = Double.Parse(timeBuffer[0]) * 3600 + Double.Parse(timeBuffer[1]) * 60 + Double.Parse(timeBuffer[2]) + Double.Parse(timeBuffer[3]) * 0.001;
+                double timedouble = Double.Parse(timeBuffer[0]) * 3600 + Double.Parse(timeBuffer[1]) * 60 + Double.Parse(timeBuffer[2]) + Double.Parse(timeBuffer[3]) * 0.01;
                 return timedouble;
             }
         }
@@ -511,6 +512,22 @@ namespace TimeMDev
                 return false;
             }
         }
-    
+
+
+        #region 单例模式特效
+        private static AssInfo assInfo;
+        public static AssInfo GetAssInfo()
+        {
+            if (assInfo == null)
+            {
+                assInfo = new AssInfo();
+                return assInfo;
+            }
+            else
+            {
+                return assInfo;
+            }
+        }
+        #endregion
     }
 }

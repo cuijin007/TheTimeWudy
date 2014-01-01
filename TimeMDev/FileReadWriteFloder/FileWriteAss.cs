@@ -79,10 +79,44 @@ namespace TimeMDev.FileReadWriteFloder
                 line += listSingleSentence[i].marginL + ",";
                 line += listSingleSentence[i].marginR + ",";
                 line += listSingleSentence[i].marginV + ",";
-                line += listSingleSentence[i].effect + ",";
+                //line += listSingleSentence[i].effect + ",";
+                line += ",";
                 if (this.ContentFunction == null)
                 {
-                    line += listSingleSentence[i].content;
+                    string chinese,english;
+                    CCHandle.SpiltRule(listSingleSentence[i].content, out chinese, out english);
+                    try
+                    {
+                        chinese = CCHandle.TrimEnterEnd(chinese);
+                        english = CCHandle.TrimEnterEnd(english);
+                    }
+                    catch
+                    {
+ 
+                    }
+                    if (listSingleSentence[i].content.StartsWith(chinese))
+                    {
+                        if (listSingleSentence[i].effect !=null&& !listSingleSentence[i].effect.Equals(""))
+                        {
+                            line += chinese + "\r\n" + listSingleSentence[i].effect + english;
+                        }
+                        else
+                        {
+                            line += chinese + "\r\n" + TimeLineReadWrite.GetAssInfo().EnglishHead + english;
+                        }
+                    }
+                    else
+                    {
+                        if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        {
+                            line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                        }
+                        else
+                        {
+                            line += TimeLineReadWrite.GetAssInfo().EnglishHead+ english + "\r\n" + chinese;
+                        }
+                    }
+                   // line += listSingleSentence[i].content;
                 }
                 else
                 {

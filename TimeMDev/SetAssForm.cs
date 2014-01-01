@@ -38,9 +38,6 @@ namespace TimeMDev
         }
 
     }
-
-
-
     public class AssInfo
     {
         public string ScriptInfo="; // 此字幕由TimeM生成\r\n; // 欢迎访问人人影视 http://www.YYeTs.net\r\nTitle:YYeTs\r\nOriginal Script:YYeTs\r\nSynch Point:1\r\nScriptType:v4.00+\r\nCollisions:Normal\r\n";

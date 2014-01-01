@@ -318,5 +318,15 @@ namespace TimeMDev
             str = str.TrimEnd('\r', '\n');
             return str;
         }
+        /// <summary>
+        /// 去掉特效
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string TrimEffect(string str)
+        {
+            str=Regex.Replace(str, @"\{[^\]]+\}","");
+            return str;
+        }
     }
 }

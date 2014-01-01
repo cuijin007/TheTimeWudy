@@ -49,6 +49,21 @@ namespace TimeMDev
            get;
            set;
        }
+        /// <summary>
+        /// 是否显示特效
+        /// </summary>
+        public bool IsShowEffect
+        {
+            get
+            {
+                return this.isShowEffect;
+            }
+            set
+            {
+                this.isShowEffect = value;
+            }
+        }
+        private bool isShowEffect=false;
         public YYListView()
         {
             this.OwnerDraw = true;
@@ -127,6 +142,10 @@ namespace TimeMDev
                 string text=e.SubItem.Text;
                // text=text.Replace("\r","");
               //  text=text.Replace("\n","");
+                if (!this.isShowEffect)
+                {
+                    text = CCHandle.TrimEffect(text);
+                }
                 TextRenderer.DrawText(
                     g,
                     text,

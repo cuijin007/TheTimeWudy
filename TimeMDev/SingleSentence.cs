@@ -48,12 +48,12 @@ namespace TimeMDev
         public bool isSelected2 = false;
         public bool isKeyBoard = false;
         //所有的需要的ass需要的变量。
-        public string layer;
-        public string style;
-        public string actor;
-        public string marginL;
-        public string marginR;
-        public string marginV;
+        public string layer="0";
+        public string style = "*Default";
+        public string actor = "说话人";
+        public string marginL = "0000";
+        public string marginR = "0000";
+        public string marginV = "0000";
         public string effect;
         //string content
         public string textEffect;

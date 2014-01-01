@@ -80,9 +80,11 @@ namespace TimeMDev
         /// </summary>
         void commandManage_AfterRunCommandFunction()
         {
-            this.timeLineReadWrite.Write(new FileWriteSrt());
+            string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
+            this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
             //this.timeLineReadWrite.WriteAllTimeline();
-            this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
+            //this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
+            this.mplayer.LoadTimeLine(path);
         }
 
         void recentFile_OnItemClickAction(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -884,17 +886,20 @@ namespace TimeMDev
         {
             try
             {
-                SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
-                sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
-                sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
-                sentence.content = contentEdit.Text;
-                ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
-                this.commandManage.CommandRun(record);
-                this.listView1.YYRefresh();
+                if (!this.timeEditEnd.Text.Equals("") && !this.timeEditStart.Text.Equals("") && !this.numEdit.Text.Equals(""))
+                {
+                    SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
+                    sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
+                    sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
+                    sentence.content = contentEdit.Text;
+                    ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
+                    this.commandManage.CommandRun(record);
+                    this.listView1.YYRefresh();
+                }
             }
             catch
             {
-                MessageBox.Show("输入格式有问题");
+                //MessageBox.Show("输入格式有问题");
             }
 
 
