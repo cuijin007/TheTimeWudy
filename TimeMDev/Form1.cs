@@ -2008,5 +2008,11 @@ namespace TimeMDev
 
         }
 
+        private void saveAutoItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            this.listView1.IsShowEffect = this.saveAutoItem.Checked;
+            this.listView1.YYRefresh();
+        }
+
     }
 }

@@ -196,9 +196,7 @@
             this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.shorCutItem = new DevExpress.XtraBars.BarButtonItem();
-            this.viewOptionItem = new DevExpress.XtraBars.BarButtonItem();
-            this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
-            this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
+            this.saveAutoCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.publishMenu = new DevExpress.XtraBars.BarSubItem();
             this.webSiteItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewMenu = new DevExpress.XtraBars.BarSubItem();
@@ -251,6 +249,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.barCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.viewEffectItem = new DevExpress.XtraBars.BarButtonItem();
+            this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
+            this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.functionPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -541,7 +543,7 @@
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.panelContainer1.FloatVertical = true;
             this.panelContainer1.ID = new System.Guid("69606b57-fcf3-4d4d-a7a3-7e75373d77e5");
-            this.panelContainer1.Location = new System.Drawing.Point(131, 187);
+            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
             this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
@@ -555,8 +557,8 @@
             this.videoPanel.ID = new System.Guid("b4edf9e8-4959-4e1d-8ef7-e802000544ee");
             this.videoPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPanel.Name = "videoPanel";
-            this.videoPanel.OriginalSize = new System.Drawing.Size(81, 252);
-            this.videoPanel.Size = new System.Drawing.Size(476, 252);
+            this.videoPanel.OriginalSize = new System.Drawing.Size(476, 252);
+            this.videoPanel.Size = new System.Drawing.Size(423, 252);
             this.videoPanel.Text = " 视频播放";
             this.videoPanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.videoPanel_ClosedPanel);
             this.videoPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragEnter);
@@ -569,7 +571,7 @@
             this.dockPanel3_Container.Controls.Add(this.panel2);
             this.dockPanel3_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(468, 225);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(415, 225);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // videoPlayPanel
@@ -579,7 +581,7 @@
             this.videoPlayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPlayPanel.Name = "videoPlayPanel";
-            this.videoPlayPanel.Size = new System.Drawing.Size(468, 168);
+            this.videoPlayPanel.Size = new System.Drawing.Size(415, 168);
             this.videoPlayPanel.TabIndex = 1;
             this.videoPlayPanel.Click += new System.EventHandler(this.videoPlayPanel_Click);
             this.videoPlayPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragDrop);
@@ -592,7 +594,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 168);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(468, 25);
+            this.panel1.Size = new System.Drawing.Size(415, 25);
             this.panel1.TabIndex = 0;
             // 
             // nowTimeLineShow
@@ -603,7 +605,7 @@
             this.nowTimeLineShow.ForeColor = System.Drawing.Color.Yellow;
             this.nowTimeLineShow.Location = new System.Drawing.Point(0, 0);
             this.nowTimeLineShow.Name = "nowTimeLineShow";
-            this.nowTimeLineShow.Size = new System.Drawing.Size(468, 1);
+            this.nowTimeLineShow.Size = new System.Drawing.Size(415, 1);
             this.nowTimeLineShow.TabIndex = 7;
             this.nowTimeLineShow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -614,7 +616,7 @@
             this.movieTrack.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.movieTrack.Location = new System.Drawing.Point(0, 1);
             this.movieTrack.Name = "movieTrack";
-            this.movieTrack.Size = new System.Drawing.Size(468, 24);
+            this.movieTrack.Size = new System.Drawing.Size(415, 24);
             this.movieTrack.TabIndex = 0;
             this.movieTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.movieTrack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movieTrack_MouseDown);
@@ -628,7 +630,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 193);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 32);
+            this.panel2.Size = new System.Drawing.Size(415, 32);
             this.panel2.TabIndex = 0;
             // 
             // toolStripPanel1
@@ -926,10 +928,10 @@
             this.modifySubtitlePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.modifySubtitlePanel.FloatVertical = true;
             this.modifySubtitlePanel.ID = new System.Guid("d5f1cb44-9ef1-4a4b-bac9-7abcb6e9fee2");
-            this.modifySubtitlePanel.Location = new System.Drawing.Point(476, 0);
+            this.modifySubtitlePanel.Location = new System.Drawing.Point(423, 0);
             this.modifySubtitlePanel.Name = "modifySubtitlePanel";
-            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(974, 252);
-            this.modifySubtitlePanel.Size = new System.Drawing.Size(579, 252);
+            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(579, 252);
+            this.modifySubtitlePanel.Size = new System.Drawing.Size(632, 252);
             this.modifySubtitlePanel.Text = "修改字幕";
             this.modifySubtitlePanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.modifySubtitlePanel_ClosedPanel);
             // 
@@ -939,7 +941,7 @@
             this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(571, 225);
+            this.dockPanel4_Container.Size = new System.Drawing.Size(624, 225);
             this.dockPanel4_Container.TabIndex = 0;
             // 
             // contentEdit
@@ -948,7 +950,7 @@
             this.contentEdit.Location = new System.Drawing.Point(123, 0);
             this.contentEdit.Multiline = true;
             this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(448, 225);
+            this.contentEdit.Size = new System.Drawing.Size(501, 225);
             this.contentEdit.TabIndex = 16;
             this.contentEdit.Leave += new System.EventHandler(this.contentEdit_Leave);
             // 
@@ -1176,9 +1178,7 @@
             this.barButtonItemOneFrame,
             this.optionMenu,
             this.shorCutItem,
-            this.viewOptionItem,
-            this.hideEffectsItem,
-            this.saveAutoItem,
+            this.saveAutoCheckItem,
             this.publishMenu,
             this.webSiteItem,
             this.viewMenu,
@@ -1200,9 +1200,13 @@
             this.autoModeItem,
             this.FunctionActiveItem,
             this.subtitleShowActiveItem,
-            this.confirmChangeItem});
+            this.confirmChangeItem,
+            this.barCheckItem,
+            this.viewEffectItem,
+            this.hideEffectsItem,
+            this.saveAutoItem});
             this.barManager1.MainMenu = this.topBar;
-            this.barManager1.MaxItemId = 113;
+            this.barManager1.MaxItemId = 117;
             this.barManager1.StatusBar = this.bar3;
             // 
             // topBar
@@ -1951,7 +1955,8 @@
             this.optionMenu.Id = 81;
             this.optionMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.shorCutItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.viewOptionItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.viewEffectItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoCheckItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.hideEffectsItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoItem)});
             this.optionMenu.Name = "optionMenu";
@@ -1964,26 +1969,12 @@
             this.shorCutItem.Name = "shorCutItem";
             this.shorCutItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.shorCutItem_ItemClick);
             // 
-            // viewOptionItem
+            // saveAutoCheckItem
             // 
-            this.viewOptionItem.Caption = "设置查看SSA/ASS";
-            this.viewOptionItem.Id = 83;
-            this.viewOptionItem.Name = "viewOptionItem";
-            this.viewOptionItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // hideEffectsItem
-            // 
-            this.hideEffectsItem.Caption = "隐藏特效代码";
-            this.hideEffectsItem.Id = 86;
-            this.hideEffectsItem.Name = "hideEffectsItem";
-            this.hideEffectsItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            // 
-            // saveAutoItem
-            // 
-            this.saveAutoItem.Caption = "自动保存";
-            this.saveAutoItem.Id = 88;
-            this.saveAutoItem.Name = "saveAutoItem";
-            this.saveAutoItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.saveAutoCheckItem.Caption = "自动保存选项";
+            this.saveAutoCheckItem.Id = 88;
+            this.saveAutoCheckItem.Name = "saveAutoCheckItem";
+            this.saveAutoCheckItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // publishMenu
             // 
@@ -2196,6 +2187,7 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.listView1.FullRowSelect = true;
+            this.listView1.IsShowEffect = false;
             this.listView1.Location = new System.Drawing.Point(2, 23);
             this.listView1.Name = "listView1";
             this.listView1.Order = System.Windows.Forms.SortOrder.None;
@@ -2399,15 +2391,40 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // barCheckItem
+            // 
+            this.barCheckItem.Caption = "特效选择";
+            this.barCheckItem.Id = 113;
+            this.barCheckItem.Name = "barCheckItem";
+            // 
+            // viewEffectItem
+            // 
+            this.viewEffectItem.Caption = "特效选择";
+            this.viewEffectItem.Id = 114;
+            this.viewEffectItem.Name = "viewEffectItem";
+            // 
+            // hideEffectsItem
+            // 
+            this.hideEffectsItem.Caption = "特效隐藏";
+            this.hideEffectsItem.Id = 115;
+            this.hideEffectsItem.Name = "hideEffectsItem";
+            // 
+            // saveAutoItem
+            // 
+            this.saveAutoItem.Caption = "自动保存";
+            this.saveAutoItem.Id = 116;
+            this.saveAutoItem.Name = "saveAutoItem";
+            this.saveAutoItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 598);
             this.Controls.Add(this.textTimeLinePanel);
+            this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.functionPanel);
-            this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -2550,9 +2567,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemOneFrame;
         private DevExpress.XtraBars.BarSubItem optionMenu;
         private DevExpress.XtraBars.BarButtonItem shorCutItem;
-        private DevExpress.XtraBars.BarButtonItem viewOptionItem;
-        private DevExpress.XtraBars.BarCheckItem hideEffectsItem;
-        private DevExpress.XtraBars.BarCheckItem saveAutoItem;
+        private DevExpress.XtraBars.BarCheckItem saveAutoCheckItem;
         private DevExpress.XtraBars.BarSubItem publishMenu;
         private DevExpress.XtraBars.BarButtonItem webSiteItem;
         private DevExpress.XtraBars.BarSubItem viewMenu;
@@ -2674,6 +2689,10 @@
         private DevExpress.XtraBars.BarCheckItem FunctionActiveItem;
         private DevExpress.XtraBars.BarCheckItem subtitleShowActiveItem;
         private DevExpress.XtraBars.BarButtonItem confirmChangeItem;
+        private DevExpress.XtraBars.BarButtonItem viewEffectItem;
+        private DevExpress.XtraBars.BarCheckItem hideEffectsItem;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem;
+        private DevExpress.XtraBars.BarCheckItem saveAutoItem;
     }
 }
 
