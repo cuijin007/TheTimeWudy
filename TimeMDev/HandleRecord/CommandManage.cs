@@ -15,6 +15,7 @@ namespace TimeMDev.HandleRecord
         /// 是否需要保存
         /// </summary>
         public bool NeedSave{get;set;}
+        public uint functionTime = 0;
         //做了和没做的堆栈
         List<List<HandleRecordBass>> stackHaveDone;
         List<List<HandleRecordBass>> stackNeedDone;
@@ -22,6 +23,7 @@ namespace TimeMDev.HandleRecord
         /// 每个动作完了之后都会执行的函数,初步用于保存，和load
         /// </summary>
         public event AfterRunCommandFuncionD AfterRunCommandFunction; 
+
         int stackSize;
         public CommandManage(int stackSize)
         {
@@ -48,6 +50,7 @@ namespace TimeMDev.HandleRecord
                 AfterRunCommandFunction();
             }
             NeedSave=true;
+            functionTime++;
         }
         public void CommandRun(List<HandleRecordBass> command)
         {
@@ -65,6 +68,7 @@ namespace TimeMDev.HandleRecord
                 AfterRunCommandFunction();
             }
             NeedSave=true;
+            functionTime++;
         }
         public void CommandRunNoRedo(params HandleRecordBass[] command)
         {

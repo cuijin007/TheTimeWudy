@@ -18,7 +18,16 @@ namespace TimeMDev
             this.InitBox();
             this.assInfo=assInfo;
         }
-
+        public SetAssForm()
+        {
+            InitializeComponent();
+            this.scriptInfoBox.Text = TimeLineReadWrite.GetAssInfo().ScriptInfo;
+            this.v4StyleBox.Text = TimeLineReadWrite.GetAssInfo().v4Style;
+            this.eventBox.Text = TimeLineReadWrite.GetAssInfo().eventContent;
+            this.englishHeadBox.Text = TimeLineReadWrite.GetAssInfo().EnglishHead;
+            this.englishEndBox.Text = TimeLineReadWrite.GetAssInfo().EnglishEnd;
+            this.assInfo = TimeLineReadWrite.GetAssInfo();
+        }
         private void confirm_Click(object sender, EventArgs e)
         {
             this.assInfo.eventContent=eventBox.Text;

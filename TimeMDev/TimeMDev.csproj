@@ -148,6 +148,7 @@
     <Compile Include="HandleRecord\CopyRecord.cs" />
     <Compile Include="HandleRecord\CutRecord.cs" />
     <Compile Include="HandleRecord\DeleteRecord.cs" />
+    <Compile Include="HandleRecord\EmptyAction.cs" />
     <Compile Include="HandleRecord\HandleOverLapRecord.cs" />
     <Compile Include="HandleRecord\HandleRecordBass.cs" />
     <Compile Include="HandleRecord\InsertRecord.cs" />
@@ -284,6 +285,14 @@
       <DependentUpon>SetAssForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetDelayTime.resx">
+      <DependentUpon>SetDelayTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetSaveAuto.resx">
+      <DependentUpon>SetSaveAuto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetShortCutForm.resx">
       <DependentUpon>SetShortCutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -333,6 +342,18 @@
     </Compile>
     <Compile Include="SetAssForm.Designer.cs">
       <DependentUpon>SetAssForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetDelayTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetDelayTime.Designer.cs">
+      <DependentUpon>SetDelayTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetSaveAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetSaveAuto.Designer.cs">
+      <DependentUpon>SetSaveAuto.cs</DependentUpon>
     </Compile>
     <Compile Include="SetShortCutForm.cs">
       <SubType>Form</SubType>

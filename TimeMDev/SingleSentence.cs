@@ -24,7 +24,30 @@ namespace TimeMDev
         }
         public bool Checked = false;
 
-        public double startTime, endTime;
+        public double startTime
+        {
+            set
+            {
+                if (value >= 0)
+                {
+                    startTimeS = value;
+                }
+                else
+                {
+                    startTimeS = 0;
+                }
+            }
+            get
+            {
+                return this.startTimeS;
+            }
+        }
+        private double startTimeS;
+        public double endTime
+        {
+            get;
+            set;
+        }
         /// <summary>
         /// 时长
         /// </summary>

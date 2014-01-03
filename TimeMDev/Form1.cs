@@ -70,9 +70,33 @@ namespace TimeMDev
             this.NotificationInit();
             //this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
             this.commandManage.AfterRunCommandFunction += new AfterRunCommandFuncionD(commandManage_AfterRunCommandFunction);
+            this.commandManage.AfterRunCommandFunction += new AfterRunCommandFuncionD(commandManage_SaveAutoFunction);
             if (File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml"))
             {
                 this.dockManager1.RestoreLayoutFromXml(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml");
+            }
+        }
+        /// <summary>
+        /// 自动保存
+        /// </summary>
+        void commandManage_SaveAutoFunction()
+        {
+            if(this.saveAutoCheckItem.Checked)
+            {
+                if (commandManage.functionTime % SetSaveAuto.GetAutoSaveFunctionTime() == 0)
+                {
+                    string path = timeLineReadWrite.filePath;
+                    string pathBuf=SetSaveAuto.GetAutoSavePath()+Path.GetFileNameWithoutExtension(path)+SetSaveAuto.GetAutoSaveCount();
+                    if (path.EndsWith(".ass"))
+                    {
+                        timeLineReadWrite.Write(new FileWriteAss(Encoding.Default,pathBuf+".ass",TimeLineReadWrite.GetAssInfo()));
+                    }
+                    if(path.EndsWith(".srt"))
+                    {
+                        timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default,pathBuf+".srt"));
+                    }
+                    this.timeLineReadWrite.filePath=path;
+                }
             }
         }
         /// <summary>
@@ -81,7 +105,8 @@ namespace TimeMDev
         void commandManage_AfterRunCommandFunction()
         {
             string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
-            this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
+            //this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
+            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
             //this.timeLineReadWrite.WriteAllTimeline();
             //this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
             this.mplayer.LoadTimeLine(path);
@@ -1021,7 +1046,7 @@ namespace TimeMDev
             if (this.mplayer != null&&this.listView1.SelectedIndices.Count>0)
             {
                 SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
-                singleSentence.startTime = this.mplayer.nowTime;
+                singleSentence.startTime = this.mplayer.nowTime+this.GetDelayTime();
                 if (singleSentence.endTime < singleSentence.startTime)
                 {
                     singleSentence.endTime = singleSentence.startTime;
@@ -1037,7 +1062,7 @@ namespace TimeMDev
             if (this.mplayer != null && this.listView1.SelectedIndices.Count > 0)
             {
                 SingleSentence singleSentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[this.listView1.YYGetRealPosition(this.listView1.SelectedIndices[0])]);
-                singleSentence.endTime = this.mplayer.nowTime;
+                singleSentence.endTime = this.mplayer.nowTime + this.GetDelayTime();
                 ChangeRecord changeRecord = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], singleSentence);
                 this.commandManage.CommandRun(changeRecord);
 
@@ -2014,5 +2039,38 @@ namespace TimeMDev
             this.listView1.YYRefresh();
         }
 
+        private void viewEffectItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            (new SetAssForm()).ShowDialog();
+            this.commandManage_AfterRunCommandFunction();
+        }
+
+        private double GetDelayTime()
+        {
+            string time = Config.DefaultConfig["DelayTime"];
+            try
+            {
+                return Double.Parse(time);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private void saveAutoCheckItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void delayTimeItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            (new SetDelayTime()).ShowDialog();
+        }
+
+        private void loadSubEncodingItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            (new ChooseEncodingForm()).ShowDialog();
+        }
     }
 }

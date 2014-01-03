@@ -196,7 +196,11 @@
             this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.shorCutItem = new DevExpress.XtraBars.BarButtonItem();
+            this.viewEffectItem = new DevExpress.XtraBars.BarButtonItem();
             this.saveAutoCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.delayTimeItem = new DevExpress.XtraBars.BarButtonItem();
+            this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
+            this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
             this.publishMenu = new DevExpress.XtraBars.BarSubItem();
             this.webSiteItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewMenu = new DevExpress.XtraBars.BarSubItem();
@@ -220,6 +224,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barCheckItem4 = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.textTimeLinePanel = new DevExpress.XtraEditors.GroupControl();
             this.listView1 = new TimeMDev.YYListView();
             this.listViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -249,10 +254,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.barCheckItem = new DevExpress.XtraBars.BarCheckItem();
-            this.viewEffectItem = new DevExpress.XtraBars.BarButtonItem();
-            this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
-            this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
+            this.loadSubEncodingItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.functionPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -1204,9 +1206,11 @@
             this.barCheckItem,
             this.viewEffectItem,
             this.hideEffectsItem,
-            this.saveAutoItem});
+            this.saveAutoItem,
+            this.delayTimeItem,
+            this.loadSubEncodingItem});
             this.barManager1.MainMenu = this.topBar;
-            this.barManager1.MaxItemId = 117;
+            this.barManager1.MaxItemId = 119;
             this.barManager1.StatusBar = this.bar3;
             // 
             // topBar
@@ -1957,6 +1961,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.shorCutItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.viewEffectItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoCheckItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.delayTimeItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.loadSubEncodingItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.hideEffectsItem, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoItem)});
             this.optionMenu.Name = "optionMenu";
@@ -1969,12 +1975,40 @@
             this.shorCutItem.Name = "shorCutItem";
             this.shorCutItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.shorCutItem_ItemClick);
             // 
+            // viewEffectItem
+            // 
+            this.viewEffectItem.Caption = "特效选择";
+            this.viewEffectItem.Id = 114;
+            this.viewEffectItem.Name = "viewEffectItem";
+            this.viewEffectItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewEffectItem_ItemClick);
+            // 
             // saveAutoCheckItem
             // 
             this.saveAutoCheckItem.Caption = "自动保存选项";
             this.saveAutoCheckItem.Id = 88;
             this.saveAutoCheckItem.Name = "saveAutoCheckItem";
             this.saveAutoCheckItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.saveAutoCheckItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoCheckItem_CheckedChanged);
+            // 
+            // delayTimeItem
+            // 
+            this.delayTimeItem.Caption = "卡轴延迟";
+            this.delayTimeItem.Id = 117;
+            this.delayTimeItem.Name = "delayTimeItem";
+            this.delayTimeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.delayTimeItem_ItemClick);
+            // 
+            // hideEffectsItem
+            // 
+            this.hideEffectsItem.Caption = "特效隐藏";
+            this.hideEffectsItem.Id = 115;
+            this.hideEffectsItem.Name = "hideEffectsItem";
+            // 
+            // saveAutoItem
+            // 
+            this.saveAutoItem.Caption = "自动保存";
+            this.saveAutoItem.Id = 116;
+            this.saveAutoItem.Name = "saveAutoItem";
+            this.saveAutoItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_CheckedChanged);
             // 
             // publishMenu
             // 
@@ -2166,6 +2200,12 @@
             this.barCheckItem4.Caption = "Tasks Pane";
             this.barCheckItem4.Id = 96;
             this.barCheckItem4.Name = "barCheckItem4";
+            // 
+            // barCheckItem
+            // 
+            this.barCheckItem.Caption = "特效选择";
+            this.barCheckItem.Id = 113;
+            this.barCheckItem.Name = "barCheckItem";
             // 
             // textTimeLinePanel
             // 
@@ -2391,30 +2431,12 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // barCheckItem
+            // loadSubEncodingItem
             // 
-            this.barCheckItem.Caption = "特效选择";
-            this.barCheckItem.Id = 113;
-            this.barCheckItem.Name = "barCheckItem";
-            // 
-            // viewEffectItem
-            // 
-            this.viewEffectItem.Caption = "特效选择";
-            this.viewEffectItem.Id = 114;
-            this.viewEffectItem.Name = "viewEffectItem";
-            // 
-            // hideEffectsItem
-            // 
-            this.hideEffectsItem.Caption = "特效隐藏";
-            this.hideEffectsItem.Id = 115;
-            this.hideEffectsItem.Name = "hideEffectsItem";
-            // 
-            // saveAutoItem
-            // 
-            this.saveAutoItem.Caption = "自动保存";
-            this.saveAutoItem.Id = 116;
-            this.saveAutoItem.Name = "saveAutoItem";
-            this.saveAutoItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_CheckedChanged);
+            this.loadSubEncodingItem.Caption = "字幕加载编码格式";
+            this.loadSubEncodingItem.Id = 118;
+            this.loadSubEncodingItem.Name = "loadSubEncodingItem";
+            this.loadSubEncodingItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadSubEncodingItem_ItemClick);
             // 
             // Form1
             // 
@@ -2693,6 +2715,8 @@
         private DevExpress.XtraBars.BarCheckItem hideEffectsItem;
         private DevExpress.XtraBars.BarCheckItem barCheckItem;
         private DevExpress.XtraBars.BarCheckItem saveAutoItem;
+        private DevExpress.XtraBars.BarButtonItem delayTimeItem;
+        private DevExpress.XtraBars.BarButtonItem loadSubEncodingItem;
     }
 }
 
