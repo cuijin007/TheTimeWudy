@@ -15,6 +15,7 @@ namespace TimeMDev
         public SetSaveAuto()
         {
             InitializeComponent();
+            this.Init();
         }
 
         private void Init()

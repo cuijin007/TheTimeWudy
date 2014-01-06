@@ -162,6 +162,7 @@
             this.cancel.TabIndex = 1;
             this.cancel.Text = "取消";
             this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // SetAssForm
             // 

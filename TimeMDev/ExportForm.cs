@@ -142,7 +142,11 @@ namespace TimeMDev
 
         private void selectePath_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                this.pathOut.Text = fbd.SelectedPath+"\\";
+            }
         }
     }
 }

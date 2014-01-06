@@ -19,6 +19,7 @@ namespace TimeMDev
         public Brush Plural;
         public Brush OtherSelected;
         public Brush SeletedLineColor = Brushes.Blue;
+        public Color TextSelected = Color.LightYellow;
         public List<ListViewItem> yyItems = new List<ListViewItem>();
         public event DDoubleClickAction DoubleClickAction;
         int itemHeight=1;
@@ -146,13 +147,26 @@ namespace TimeMDev
                 {
                     text = CCHandle.TrimEffect(text);
                 }
-                TextRenderer.DrawText(
-                    g,
-                    text,
-                    e.Item.Font,
-                    bounds,
-                    e.Item.ForeColor,
-                    TextFormatFlags.Left);             
+                if (this.yyItems[e.ItemIndex].Selected)
+                {
+                    TextRenderer.DrawText(
+                        g,
+                        text,
+                        e.Item.Font,
+                        bounds,
+                        this.TextSelected,
+                        TextFormatFlags.Left);
+                }
+                else
+                {
+                    TextRenderer.DrawText(
+                        g,
+                        text,
+                        e.Item.Font,
+                        bounds,
+                        e.Item.ForeColor,
+                        TextFormatFlags.Left);
+                }
             }            
         }
         

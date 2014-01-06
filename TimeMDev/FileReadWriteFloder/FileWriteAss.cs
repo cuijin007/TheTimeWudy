@@ -88,7 +88,9 @@ namespace TimeMDev.FileReadWriteFloder
                     try
                     {
                         chinese = CCHandle.TrimEnterEnd(chinese);
+                        chinese = CCHandle.TrimEnterStart(chinese);
                         english = CCHandle.TrimEnterEnd(english);
+                        english = CCHandle.TrimEnterStart(english);
                     }
                     catch
                     {
@@ -124,6 +126,8 @@ namespace TimeMDev.FileReadWriteFloder
                     line += this.ContentFunction(ref buf);
                 }
                 line = line.Replace("\r\n", "\\N");
+                line = CCHandle.TrimEnterStart(line);
+                line = CCHandle.TrimEnterEnd(line);
                 streamWriter.WriteLine(line);
             }
         }

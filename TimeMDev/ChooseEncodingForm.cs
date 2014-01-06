@@ -31,6 +31,10 @@ namespace TimeMDev
         public static Encoding GetAutoLoadSubEncoding()
         {
             string encodingStr = Config.DefaultConfig["AutoLoadSubEncoding"];
+            if (encoding == null)
+            {
+                encoding = Encoding.Default;
+            }
             if (encodingStr.Equals("unicode"))
             {
                 encoding = Encoding.Unicode;
@@ -43,7 +47,7 @@ namespace TimeMDev
             {
                 encoding = Encoding.UTF8;
             }
-            return Encoding.Default;
+            return encoding;
         }
 
         private void cancel_Click(object sender, EventArgs e)

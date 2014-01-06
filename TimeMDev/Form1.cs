@@ -81,12 +81,13 @@ namespace TimeMDev
         /// </summary>
         void commandManage_SaveAutoFunction()
         {
-            if(this.saveAutoCheckItem.Checked)
+            if(this.saveAutoCheckItem2.Checked)
             {
                 if (commandManage.functionTime % SetSaveAuto.GetAutoSaveFunctionTime() == 0)
                 {
                     string path = timeLineReadWrite.filePath;
-                    string pathBuf=SetSaveAuto.GetAutoSavePath()+Path.GetFileNameWithoutExtension(path)+SetSaveAuto.GetAutoSaveCount();
+                    path = this.originalSubtitlePath;
+                    string pathBuf=SetSaveAuto.GetAutoSavePath()+"\\"+Path.GetFileNameWithoutExtension(path)+SetSaveAuto.GetAutoSaveCount();
                     if (path.EndsWith(".ass"))
                     {
                         timeLineReadWrite.Write(new FileWriteAss(Encoding.Default,pathBuf+".ass",TimeLineReadWrite.GetAssInfo()));
@@ -95,7 +96,7 @@ namespace TimeMDev
                     {
                         timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default,pathBuf+".srt"));
                     }
-                    this.timeLineReadWrite.filePath=path;
+                    //this.timeLineReadWrite.filePath=path;
                 }
             }
         }
@@ -373,11 +374,13 @@ namespace TimeMDev
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, dialog.FileName, false);
                 if (dialog.FileName.EndsWith("srt"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeline();
+                    //this.timeLineReadWrite.ReadAllTimeline();
+                    this.timeLineReadWrite.Read(new FileReadSrt());
                 }
                 if (dialog.FileName.EndsWith("ass"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                    //this.timeLineReadWrite.ReadAllTimeLineAss();
+                    this.timeLineReadWrite.Read(new FileReadAss());
                 }
                 this.originalSubtitlePath = dialog.FileName;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -733,9 +736,12 @@ namespace TimeMDev
 
         private void copyContext_Click(object sender, EventArgs e)
         {
-            CopyRecord copyRecord = new CopyRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices);
-            this.commandManage.CommandRunNoRedo(copyRecord);
-            this.listView1.YYRefresh();
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                CopyRecord copyRecord = new CopyRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices);
+                this.commandManage.CommandRunNoRedo(copyRecord);
+                this.listView1.YYRefresh();
+            }
         }
 
         private void cutContext_Click(object sender, EventArgs e)
@@ -747,9 +753,12 @@ namespace TimeMDev
 
         private void pasteContext_Click(object sender, EventArgs e)
         {
-            PasteRecord pasteRecord=new PasteRecord(this.dataProcess,this.listView1,this.listView1.SelectedIndices[0]+1);
-            this.commandManage.CommandRun(pasteRecord);
-            this.listView1.YYRefresh();
+            if (this.listView1.SelectedIndices.Count > 0)
+            {
+                PasteRecord pasteRecord = new PasteRecord(this.dataProcess, this.listView1, this.listView1.SelectedIndices[0] + 1);
+                this.commandManage.CommandRun(pasteRecord);
+                this.listView1.YYRefresh();
+            }
         }
 
         private void checkAllContext_Click(object sender, EventArgs e)
@@ -932,11 +941,23 @@ namespace TimeMDev
 
         private void saveSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            /*
             string buf=this.timeLineReadWrite.filePath;
             this.timeLineReadWrite.filePath=this.originalSubtitlePath;
             this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default));
             this.timeLineReadWrite.filePath = buf;
             this.commandManage.NeedSave = false;
+        
+             */
+            if (this.originalSubtitlePath.EndsWith(".srt"))
+            {
+                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default, this.originalSubtitlePath));
+            }
+            if (this.originalSubtitlePath.EndsWith(".ass"))
+            {
+                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.Default, this.originalSubtitlePath));
+            }
+            this.timeLineReadWrite.DeleteBuf(this.timeLineReadWrite.filePath);
         }
 
         private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -2004,18 +2025,33 @@ namespace TimeMDev
 
         private void selectItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            List<int> list = new List<int>();
-            for (int i = 0; i < this.listView1.yyItems.Count; i++)
-            {
-                //list.Add(this.listView1.YYGetRealPosition(i));
-                //this.listView1.yyItems[i].Selected = true;
-               // this.listView1.se
-            }
+            //List<int> list = new List<int>();
+            //for (int i = 0; i < this.listView1.yyItems.Count; i++)
+            //{
+            //   // list.Add(this.listView1.YYGetRealPosition(i));
+            //    //this.listView1.yyItems[i].Selected = true;
+            //    this.listView1.SelectedIndices.Add(this.listView1.YYGetRealPosition(i));
+            //    // this.listView1.se
+            //}
             //NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
             //if (this.listView1.yyItems.Count > 0)
             //{
             //    this.listView1.yyItems[this.listView1.yyItems.Count - 1].Focused = true;
             //}
+            //this.listView1.YYRefresh();
+            /*
+            int count = 0;
+            for (int i = 0; i < this.listView1.yyItems.Count; i++)
+            {
+                if (this.listView1.yyItems[i].Selected)
+                {
+                    count++;
+                }
+            }
+            MessageBox.Show(count + "\r\n"+this.listView1.SelectedIndices.Count);
+        
+             */
+            NativeMethods.SelectAllItems(this.listView1);
             this.listView1.YYRefresh();
         }
 
@@ -2035,8 +2071,7 @@ namespace TimeMDev
 
         private void saveAutoItem_CheckedChanged(object sender, ItemClickEventArgs e)
         {
-            this.listView1.IsShowEffect = this.saveAutoItem.Checked;
-            this.listView1.YYRefresh();
+
         }
 
         private void viewEffectItem_ItemClick(object sender, ItemClickEventArgs e)
@@ -2060,7 +2095,7 @@ namespace TimeMDev
 
         private void saveAutoCheckItem_CheckedChanged(object sender, ItemClickEventArgs e)
         {
-
+            
         }
 
         private void delayTimeItem_ItemClick(object sender, ItemClickEventArgs e)
@@ -2071,6 +2106,25 @@ namespace TimeMDev
         private void loadSubEncodingItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             (new ChooseEncodingForm()).ShowDialog();
+        }
+
+        private void hideEffectsItem_CheckedChanged(object sender, ItemClickEventArgs e)
+        {
+            this.listView1.IsShowEffect = !this.hideEffectsItem.Checked;
+            this.listView1.YYRefresh();
+        }
+
+        private void saveAutoItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SetSaveAuto setSaveAuto = new SetSaveAuto();
+            setSaveAuto.ShowDialog();
+        }
+
+        private void reloadSubItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
+            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+            this.mplayer.LoadTimeLine(path);
         }
     }
 }

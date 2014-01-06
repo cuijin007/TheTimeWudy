@@ -35,6 +35,7 @@ namespace TimeMDev
             this.assInfo.EnglishEnd=this.englishEndBox.Text;
             this.assInfo.v4Style=this.v4StyleBox.Text;
             this.assInfo.ScriptInfo=this.scriptInfoBox.Text;
+            this.Close();
         }
 
 
@@ -44,6 +45,11 @@ namespace TimeMDev
             this.v4StyleBox.Text = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\r\nStyle: Default,方正黑体简体,20,&H00FFFFFF,&HF0000000,&H00000000,&H32000000,0,0,0,0,100,10";
             this.eventBox.Text = "Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text";
             this.englishHeadBox.SelectedIndex = 0;
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

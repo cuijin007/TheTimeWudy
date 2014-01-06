@@ -194,13 +194,15 @@
             this.back5SecItem = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItemOneFrame = new DevExpress.XtraBars.BarButtonItem();
             this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
+            this.reloadSubItem = new DevExpress.XtraBars.BarButtonItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.shorCutItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewEffectItem = new DevExpress.XtraBars.BarButtonItem();
-            this.saveAutoCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.saveAutoItem = new DevExpress.XtraBars.BarButtonItem();
             this.delayTimeItem = new DevExpress.XtraBars.BarButtonItem();
+            this.loadSubEncodingItem = new DevExpress.XtraBars.BarButtonItem();
             this.hideEffectsItem = new DevExpress.XtraBars.BarCheckItem();
-            this.saveAutoItem = new DevExpress.XtraBars.BarCheckItem();
+            this.saveAutoCheckItem2 = new DevExpress.XtraBars.BarCheckItem();
             this.publishMenu = new DevExpress.XtraBars.BarSubItem();
             this.webSiteItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewMenu = new DevExpress.XtraBars.BarSubItem();
@@ -223,6 +225,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.saveAutoCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem4 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.textTimeLinePanel = new DevExpress.XtraEditors.GroupControl();
@@ -254,7 +257,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.loadSubEncodingItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.functionPanel.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -1206,11 +1208,13 @@
             this.barCheckItem,
             this.viewEffectItem,
             this.hideEffectsItem,
-            this.saveAutoItem,
+            this.saveAutoCheckItem2,
             this.delayTimeItem,
-            this.loadSubEncodingItem});
+            this.loadSubEncodingItem,
+            this.saveAutoItem,
+            this.reloadSubItem});
             this.barManager1.MainMenu = this.topBar;
-            this.barManager1.MaxItemId = 119;
+            this.barManager1.MaxItemId = 121;
             this.barManager1.StatusBar = this.bar3;
             // 
             // topBar
@@ -1876,7 +1880,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.forward5SecItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.back5SecItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemOneFrame),
-            new DevExpress.XtraBars.LinkPersistInfo(this.subSyncItem, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.subSyncItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.reloadSubItem, true)});
             this.videoMenu.Name = "videoMenu";
             // 
             // openVideoItem
@@ -1952,6 +1957,13 @@
             this.subSyncItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_ItemClick);
             this.subSyncItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.subSyncItem_CheckedChanged);
             // 
+            // reloadSubItem
+            // 
+            this.reloadSubItem.Caption = "重新挂载字幕";
+            this.reloadSubItem.Id = 120;
+            this.reloadSubItem.Name = "reloadSubItem";
+            this.reloadSubItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.reloadSubItem_ItemClick);
+            // 
             // optionMenu
             // 
             this.optionMenu.Caption = "设置(&S)";
@@ -1960,11 +1972,11 @@
             this.optionMenu.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.shorCutItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.viewEffectItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoCheckItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.delayTimeItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.loadSubEncodingItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.hideEffectsItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoItem)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.saveAutoCheckItem2)});
             this.optionMenu.Name = "optionMenu";
             // 
             // shorCutItem
@@ -1982,13 +1994,12 @@
             this.viewEffectItem.Name = "viewEffectItem";
             this.viewEffectItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.viewEffectItem_ItemClick);
             // 
-            // saveAutoCheckItem
+            // saveAutoItem
             // 
-            this.saveAutoCheckItem.Caption = "自动保存选项";
-            this.saveAutoCheckItem.Id = 88;
-            this.saveAutoCheckItem.Name = "saveAutoCheckItem";
-            this.saveAutoCheckItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.saveAutoCheckItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoCheckItem_CheckedChanged);
+            this.saveAutoItem.Caption = "自动保存选项";
+            this.saveAutoItem.Id = 119;
+            this.saveAutoItem.Name = "saveAutoItem";
+            this.saveAutoItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_ItemClick);
             // 
             // delayTimeItem
             // 
@@ -1997,18 +2008,26 @@
             this.delayTimeItem.Name = "delayTimeItem";
             this.delayTimeItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.delayTimeItem_ItemClick);
             // 
+            // loadSubEncodingItem
+            // 
+            this.loadSubEncodingItem.Caption = "字幕加载编码格式";
+            this.loadSubEncodingItem.Id = 118;
+            this.loadSubEncodingItem.Name = "loadSubEncodingItem";
+            this.loadSubEncodingItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadSubEncodingItem_ItemClick);
+            // 
             // hideEffectsItem
             // 
             this.hideEffectsItem.Caption = "特效隐藏";
             this.hideEffectsItem.Id = 115;
             this.hideEffectsItem.Name = "hideEffectsItem";
+            this.hideEffectsItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.hideEffectsItem_CheckedChanged);
             // 
-            // saveAutoItem
+            // saveAutoCheckItem2
             // 
-            this.saveAutoItem.Caption = "自动保存";
-            this.saveAutoItem.Id = 116;
-            this.saveAutoItem.Name = "saveAutoItem";
-            this.saveAutoItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_CheckedChanged);
+            this.saveAutoCheckItem2.Caption = "自动保存";
+            this.saveAutoCheckItem2.Id = 116;
+            this.saveAutoCheckItem2.Name = "saveAutoCheckItem2";
+            this.saveAutoCheckItem2.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoItem_CheckedChanged);
             // 
             // publishMenu
             // 
@@ -2194,6 +2213,14 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1186, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 551);
+            // 
+            // saveAutoCheckItem
+            // 
+            this.saveAutoCheckItem.Caption = "自动保存选项";
+            this.saveAutoCheckItem.Id = 88;
+            this.saveAutoCheckItem.Name = "saveAutoCheckItem";
+            this.saveAutoCheckItem.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.saveAutoCheckItem.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.saveAutoCheckItem_CheckedChanged);
             // 
             // barCheckItem4
             // 
@@ -2431,13 +2458,6 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // loadSubEncodingItem
-            // 
-            this.loadSubEncodingItem.Caption = "字幕加载编码格式";
-            this.loadSubEncodingItem.Id = 118;
-            this.loadSubEncodingItem.Name = "loadSubEncodingItem";
-            this.loadSubEncodingItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loadSubEncodingItem_ItemClick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2453,6 +2473,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Form1";
             this.Text = "测试版Beta";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -2714,9 +2735,11 @@
         private DevExpress.XtraBars.BarButtonItem viewEffectItem;
         private DevExpress.XtraBars.BarCheckItem hideEffectsItem;
         private DevExpress.XtraBars.BarCheckItem barCheckItem;
-        private DevExpress.XtraBars.BarCheckItem saveAutoItem;
+        private DevExpress.XtraBars.BarCheckItem saveAutoCheckItem2;
         private DevExpress.XtraBars.BarButtonItem delayTimeItem;
         private DevExpress.XtraBars.BarButtonItem loadSubEncodingItem;
+        private DevExpress.XtraBars.BarButtonItem saveAutoItem;
+        private DevExpress.XtraBars.BarButtonItem reloadSubItem;
     }
 }
 
