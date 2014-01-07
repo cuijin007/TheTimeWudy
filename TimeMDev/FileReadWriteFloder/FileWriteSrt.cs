@@ -34,7 +34,7 @@ namespace TimeMDev.FileReadWriteFloder
             {
                 filePath = path;
             }
-            fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            fileStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite);
             StreamWriter streamWriter;
             if (this.encoding == null)
             {

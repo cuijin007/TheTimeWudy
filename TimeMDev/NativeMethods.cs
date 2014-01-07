@@ -9,7 +9,8 @@ namespace TimeMDev
 {
     class NativeMethods
     {
-        private const int LVM_SETITEMSTATE =0 + 43;
+        private const int LVM_FIRST = 0x1000;
+        private const int LVM_SETITEMSTATE = LVM_FIRST + 43;
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public struct LVITEM
@@ -31,15 +32,24 @@ namespace TimeMDev
         };
 
         [DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
-        public static extern IntPtr SendMessageLVItem(HandleRef hWnd, int msg, int wParam, ref LVITEM lvi);
+        public static extern IntPtr SendMessageLVItem(IntPtr hWnd, int msg, int wParam, ref LVITEM lvi);
 
         /// <summary>
         /// Select all rows on the given listview
         /// </summary>
-        /// <param name="listView">The listview whose items are to be selected</param>
-        public static void SelectAllItems(ListView listView)
+        /// <param name="list">The listview whose items are to be selected</param>
+        public static void SelectAllItems(ListView list)
         {
-            NativeMethods.SetItemState(listView, -1, 2, 2);
+            NativeMethods.SetItemState(list, -1, 2, 2);
+        }
+
+        /// <summary>
+        /// Deselect all rows on the given listview
+        /// </summary>
+        /// <param name="list">The listview whose items are to be deselected</param>
+        public static void DeselectAllItems(ListView list)
+        {
+            NativeMethods.SetItemState(list, -1, 2, 0);
         }
 
         /// <summary>
@@ -49,12 +59,12 @@ namespace TimeMDev
         /// <param name="itemIndex">The index of the item to be changed</param>
         /// <param name="mask">Which bits of the value are to be set?</param>
         /// <param name="value">The value to be set</param>
-        public static void SetItemState(ListView listView, int itemIndex, int mask, int value)
+        public static void SetItemState(ListView list, int itemIndex, int mask, int value)
         {
             LVITEM lvItem = new LVITEM();
             lvItem.stateMask = mask;
             lvItem.state = value;
-            SendMessageLVItem(new HandleRef(listView, listView.Handle), LVM_SETITEMSTATE, itemIndex, ref lvItem);
+            SendMessageLVItem(list.Handle, LVM_SETITEMSTATE, itemIndex, ref lvItem);
         }
     }
 }

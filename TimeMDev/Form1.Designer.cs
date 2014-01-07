@@ -646,7 +646,7 @@
             this.toolStripPanel1.Name = "toolStripPanel1";
             this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.toolStripPanel1.Size = new System.Drawing.Size(232, 32);
+            this.toolStripPanel1.Size = new System.Drawing.Size(263, 32);
             // 
             // toolStrip1
             // 
@@ -668,7 +668,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(232, 23);
+            this.toolStrip1.Size = new System.Drawing.Size(263, 23);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -783,6 +783,7 @@
             this.toolStripSyn.Name = "toolStripSyn";
             this.toolStripSyn.Size = new System.Drawing.Size(23, 20);
             this.toolStripSyn.Text = "同步";
+            this.toolStripSyn.CheckedChanged += new System.EventHandler(this.toolStripSyn_CheckedChanged);
             this.toolStripSyn.Click += new System.EventHandler(this.toolStripSyn_Click);
             // 
             // toolStripSeparator8

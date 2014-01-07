@@ -763,7 +763,7 @@ namespace TimeMDev
 
         private void checkAllContext_Click(object sender, EventArgs e)
         {
-
+            this.selectItem_ItemClick(null, null);
         }
 
         private void createEngNameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -830,6 +830,7 @@ namespace TimeMDev
             this.recentFile.OnItemClickAction += new OnItemClick(recentFile_OnItemClickAction);
 
             this.bindShortCuts();
+            this.ReadAllCheck();
         }
 
         private void fileSplitSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1318,23 +1319,13 @@ namespace TimeMDev
 
         private void toolStripSyn_Click(object sender, EventArgs e)
         {
-            this.subSyncItem_ItemClick(null, null);
+            //this.subSyncItem_ItemClick(null, null);
+            this.subSyncItem_CheckedChanged(null, null);
         }
 
         private void subSyncItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MPlayer.RefreshMark)
-            {
-                MPlayer.RefreshMark = false;
-                this.toolStripSyn.Checked = false;
-                this.subSyncItem.Checked = false;
-            }
-            else
-            {
-                MPlayer.RefreshMark = true;
-                this.subSyncItem.Checked = true;
-                this.toolStripSyn.Checked = true;
-            }           
+   
             
         }
 
@@ -1416,6 +1407,8 @@ namespace TimeMDev
         private void subSyncItem_CheckedChanged(object sender, ItemClickEventArgs e)
         {
 
+                MPlayer.RefreshMark = this.subSyncItem.Checked;
+                this.toolStripSyn.Checked = this.subSyncItem.Checked;    
         }
 
         private void autoModeItem_CheckedChanged(object sender, ItemClickEventArgs e)
@@ -1722,7 +1715,59 @@ namespace TimeMDev
                     e.Cancel = true;
                 }
             }
+            this.SaveAllCheck();
         }
+        /// <summary>
+        /// 返回设置值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private bool GetConfigCheck(string str)
+        {
+            if (str.Equals("1"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 设置设置值
+        /// </summary>
+        /// <param name="mark"></param>
+        /// <returns></returns>
+        private string SetConfigCheck(bool mark)
+        {
+            if (mark)
+            {
+                return "1";
+            }
+            else
+            {
+                return "0";
+            }
+        }
+        /// <summary>
+        /// 存储所有选项
+        /// </summary>
+        private void SaveAllCheck()
+        {
+            Config.DefaultConfig["AutoSaveCheck"] = this.SetConfigCheck(this.saveAutoCheckItem2.Checked);
+            Config.DefaultConfig["subSyncItem"] =this.SetConfigCheck(this.subSyncItem.Checked);
+            Config.DefaultConfig["hideEffectsItem"] = this.SetConfigCheck(this.hideEffectsItem.Checked);
+        }
+        /// <summary>
+        /// 读取所有选项
+        /// </summary>
+        private void ReadAllCheck()
+        {
+            this.saveAutoCheckItem2.Checked = this.GetConfigCheck(Config.DefaultConfig["AutoSaveCheck"]);
+            this.subSyncItem.Checked = this.GetConfigCheck(Config.DefaultConfig["subSyncItem"]);
+            this.hideEffectsItem.Checked = this.GetConfigCheck(Config.DefaultConfig["hideEffectsItem"]);
+        }
+
 
         private void videoPanel_DragEnter(object sender, DragEventArgs e)
         {
@@ -1730,42 +1775,109 @@ namespace TimeMDev
 
         private void videoPanel_DragDrop(object sender, DragEventArgs e)
         {
-            string path = "";
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            path = s[0];
-            if (mplayer == null)
-            {
-                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
-                this.mplayer = MPlayer.GetMPlayer();
-                dataProcess.DataInit();
-            }
-            else
-            {
-                //mplayer.Clear();
-                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
-                this.mplayer = MPlayer.GetMPlayer();
-                this.dataProcess.mplayer = this.mplayer;
-                dataProcess.DataInit();
-            }
-            this.mplayer.StartPlay(path);
-            this.mplayer.GetTotalTime();
-            this.dataProcess.Init();
-            pictureRefresh.Start();
-            this.rateShow.Focus();
-            this.mplayer.StepPlay();//要求打开的时候是停止的。
-            this.moviePath = Path.GetDirectoryName(path);
-            this.movieName = Path.GetFileNameWithoutExtension(path);
-            //到时候还要根据是什么类型的进行修改
-            //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
-            this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
-            this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+            this.DragLoadAll(s);
+            //path = s[0];
+            //if (mplayer == null)
+            //{
+            //    //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+            //    this.mplayer = MPlayer.GetMPlayer();
+            //    dataProcess.DataInit();
+            //}
+            //else
+            //{
+            //    //mplayer.Clear();
+            //    //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+            //    this.mplayer = MPlayer.GetMPlayer();
+            //    this.dataProcess.mplayer = this.mplayer;
+            //    dataProcess.DataInit();
+            //}
+            //this.mplayer.StartPlay(path);
+            //this.mplayer.GetTotalTime();
+            //this.dataProcess.Init();
+            //pictureRefresh.Start();
+            //this.rateShow.Focus();
+            //this.mplayer.StepPlay();//要求打开的时候是停止的。
+            //this.moviePath = Path.GetDirectoryName(path);
+            //this.movieName = Path.GetFileNameWithoutExtension(path);
+            ////到时候还要根据是什么类型的进行修改
+            ////this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+            //this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+            //this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
         }
 
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
-             string path = "";
             string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            path = s[0];
+            this.DragLoadAll(s);
+            // string path = "";
+            //string[] s = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            //path = s[0];
+            //if (path.EndsWith(".srt") || path.EndsWith(".ass"))
+            //{
+            //    dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
+            //    dataProcess.DataInit();
+            //    this.dataProcess.Init();
+            //    pictureRefresh.Start();
+            //    this.mplayer.Pause();//要求打开的时候是停止的。
+
+            //    this.timeLineReadWrite = new TimeLineReadWrite();
+            //    this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
+            //    if (path.EndsWith("srt"))
+            //    {
+            //        this.timeLineReadWrite.ReadAllTimeline();
+            //    }
+            //    if (path.EndsWith("ass"))
+            //    {
+            //        this.timeLineReadWrite.ReadAllTimeLineAss();
+            //    }
+            //    this.originalSubtitlePath = path;//保存一个初始值。
+            //    if (this.moviePath.Equals(""))
+            //    {
+            //        //还要修改后缀
+            //        //temporarySubtitlePath = System.AppDomain.CurrentDomain.BaseDirectory + "\\save\\noname.srt";
+            //        this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+            //    }
+            //    else
+            //    {
+            //        this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+            //    }
+            //    this.rateShow.Focus();
+            //    this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
+
+            //    //使能 listviewmenu
+            //    //this.SetListviewMenuEnable(true);
+            //    //增加最近打开的文件
+            //    this.recentFile.AddRecentFile(path);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("请拖入.srt或.ass字幕");
+            //}
+            
+            //this.rateShow.Focus();
+        }
+        private void DragLoadAll(string[] path)
+        {
+            for (int i = 0; i < path.Length; i++)
+            {
+                if (path[i].EndsWith(".avi") || path[i].EndsWith(".mkv") || path[i].EndsWith(".mp4") || path[i].EndsWith(".rmvb"))
+                {
+                    this.DragLoadMovie(path[i]);
+                }
+                if (path[i].EndsWith(".srt") || path[i].EndsWith(".ass"))
+                {
+                    this.DragLoadSub(path[i]);
+                }
+            }
+        }
+        /// <summary>
+        /// 拖拽读取字幕
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        private bool DragLoadSub(string path)
+        {
             if (path.EndsWith(".srt") || path.EndsWith(".ass"))
             {
                 dataProcess = new DataProcess(pictureRefresh, this.Cursor, mplayer, listView1, this.commandManage);
@@ -1805,12 +1917,49 @@ namespace TimeMDev
             }
             else
             {
-                MessageBox.Show("请拖入.srt或.ass字幕");
+                //MessageBox.Show("请拖入.srt或.ass字幕");
+                return false;
             }
-            
-            this.rateShow.Focus();
-        }
 
+            this.rateShow.Focus();
+            return true;
+        }
+        /// <summary>
+        /// 拖拽读取电影
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        private bool DragLoadMovie(string path)
+        {
+            if (mplayer == null)
+            {
+                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                this.mplayer = MPlayer.GetMPlayer();
+                dataProcess.DataInit();
+            }
+            else
+            {
+                //mplayer.Clear();
+                //mplayer = new MPlayer(this.videoPlayPanel.Handle.ToInt32());
+                this.mplayer = MPlayer.GetMPlayer();
+                this.dataProcess.mplayer = this.mplayer;
+                dataProcess.DataInit();
+            }
+            this.mplayer.StartPlay(path);
+            this.mplayer.GetTotalTime();
+            this.dataProcess.Init();
+            pictureRefresh.Start();
+            this.rateShow.Focus();
+            this.mplayer.StepPlay();//要求打开的时候是停止的。
+            this.moviePath = Path.GetDirectoryName(path);
+            this.movieName = Path.GetFileNameWithoutExtension(path);
+            //到时候还要根据是什么类型的进行修改
+            //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
+            this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+            this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
+            return true;
+        }
+        
         private void shorCutItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             ShortCutSettingsForm shortcutSettings = new ShortCutSettingsForm();
@@ -2025,32 +2174,6 @@ namespace TimeMDev
 
         private void selectItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //List<int> list = new List<int>();
-            //for (int i = 0; i < this.listView1.yyItems.Count; i++)
-            //{
-            //   // list.Add(this.listView1.YYGetRealPosition(i));
-            //    //this.listView1.yyItems[i].Selected = true;
-            //    this.listView1.SelectedIndices.Add(this.listView1.YYGetRealPosition(i));
-            //    // this.listView1.se
-            //}
-            //NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
-            //if (this.listView1.yyItems.Count > 0)
-            //{
-            //    this.listView1.yyItems[this.listView1.yyItems.Count - 1].Focused = true;
-            //}
-            //this.listView1.YYRefresh();
-            /*
-            int count = 0;
-            for (int i = 0; i < this.listView1.yyItems.Count; i++)
-            {
-                if (this.listView1.yyItems[i].Selected)
-                {
-                    count++;
-                }
-            }
-            MessageBox.Show(count + "\r\n"+this.listView1.SelectedIndices.Count);
-        
-             */
             NativeMethods.SelectAllItems(this.listView1);
             this.listView1.YYRefresh();
         }
@@ -2125,6 +2248,13 @@ namespace TimeMDev
             string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
             this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
             this.mplayer.LoadTimeLine(path);
+        }
+
+        private void toolStripSyn_CheckedChanged(object sender, EventArgs e)
+        {
+
+                MPlayer.RefreshMark =this.toolStripSyn.Checked;
+                this.subSyncItem.Checked = this.toolStripSyn.Checked;
         }
     }
 }
