@@ -128,11 +128,13 @@ namespace TimeMDev
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
                 if (path.EndsWith("srt"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeline();
+                    //this.timeLineReadWrite.ReadAllTimeline();
+                    this.timeLineReadWrite.Read(new FileReadSrt());
                 }
                 if (path.EndsWith("ass"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                    //this.timeLineReadWrite.ReadAllTimeLineAss();
+                    this.timeLineReadWrite.Read(new FileReadAss());
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -225,7 +227,7 @@ namespace TimeMDev
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
                 //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
-                this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+                this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
                 this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
             }
@@ -474,7 +476,14 @@ namespace TimeMDev
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
            // this.listView1.SignItem();
-            mplayer.SeekPosition(TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[1].Text));
+            //this.listView1.DoubleClickAction1 =new DoubleClickActionD(mplayer.SeekPosition);
+
+                //mplayer.SeekPosition(TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[1].Text));
+           // this.listView1.ActiveTimeStart = TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[1].Text);
+           // this.listView1.ActiveTimeEnd = TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[2].Text);
+            this.listView1.SeekTimeAction = new DDoubleClickActionSeekTime(mplayer.SeekPosition);
+            this.listView1.timeStart = TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[1].Text);
+            this.listView1.timeEnd = TimeLineReadWrite.TimeIn(this.listView1.yyItems[this.listView1.SelectedIndices[0]].SubItems[2].Text);
         }
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -1766,8 +1775,28 @@ namespace TimeMDev
             this.saveAutoCheckItem2.Checked = this.GetConfigCheck(Config.DefaultConfig["AutoSaveCheck"]);
             this.subSyncItem.Checked = this.GetConfigCheck(Config.DefaultConfig["subSyncItem"]);
             this.hideEffectsItem.Checked = this.GetConfigCheck(Config.DefaultConfig["hideEffectsItem"]);
-        }
+            this.videoActiveItem.Checked = this.GetPanelCheck(this.videoPanel);
+            this.FunctionActiveItem.Checked = this.GetPanelCheck(this.functionPanel);
+            this.subtitleShowActiveItem.Checked = this.GetPanelCheck(this.picTimeLinePanel);
+            this.subtitleEditItem.Checked = this.GetPanelCheck(this.modifySubtitlePanel);
 
+        }
+        /// <summary>
+        /// 获取panel是显示还是隐藏
+        /// </summary>
+        /// <param name="panel"></param>
+        /// <returns></returns>
+        private bool GetPanelCheck(DockPanel panel)
+        {
+            if (panel.Visibility == DockVisibility.Visible)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void videoPanel_DragEnter(object sender, DragEventArgs e)
         {
@@ -1890,11 +1919,13 @@ namespace TimeMDev
                 this.timeLineReadWrite.Init(this.pictureRefresh.listSingleSentence, path, false);
                 if (path.EndsWith("srt"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeline();
+                    //this.timeLineReadWrite.ReadAllTimeline();
+                    this.timeLineReadWrite.Read(new FileReadSrt());
                 }
                 if (path.EndsWith("ass"))
                 {
-                    this.timeLineReadWrite.ReadAllTimeLineAss();
+                    //this.timeLineReadWrite.ReadAllTimeLineAss();
+                    this.timeLineReadWrite.Read(new FileReadAss());
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -1955,7 +1986,8 @@ namespace TimeMDev
             this.movieName = Path.GetFileNameWithoutExtension(path);
             //到时候还要根据是什么类型的进行修改
             //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
-            this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+            //this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
+            this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
             this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
             return true;
         }
@@ -2133,7 +2165,14 @@ namespace TimeMDev
         #region 刷新TrackBar
         public void RefreshTrackBar(double time,double totalTime)
         {
-            this.movieTrack.Invoke(new DRefreshTrackBar(this.RefreshTrackBarAction),time,totalTime);
+            if (time < totalTime)
+            {
+                this.movieTrack.Invoke(new DRefreshTrackBar(this.RefreshTrackBarAction), time, totalTime);
+            }
+            else
+            {
+                this.movieTrack.Invoke(new DRefreshTrackBar(this.RefreshTrackBarAction), time, time);
+            }
         }
         public delegate void DRefreshTrackBar(double time, double totalTime);
         public void RefreshTrackBarAction(double time,double totalTime)
@@ -2255,6 +2294,11 @@ namespace TimeMDev
 
                 MPlayer.RefreshMark =this.toolStripSyn.Checked;
                 this.subSyncItem.Checked = this.toolStripSyn.Checked;
+        }
+
+        private void reloadSub_Click(object sender, EventArgs e)
+        {
+            this.reloadSubItem_ItemClick(null, null);
         }
     }
 }

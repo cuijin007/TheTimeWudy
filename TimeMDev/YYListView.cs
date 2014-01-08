@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 namespace TimeMDev
 {
     public delegate void DDoubleClickAction(int showPosition);
+    public delegate void DDoubleClickActionSeekTime(double time);
     public class YYListView:ListView,RedoUndoInterface,CopyPasteInterface
     {
         public List<int> SignPosition;//变颜色的位置
@@ -22,6 +23,9 @@ namespace TimeMDev
         public Color TextSelected = Color.LightYellow;
         public List<ListViewItem> yyItems = new List<ListViewItem>();
         public event DDoubleClickAction DoubleClickAction;
+        public DDoubleClickActionSeekTime SeekTimeAction;
+        public double timeStart;
+        public double timeEnd;
         int itemHeight=1;
         YYListViewColumnSorter yyListViewColumnSorter = new YYListViewColumnSorter();
         YYListViewColumnSorterVirtual yyListViewColumnSorterVirtual = new YYListViewColumnSorterVirtual();
@@ -174,7 +178,19 @@ namespace TimeMDev
         {
             if (e.X - this.Bounds.X >= this.Columns[0].Width - 0)
             {
+                if (this.SeekTimeAction != null)
+                {
+                    if (e.X - this.Bounds.X >= this.Columns[0].Width && e.X - this.Bounds.X <= this.Columns[0].Width + this.Columns[1].Width)
+                    {
+                        this.SeekTimeAction(timeStart);
+                    }
+                    if (e.X - this.Bounds.X >= this.Columns[0].Width + this.Columns[1].Width && e.X - this.Bounds.X <= this.Columns[0].Width + this.Columns[1].Width + this.Columns[2].Width)
+                    {
+                        this.SeekTimeAction(timeEnd);
+                    }
+                }
                 base.OnMouseDoubleClick(e);
+                
             }
             else
             {

@@ -67,7 +67,7 @@ namespace TimeMDev
                 MessageBox.Show("拼写格式有问题");
                 return;
             }
-            for (int i = 1; i < this.listSingleSentence.Count; i++)
+            for (int i = 1; i < this.listSingleSentence.Count-1; i++)
             {
                 if (this.textLengthCheck.Checked)
                 {
@@ -265,7 +265,7 @@ namespace TimeMDev
             {
                 if (this.listViewShow.Items[i].Selected)
                 {
-                    list.Add(int.Parse(this.listViewShow.Items[i].SubItems[0].Text));
+                    list.Add(this.formMain.listView1.YYGetShowPosition(int.Parse(this.listViewShow.Items[i].SubItems[0].Text)));
                 }
             }
             NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
