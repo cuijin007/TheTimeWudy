@@ -227,7 +227,14 @@ namespace TimeMDev
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
                 //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
-                this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
+                if (!Config.DefaultConfig["TimeMBufPath"].Equals(""))
+                {
+                    this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
+                }
+                else
+                {
+                    this.temporarySubtitlePath = Config.DefaultConfig["TimeMBufPath"] + "TimeMBuf" + ".srt";
+                }
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
                 this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
             }
@@ -1987,7 +1994,15 @@ namespace TimeMDev
             //到时候还要根据是什么类型的进行修改
             //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
             //this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
-            this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
+            //this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
+            if (!Config.DefaultConfig["TimeMBufPath"].Equals(""))
+            {
+                this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
+            }
+            else
+            {
+                this.temporarySubtitlePath = Config.DefaultConfig["TimeMBufPath"] + "TimeMBuf" + ".srt";
+            }
             this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
             return true;
         }

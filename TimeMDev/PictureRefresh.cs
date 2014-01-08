@@ -491,6 +491,7 @@ namespace TimeMDev
            // this.TimeLineOut();//这个是以前的刷新其他控件的代码
             this.SetFormControl();
             this.RefreshMovieTrack();
+            this.RefreshTimeShowLabel();
         }
         private string TimeOut(double time)
         {
@@ -738,6 +739,12 @@ namespace TimeMDev
                 this.form1.interval = (int)totalTime / 100;
             }
              */
+        }
+        public void RefreshTimeShowLabel()
+        {
+            this.form1.nowTimeLable.Text =
+                (TimeLineReadWrite.TimeOut((double)this.form1.movieTrack.Value)).TrimEnd('0').TrimEnd(',') + @"/" +
+                (TimeLineReadWrite.TimeOut((double)this.form1.movieTrack.Maximum)).TrimEnd('0').TrimEnd(',');
         }
         #region 一些类里面的小工具
         /// <summary>
