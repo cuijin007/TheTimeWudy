@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Threading;
 using Microsoft.VisualBasic;
+using System.IO;
 
 namespace TimeMDev
 {
@@ -328,5 +329,32 @@ namespace TimeMDev
             str=Regex.Replace(str, @"\{[^\]]+\}","");
             return str;
         }
+
+        /// <summary>
+        /// 找到某视频路径下的那些字幕
+        /// </summary>
+        /// <param name="moviePath"></param>
+        /// <returns></returns>
+        public static string GetMovieSub(string moviePath)
+        {
+            string movie=Path.GetFileNameWithoutExtension(moviePath);
+            string[] paths = System.IO.Directory.GetFiles(Path.GetDirectoryName(moviePath));
+            for (int i = 0; i < paths.Length; i++)
+            {
+                if (paths[i].Contains(movie)&&paths[i].EndsWith(".ass"))
+                {
+                    return paths[i];
+                }
+            }
+            for (int i = 0; i < paths.Length; i++)
+            {
+                if (paths[i].Contains(movie))
+                {
+                    return paths[i];
+                }
+            }
+            return null;
+        }
+    
     }
 }
