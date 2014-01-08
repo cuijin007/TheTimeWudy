@@ -214,7 +214,14 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                     if (getPos[9] >= 0)
                     {
-                        singleSentence.content = dialog[getPos[9]];
+                        for (int i = getPos[9]; i < dialog.Length; i++)
+                        {
+                            if (i > getPos[9])
+                            {
+                                singleSentence.content += ",";
+                            }
+                            singleSentence.content += dialog[i];
+                        }
                         //去掉中间的特效吧。
                         singleSentence.content = Regex.Replace(singleSentence.content, @"\{.*\}", "");
                         singleSentence.content = singleSentence.content.Replace("\\N", "\r\n");

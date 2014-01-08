@@ -5,6 +5,6 @@
     <AutoSavePath>D:\</AutoSavePath>
     <AutoSaveCount>3</AutoSaveCount>
     <AutoSaveFunctionTime>10</AutoSaveFunctionTime>
-    <AutoLoadSubEncoding>unicode</AutoLoadSubEncoding>
+    <AutoLoadSubEncoding>utf8</AutoLoadSubEncoding>
   </appSettings>
 </nameSpace>

@@ -98,24 +98,52 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                     if (listSingleSentence[i].content.StartsWith(chinese))
                     {
-                        if (listSingleSentence[i].effect !=null&& !listSingleSentence[i].effect.Equals(""))
+                        if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
                         {
-                            line += chinese + "\r\n" + listSingleSentence[i].effect + english;
+                            if (!english.Equals(""))
+                            {
+                                line += chinese + "\r\n" + listSingleSentence[i].effect + english;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
                         }
                         else
                         {
-                            line += chinese + "\r\n" + TimeLineReadWrite.GetAssInfo().EnglishHead + english;
+                            if (!english.Equals(""))
+                            {
+                                line += chinese + "\r\n" + TimeLineReadWrite.GetAssInfo().EnglishHead + english;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
                         }
                     }
                     else
                     {
                         if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
                         {
-                            line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                            if (!english.Equals(""))
+                            {
+                                line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
                         }
                         else
                         {
-                            line += TimeLineReadWrite.GetAssInfo().EnglishHead+ english + "\r\n" + chinese;
+                            if (!english.Equals(""))
+                            {
+                                line += TimeLineReadWrite.GetAssInfo().EnglishHead + english + "\r\n" + chinese;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
                         }
                     }
                    // line += listSingleSentence[i].content;
