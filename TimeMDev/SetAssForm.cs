@@ -35,6 +35,7 @@ namespace TimeMDev
             this.assInfo.EnglishEnd=this.englishEndBox.Text;
             this.assInfo.v4Style=this.v4StyleBox.Text;
             this.assInfo.ScriptInfo=this.scriptInfoBox.Text;
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 

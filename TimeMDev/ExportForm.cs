@@ -15,6 +15,7 @@ namespace TimeMDev
         AssInfo assInfo = new AssInfo();
         TimeLineReadWrite timeLineReadWrite;
         Encoding encoding;
+        bool assChange = false;
         public ExportForm(TimeLineReadWrite timeLineReadWrite)
         {
             InitializeComponent();
@@ -64,7 +65,10 @@ namespace TimeMDev
 
         private void setAss_Click(object sender, EventArgs e)
         {
-            (new SetAssForm(this.assInfo)).ShowDialog();
+            if ((new SetAssForm(this.assInfo)).ShowDialog() == DialogResult.OK)
+            {
+                this.assChange = true;
+            }
         }
 
         /// <summary>
@@ -121,7 +125,14 @@ namespace TimeMDev
                 }
                 if (listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[0].Text.Contains("Ass"))
                 {
-                    this.timeLineReadWrite.Write(new FileWriteMutiLanguage(path + ".ass", chinese, english, 1));
+                    if (this.assChange)
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteMutiLanguage(path + ".ass", chinese, english, 1,TimeLineReadWrite.GetAssInfo()));
+                    }
+                    else
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteMutiLanguage(path + ".ass", chinese, english, 1));
+                    }
                 }
             }
                 

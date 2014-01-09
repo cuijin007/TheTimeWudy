@@ -14,7 +14,7 @@ namespace TimeMDev.FileReadWriteFloder
         int englishType;
         int isAss;
         private event ContentFunctionD ContentFunction;
-        AssInfo assInfo=new AssInfo();
+        AssInfo assInfo;
         /// <summary>
         /// 初始化多路输出
         /// </summary>
@@ -90,7 +90,7 @@ namespace TimeMDev.FileReadWriteFloder
             FileWriteFunction fileWriteFunction;
             if (this.isAss == 1)
             {
-                FileWriteAss fileWriteAss = new FileWriteAss(this.encoding,this.assInfo);
+                FileWriteAss fileWriteAss =new FileWriteAss(this.encoding,this.assInfo);
                 fileWriteAss.ContentFunction += ContentFunction;
                 fileWriteFunction = fileWriteAss;
             }

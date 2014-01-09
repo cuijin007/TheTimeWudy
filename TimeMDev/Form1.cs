@@ -90,7 +90,7 @@ namespace TimeMDev
                     string pathBuf=SetSaveAuto.GetAutoSavePath()+"\\"+Path.GetFileNameWithoutExtension(path)+SetSaveAuto.GetAutoSaveCount();
                     if (path.EndsWith(".ass"))
                     {
-                        timeLineReadWrite.Write(new FileWriteAss(Encoding.Default,pathBuf+".ass",TimeLineReadWrite.GetAssInfo()));
+                        timeLineReadWrite.Write(new FileWriteAss(Encoding.Default,pathBuf+".ass"));
                     }
                     if(path.EndsWith(".srt"))
                     {
@@ -107,7 +107,7 @@ namespace TimeMDev
         {
             string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
             //this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
-            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
             //this.timeLineReadWrite.WriteAllTimeline();
             //this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
             this.mplayer.LoadTimeLine(path);
@@ -2351,7 +2351,8 @@ namespace TimeMDev
         private void reloadSubItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
-            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+            //this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
             this.mplayer.LoadTimeLine(path);
         }
 

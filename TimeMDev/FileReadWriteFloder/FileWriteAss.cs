@@ -61,12 +61,24 @@ namespace TimeMDev.FileReadWriteFloder
         }
         private void WriteAss(List<SingleSentence> listSingleSentence, System.IO.StreamWriter streamWriter, AssInfo assInfo)
         {
-            streamWriter.WriteLine("[Script Info]");
-            streamWriter.WriteLine(assInfo.ScriptInfo);
-            streamWriter.WriteLine("[V4+ Styles]");
-            streamWriter.WriteLine(assInfo.v4Style);
-            streamWriter.WriteLine("[Events]");
-            streamWriter.WriteLine(assInfo.eventContent);
+            if (assInfo != null)
+            {
+                streamWriter.WriteLine("[Script Info]");
+                streamWriter.WriteLine(assInfo.ScriptInfo);
+                streamWriter.WriteLine("[V4+ Styles]");
+                streamWriter.WriteLine(assInfo.v4Style);
+                streamWriter.WriteLine("[Events]");
+                streamWriter.WriteLine(assInfo.eventContent);
+            }
+            else
+            {
+                streamWriter.WriteLine("[Script Info]");
+                streamWriter.WriteLine(TimeLineReadWrite.GetAssInfo().ScriptInfo);
+                streamWriter.WriteLine("[V4+ Styles]");
+                streamWriter.WriteLine(TimeLineReadWrite.GetAssInfo().v4Style);
+                streamWriter.WriteLine("[Events]");
+                streamWriter.WriteLine(TimeLineReadWrite.GetAssInfo().eventContent);
+            }
             string line = "";
             for (int i = 1; i < listSingleSentence.Count; i++)
             {
@@ -83,119 +95,65 @@ namespace TimeMDev.FileReadWriteFloder
                 line += ",";
                 if (this.ContentFunction == null)
                 {
-                    string chinese, english;
-                    CCHandle.SpiltRule(listSingleSentence[i].content, out chinese, out english);
-                    try
+                    if (this.assInfo != null)
                     {
-                        chinese = CCHandle.TrimEnterEnd(chinese);
-                        chinese = CCHandle.TrimEnterStart(chinese);
-                        english = CCHandle.TrimEnterEnd(english);
-                        english = CCHandle.TrimEnterStart(english);
-                    }
-                    catch
-                    {
+                        string chinese, english;
+                        string content = listSingleSentence[i].content;
+                        content = CCHandle.CutSrtScript(content);
+                        CCHandle.SpiltRule(content, out chinese, out english);
+                        try
+                        {
+                            chinese = CCHandle.TrimEnterEnd(chinese);
+                            chinese = CCHandle.TrimEnterStart(chinese);
+                            english = CCHandle.TrimEnterEnd(english);
+                            english = CCHandle.TrimEnterStart(english);
+                        }
+                        catch
+                        {
 
-                    }
-                    /*
-                    if (listSingleSentence[i].content.StartsWith(chinese))
-                    {
-                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
-                        if(listSingleSentence[i].content.Contains("{"))
+                        }
+                        if (content.StartsWith(chinese))
                         {
-                            if (!english.Equals(""))
+                            //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                            //if(listSingleSentence[i].content.Contains("{"))
                             {
-                                line += chinese + "\r\n" + listSingleSentence[i].effect + english;
-                            }
-                            else
-                            {
-                                line += chinese;
+                                if (!english.Equals(""))
+                                {
+                                    line += chinese + "\r\n" + assInfo.EnglishHead + english;
+                                }
+                                else
+                                {
+                                    line += chinese;
+                                }
                             }
                         }
                         else
                         {
-                            if (!english.Equals(""))
+                            //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                            //if (listSingleSentence[i].content.Contains("{"))
                             {
-                                line += chinese + "\r\n" + TimeLineReadWrite.GetAssInfo().EnglishHead + english;
-                            }
-                            else
-                            {
-                                line += chinese;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
-                        if (listSingleSentence[i].content.Contains("{"))
-                        {
-                            if (!english.Equals(""))
-                            {
-                                line += listSingleSentence[i].effect + english + "\r\n" + chinese;
-                            }
-                            else
-                            {
-                                line += chinese;
+                                if (!english.Equals(""))
+                                {
+                                    line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                                }
+                                else
+                                {
+                                    line += chinese;
+                                }
                             }
                         }
-                        else
-                        {
-                            if (!english.Equals(""))
-                            {
-                                line += TimeLineReadWrite.GetAssInfo().EnglishHead + english + "\r\n" + chinese;
-                            }
-                            else
-                            {
-                                line += chinese;
-                            }
-                        }
-                    }
-                   // line += listSingleSentence[i].content;
-                }
-                else
-                {
-                    string buf = listSingleSentence[i].content;
-                    line += this.ContentFunction(ref buf);
-                }
-                     * */
-             if (this.assInfo != null)
-             {
-                    if (listSingleSentence[i].content.StartsWith(chinese))
-                    {
-                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
-                        //if(listSingleSentence[i].content.Contains("{"))
-                        {
-                            if (!english.Equals(""))
-                            {
-                                line += chinese + "\r\n" +assInfo.EnglishHead + english;
-                            }
-                            else
-                            {
-                                line += chinese;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
-                        //if (listSingleSentence[i].content.Contains("{"))
-                        {
-                            if (!english.Equals(""))
-                            {
-                                line += listSingleSentence[i].effect + english + "\r\n" + chinese;
-                            }
-                            else
-                            {
-                                line += chinese;
-                            }
-                        }
-                    }
-                   // line += listSingleSentence[i].content;
-                }
+                        // line += listSingleSentence[i].content;
                     }
                     else
                     {
                         line += listSingleSentence[i].content;
                     }
+                }
+                else
+                {
+                    string str = listSingleSentence[i].content;
+                    line += this.ContentFunction(ref str);
+                }
                     line = line.Replace("\r\n", "\\N");
                     line = CCHandle.TrimEnterStart(line);
                     line = CCHandle.TrimEnterEnd(line);
@@ -205,3 +163,67 @@ namespace TimeMDev.FileReadWriteFloder
         
     }
 }
+
+
+
+/*
+ if (listSingleSentence[i].content.StartsWith(chinese))
+ {
+     //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+     if(listSingleSentence[i].content.Contains("{"))
+     {
+         if (!english.Equals(""))
+         {
+             line += chinese + "\r\n" + listSingleSentence[i].effect + english;
+         }
+         else
+         {
+             line += chinese;
+         }
+     }
+     else
+     {
+         if (!english.Equals(""))
+         {
+             line += chinese + "\r\n" + TimeLineReadWrite.GetAssInfo().EnglishHead + english;
+         }
+         else
+         {
+             line += chinese;
+         }
+     }
+ }
+ else
+ {
+     //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+     if (listSingleSentence[i].content.Contains("{"))
+     {
+         if (!english.Equals(""))
+         {
+             line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+         }
+         else
+         {
+             line += chinese;
+         }
+     }
+     else
+     {
+         if (!english.Equals(""))
+         {
+             line += TimeLineReadWrite.GetAssInfo().EnglishHead + english + "\r\n" + chinese;
+         }
+         else
+         {
+             line += chinese;
+         }
+     }
+ }
+// line += listSingleSentence[i].content;
+}
+else
+{
+ string buf = listSingleSentence[i].content;
+ line += this.ContentFunction(ref buf);
+}
+  * */
