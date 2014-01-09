@@ -227,7 +227,7 @@ namespace TimeMDev
                 this.movieName = Path.GetFileNameWithoutExtension(dialog.FileName);
                 //到时候还要根据是什么类型的进行修改
                 //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
-                if (!Config.DefaultConfig["TimeMBufPath"].Equals(""))
+                if (Config.DefaultConfig["TimeMBufPath"].Equals(""))
                 {
                     this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
                 }
@@ -237,6 +237,13 @@ namespace TimeMDev
                 }
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
                 this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
+                ////////***************/////////2014-1-9
+                string subPath = CCHandle.GetMovieSub(dialog.FileName);
+                if (subPath!=null)
+                {
+                    this.DragLoadSub(subPath);
+                }
+                this.reloadSub_Click(null, null);
             }
 
         }
@@ -979,10 +986,30 @@ namespace TimeMDev
 
         private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if ((new SaveAsForm(this.timeLineReadWrite)).ShowDialog() == DialogResult.OK)
+            //if ((new SaveAsForm(this.timeLineReadWrite)).ShowDialog() == DialogResult.OK)
+            //{
+            //    this.commandManage.NeedSave = false;
+            //}
+            string buf = this.timeLineReadWrite.filePath;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = "newSub.srt";
+            dialog.Filter = "字幕文件|*.srt;*.ass";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
+                if (dialog.FileName.EndsWith(".srt"))
+                {
+                    this.timeLineReadWrite.filePath = dialog.FileName;
+                    this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8));
+                }
+                if (dialog.FileName.EndsWith(".ass"))
+                {
+                    this.timeLineReadWrite.filePath = dialog.FileName;
+                    this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8));
+                }
+                MessageBox.Show("保存成功");
                 this.commandManage.NeedSave = false;
             }
+            this.timeLineReadWrite.filePath = buf;
         }
         /// <summary>
         /// 平移时间
@@ -1895,17 +1922,27 @@ namespace TimeMDev
         }
         private void DragLoadAll(string[] path)
         {
+            bool ifDragSub = false;
+            string moviePath=null;
             for (int i = 0; i < path.Length; i++)
             {
                 if (path[i].EndsWith(".avi") || path[i].EndsWith(".mkv") || path[i].EndsWith(".mp4") || path[i].EndsWith(".rmvb"))
                 {
                     this.DragLoadMovie(path[i]);
+                    moviePath=path[i];
                 }
                 if (path[i].EndsWith(".srt") || path[i].EndsWith(".ass"))
                 {
                     this.DragLoadSub(path[i]);
+                    ifDragSub = true;
                 }
             }
+            if (ifDragSub == false&&moviePath!=null)
+            {
+                string subPath=CCHandle.GetMovieSub(moviePath);
+                this.DragLoadSub(subPath);
+            }
+            this.reloadSub_Click(null, null);
         }
         /// <summary>
         /// 拖拽读取字幕
@@ -1995,7 +2032,7 @@ namespace TimeMDev
             //this.temporarySubtitlePath = this.moviePath + "\\" + this.movieName+".srt";
             //this.temporarySubtitlePath = "d:\\" + this.movieName + ".srt";
             //this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
-            if (!Config.DefaultConfig["TimeMBufPath"].Equals(""))
+            if (Config.DefaultConfig["TimeMBufPath"].Equals(""))
             {
                 this.temporarySubtitlePath = "d:\\" + "TimeMBuf" + ".srt";
             }
