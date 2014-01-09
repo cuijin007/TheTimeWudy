@@ -173,7 +173,7 @@ namespace TimeMDev.FileReadWriteFloder
                     SingleSentence singleSentence = new SingleSentence();
                     str = str.Replace("Dialogue:", "");
                     singleSentence.matchCollectionEffect = Regex.Matches(str, @"\{.*\}");
-                    str = Regex.Replace(str, @"\{.*\}", "");
+                    //str = Regex.Replace(str, @"\{.*\}", "");
                     string[] dialog = str.Split(spiltChar2, StringSplitOptions.None);
 
                     if (getPos[0] >= 0)
@@ -223,7 +223,7 @@ namespace TimeMDev.FileReadWriteFloder
                             singleSentence.content += dialog[i];
                         }
                         //去掉中间的特效吧。
-                        singleSentence.content = Regex.Replace(singleSentence.content, @"\{.*\}", "");
+                        //singleSentence.content = Regex.Replace(singleSentence.content, @"\{.*\}", "");
                         singleSentence.content = singleSentence.content.Replace("\\N", "\r\n");
                     }
                     //2013-12-22修改了末尾增加一行的bug

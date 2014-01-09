@@ -348,13 +348,28 @@ namespace TimeMDev
             }
             for (int i = 0; i < paths.Length; i++)
             {
-                if (paths[i].Contains(movie))
+                if (paths[i].Contains(movie) && paths[i].EndsWith(".srt"))
                 {
                     return paths[i];
                 }
             }
             return null;
         }
-    
+
+        /// <summary>
+        /// 去掉特效，为写入srt做准备 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static string CutSrtScript(string content)
+        {
+            if (content.EndsWith(@"{\p0}"))
+            {
+                content = "";
+                return content;
+            }
+            content = Regex.Replace(content, @"\{.*\}", "");
+            return content;
+        }
     }
 }

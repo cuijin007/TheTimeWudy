@@ -239,9 +239,12 @@ namespace TimeMDev
                 this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
                 ////////***************/////////2014-1-9
                 string subPath = CCHandle.GetMovieSub(dialog.FileName);
-                if (subPath!=null)
+                if (subPath != null)
                 {
-                    this.DragLoadSub(subPath);
+                    if (MessageBox.Show("是否自动搜索并载入新字幕?\r\n【如确定，则现有字幕不保存直接关闭】", "Confirm Message", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        this.DragLoadSub(subPath);
+                    }
                 }
                 this.reloadSub_Click(null, null);
             }
@@ -992,7 +995,14 @@ namespace TimeMDev
             //}
             string buf = this.timeLineReadWrite.filePath;
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.FileName = "newSub.srt";
+            if (originalSubtitlePath.EndsWith(".srt"))
+            {
+                dialog.FileName = "newSub.srt";
+            }
+            if (originalSubtitlePath.EndsWith(".ass"))
+            {
+                dialog.FileName = "newSub.ass";
+            }
             dialog.Filter = "字幕文件|*.srt;*.ass";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -1937,10 +1947,14 @@ namespace TimeMDev
                     ifDragSub = true;
                 }
             }
-            if (ifDragSub == false&&moviePath!=null)
+            string subPath = CCHandle.GetMovieSub(moviePath);
+            if (ifDragSub == false && moviePath != null&&subPath!=null)
             {
-                string subPath=CCHandle.GetMovieSub(moviePath);
-                this.DragLoadSub(subPath);
+                if (MessageBox.Show("是否自动搜索并载入新字幕?\r\n【如确定，则现有字幕不保存直接关闭】", "Confirm Message", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.DragLoadSub(subPath);
+                }
+
             }
             this.reloadSub_Click(null, null);
         }

@@ -83,6 +83,7 @@ namespace TimeMDev.FileReadWriteFloder
                 if (this.ContentFunction == null)
                 {
                     string buf = listSingleSentence[i].content;
+                    buf = CCHandle.CutSrtScript(buf);
                     streamWriter.WriteLine(buf);
                 }
                 else

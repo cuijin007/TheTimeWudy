@@ -9,7 +9,7 @@ namespace TimeMDev.FileReadWriteFloder
     public class FileWriteAss:FileWriteFunction
     {
         Encoding encoding;
-        AssInfo assInfo=new AssInfo();
+        AssInfo assInfo;
         public event ContentFunctionD ContentFunction;
         string path;
         #region FileWriteFunction 成员
@@ -83,7 +83,7 @@ namespace TimeMDev.FileReadWriteFloder
                 line += ",";
                 if (this.ContentFunction == null)
                 {
-                    string chinese,english;
+                    string chinese, english;
                     CCHandle.SpiltRule(listSingleSentence[i].content, out chinese, out english);
                     try
                     {
@@ -94,11 +94,13 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                     catch
                     {
- 
+
                     }
+                    /*
                     if (listSingleSentence[i].content.StartsWith(chinese))
                     {
-                        if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        if(listSingleSentence[i].content.Contains("{"))
                         {
                             if (!english.Equals(""))
                             {
@@ -123,7 +125,8 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                     else
                     {
-                        if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        if (listSingleSentence[i].content.Contains("{"))
                         {
                             if (!english.Equals(""))
                             {
@@ -153,11 +156,52 @@ namespace TimeMDev.FileReadWriteFloder
                     string buf = listSingleSentence[i].content;
                     line += this.ContentFunction(ref buf);
                 }
-                line = line.Replace("\r\n", "\\N");
-                line = CCHandle.TrimEnterStart(line);
-                line = CCHandle.TrimEnterEnd(line);
-                streamWriter.WriteLine(line);
+                     * */
+             if (this.assInfo != null)
+             {
+                    if (listSingleSentence[i].content.StartsWith(chinese))
+                    {
+                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        //if(listSingleSentence[i].content.Contains("{"))
+                        {
+                            if (!english.Equals(""))
+                            {
+                                line += chinese + "\r\n" +assInfo.EnglishHead + english;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
+                        //if (listSingleSentence[i].content.Contains("{"))
+                        {
+                            if (!english.Equals(""))
+                            {
+                                line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                            }
+                            else
+                            {
+                                line += chinese;
+                            }
+                        }
+                    }
+                   // line += listSingleSentence[i].content;
+                }
+                    }
+                    else
+                    {
+                        line += listSingleSentence[i].content;
+                    }
+                    line = line.Replace("\r\n", "\\N");
+                    line = CCHandle.TrimEnterStart(line);
+                    line = CCHandle.TrimEnterEnd(line);
+                    streamWriter.WriteLine(line);
+                }
             }
-        }
+        
     }
 }
