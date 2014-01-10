@@ -13,7 +13,7 @@ namespace TimeMDev.FileReadWriteFloder
     class FileReadAss:FileReadFunction
     {
 
-        string scriptInfo = "[Script Info]\r\n; // 此字幕由TimeM生成\r\n; // 欢迎访问人人影视 http://www.YYeTs.net" +
+        string scriptInfo = "; // 此字幕由TimeM生成\r\n; // 欢迎访问人人影视 http://www.YYeTs.net" +
                                         "\r\nTitle:YYeTs" +
                                         "\r\nOriginal Script:YYeTs" +
                                         "\r\nSynch Point:0" +
@@ -83,7 +83,7 @@ namespace TimeMDev.FileReadWriteFloder
                     if (str.Equals("[Script Info]"))
                     {
                         state = 1;//开始记录ScriptInfo
-                        this.scriptInfo = "";
+                        //this.scriptInfo = "";
                         continue;
                     }
                     if (str.Equals("[V4+ Styles]"))
@@ -94,7 +94,7 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                     if (state == 1)
                     {
-                        this.scriptInfo += str + "\r\n";
+                        //this.scriptInfo += str + "\r\n";
                     }
                     if (state == 2)
                     {
@@ -142,8 +142,9 @@ namespace TimeMDev.FileReadWriteFloder
             ///开始进行格式拆分
             if (str.StartsWith("Format:"))
             {
+                this.format = str;
                 str = str.Replace("Format", "");
-                this.format=str;
+                
                 str = str.Replace(" ", "");
                 dictionaryType = str.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < markStr.Length; i++)

@@ -155,9 +155,10 @@ namespace TimeMDev
                 this.InitMovie();
                 //修改了一个参数，被屏蔽掉的是没字幕的，之前调试ok的版本
                 //mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle  -noautosub -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
-                //mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -autosub  -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
-                mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -autosub --ass-vsfilter-aspect-compat  -v -vo direct3d -wid {1} \"{0}\"", this.moviePath, this.wid);
+               // mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -autosub  -v -vo gl -wid {1} \"{0}\"", this.moviePath, this.wid);
+                mplayer.StartInfo.Arguments = string.Format("-slave -quiet -idle -autosub   -v -vo direct3d -wid {1} \"{0}\"", this.moviePath, this.wid);
                 //--osdlevel=3
+                //--ass-vsfilter-aspect-compat
                 mplayer.Start();
                 mplayer.BeginErrorReadLine();
                 mplayer.BeginOutputReadLine();
