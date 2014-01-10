@@ -453,9 +453,12 @@ namespace TimeMDev
                 showBuffer[4] = listSingleSentence[i].everyLineLength;
                 showBuffer[5] = TimeLineReadWrite.TimeOut(listSingleSentence[i].timeLength);
                 showBuffer[6] = listSingleSentence[i].lineNum+"";
-               
-                this.listView1.yyItems.Add(new ListViewItem(showBuffer));
+                ListViewItem item = new ListViewItem(showBuffer);
+                item.Checked = listSingleSentence[i].Checked;
+                //this.listView1.yyItems.Add(new ListViewItem(showBuffer));
+                this.listView1.yyItems.Add(item);//2014-1-10增加标记功能
             }
+
             this.listView1.YYRefresh();
         }
 

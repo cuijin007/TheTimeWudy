@@ -64,7 +64,14 @@ namespace TimeMDev.FileReadWriteFloder
             {
                 //写号
                 //this.streamWriter.WriteLine(i + 1);
-                streamWriter.WriteLine(i);//修改于2013-4-10
+                if (!listSingleSentence[i].Checked)
+                {
+                    streamWriter.WriteLine(i);//修改于2013-4-10
+                }
+                else
+                {
+                    streamWriter.WriteLine(i+10000);//修改于2013-4-10
+                }
                 //写时间
                 double startTime = listSingleSentence[i].startTime;
                 hour = (int)startTime / 3600;

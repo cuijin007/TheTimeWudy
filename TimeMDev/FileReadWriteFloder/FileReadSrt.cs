@@ -73,6 +73,17 @@ namespace TimeMDev.FileReadWriteFloder
                         }
                     }
                     singleSentence.count = Int32.Parse(content);
+                    if (singleSentence.count > 10000)
+                    {
+                        singleSentence.count = singleSentence.count -10000;
+                        singleSentence.Checked = true;//2014-1-10;
+                    }
+                    else
+                    {
+                        singleSentence.count = singleSentence.count;
+                        singleSentence.Checked = false;
+                    }
+                   
                     //以上是取序号
                     content = streamReader.ReadLine();
                     string[] time = content.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
