@@ -17,6 +17,7 @@ namespace TimeMDev.Notification
             this.textBox = textBox;
             this.messageHandleFuntion.Add("SetText", new Function(this.SetText));
             this.messageHandleFuntion.Add("Refresh", new Function(this.Refresh));
+            this.messageHandleFuntion.Add("SetFocus", new Function(this.SetFocus));
         }
         public override bool HandleMessage(string message, params object[] parameter)
         {
@@ -45,5 +46,10 @@ namespace TimeMDev.Notification
             }
             return false;
         }
-    }
+        public bool SetFocus(params object[] parameter)
+        {
+            this.textBox.Focus();
+            return true;
+        }
+   }
 }

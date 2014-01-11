@@ -371,5 +371,31 @@ namespace TimeMDev
             content = Regex.Replace(content, @"\{.*\}", "");
             return content;
         }
+        /// <summary>
+        /// 判断是否为整数数字
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsInt(string value)
+        {
+            if (value.Equals(""))
+            {
+                return false;
+            }
+            return Regex.IsMatch(value, @"^[+-]?\d*$");
+        }
+        /// <summary>
+        /// 判断是不是srt时间格式
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsSrtTimeStye(string value)
+        {
+            if (Regex.IsMatch(value, @"^([0-1]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9]),([0-9]?[0-9]?[0-9]) --> ([0-1]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9]),([0-9]?[0-9]?[0-9])$"))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

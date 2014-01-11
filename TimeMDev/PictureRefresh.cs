@@ -536,6 +536,7 @@ namespace TimeMDev
                     {
                         count = this.slideCount;
                     }
+                    this.ChangeTextBoxFocus();
                     this.form1.timeEditStart.Text = this.TimeOut(listSingleSentence[count].startTime);
                     this.form1.timeEditEnd.Text = this.TimeOut(listSingleSentence[count].endTime);
                     //cj-2013-12-10
@@ -605,7 +606,11 @@ namespace TimeMDev
             //增加trackbar的更新
            if (!this.form1.movieTrack.Focused)
            {
-               this.form1.movieTrack.Maximum = (int)totalTime;
+               if (this.form1.movieTrack.Maximum != (int)totalTime)
+               {
+                   this.form1.movieTrack.Maximum = (int)totalTime;
+
+               }
                this.form1.movieTrack.Value = (int)this.selectedTime;
                this.form1.interval = (int)totalTime / 100;
                //this.form1.movieTrack.SmallChange = (int)totalTime / 10;
@@ -691,6 +696,7 @@ namespace TimeMDev
                 this.selectedShowSave = selectedShow;
                 if (selectedShow > 0)
                 {
+                    this.ChangeTextBoxFocus();
                     NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
                     NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
@@ -703,6 +709,7 @@ namespace TimeMDev
             {
                 if (this.selectedIndex.Count > 0)
                 {
+                    this.ChangeTextBoxFocus();
                     NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].startTime));
                     NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedIndex[selectedIndex.Count - 1]].endTime));
                     NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedIndex[selectedIndex.Count-1]].content);
@@ -717,6 +724,7 @@ namespace TimeMDev
             ///cj-2013-12-22新增通知增加的变量，进行编辑窗口的内容更新
             if (this.IsRefreshContentShow2)
             {
+                this.ChangeTextBoxFocus();
                 NotificationCenter.SendMessage("timeEditStart", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].startTime));
                 NotificationCenter.SendMessage("timeEditEnd", "SetText", TimeLineReadWrite.TimeOut(this.listSingleSentence[selectedShow].endTime));
                 NotificationCenter.SendMessage("contentEdit", "SetText", this.listSingleSentence[selectedShow].content);
@@ -771,8 +779,17 @@ namespace TimeMDev
         }
         # endregion
 
+        public void ChangeTextBoxFocus()
+        {
+            if (this.form1.contentEdit.Focused || this.form1.timeEditStart.Focused || this.form1.timeEditEnd.Focused)
+            {
+                this.form1.listView1.Focus();
+                this.form1.contentEdit.Focus();
+            }
         }
+   }
        
+
     }
     
 

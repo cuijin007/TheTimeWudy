@@ -57,6 +57,8 @@ namespace TimeMDev.FileReadWriteFloder
             singleSentenceS.startTime = 0;
             singleSentenceS.endTime = 0;
             listSingleSentence.Add(singleSentenceS);
+            string nextTime="";
+            string nextIndex="";
             while (runMark)
             {
                 try
@@ -66,7 +68,15 @@ namespace TimeMDev.FileReadWriteFloder
                     content = "";
                     while (readNumMark)
                     {
-                        content = streamReader.ReadLine();
+                        if (nextIndex.Equals(""))
+                        {
+                            content = streamReader.ReadLine();
+                        }
+                        else
+                        {
+                            content = nextIndex;
+                            nextIndex = "";
+                        }
                         if (!content.Equals(""))
                         {
                             readNumMark = false;
@@ -85,7 +95,15 @@ namespace TimeMDev.FileReadWriteFloder
                     }
                    
                     //以上是取序号
-                    content = streamReader.ReadLine();
+                    if (nextTime.Equals(""))
+                    {
+                        content = streamReader.ReadLine();
+                    }
+                    else
+                    {
+                        content = nextTime;
+                        nextTime = "";
+                    }
                     string[] time = content.Split(spiltChar, StringSplitOptions.RemoveEmptyEntries);
                     singleSentence.startTime = 3600 * double.Parse(time[0]) +
                                                             60 * double.Parse(time[1]) +
@@ -100,12 +118,32 @@ namespace TimeMDev.FileReadWriteFloder
                     string content2 = "";
                     content = "";
                     bool fristSentence = true;
+                    long linePosMark = 0;
                     while (readContentMark)
                     {
+                        //linePosMark = streamReader.BaseStream.Position;
                         content2 = streamReader.ReadLine();
-                        if (content2.Equals(""))
+                        //if (content2.Equals(""))
+                        //{
+                        //    readContentMark = false;
+                        //}
+                        if (CCHandle.IsInt(content2))
                         {
-                            readContentMark = false;
+                            //long linePosMark2 = streamReader.BaseStream.Position;
+                            string timeBuf = streamReader.ReadLine();
+                            if (CCHandle.IsSrtTimeStye(timeBuf))
+                            {
+                                readContentMark = false;
+                                //streamReader.BaseStream.Position = linePosMark;
+                                nextTime = timeBuf;
+                                nextIndex = content2;
+                                break;
+                            }
+                            else
+                            {
+                                //streamReader.BaseStream.Position = linePosMark2;
+                                content2 = content2 +"\r\n"+ timeBuf;
+                            }
                         }
                         if (fristSentence)
                         {

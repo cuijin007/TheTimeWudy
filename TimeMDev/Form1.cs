@@ -75,6 +75,7 @@ namespace TimeMDev
             {
                 this.dockManager1.RestoreLayoutFromXml(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml");
             }
+            this.DoubleBuffered = true;
         }
         /// <summary>
         /// 自动保存
@@ -105,9 +106,18 @@ namespace TimeMDev
         /// </summary>
         void commandManage_AfterRunCommandFunction()
         {
-            string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
+            string path = this.timeLineReadWrite.filePath;
             //this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
-            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            if (this.originalSubtitlePath.EndsWith(".ass"))
+            {
+                path = path.Replace(".srt", ".ass");
+                this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            }
+            else if(this.originalSubtitlePath.EndsWith(".srt"))
+            {
+                path=path.Replace(".ass",".srt");
+                this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            }
             //this.timeLineReadWrite.WriteAllTimeline();
             //this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
             this.mplayer.LoadTimeLine(path);
@@ -236,7 +246,8 @@ namespace TimeMDev
                     this.temporarySubtitlePath = Config.DefaultConfig["TimeMBufPath"] + "TimeMBuf" + ".srt";
                 }
                 this.timeLineReadWrite.filePath = this.temporarySubtitlePath;
-                this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
+                //this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
+                this.reloadSub_Click(null, null);
                 ////////***************/////////2014-1-9
                 string subPath = CCHandle.GetMovieSub(dialog.FileName);
                 if (subPath != null)
@@ -419,7 +430,8 @@ namespace TimeMDev
                 //this.SetListviewMenuEnable(true);
                 //增加最近打开的文件
                 this.recentFile.AddRecentFile(dialog.FileName);
-                this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
+                //this.mplayer.LoadTimeLine(timeLineReadWrite.filePath);
+                this.reloadSub_Click(null, null);
             }
             
             this.rateShow.Focus();
@@ -953,11 +965,17 @@ namespace TimeMDev
                 if (!this.timeEditEnd.Text.Equals("") && !this.timeEditStart.Text.Equals("") && !this.numEdit.Text.Equals(""))
                 {
                     SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.timeLineReadWrite.listSingleSentence[Int32.Parse(this.numEdit.Text)]);
-                    sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
-                    sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
-                    sentence.content = contentEdit.Text;
-                    ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
-                    this.commandManage.CommandRun(record);
+                    if (sentence.startTime != TimeLineReadWrite.TimeIn(timeEditStart.Text) ||
+                    sentence.endTime != TimeLineReadWrite.TimeIn(timeEditEnd.Text) ||
+                    !sentence.content.Equals(contentEdit.Text)
+                    )
+                    {
+                        sentence.startTime = TimeLineReadWrite.TimeIn(timeEditStart.Text);
+                        sentence.endTime = TimeLineReadWrite.TimeIn(timeEditEnd.Text);
+                        sentence.content = contentEdit.Text;
+                        ChangeRecord record = new ChangeRecord(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(Int16.Parse(this.numEdit.Text)), sentence);
+                        this.commandManage.CommandRun(record);
+                    }
                     this.listView1.YYRefresh();
                 }
             }
@@ -2353,9 +2371,17 @@ namespace TimeMDev
 
         private void reloadSubItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string path = this.timeLineReadWrite.filePath.Replace(".srt", ".ass");
-            //this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
-            this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            string path = this.timeLineReadWrite.filePath;
+            if (this.originalSubtitlePath.EndsWith(".ass"))
+            {
+                path = path.Replace(".srt", ".ass");
+                this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            }
+            else if (this.originalSubtitlePath.EndsWith(".srt"))
+            {
+                path = path.Replace(".ass", ".srt");
+                this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+            }
             this.mplayer.LoadTimeLine(path);
         }
 
