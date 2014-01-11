@@ -123,6 +123,10 @@ namespace TimeMDev.FileReadWriteFloder
                     {
                         //linePosMark = streamReader.BaseStream.Position;
                         content2 = streamReader.ReadLine();
+                        if (content2 == null)
+                        {
+                            break;
+                        }
                         //if (content2.Equals(""))
                         //{
                         //    readContentMark = false;

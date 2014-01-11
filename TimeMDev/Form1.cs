@@ -455,7 +455,8 @@ namespace TimeMDev
             string[] showBuffer = new string[this.listView1.Columns.Count];
             ItemsCollect = new List<ListViewItem>();
             ListViewItem[] itemsCollect2 = new ListViewItem[listSingleSentence.Count];
-            for (int i = 1; i < listSingleSentence.Count - 1; i++)
+            //for (int i = 1; i < listSingleSentence.Count - 1; i++)
+            for (int i = 1; i < listSingleSentence.Count; i++)
             {
                 //showBuffer[0] = i + 1 + "";
                 showBuffer[0] = i + "";//2013-4-10
@@ -938,7 +939,8 @@ namespace TimeMDev
                         sentence.endTime = sentence.startTime + addMutiLinesParameter.timeSpiltLength;
                         this.timeLineReadWrite.listSingleSentence.Add(sentence);
                     }
-                    this.timeLineReadWrite.listSingleSentence.Add(new SingleSentence());
+                    //2014-1-11去掉最后一行多余的
+                    //this.timeLineReadWrite.listSingleSentence.Add(new SingleSentence());
                     
                     this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
                     if (dialog.FileName.EndsWith("srt"))
@@ -2085,6 +2087,7 @@ namespace TimeMDev
             shortcutSettings.Caption2id = this.caption2id;
             shortcutSettings.update = new UpdateInformer(this.bindShortCuts);
             shortcutSettings.ShowDialog();
+            this.bindShortCuts();
         }
         public void bindShortCuts()
         {

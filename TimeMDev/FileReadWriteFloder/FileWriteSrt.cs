@@ -60,7 +60,7 @@ namespace TimeMDev.FileReadWriteFloder
         private void WriteSrt(List<SingleSentence> listSingleSentence, System.IO.StreamWriter streamWriter, ref string scriptInfo, ref string styles)
         {
             int hour, minute, second, minsec;
-            for (int i = 1; i < listSingleSentence.Count - 1; i++)//崔进修改于2013-4-9  只写中间的部分
+            for (int i = 1; i < listSingleSentence.Count ; i++)//崔进修改于2013-4-9  只写中间的部分
             {
                 //写号
                 //this.streamWriter.WriteLine(i + 1);

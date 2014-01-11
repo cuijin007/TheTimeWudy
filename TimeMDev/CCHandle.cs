@@ -363,13 +363,17 @@ namespace TimeMDev
         /// <returns></returns>
         public static string CutSrtScript(string content)
         {
-            if (content.EndsWith(@"{\p0}"))
+            if (content != null)
             {
-                content = "";
+                if (content.EndsWith(@"{\p0}"))
+                {
+                    content = "";
+                    return content;
+                }
+                content = Regex.Replace(content, @"\{.*\}", "");
                 return content;
             }
-            content = Regex.Replace(content, @"\{.*\}", "");
-            return content;
+            return null;
         }
         /// <summary>
         /// 判断是否为整数数字
