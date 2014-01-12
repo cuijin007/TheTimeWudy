@@ -73,31 +73,31 @@ namespace TimeMDev.FileReadWriteFloder
                     streamWriter.WriteLine(i+10000);//修改于2013-4-10
                 }
                 //写时间
-                double startTime = listSingleSentence[i].startTime;
-                hour = (int)startTime / 3600;
-                minute = (int)(startTime - 3600 * hour) / 60;
-                second = (int)(startTime - 3600 * hour - 60 * minute);
-                minsec = (int)((startTime - (int)startTime) * 1000);
-                string startTimeStr = hour + ":" + minute + ":" + second + "," + minsec;
-                double endTime = listSingleSentence[i].endTime;
-                hour = (int)endTime / 3600;
-                minute = (int)(endTime - 3600 * hour) / 60;
-                second = (int)(endTime - 3600 * hour - 60 * minute);
-                minsec = (int)((endTime - (int)endTime) * 1000);
-                string endTimeStr = hour + ":" + minute + ":" + second + "," + minsec;
-                streamWriter.WriteLine(startTimeStr + " --> " + endTimeStr);
+                //double startTime = listSingleSentence[i].startTime;
+                //hour = (int)startTime / 3600;
+                //minute = (int)(startTime - 3600 * hour) / 60;
+                //second = (int)(startTime - 3600 * hour - 60 * minute);
+                //minsec = (int)((startTime - (int)startTime) * 1000);
+                //string startTimeStr = hour + ":" + minute + ":" + second + "," + minsec;
+                //double endTime = listSingleSentence[i].endTime;
+                //hour = (int)endTime / 3600;
+                //minute = (int)(endTime - 3600 * hour) / 60;
+                //second = (int)(endTime - 3600 * hour - 60 * minute);
+                //minsec = (int)((endTime - (int)endTime) * 1000);
+                //string endTimeStr = hour + ":" + minute + ":" + second + "," + minsec;
+                streamWriter.WriteLine(TimeLineReadWrite.TimeOut(listSingleSentence[i].startTime) + " --> " + TimeLineReadWrite.TimeOut(listSingleSentence[i].endTime));
                 //写内容
                 if (this.ContentFunction == null)
                 {
                     string buf = listSingleSentence[i].content;
                     buf = CCHandle.CutSrtScript(buf);
-                    streamWriter.WriteLine(buf);
+                    streamWriter.WriteLine(CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(buf)));
                 }
                 else
                 {
                     string buf = listSingleSentence[i].content;
                     buf = CCHandle.CutSrtScript(buf);
-                    streamWriter.WriteLine(this.ContentFunction(ref buf));
+                    streamWriter.WriteLine(CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(this.ContentFunction(ref buf))));
                 }
                 streamWriter.WriteLine("");
             }

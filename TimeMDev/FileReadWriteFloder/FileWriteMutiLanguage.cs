@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TimeMDev.FileReadWriteFloder
 {
@@ -112,7 +113,24 @@ namespace TimeMDev.FileReadWriteFloder
         /// <returns></returns>
         private string ChangeSToT(ref string input)
         {
-            return CCHandle.ToTChinese(input);
+            string[] spilt = new string[1];
+            spilt[0] = @"{\";
+            string[] buf = this.SpiltContent(input);
+            string content = "";
+            for (int i = 0; i < buf.Length; i++)
+            {
+                if (buf[i].StartsWith(@"{\"))
+                {
+                    content += buf[i];
+                }
+                else
+                {
+                    content += CCHandle.ToTChinese(buf[i]);
+                }
+            }
+            //    return CCHandle.ToTChinese(input);
+            input = content;
+            return content;
         }
         /// <summary>
         /// 去掉中文
@@ -121,9 +139,35 @@ namespace TimeMDev.FileReadWriteFloder
         /// <returns></returns>
         private string RemoveChinese(ref string input)
         {
-            string chinese,english;
-            CCHandle.SpiltRule(input, out chinese, out english);
-            return english;
+            string[] str = this.SpiltContent(input);
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (!str[i].StartsWith(@"{\"))
+                {
+                    string chinese,english;
+                    CCHandle.SpiltRule(str[i], out chinese, out english);
+                    str[i] = CCHandle.TrimEnterStart(CCHandle.TrimEnterEnd(english));
+                }
+            }
+            for (int i = str.Length-1; i >=0; i--)
+            {
+                if (str[i].StartsWith(@"{\"))
+                {
+                    str[i] = "";
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            string content2 = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                content2 += str[i];
+            }
+            input = content2;
+            return input;
         }
         /// <summary>
         /// 去掉英文
@@ -132,9 +176,35 @@ namespace TimeMDev.FileReadWriteFloder
         /// <returns></returns>
         private string RemoveEnglish(ref string input)
         {
-            string chinese, english;
-            CCHandle.SpiltRule(input, out chinese, out english);
-            return chinese;
+            string[] str = this.SpiltContent(input);
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (!str[i].StartsWith(@"{\"))
+                {
+                    string chinese, english;
+                    CCHandle.SpiltRule(str[i], out chinese, out english);
+                    str[i] = CCHandle.TrimEnterStart(CCHandle.TrimEnterEnd(chinese));
+                }
+            }
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                if (str[i].StartsWith(@"{\"))
+                {
+                    str[i] = "";
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+            string content2 = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                content2 += str[i];
+            }
+            input = content2;
+            return input;
         }
         /// <summary>
         /// 繁体中文变成简体中文
@@ -143,9 +213,84 @@ namespace TimeMDev.FileReadWriteFloder
         /// <returns></returns>
         private string ChangeTToS(ref string input)
         {
-            return CCHandle.ToSChinese(input);
+            string[] spilt = new string[1];
+            spilt[0] = @"{\";
+            string[] buf = this.SpiltContent(input);
+            string content = "";
+            for (int i = 0; i < buf.Length; i++)
+            {
+                if (buf[i].StartsWith(@"{\"))
+                {
+                    content +=buf[i];
+                }
+                else
+                {
+                    content += CCHandle.ToSChinese(buf[i]);
+                }
+            }
+            //    return CCHandle.ToTChinese(input);
+            input = content;
+            return content;
         }
-    
-        
+
+        private string[] SpiltContent(string content)
+        {
+            content=content.Replace(@"{\",@"{$$$$\");
+            string[] str = content.Split('{', '}');
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i].StartsWith(@"$$$$\"))
+                {
+                    str[i] = @"{\" + str[i].Replace(@"$$$$\", "") + "}";
+                }
+            }
+            return str;
+        }
     }
 }
+
+
+
+//private string RemoveChinese(ref string input)
+//        {
+//            string[] spilt = new string[1];
+//            spilt[0] = @"{\";
+//            //string[] buf6 = Regex.;
+            
+//            string[] buf = input.Split(spilt, StringSplitOptions.RemoveEmptyEntries);
+//            string content = "";
+//            for (int i = 0; i < buf.Length; i++)
+//            {
+//                if (buf[i].EndsWith("}"))
+//                {
+//                    content += @"{\" + buf[i];
+//                }
+//                else
+//                {
+//                    string chinese, english;
+//                    CCHandle.SpiltRule(buf[i], out chinese, out english);
+//                    content += english;
+//                }
+//            }
+//            buf = content.Split(spilt, StringSplitOptions.None);
+//            string content2 = "";
+//           bool isDeleteEffectOver = false;
+//            for (int i = buf.Length - 1; i >= 0; i--)
+//            {
+//                if (buf[i].EndsWith("}")&&isDeleteEffectOver!=true)
+//                {
+//                    buf[i] = "";
+//                }
+//                else if (buf[i].EndsWith("}"))
+//                {
+//                    buf[i]=@"(\"+buf[i];
+//                    //break;                    
+//                }
+//            }
+//            for (int i = 0; i < buf.Length; i++)
+//            {
+//                content2 += buf[i];
+//            }
+//            input = content2;
+//                return content2;
+//        }

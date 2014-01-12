@@ -52,18 +52,25 @@ namespace TimeMDev.FileReadWriteFloder
             string str = "";
             while (str != null)
             {
-                str = "";
+                str = "str";
+                string buf = "";
                 bool fristTime = true;
-                while (str == null || str.Equals(""))
+                while (str != null && !str.Equals(""))
                 {
                     if (!fristTime)
                     {
-                        str += "\r\n";
+                        buf += "\r\n";
                     }
-                    str += streamReader.ReadLine();
+                    else
+                    {
+                        buf = "";
+                    }
+                    str= streamReader.ReadLine();
+                    buf += str;
+                    fristTime = false;
                 }
                 SingleSentence sentence = new SingleSentence();
-                sentence.content = str;
+                sentence.content = buf;
                 listSingleSentence.Add(sentence);
             }
         }

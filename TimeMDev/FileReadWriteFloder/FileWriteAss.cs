@@ -93,11 +93,12 @@ namespace TimeMDev.FileReadWriteFloder
                 line += listSingleSentence[i].marginV + ",";
                 //line += listSingleSentence[i].effect + ",";
                 line += ",";
-                if (this.ContentFunction == null)
+                //if (this.ContentFunction == null)
                 {
                     if (this.assInfo != null)
                     {
                         string chinese, english;
+                        string lineBuf = "";
                         string content = listSingleSentence[i].content;
                         content = CCHandle.CutSrtScript(content);
                         CCHandle.SpiltRule(content, out chinese, out english);
@@ -119,40 +120,61 @@ namespace TimeMDev.FileReadWriteFloder
                             {
                                 if (!english.Equals(""))
                                 {
-                                    line += chinese + "\r\n" + assInfo.EnglishHead + english;
+                                    lineBuf += chinese + "\r\n" + assInfo.EnglishHead + english;
                                 }
                                 else
                                 {
-                                    line += chinese;
+                                    lineBuf += chinese;
                                 }
+                                lineBuf = CCHandle.TrimEnterStart(lineBuf);
+                                lineBuf = CCHandle.TrimEnterEnd(lineBuf);
                             }
                         }
-                        else
+                        else if (content.StartsWith(english))
                         {
                             //if (listSingleSentence[i].effect != null && !listSingleSentence[i].effect.Equals(""))
                             //if (listSingleSentence[i].content.Contains("{"))
                             {
                                 if (!english.Equals(""))
                                 {
-                                    line += listSingleSentence[i].effect + english + "\r\n" + chinese;
+                                    lineBuf += assInfo.EnglishHead + english + "\r\n" + chinese;
                                 }
                                 else
                                 {
-                                    line += chinese;
+                                    lineBuf += chinese;
                                 }
                             }
+                            lineBuf = CCHandle.TrimEnterStart(lineBuf);
+                            lineBuf = CCHandle.TrimEnterEnd(lineBuf);
+                        }
+                        if (this.ContentFunction == null)
+                        {
+                            line +=CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(lineBuf));
+                        }
+                        else
+                        {
+                            line += CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(this.ContentFunction(ref lineBuf)));
                         }
                         // line += listSingleSentence[i].content;
                     }
                     else
                     {
-                        line += listSingleSentence[i].content;
+                        if (this.ContentFunction == null)
+                        {
+                            line += CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(listSingleSentence[i].content));
+                        }
+                        else
+                        {
+                            string contentBuf = listSingleSentence[i].content;
+                            line += CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(this.ContentFunction(ref contentBuf)));
+                        }
                     }
                 }
-                else
+                if(this.ContentFunction!=null)
                 {
-                    string str = listSingleSentence[i].content;
-                    line += this.ContentFunction(ref str);
+                    //string str = listSingleSentence[i].content;
+                    //line += this.ContentFunction(ref str);
+                   // line = this.ContentFunction(ref listSingleSentence[i].content);
                 }
                     line = line.Replace("\r\n", "\\N");
                     line = CCHandle.TrimEnterStart(line);

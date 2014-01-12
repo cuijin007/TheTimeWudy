@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TimeMDev.FileReadWriteFloder;
+using System.IO;
 
 namespace TimeMDev
 {
@@ -16,10 +17,12 @@ namespace TimeMDev
         TimeLineReadWrite timeLineReadWrite;
         Encoding encoding;
         bool assChange = false;
-        public ExportForm(TimeLineReadWrite timeLineReadWrite)
+        string subOutName;
+        public ExportForm(TimeLineReadWrite timeLineReadWrite,string name)
         {
             InitializeComponent();
             this.timeLineReadWrite = timeLineReadWrite;
+            subOutName = name;
         }
 
         private void setANSI_Click(object sender, EventArgs e)
@@ -86,10 +89,11 @@ namespace TimeMDev
                 string path=this.pathOut.Text;
                 string[] spilt=new string[1];
                 spilt[0]="\\";
-                string[] names = this.timeLineReadWrite.filePath.Split(spilt,StringSplitOptions.RemoveEmptyEntries);
-                path +=names[names.Length - 1];
-                path=path.Replace(".srt","");
-                path=path.Replace(".ass","");
+                //string[] names = this.timeLineReadWrite.filePath.Split(spilt,StringSplitOptions.RemoveEmptyEntries);
+                //path +=names[names.Length - 1];
+                //path=path.Replace(".srt","");
+                //path=path.Replace(".ass","");
+                path += Path.GetFileNameWithoutExtension(this.subOutName);
 
                 if (this.listViewShow.Items[this.listViewShow.CheckedIndices[i]].SubItems[1].Text.Equals("ANSI"))
                 {
@@ -127,7 +131,7 @@ namespace TimeMDev
                 {
                     if (this.assChange)
                     {
-                        this.timeLineReadWrite.Write(new FileWriteMutiLanguage(path + ".ass", chinese, english, 1,TimeLineReadWrite.GetAssInfo()));
+                        this.timeLineReadWrite.Write(new FileWriteMutiLanguage(path + ".ass", chinese, english, 1,this.assInfo));
                     }
                     else
                     {
@@ -135,6 +139,7 @@ namespace TimeMDev
                     }
                 }
             }
+            MessageBox.Show("导出完成");
                 
         }
 

@@ -882,7 +882,7 @@ namespace TimeMDev
 
         private void exportMutiSaveItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            (new ExportForm(this.timeLineReadWrite)).ShowDialog();
+            (new ExportForm(this.timeLineReadWrite,this.originalSubtitlePath)).ShowDialog();
         }
 
         private void addSubtitleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
