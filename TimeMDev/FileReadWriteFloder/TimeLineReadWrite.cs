@@ -197,7 +197,7 @@ namespace TimeMDev
             int minute = (int)(time - 3600 * hour) / 60;
             int second = (int)(time - 3600 * hour - 60 * minute);
             int minsec = (int)(time*1000 - ((int)time)*1000);//2013-12-22将原有的转换函数转变否则会出现700转为699的问题
-            string TimeStr = hour + ":" + minute.ToString().PadLeft(2,'0') + ":" + second.ToString().PadLeft(2,'0') + "," + minsec.ToString().PadLeft(3,'0');
+            string TimeStr = hour.ToString().PadLeft(2,'0') + ":" + minute.ToString().PadLeft(2,'0') + ":" + second.ToString().PadLeft(2,'0') + "," + minsec.ToString().PadLeft(3,'0');
             return TimeStr;
         }
         public static double TimeIn(string time)
