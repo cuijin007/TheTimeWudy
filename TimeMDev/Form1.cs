@@ -16,6 +16,7 @@ using DevExpress.XtraBars.Docking;
 using System.Collections;
 using Microsoft.Win32;
 using TimeMDev.ShortCut;
+using System.Diagnostics;
 
 namespace TimeMDev
 {
@@ -2157,9 +2158,10 @@ namespace TimeMDev
 
         private void webSiteItem_ItemClick(object sender, ItemClickEventArgs e)
         {
-             RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
-             string s = key.GetValue("").ToString();
-             System.Diagnostics.Process.Start(s.Substring(0, s.Length - 5), "http://www.yyets.com");
+             //RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+             //string s = key.GetValue("").ToString();
+             //System.Diagnostics.Process.Start(s.Substring(0, s.Length - 5), "http://www.yyets.com");
+            Process.Start("www.yyets.com");
         }
 
         private void to23FPSItem_ItemClick(object sender, ItemClickEventArgs e)
