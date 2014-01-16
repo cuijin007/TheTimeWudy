@@ -33,6 +33,7 @@ namespace TimeMDev
             this.okBtn = new DevExpress.XtraEditors.SimpleButton();
             this.shortCutsLst = new DevExpress.XtraEditors.ListBoxControl();
             this.saveBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.deleteBtn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.shortCutsLst)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,7 +42,7 @@ namespace TimeMDev
             this.keyInp.Location = new System.Drawing.Point(12, 276);
             this.keyInp.Name = "keyInp";
             this.keyInp.ReadOnly = true;
-            this.keyInp.Size = new System.Drawing.Size(239, 21);
+            this.keyInp.Size = new System.Drawing.Size(156, 21);
             this.keyInp.TabIndex = 0;
             this.keyInp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_KeyDown);
             // 
@@ -71,11 +72,21 @@ namespace TimeMDev
             this.saveBtn.Text = "保存";
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(176, 273);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(75, 23);
+            this.deleteBtn.TabIndex = 6;
+            this.deleteBtn.Text = "删除";
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
             // ShortCutSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 309);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.shortCutsLst);
             this.Controls.Add(this.okBtn);
@@ -96,6 +107,7 @@ namespace TimeMDev
         private DevExpress.XtraEditors.SimpleButton okBtn;
         private DevExpress.XtraEditors.ListBoxControl shortCutsLst;
         private DevExpress.XtraEditors.SimpleButton saveBtn;
+        private DevExpress.XtraEditors.SimpleButton deleteBtn;
 
      
 

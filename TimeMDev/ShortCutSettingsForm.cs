@@ -108,11 +108,7 @@ namespace TimeMDev
             }
             ShortCuts.Change(id, curKey);
 
-            CalculateCaptions();
-            this.shortCutsLst.Items.Clear();
-            this.shortCutsLst.Items.AddRange(captions);
-
-            changed = true;
+            updateShortcuts();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -126,9 +122,25 @@ namespace TimeMDev
             if (changed)
             {
                 this.saveBtn_Click(null, null);
-                update();
             }
+            update();
         }
 
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            ShortCuts.Remove(id);
+            curKey = (Keys)0;
+
+            updateShortcuts();
+        }
+
+        private void updateShortcuts()
+        {
+            CalculateCaptions();
+            this.shortCutsLst.Items.Clear();
+            this.shortCutsLst.Items.AddRange(captions);
+
+            changed = true;
+        }
     }
 }

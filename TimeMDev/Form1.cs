@@ -2132,6 +2132,10 @@ namespace TimeMDev
                     {
                         item.ItemShortcut = new BarShortcut(key);
                     }
+                    else
+                    {
+                        item.ItemShortcut = null;
+                    }
 
                 }
             }
