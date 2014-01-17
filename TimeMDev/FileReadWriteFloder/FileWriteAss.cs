@@ -83,7 +83,7 @@ namespace TimeMDev.FileReadWriteFloder
             for (int i = 1; i < listSingleSentence.Count; i++)
             {
                 line = "Dialogue: ";
-                line += listSingleSentence[i].layer + ",";
+                line += (listSingleSentence[i].layer + ",").Trim();
                 line += TimeLineReadWrite.TimeOutAss(listSingleSentence[i].startTime) + ",";
                 line += TimeLineReadWrite.TimeOutAss(listSingleSentence[i].endTime) + ",";
                 line += listSingleSentence[i].style + ",";

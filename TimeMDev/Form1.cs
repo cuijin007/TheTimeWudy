@@ -1002,11 +1002,11 @@ namespace TimeMDev
              */
             if (this.originalSubtitlePath.EndsWith(".srt"))
             {
-                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default, this.originalSubtitlePath));
+                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8, this.originalSubtitlePath));
             }
             if (this.originalSubtitlePath.EndsWith(".ass"))
             {
-                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.Default, this.originalSubtitlePath));
+                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8, this.originalSubtitlePath));
             }
             this.timeLineReadWrite.DeleteBuf(this.timeLineReadWrite.filePath);
         }
@@ -2404,6 +2404,26 @@ namespace TimeMDev
         private void reloadSub_Click(object sender, EventArgs e)
         {
             this.reloadSubItem_ItemClick(null, null);
+        }
+
+        private void copyItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.copyContext_Click(null, null);
+        }
+
+        private void cutItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.cutContext_Click(null, null);
+        }
+
+        private void pasteItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.pasteContext_Click(null, null);
+        }
+
+        private void findNextItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
         }
     }
 }

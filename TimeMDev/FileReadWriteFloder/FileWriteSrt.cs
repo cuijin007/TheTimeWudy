@@ -90,13 +90,14 @@ namespace TimeMDev.FileReadWriteFloder
                 if (this.ContentFunction == null)
                 {
                     string buf = listSingleSentence[i].content;
-                    buf = CCHandle.CutSrtScript(buf);
+                    //2014-1-18
+                    //buf = CCHandle.CutSrtScript(buf);
                     streamWriter.WriteLine(CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(buf)));
                 }
                 else
                 {
                     string buf = listSingleSentence[i].content;
-                    buf = CCHandle.CutSrtScript(buf);
+                    //buf = CCHandle.CutSrtScript(buf);
                     streamWriter.WriteLine(CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(this.ContentFunction(ref buf))));
                 }
                 streamWriter.WriteLine("");

@@ -265,7 +265,8 @@ namespace TimeMDev
             {
                 if (this.listViewShow.Items[i].Selected)
                 {
-                    list.Add(this.formMain.listView1.YYGetShowPosition(int.Parse(this.listViewShow.Items[i].SubItems[0].Text)));
+                    //list.Add(this.formMain.listView1.YYGetShowPosition(int.Parse(this.listViewShow.Items[i].SubItems[0].Text)));
+                    list.Add(int.Parse(this.listViewShow.Items[i].SubItems[0].Text));
                 }
             }
             NotificationCenter.SendMessage("yyListView", "SetSelectedByIndex", list);
