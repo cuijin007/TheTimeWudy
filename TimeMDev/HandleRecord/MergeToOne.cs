@@ -43,22 +43,47 @@ namespace TimeMDev.HandleRecord
         {
             SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.listSingleSentence[this.yyListView.YYGetRealPosition(this.ShowPositionDest)]);
             sentence.content = "";
+            string englishSave = "";
+            string chineseSave="";
+            bool chineseFrist=false;
             for (int i = this.source.Count-1; i >= 0; i--)
+            //for (int i = 0; i < this.source.Count;i++ )
             {
                 if (this.isSingleLine)
                 {
-                    sentence.content += (this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "");
+                    string chinese = "";
+                    string english = "";
+                  
+                    CCHandle.SpiltRule((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", ""), out chinese, out english);
+                    if ((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "").StartsWith(chinese))
+                    {
+                        chineseFrist = true;
+                    }
+                    englishSave = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(english))+englishSave;
+                    chineseSave = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(chinese))+chineseSave;
+                    //sentence.content += (this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "");
                 }
                 else
                 {
-                    sentence.content += (this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content);
+                    sentence.content = (this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content)+sentence.content;
                     if (i > 0)
                     {
-                        sentence.content += "\r\n";
+                        sentence.content = "\r\n"+sentence.content;
                     }
                 }
                 DeleteRecord deleteRecord = new DeleteRecord(this.listSingleSentence, this.yyListView, source[i]);
                 this.functions.Add(deleteRecord);
+            }
+            if (isSingleLine)
+            {
+                if (chineseFrist)
+                {
+                    sentence.content = chineseSave + "\r\n" + englishSave;
+                }
+                else
+                {
+                    sentence.content = englishSave + "\r\n" + chineseSave;
+                }
             }
             InsertRecord insertRecord = new InsertRecord(this.listSingleSentence, this.yyListView, this.ShowPositionDest, this.yyListView.YYGetRealPosition(this.ShowPositionDest), sentence);
             this.functions.Add(insertRecord);

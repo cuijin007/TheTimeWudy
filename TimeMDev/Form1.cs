@@ -100,11 +100,11 @@ namespace TimeMDev
                     string pathBuf=SetSaveAuto.GetAutoSavePath()+"\\"+Path.GetFileNameWithoutExtension(path)+SetSaveAuto.GetAutoSaveCount();
                     if (path.EndsWith(".ass"))
                     {
-                        timeLineReadWrite.Write(new FileWriteAss(Encoding.Default,pathBuf+".ass"));
+                        timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8,pathBuf+".ass"));
                     }
                     if(path.EndsWith(".srt"))
                     {
-                        timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default,pathBuf+".srt"));
+                        timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8,pathBuf+".srt"));
                     }
                     //this.timeLineReadWrite.filePath=path;
                 }
@@ -795,7 +795,7 @@ namespace TimeMDev
                         }
                         singleSentence.startTime = startTime + ((endTime - startTime) / count) * i;
                         singleSentence.endTime = startTime + ((endTime - startTime) / count) * (i + 1);
-                        singleSentence.content = content;
+                        singleSentence.content = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(content));
                         InsertRecord insertRecord = new InsertRecord(this.dataProcess.listSingleSentence, this.listView1, showPosition + i, index + i, singleSentence);
                         listCommand.Add(insertRecord);
                     }
@@ -974,11 +974,11 @@ namespace TimeMDev
                     this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
                     if (dialog.FileName.EndsWith("srt"))
                     {
-                        this.timeLineReadWrite.Write(new FileWriteSrt());
+                        this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8));
                     }
                     if (dialog.FileName.EndsWith("ass"))
                     {
-                        this.timeLineReadWrite.Write(new FileWriteAss());
+                        this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8));
                     }
 
                     this.recentFile.AddRecentFile(dialog.FileName);
@@ -1633,6 +1633,7 @@ namespace TimeMDev
             {
                 this.commandManage.CommandRun(new MergeToOne(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], this.listView1.SelectedIndices, true));
             }
+            this.listView1.YYRefresh();
         }
 
         private void subtitleCombineItem_ItemClick(object sender, ItemClickEventArgs e)
@@ -1647,6 +1648,7 @@ namespace TimeMDev
             {
                 this.commandManage.CommandRun(new MergeToOne(this.timeLineReadWrite.listSingleSentence, this.listView1, this.listView1.SelectedIndices[0], this.listView1.SelectedIndices, false));
             }
+            this.listView1.YYRefresh();
         }
 
         private void combineMutiLineContext_Click(object sender, EventArgs e)

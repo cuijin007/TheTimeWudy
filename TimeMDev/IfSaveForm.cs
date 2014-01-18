@@ -25,11 +25,11 @@ namespace TimeMDev
         {
             if(this.originalPath.EndsWith(".srt"))
             {
-                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.Default, this.originalPath));
+                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8, this.originalPath));
             }
             if (this.originalPath.EndsWith(".ass"))
             {
-                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.Default, this.originalPath));
+                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8, this.originalPath));
             }
             this.timeLineReadWrite.DeleteBuf(this.timeLineReadWrite.filePath);
             this.Close();
