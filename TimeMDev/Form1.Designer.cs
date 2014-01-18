@@ -64,7 +64,7 @@
             this.videoPlayPanel = new System.Windows.Forms.Panel();
             this.nowTimeLineShow = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.movieTrack = new System.Windows.Forms.TrackBar();
+            this.movieTrack = new TimeMDev.YYTrackBar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStripPanel1 = new System.Windows.Forms.ToolStripPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -197,6 +197,9 @@
             this.barButtonItemOneFrame = new DevExpress.XtraBars.BarButtonItem();
             this.subSyncItem = new DevExpress.XtraBars.BarCheckItem();
             this.reloadSubItem = new DevExpress.XtraBars.BarButtonItem();
+            this.subStyleItem = new DevExpress.XtraBars.BarSubItem();
+            this.assStyleCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.srtStyleCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.optionMenu = new DevExpress.XtraBars.BarSubItem();
             this.shorCutItem = new DevExpress.XtraBars.BarButtonItem();
             this.viewEffectItem = new DevExpress.XtraBars.BarButtonItem();
@@ -230,6 +233,8 @@
             this.saveAutoCheckItem = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem4 = new DevExpress.XtraBars.BarCheckItem();
             this.barCheckItem = new DevExpress.XtraBars.BarCheckItem();
+            this.assStyleReloadItem = new DevExpress.XtraBars.BarCheckItem();
+            this.barCheckItem2 = new DevExpress.XtraBars.BarCheckItem();
             this.textTimeLinePanel = new DevExpress.XtraEditors.GroupControl();
             this.listView1 = new TimeMDev.YYListView();
             this.listViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -304,10 +309,10 @@
             this.functionPanel.Controls.Add(this.dockPanel1_Container);
             this.functionPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.functionPanel.ID = new System.Guid("969a68cf-36f5-41da-89e3-0897c6ea1f28");
-            this.functionPanel.Location = new System.Drawing.Point(0, 24);
+            this.functionPanel.Location = new System.Drawing.Point(0, 439);
             this.functionPanel.Name = "functionPanel";
             this.functionPanel.OriginalSize = new System.Drawing.Size(131, 200);
-            this.functionPanel.Size = new System.Drawing.Size(131, 551);
+            this.functionPanel.Size = new System.Drawing.Size(131, 136);
             this.functionPanel.Text = "功能栏";
             this.functionPanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.functionPanel_ClosedPanel);
             // 
@@ -550,22 +555,24 @@
             this.panelContainer1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.panelContainer1.FloatVertical = true;
             this.panelContainer1.ID = new System.Guid("69606b57-fcf3-4d4d-a7a3-7e75373d77e5");
-            this.panelContainer1.Location = new System.Drawing.Point(131, 24);
+            this.panelContainer1.Location = new System.Drawing.Point(0, 187);
             this.panelContainer1.Name = "panelContainer1";
             this.panelContainer1.OriginalSize = new System.Drawing.Size(200, 252);
-            this.panelContainer1.Size = new System.Drawing.Size(1055, 252);
+            this.panelContainer1.Size = new System.Drawing.Size(1186, 252);
             this.panelContainer1.Text = "panelContainer1";
             // 
             // videoPanel
             // 
             this.videoPanel.AllowDrop = true;
+            this.videoPanel.Appearance.BackColor = System.Drawing.Color.Black;
+            this.videoPanel.Appearance.Options.UseBackColor = true;
             this.videoPanel.Controls.Add(this.dockPanel3_Container);
             this.videoPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.videoPanel.ID = new System.Guid("b4edf9e8-4959-4e1d-8ef7-e802000544ee");
             this.videoPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPanel.Name = "videoPanel";
-            this.videoPanel.OriginalSize = new System.Drawing.Size(357, 252);
-            this.videoPanel.Size = new System.Drawing.Size(553, 252);
+            this.videoPanel.OriginalSize = new System.Drawing.Size(306, 252);
+            this.videoPanel.Size = new System.Drawing.Size(272, 252);
             this.videoPanel.Text = " 视频播放";
             this.videoPanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.videoPanel_ClosedPanel);
             this.videoPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragEnter);
@@ -578,7 +585,7 @@
             this.dockPanel3_Container.Controls.Add(this.panel2);
             this.dockPanel3_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(545, 225);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(264, 225);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // videoPlayPanel
@@ -589,7 +596,7 @@
             this.videoPlayPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.videoPlayPanel.Location = new System.Drawing.Point(0, 0);
             this.videoPlayPanel.Name = "videoPlayPanel";
-            this.videoPlayPanel.Size = new System.Drawing.Size(545, 168);
+            this.videoPlayPanel.Size = new System.Drawing.Size(264, 168);
             this.videoPlayPanel.TabIndex = 1;
             this.videoPlayPanel.Click += new System.EventHandler(this.videoPlayPanel_Click);
             this.videoPlayPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.videoPanel_DragDrop);
@@ -608,21 +615,22 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.movieTrack);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 168);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(545, 25);
+            this.panel1.Size = new System.Drawing.Size(264, 25);
             this.panel1.TabIndex = 0;
             // 
             // movieTrack
             // 
             this.movieTrack.AutoSize = false;
             this.movieTrack.BackColor = System.Drawing.Color.Black;
-            this.movieTrack.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.movieTrack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movieTrack.Location = new System.Drawing.Point(0, 0);
             this.movieTrack.Name = "movieTrack";
-            this.movieTrack.Size = new System.Drawing.Size(545, 25);
+            this.movieTrack.Size = new System.Drawing.Size(264, 25);
             this.movieTrack.TabIndex = 0;
             this.movieTrack.TickStyle = System.Windows.Forms.TickStyle.None;
             this.movieTrack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movieTrack_MouseDown);
@@ -637,7 +645,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 193);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(545, 32);
+            this.panel2.Size = new System.Drawing.Size(264, 32);
             this.panel2.TabIndex = 0;
             // 
             // toolStripPanel1
@@ -944,7 +952,7 @@
             // nowTimeLable
             // 
             this.nowTimeLable.Dock = System.Windows.Forms.DockStyle.Right;
-            this.nowTimeLable.Location = new System.Drawing.Point(430, 0);
+            this.nowTimeLable.Location = new System.Drawing.Point(149, 0);
             this.nowTimeLable.Name = "nowTimeLable";
             this.nowTimeLable.Size = new System.Drawing.Size(115, 32);
             this.nowTimeLable.TabIndex = 2;
@@ -957,10 +965,10 @@
             this.modifySubtitlePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Fill;
             this.modifySubtitlePanel.FloatVertical = true;
             this.modifySubtitlePanel.ID = new System.Guid("d5f1cb44-9ef1-4a4b-bac9-7abcb6e9fee2");
-            this.modifySubtitlePanel.Location = new System.Drawing.Point(553, 0);
+            this.modifySubtitlePanel.Location = new System.Drawing.Point(272, 0);
             this.modifySubtitlePanel.Name = "modifySubtitlePanel";
-            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(698, 252);
-            this.modifySubtitlePanel.Size = new System.Drawing.Size(502, 252);
+            this.modifySubtitlePanel.OriginalSize = new System.Drawing.Size(749, 252);
+            this.modifySubtitlePanel.Size = new System.Drawing.Size(783, 252);
             this.modifySubtitlePanel.Text = "修改字幕";
             this.modifySubtitlePanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.modifySubtitlePanel_ClosedPanel);
             // 
@@ -970,7 +978,7 @@
             this.dockPanel4_Container.Controls.Add(this.panel3);
             this.dockPanel4_Container.Location = new System.Drawing.Point(4, 23);
             this.dockPanel4_Container.Name = "dockPanel4_Container";
-            this.dockPanel4_Container.Size = new System.Drawing.Size(494, 225);
+            this.dockPanel4_Container.Size = new System.Drawing.Size(775, 225);
             this.dockPanel4_Container.TabIndex = 0;
             // 
             // contentEdit
@@ -979,7 +987,7 @@
             this.contentEdit.Location = new System.Drawing.Point(123, 0);
             this.contentEdit.Multiline = true;
             this.contentEdit.Name = "contentEdit";
-            this.contentEdit.Size = new System.Drawing.Size(371, 225);
+            this.contentEdit.Size = new System.Drawing.Size(652, 225);
             this.contentEdit.TabIndex = 16;
             this.contentEdit.Leave += new System.EventHandler(this.contentEdit_Leave);
             // 
@@ -1063,10 +1071,10 @@
             this.picTimeLinePanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
             this.picTimeLinePanel.FloatVertical = true;
             this.picTimeLinePanel.ID = new System.Guid("ee3c6f74-b203-46a9-b484-9a8d7ae5e6d0");
-            this.picTimeLinePanel.Location = new System.Drawing.Point(131, 276);
+            this.picTimeLinePanel.Location = new System.Drawing.Point(0, 24);
             this.picTimeLinePanel.Name = "picTimeLinePanel";
             this.picTimeLinePanel.OriginalSize = new System.Drawing.Size(200, 163);
-            this.picTimeLinePanel.Size = new System.Drawing.Size(1055, 163);
+            this.picTimeLinePanel.Size = new System.Drawing.Size(1186, 163);
             this.picTimeLinePanel.Text = "可视化时间轴";
             this.picTimeLinePanel.ClosedPanel += new DevExpress.XtraBars.Docking.DockPanelEventHandler(this.picTimeLinePanel_ClosedPanel);
             // 
@@ -1237,9 +1245,14 @@
             this.delayTimeItem,
             this.loadSubEncodingItem,
             this.saveAutoItem,
-            this.reloadSubItem});
+            this.reloadSubItem,
+            this.subStyleItem,
+            this.assStyleReloadItem,
+            this.barCheckItem2,
+            this.assStyleCheckItem,
+            this.srtStyleCheckItem});
             this.barManager1.MainMenu = this.topBar;
-            this.barManager1.MaxItemId = 121;
+            this.barManager1.MaxItemId = 126;
             this.barManager1.StatusBar = this.bar3;
             // 
             // topBar
@@ -1911,7 +1924,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.back5SecItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemOneFrame),
             new DevExpress.XtraBars.LinkPersistInfo(this.subSyncItem, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.reloadSubItem, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.reloadSubItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.subStyleItem)});
             this.videoMenu.Name = "videoMenu";
             // 
             // openVideoItem
@@ -1994,6 +2008,31 @@
             this.reloadSubItem.Id = 120;
             this.reloadSubItem.Name = "reloadSubItem";
             this.reloadSubItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.reloadSubItem_ItemClick);
+            // 
+            // subStyleItem
+            // 
+            this.subStyleItem.Caption = "字幕格式";
+            this.subStyleItem.Id = 121;
+            this.subStyleItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.assStyleCheckItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.srtStyleCheckItem)});
+            this.subStyleItem.Name = "subStyleItem";
+            // 
+            // assStyleCheckItem
+            // 
+            this.assStyleCheckItem.Caption = "ass形式挂载";
+            this.assStyleCheckItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
+            this.assStyleCheckItem.Id = 124;
+            this.assStyleCheckItem.Name = "assStyleCheckItem";
+            this.assStyleCheckItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.assStyleCheckItem_ItemClick);
+            // 
+            // srtStyleCheckItem
+            // 
+            this.srtStyleCheckItem.Caption = "srt形式挂载";
+            this.srtStyleCheckItem.CategoryGuid = new System.Guid("8b258b37-cae8-4203-8d50-78417c81eb36");
+            this.srtStyleCheckItem.Id = 125;
+            this.srtStyleCheckItem.Name = "srtStyleCheckItem";
+            this.srtStyleCheckItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.srtStyleCheckItem_ItemClick);
             // 
             // optionMenu
             // 
@@ -2207,7 +2246,7 @@
             this.barButtonItem80.CategoryGuid = new System.Guid("858b7ecc-a992-4d1a-a817-1f37ef16235b");
             this.barButtonItem80.Id = 105;
             this.barButtonItem80.Name = "barButtonItem80";
-            this.barButtonItem80.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem80_ItemClick);
+            this.barButtonItem80.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.AboutTimeMachineItem);
             // 
             // bar3
             // 
@@ -2268,6 +2307,18 @@
             this.barCheckItem.Caption = "特效选择";
             this.barCheckItem.Id = 113;
             this.barCheckItem.Name = "barCheckItem";
+            // 
+            // assStyleReloadItem
+            // 
+            this.assStyleReloadItem.Caption = "Ass形式挂载";
+            this.assStyleReloadItem.Id = 122;
+            this.assStyleReloadItem.Name = "assStyleReloadItem";
+            // 
+            // barCheckItem2
+            // 
+            this.barCheckItem2.Caption = "Srt形式挂载";
+            this.barCheckItem2.Id = 123;
+            this.barCheckItem2.Name = "barCheckItem2";
             // 
             // textTimeLinePanel
             // 
@@ -2499,9 +2550,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 598);
             this.Controls.Add(this.textTimeLinePanel);
-            this.Controls.Add(this.picTimeLinePanel);
-            this.Controls.Add(this.panelContainer1);
             this.Controls.Add(this.functionPanel);
+            this.Controls.Add(this.panelContainer1);
+            this.Controls.Add(this.picTimeLinePanel);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -2694,7 +2745,8 @@
         private System.Windows.Forms.Panel videoPlayPanel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.TrackBar movieTrack;
+        //public System.Windows.Forms.TrackBar movieTrack;
+        public YYTrackBar movieTrack;
         public System.Windows.Forms.TextBox numEdit;
         public System.Windows.Forms.TextBox timeEditEnd;
         public System.Windows.Forms.TextBox timeEditStart;
@@ -2778,6 +2830,11 @@
         private System.Windows.Forms.ToolStripButton reloadSub;
         public System.Windows.Forms.Label nowTimeLineShow;
         public System.Windows.Forms.Label nowTimeLable;
+        private DevExpress.XtraBars.BarSubItem subStyleItem;
+        private DevExpress.XtraBars.BarCheckItem assStyleCheckItem;
+        private DevExpress.XtraBars.BarCheckItem srtStyleCheckItem;
+        private DevExpress.XtraBars.BarCheckItem assStyleReloadItem;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem2;
     }
 }
 

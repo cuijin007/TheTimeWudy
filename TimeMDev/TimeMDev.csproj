@@ -424,6 +424,12 @@
     </Compile>
     <Compile Include="YYListViewColumnSorter.cs" />
     <Compile Include="YYListViewColumnSorterVirtual.cs" />
+    <Compile Include="YYTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="YYTrackBar.Designer.cs">
+      <DependentUpon>YYTrackBar.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="1_TimeM.ico" />

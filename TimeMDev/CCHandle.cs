@@ -376,6 +376,24 @@ namespace TimeMDev
             return null;
         }
         /// <summary>
+        /// 去掉logo,留下特效
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static string CutSrtLogoScript(string content)
+        {
+            if (content != null)
+            {
+                if (content.EndsWith(@"{\p0}"))
+                {
+                    content = "";
+                    return content;
+                }
+                return content;
+            }
+            return null;
+        }
+        /// <summary>
         /// 判断是否为整数数字
         /// </summary>
         /// <param name="value"></param>

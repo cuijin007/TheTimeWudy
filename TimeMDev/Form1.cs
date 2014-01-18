@@ -17,6 +17,7 @@ using System.Collections;
 using Microsoft.Win32;
 using TimeMDev.ShortCut;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace TimeMDev
 {
@@ -76,7 +77,14 @@ namespace TimeMDev
             {
                 this.dockManager1.RestoreLayoutFromXml(System.AppDomain.CurrentDomain.BaseDirectory + "yyetsTMConfig.xml");
             }
-            this.DoubleBuffered = true;
+            //this.DoubleBuffered = true;
+            PropertyInfo info = this.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            info.SetValue(this.movieTrack, true, null);
+            //this.movieTrack.Parent = videoPanel;
+            
+            //this.movieTrack.BackColor = Color.Transparent;
+            this.movieTrack.SetDoubleBuffer(true);
+
         }
         /// <summary>
         /// 自动保存
@@ -109,15 +117,31 @@ namespace TimeMDev
         {
             string path = this.timeLineReadWrite.filePath;
             //this.timeLineReadWrite.Write(new FileWriteAss(this.timeLineReadWrite.encoding,path,TimeLineReadWrite.GetAssInfo()));
-            if (this.originalSubtitlePath.EndsWith(".ass"))
+            if (!this.srtStyleCheckItem.Checked && !this.assStyleCheckItem.Checked)
             {
-                path = path.Replace(".srt", ".ass");
-                this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                if (this.originalSubtitlePath.EndsWith(".ass"))
+                {
+                    path = path.Replace(".srt", ".ass");
+                    this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                }
+                else if (this.originalSubtitlePath.EndsWith(".srt"))
+                {
+                    path = path.Replace(".ass", ".srt");
+                    this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                }
             }
-            else if(this.originalSubtitlePath.EndsWith(".srt"))
+            else
             {
-                path=path.Replace(".ass",".srt");
-                this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                if (this.srtStyleCheckItem.Checked)
+                {
+                    path = path.Replace(".ass", ".srt");
+                    this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                }
+                if (this.assStyleCheckItem.Checked)
+                {
+                    path = path.Replace(".srt", ".ass");
+                    this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                }
             }
             //this.timeLineReadWrite.WriteAllTimeline();
             //this.mplayer.LoadTimeLine(this.timeLineReadWrite.filePath);
@@ -141,11 +165,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
+                    this.srtStyleCheckItem.Checked = true;
                 }
                 if (path.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
+                    this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -407,11 +433,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
+                    this.srtStyleCheckItem.Checked = true;
                 }
                 if (dialog.FileName.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
+                    this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = dialog.FileName;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -2003,11 +2031,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
+                    this.srtStyleCheckItem.Checked = true;
                 }
                 if (path.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
+                    this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -2380,6 +2410,7 @@ namespace TimeMDev
 
         private void reloadSubItem_ItemClick(object sender, ItemClickEventArgs e)
         {
+            /*
             string path = this.timeLineReadWrite.filePath;
             if (this.originalSubtitlePath.EndsWith(".ass"))
             {
@@ -2388,10 +2419,14 @@ namespace TimeMDev
             }
             else if (this.originalSubtitlePath.EndsWith(".srt"))
             {
-                path = path.Replace(".ass", ".srt");
-                this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                //path = path.Replace(".ass", ".srt");
+                //this.timeLineReadWrite.Write(new FileWriteSrt(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                path = path.Replace(".srt", ".ass");
+                this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path,TimeLineReadWrite.GetAssInfo()));
             }
             this.mplayer.LoadTimeLine(path);
+          * */
+            this.commandManage_AfterRunCommandFunction();
         }
 
         private void toolStripSyn_CheckedChanged(object sender, EventArgs e)
@@ -2424,6 +2459,23 @@ namespace TimeMDev
         private void findNextItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             
+        }
+
+        private void assStyleCheckItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            srtStyleCheckItem.Checked = !assStyleCheckItem.Checked;
+            this.reloadSub_Click(null, null);
+        }
+
+        private void srtStyleCheckItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            assStyleCheckItem.Checked = !srtStyleCheckItem.Checked;
+            this.reloadSub_Click(null, null);
+        }
+
+        private void AboutTimeMachineItem(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }
