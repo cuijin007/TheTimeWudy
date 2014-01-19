@@ -7,5 +7,6 @@
     <AutoSaveFunctionTime>10</AutoSaveFunctionTime>
     <AutoLoadSubEncoding>utf8</AutoLoadSubEncoding>
     <TimeMBufPath>E:\</TimeMBufPath>
+    <AutoLoadSubStyle>ass</AutoLoadSubStyle>
   </appSettings>
 </nameSpace>

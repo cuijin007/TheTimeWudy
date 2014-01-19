@@ -46,10 +46,12 @@ namespace TimeMDev
             if (this.spiltParameter.beforeSpilt.StartsWith(chinese))
             {
                 this.pictureShowCut.Init(chinese, english);
+                this.spiltParameter.isEnglishFrist = false;
             }
             else
             {
                 this.pictureShowCut.Init(english, chinese);
+                this.spiltParameter.isEnglishFrist = true;
             }
         }
     }

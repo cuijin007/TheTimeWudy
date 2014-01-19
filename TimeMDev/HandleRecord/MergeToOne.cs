@@ -46,6 +46,7 @@ namespace TimeMDev.HandleRecord
             string englishSave = "";
             string chineseSave="";
             bool chineseFrist=false;
+            string script="";
             for (int i = this.source.Count-1; i >= 0; i--)
             //for (int i = 0; i < this.source.Count;i++ )
             {
@@ -53,9 +54,14 @@ namespace TimeMDev.HandleRecord
                 {
                     string chinese = "";
                     string english = "";
-                  
-                    CCHandle.SpiltRule((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", ""), out chinese, out english);
-                    if ((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "").StartsWith(chinese))
+                    string contentBuf=this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content.Replace("\r\n","");
+                    script = CCHandle.GetScript(contentBuf);
+                    contentBuf = CCHandle.CutSrtScript(contentBuf);
+
+                    //CCHandle.SpiltRule((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", ""), out chinese, out english);
+                    //if ((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "").StartsWith(chinese))
+                    CCHandle.SpiltRule(contentBuf.Replace("\r\n", ""), out chinese, out english);
+                    if(contentBuf.StartsWith(chinese))
                     {
                         chineseFrist = true;
                     }
@@ -78,11 +84,11 @@ namespace TimeMDev.HandleRecord
             {
                 if (chineseFrist)
                 {
-                    sentence.content = chineseSave + "\r\n" + englishSave;
+                    sentence.content = chineseSave + "\r\n" +script+ englishSave;
                 }
                 else
                 {
-                    sentence.content = englishSave + "\r\n" + chineseSave;
+                    sentence.content = script+englishSave + "\r\n" + chineseSave;
                 }
             }
             InsertRecord insertRecord = new InsertRecord(this.listSingleSentence, this.yyListView, this.ShowPositionDest, this.yyListView.YYGetRealPosition(this.ShowPositionDest), sentence);

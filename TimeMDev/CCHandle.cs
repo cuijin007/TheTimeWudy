@@ -419,5 +419,17 @@ namespace TimeMDev
             }
             return false;
         }
+
+        /// <summary>
+        /// 获取里面的特效。只获取一个
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string GetScript(string str)
+        {
+            string script = "";
+            Match scriptMatch = Regex.Match(str, @"\{.*\}");
+            return scriptMatch.Value;
+        }
     }
 }

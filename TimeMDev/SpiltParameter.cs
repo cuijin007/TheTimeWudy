@@ -13,5 +13,6 @@ namespace TimeMDev
         public bool isDoubleLanguage;
         public double timeLength;
         public bool confirm;
+        public bool isEnglishFrist;
     }
 }

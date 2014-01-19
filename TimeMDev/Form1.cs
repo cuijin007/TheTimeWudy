@@ -165,13 +165,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
-                    this.srtStyleCheckItem.Checked = true;
+                    //this.srtStyleCheckItem.Checked = true;
                 }
                 if (path.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
-                    this.assStyleCheckItem.Checked = true;
+                    //this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -433,13 +433,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
-                    this.srtStyleCheckItem.Checked = true;
+                   // this.srtStyleCheckItem.Checked = true;
                 }
                 if (dialog.FileName.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
-                    this.assStyleCheckItem.Checked = true;
+                    //this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = dialog.FileName;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -758,7 +758,13 @@ namespace TimeMDev
                 SpiltParameter spiltParameter = new SpiltParameter();
 
                 int index = Int32.Parse(this.listView1.yyItems[this.listView1.SelectedIndices[0]].Text);
-                spiltParameter.beforeSpilt = this.dataProcess.listSingleSentence[index].content;
+
+                string contentBuf = this.dataProcess.listSingleSentence[index].content;
+                string script = CCHandle.GetScript(contentBuf);
+                contentBuf = CCHandle.CutSrtScript(contentBuf);
+
+                spiltParameter.beforeSpilt = contentBuf;
+                //spiltParameter.beforeSpilt = this.dataProcess.listSingleSentence[index].content;
                 this.Capture = false;
                 (new CustomSpilt(spiltParameter)).ShowDialog();
                 if (spiltParameter.confirm == true)
@@ -788,6 +794,14 @@ namespace TimeMDev
                         {
                             content += spiltParameter.afterSpiltFristLine[i];
                             content += "\r\n";
+                            if (spiltParameter.isEnglishFrist)
+                            {
+                                content = script + content;
+                            }
+                            else
+                            {
+                                content += script;
+                            }
                         }
                         if (spiltParameter.afterSpiltSecondLine.Length > i)
                         {
@@ -1877,6 +1891,7 @@ namespace TimeMDev
             this.FunctionActiveItem.Checked = this.GetPanelCheck(this.functionPanel);
             this.subtitleShowActiveItem.Checked = this.GetPanelCheck(this.picTimeLinePanel);
             this.subtitleEditItem.Checked = this.GetPanelCheck(this.modifySubtitlePanel);
+            this.GetStyleScriptCheck(Config.DefaultConfig["AutoLoadSubStyle"]);
 
         }
         /// <summary>
@@ -1896,6 +1911,18 @@ namespace TimeMDev
             }
         }
 
+
+        private void GetStyleScriptCheck(string styleScript)
+        {
+            if (styleScript.Equals("ass"))
+            {
+                this.assStyleCheckItem.Checked = true;
+            }
+            if (styleScript.Equals("srt"))
+            {
+                this.srtStyleCheckItem.Checked = true;
+            }
+        }
         private void videoPanel_DragEnter(object sender, DragEventArgs e)
         {
         }
@@ -2033,13 +2060,13 @@ namespace TimeMDev
                 {
                     //this.timeLineReadWrite.ReadAllTimeline();
                     this.timeLineReadWrite.Read(new FileReadSrt());
-                    this.srtStyleCheckItem.Checked = true;
+                    //this.srtStyleCheckItem.Checked = true;
                 }
                 if (path.EndsWith("ass"))
                 {
                     //this.timeLineReadWrite.ReadAllTimeLineAss();
                     this.timeLineReadWrite.Read(new FileReadAss());
-                    this.assStyleCheckItem.Checked = true;
+                    //this.assStyleCheckItem.Checked = true;
                 }
                 this.originalSubtitlePath = path;//保存一个初始值。
                 if (this.moviePath.Equals(""))
@@ -2466,12 +2493,14 @@ namespace TimeMDev
         private void assStyleCheckItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             srtStyleCheckItem.Checked = !assStyleCheckItem.Checked;
+            Config.DefaultConfig["AutoLoadSubStyle"] = "ass";
             this.reloadSub_Click(null, null);
         }
 
         private void srtStyleCheckItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             assStyleCheckItem.Checked = !srtStyleCheckItem.Checked;
+            Config.DefaultConfig["AutoLoadSubStyle"] = "srt";
             this.reloadSub_Click(null, null);
         }
 
