@@ -58,9 +58,11 @@ namespace TimeMDev
     {
         public string ScriptInfo="; // 此字幕由TimeM生成\r\n; // 欢迎访问人人影视 http://www.YYeTs.net\r\nTitle:YYeTs\r\nOriginal Script:YYeTs\r\nSynch Point:1\r\nScriptType:v4.00+\r\nCollisions:Normal\r\n";
         //public string v4Style="Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\r\nStyle: Default,方正黑体简体,20,&H00FFFFFF,&HF0000000,&H00000000,&H32000000,0,0,0,0,100,10";
-        public string v4Style = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\r\nStyle: Default,方正黑体_GBK,21,&H00FFFFFF,&HF0000000,&H006C3300,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,1,2,5,5,5,134";
+        //public string v4Style = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\r\nStyle: Default,方正黑体_GBK,21,&H00FFFFFF,&HF0000000,&H006C3300,&H00000000,-1,0,0,0,100,100,0,0.00,1,2,1,2,5,5,5,134";
+        public string v4Style = "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\r\nStyle: Default,微软雅黑,19,&H00FFFFFF,&H0000FFFF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,3,2,20,20,20,1";
         public string eventContent="Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text";
-        public string EnglishHead="{\\fn方正黑体简体}{\\fs14}{\\bord1}{\\shad1}{\\b0}{\\c&HFFFFFF&}{\\3c&H111111&}{\\4c&H111111&}";
+        //public string EnglishHead="{\\fn方正黑体简体}{\\fs14}{\\bord1}{\\shad1}{\\b0}{\\c&HFFFFFF&}{\\3c&H111111&}{\\4c&H111111&}";
+        public string EnglishHead = "";
         public string EnglishEnd="";
     }
 }

@@ -24,6 +24,7 @@ namespace TimeMDev
 
         private void checkAll_Click(object sender, EventArgs e)
         {
+            this.listViewShow.Items.Clear();
             this.CheckAllFuntion();
         }
 
@@ -116,7 +117,8 @@ namespace TimeMDev
         {
             string chinese;
             List<string> english;
-            if (!CCHandle.GetEnglishFromChinese(sentence.content, out english))
+            CCHandle.GetEnglishFromChinese(sentence.content, out english);
+            if (english.Count > 1||(english.Count==1&&!english[0].Equals("")))
             {
                 this.AddNewItemInListview(index, "中文行中有英文", this.chineseContainEnglishColor.BackColor);
             }

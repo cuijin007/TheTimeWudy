@@ -139,8 +139,24 @@ namespace TimeMDev
                 }
                 if (this.assStyleCheckItem.Checked)
                 {
+                    bool isSrtEnd = false;
+                    if (path.EndsWith(".srt"))
+                    {
+                        isSrtEnd = true;
+                    }
+                    if (path.EndsWith(".ass"))
+                    {
+                        isSrtEnd = false;
+                    }
                     path = path.Replace(".srt", ".ass");
-                    this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                    if (isSrtEnd)
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+                    }
+                    else
+                    {
+                        this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path));
+                    }
                 }
             }
             //this.timeLineReadWrite.WriteAllTimeline();
