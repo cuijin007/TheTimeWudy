@@ -12,6 +12,7 @@ namespace TimeMDev.FileReadWriteFloder
         AssInfo assInfo;
         public event ContentFunctionD ContentFunction;
         string path;
+        bool remainOrginalEffect=false;
         #region FileWriteFunction 成员
         public  void Write(List<SingleSentence> listSingleSentence, System.IO.FileStream fileStream, string filePath, Encoding encoding, ref string scriptInfo, ref string styles)
         {
@@ -59,6 +60,16 @@ namespace TimeMDev.FileReadWriteFloder
             this.encoding = encoding;
             this.assInfo = assInfo;
         }
+
+        public FileWriteAss(Encoding encoding, string path, AssInfo assInfo,bool remainOrginalEffect)
+        {
+            this.encoding = encoding;
+            this.path = path;
+            this.assInfo = assInfo;
+            this.remainOrginalEffect = remainOrginalEffect;
+        }
+
+
         private void WriteAss(List<SingleSentence> listSingleSentence, System.IO.StreamWriter streamWriter, AssInfo assInfo)
         {
             if (assInfo != null)
@@ -100,7 +111,10 @@ namespace TimeMDev.FileReadWriteFloder
                         string chinese, english;
                         string lineBuf = "";
                         string content = listSingleSentence[i].content;
-                        content = CCHandle.CutSrtScript(content);
+                        if (!this.remainOrginalEffect)
+                        {
+                            content = CCHandle.CutSrtScript(content);
+                        }
                         CCHandle.SpiltRule(content, out chinese, out english);
                         try
                         {
