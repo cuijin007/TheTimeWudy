@@ -217,18 +217,53 @@ namespace TimeMDev
             {
                 chinese = matchCollection[0].ToString();
                 chinese = chinese.Replace("崔进抗八代", "");
+                
             }
             if (!chinese.Equals(""))
             {
                 english = content.Replace(chinese, "");
+                if (content.StartsWith(chinese))
+                {
+                    string ponctuation = "";
+                    string left = "";
+                    GetPunctuationStart(english, out ponctuation, out left);
+                    english = left;
+                    chinese = chinese + ponctuation;
+                }
             }
             else
             {
                 english = content;
             }
         }
-
-        
+        /// <summary>
+        /// 提取开始的标点
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="punctuation"></param>
+        /// <returns></returns>
+        public static bool GetPunctuationStart(string content, out string punctuation,out string left)
+        {
+            punctuation = "";
+            left = "";
+            if (content.Length == 0)
+            {
+                return true;
+            }
+            StringBuilder sb = new StringBuilder(content);
+            int count=0;
+            for (int i = 0; i < sb.Length; i++)
+            {
+                if (!Char.IsPunctuation(sb[i])||sb[i]=='\r'||sb[i]=='\n')
+                {
+                    break;
+                }
+                count++;
+            }
+            punctuation = sb.ToString(0, count);
+            left = sb.ToString(count, sb.Length-count);
+            return true;
+        }
 
         /// <summary>
         /// 从中文中获取英文字符

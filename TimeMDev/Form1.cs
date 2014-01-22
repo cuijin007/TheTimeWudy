@@ -151,7 +151,7 @@ namespace TimeMDev
                     path = path.Replace(".srt", ".ass");
                     if (isSrtEnd)
                     {
-                        this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo()));
+                        this.timeLineReadWrite.Write(new FileWriteAss(ChooseEncodingForm.GetAutoLoadSubEncoding(), path, TimeLineReadWrite.GetAssInfo(),true));
                     }
                     else
                     {
@@ -1060,13 +1060,15 @@ namespace TimeMDev
              */
             if (this.originalSubtitlePath.EndsWith(".srt"))
             {
-                this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8, this.originalSubtitlePath));
+                this.timeLineReadWrite.Write(new FileWriteSrt(SetSaveEncoding.GetSaveSubEncoding(), this.originalSubtitlePath));
             }
             if (this.originalSubtitlePath.EndsWith(".ass"))
             {
-                this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8, this.originalSubtitlePath));
+                this.timeLineReadWrite.Write(new FileWriteAss(SetSaveEncoding.GetSaveSubEncoding(), this.originalSubtitlePath));
             }
+            this.confirmChange_Click(null, null);//增加触发项
             this.timeLineReadWrite.DeleteBuf(this.timeLineReadWrite.filePath);
+            
         }
 
         private void saveAsItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1091,12 +1093,12 @@ namespace TimeMDev
                 if (dialog.FileName.EndsWith(".srt"))
                 {
                     this.timeLineReadWrite.filePath = dialog.FileName;
-                    this.timeLineReadWrite.Write(new FileWriteSrt(Encoding.UTF8));
+                    this.timeLineReadWrite.Write(new FileWriteSrt(SetSaveEncoding.GetSaveSubEncoding()));
                 }
                 if (dialog.FileName.EndsWith(".ass"))
                 {
                     this.timeLineReadWrite.filePath = dialog.FileName;
-                    this.timeLineReadWrite.Write(new FileWriteAss(Encoding.UTF8));
+                    this.timeLineReadWrite.Write(new FileWriteAss(SetSaveEncoding.GetSaveSubEncoding()));
                 }
                 MessageBox.Show("保存成功");
                 this.commandManage.NeedSave = false;
@@ -2523,6 +2525,21 @@ namespace TimeMDev
         private void AboutTimeMachineItem(object sender, ItemClickEventArgs e)
         {
 
+        }
+
+        private void alignNowLineContext_Click(object sender, EventArgs e)
+        {
+            this.toolStripAlignNow_Click(null, null);
+        }
+
+        private void alignAfterLineContext_Click(object sender, EventArgs e)
+        {
+            this.toolStripAlignAfter_Click(null, null);
+        }
+
+        private void saveSubEncodingItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            (new SetSaveEncoding()).ShowDialog();
         }
     }
 }
