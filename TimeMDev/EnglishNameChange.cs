@@ -11,7 +11,7 @@ namespace TimeMDev
     class EnglishNameChange
     {
         List<SingleSentence> sentences;
-        List<NameTable> names;
+        public List<NameTable> names;
         string path;
         public EnglishNameChange(List<SingleSentence> sentences,string filePath)
         {
@@ -39,7 +39,7 @@ namespace TimeMDev
         /// <summary>
         /// 读取名字
         /// </summary>
-        private void ReadAllNameFromFile()
+        public void ReadAllNameFromFile()
         {
             this.names.Clear();
             FileStream fileStream = new FileStream(this.path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
