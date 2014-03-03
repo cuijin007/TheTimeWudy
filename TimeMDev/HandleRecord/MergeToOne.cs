@@ -47,6 +47,10 @@ namespace TimeMDev.HandleRecord
             string chineseSave="";
             bool chineseFrist=false;
             string script="";
+            if (this.source.Count > 0)
+            {
+                sentence.endTime = this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[this.source.Count - 1])].endTime;
+            }
             for (int i = this.source.Count-1; i >= 0; i--)
             //for (int i = 0; i < this.source.Count;i++ )
             {
@@ -65,7 +69,7 @@ namespace TimeMDev.HandleRecord
                     {
                         chineseFrist = true;
                     }
-                    englishSave = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(english))+englishSave;
+                    englishSave = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(english))+" "+englishSave;
                     chineseSave = CCHandle.TrimEnterEnd(CCHandle.TrimEnterStart(chinese))+chineseSave;
                     //sentence.content += (this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "");
                 }
