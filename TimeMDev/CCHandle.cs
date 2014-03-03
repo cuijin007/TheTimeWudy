@@ -468,5 +468,36 @@ namespace TimeMDev
             Match scriptMatch = Regex.Match(str, @"\{.*\}");
             return scriptMatch.Value;
         }
+        /// <summary>
+        /// 去掉中文中的英文
+        /// </summary>
+        /// <returns></returns>
+        public static string ReplaceEnglishInChinese(string content,string englishName,string chineseName)
+        {
+            string chinese="";
+            string english = "";
+            bool chineseStart = true;
+            CCHandle.SpiltRule(content, out chinese, out english);
+            if (content.StartsWith(chinese))
+            {
+                chineseStart = true;
+            }
+            else
+            {
+                chineseStart = false;
+            }
+            if (chinese.Contains(englishName))
+            {
+                chinese=chinese.Replace(englishName, chineseName);
+            }
+            if (chineseStart)
+            {
+                return chinese + english;
+            }
+            else
+            {
+                return english + chinese;
+            }
+        }
     }
 }

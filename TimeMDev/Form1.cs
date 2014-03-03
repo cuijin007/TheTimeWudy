@@ -614,10 +614,14 @@ namespace TimeMDev
                 {
                     this.listViewMenu.Items[i].Enabled = true;
                 }
-                if(this.mplayer.IsHaveMovie())
+                if (this.mplayer.IsHaveMovie())
                 {
-                    this.alignNowLineContext.Enabled=false;
-                    this.alignAfterLineContext.Enabled=false;
+                   // this.alignNowLineContext.Enabled = false;
+                   // this.alignAfterLineContext.Enabled = false;
+                }
+                else
+                {
+ 
                 }
             }
         }
@@ -876,9 +880,30 @@ namespace TimeMDev
         private void replaceEngNameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             EnglishNameChange englishNameChange = new EnglishNameChange(this.dataProcess.listSingleSentence, this.originalSubtitlePath+"namelist.txt");
-            englishNameChange.ReadAndReplaceAllName();
-            this.SetListViewData(this.dataProcess.listSingleSentence);
+            englishNameChange.ReadAllNameFromFile();
+            List<HandleRecordBass> commandList = new List<HandleRecordBass>();
+            for (int i = 0; i < englishNameChange.names.Count; i++)
+            {
+                for (int j = 0; j < this.dataProcess.listSingleSentence.Count; j++)
+                {
+                    if (this.dataProcess.listSingleSentence[j].content.Contains(englishNameChange.names[i].englishName))
+                    {
+                        SingleSentence sentence = CopyObject.DeepCopy<SingleSentence>(this.dataProcess.listSingleSentence[j]);
+                        sentence.content = CCHandle.ReplaceEnglishInChinese(sentence.content, englishNameChange.names[i].englishName, englishNameChange.names[i].chineseName);
+                        if (!sentence.content.Equals(this.dataProcess.listSingleSentence[j].content))
+                        {
+                            ChangeRecord changeRecord = new ChangeRecord(this.dataProcess.listSingleSentence, this.listView1, this.listView1.YYGetShowPosition(j), sentence);
+                            commandList.Add(changeRecord);
+                        }
+                    }
+                }
+            }
+            this.commandManage.CommandRun(commandList);
             this.listView1.YYRefresh();
+            //englishNameChange.ReadAndReplaceAllName();
+            
+            //this.SetListViewData(this.dataProcess.listSingleSentence);
+            //this.listView1.YYRefresh();
         }
 
         private void findErrorItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

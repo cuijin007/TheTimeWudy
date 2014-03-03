@@ -239,7 +239,7 @@
             this.toolStripAlignAfter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAlignAfter.Name = "toolStripAlignAfter";
             this.toolStripAlignAfter.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAlignAfter.Text = "以当前的播放器时间对其以后的时间";
+            this.toolStripAlignAfter.Text = "以当前的播放器时间对齐以后的时间";
             // 
             // toolStripAlighAll
             // 
@@ -248,7 +248,7 @@
             this.toolStripAlighAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAlighAll.Name = "toolStripAlighAll";
             this.toolStripAlighAll.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAlighAll.Text = "以现在播放器时间对其所有时间";
+            this.toolStripAlighAll.Text = "以现在播放器时间对齐所有时间";
             // 
             // toolStripAlighStart
             // 
@@ -257,7 +257,7 @@
             this.toolStripAlighStart.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAlighStart.Name = "toolStripAlighStart";
             this.toolStripAlighStart.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAlighStart.Text = "对其开始时间";
+            this.toolStripAlighStart.Text = "对齐开始时间";
             // 
             // toolStripSeparator5
             // 
@@ -271,7 +271,7 @@
             this.toolStripAlighEnd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripAlighEnd.Name = "toolStripAlighEnd";
             this.toolStripAlighEnd.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAlighEnd.Text = "对其结束时间";
+            this.toolStripAlighEnd.Text = "对齐结束时间";
             // 
             // toolStripAddOne
             // 
