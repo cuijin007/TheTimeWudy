@@ -285,7 +285,8 @@ namespace TimeMDev
                 allChinese = matchCollection[0].ToString();
                 allChinese = allChinese.Replace("崔进抗八代", "");
             }
-            MatchCollection EnglishCollection = Regex.Matches(allChinese, @"[A-Za-z][A-Za-z\s]*[A-Za-z]");
+            //MatchCollection EnglishCollection = Regex.Matches(allChinese, @"[A-Za-z][A-Za-z\s]*[A-Za-z]");
+            MatchCollection EnglishCollection = Regex.Matches(allChinese, @"[^[\u4E00-\u9FA5\uFE30-\uFFA0\.\[\],!@#$%^&*\(\){}·\-""\\\s《。，》0-9]*[^[\u4E00-\u9FA5\uFE30-\uFFA0\.\[\],!@#$%^&*\(\){}·\-""\\\s《。，》0-9]");
             if (EnglishCollection == null && EnglishCollection.Count == 0)
             {
                 return false;
