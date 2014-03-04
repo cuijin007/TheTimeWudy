@@ -58,9 +58,11 @@ namespace TimeMDev.HandleRecord
                 {
                     string chinese = "";
                     string english = "";
-                    string contentBuf=this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content.Replace("\r\n","");
+                    //string contentBuf=this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content.Replace("\r\n","");
+                    string contentBuf = this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content;
                     script = CCHandle.GetScript(contentBuf);
-                    contentBuf = CCHandle.CutSrtScript(contentBuf);
+                    contentBuf = CCHandle.CutStartScript(contentBuf,script);
+                    //contentBuf = CCHandle.CutSrtScript(contentBuf);2014-3-4
 
                     //CCHandle.SpiltRule((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", ""), out chinese, out english);
                     //if ((this.listSingleSentence[this.yyListView.YYGetRealPosition(this.source[i])].content).Replace("\r\n", "").StartsWith(chinese))

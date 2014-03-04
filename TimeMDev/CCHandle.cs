@@ -212,7 +212,8 @@ namespace TimeMDev
         {
             chinese = "";
             english = "";
-            MatchCollection matchCollection = Regex.Matches("崔进抗八代"+content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
+            //MatchCollection matchCollection = Regex.Matches("崔进抗八代"+content, "([\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
+            MatchCollection matchCollection = Regex.Matches("崔进抗八代" + content, "([^{][^}][\u4E00-\u9FA5]|[\uFE30-\uFFA0]).*([^{][^}][\u4E00-\u9FA5]|[\uFE30-\uFFA0])");
             if (matchCollection.Count > 0)
             {
                 chinese = matchCollection[0].ToString();
@@ -414,6 +415,45 @@ namespace TimeMDev
             return null;
         }
         /// <summary>
+        /// 去掉开始位特效
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static string CutStartScript(string content)
+        {
+            if (content != null)
+            {
+                if (content.EndsWith(@"{\p0}"))
+                {
+                    content = "";
+                    return content;
+                }
+                content = Regex.Replace(content, @"\{.*\}", "");
+                return content;
+            }
+            return null;
+        }
+        /// <summary>
+        /// 去掉开始位特效
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static string CutStartScript(string content,string script)
+        {
+            if (content != null)
+            {
+                if (content.EndsWith(@"{\p0}"))
+                {
+                    content = "";
+                    return content;
+                }
+                //content = Regex.Replace(content, @"(\s)\{.*\}", "");
+                content = content.Replace(script, "");
+                return content;
+            }
+            return null;
+        }
+        /// <summary>
         /// 去掉logo,留下特效
         /// </summary>
         /// <param name="content"></param>
@@ -466,8 +506,18 @@ namespace TimeMDev
         public static string GetScript(string str)
         {
             string script = "";
-            Match scriptMatch = Regex.Match(str, @"\{.*\}");
-            return scriptMatch.Value;
+            str=str.Replace("\r\n", "挊燶挊");
+            //Match scriptMatch = Regex.Match(str, @"\{.*\}");//2014-3-4特效前面有换行才收
+           // Match scriptMatch = Regex.Match(str, @"(\s)\{.*\}");
+            MatchCollection collection = Regex.Matches(str, @"(挊燶挊)\{.*\}");
+            if (collection.Count > 0)
+            {
+                return collection[0].Value.Replace("挊燶挊", "") ;
+            }
+            else 
+            {
+                return "";
+            }
         }
         /// <summary>
         /// 去掉中文中的英文
