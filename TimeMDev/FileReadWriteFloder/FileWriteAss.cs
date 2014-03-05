@@ -115,7 +115,8 @@ namespace TimeMDev.FileReadWriteFloder
                         {
                             content = CCHandle.CutSrtScript(content);
                         }
-                        CCHandle.SpiltRule(content, out chinese, out english);
+                        //CCHandle.SpiltRule(content, out chinese, out english);2014-3-3
+                       CCHandle.SpiltRuleByEnter(content, out chinese, out english);
                         try
                         {
                             chinese = CCHandle.TrimEnterEnd(chinese);

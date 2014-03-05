@@ -237,13 +237,62 @@ namespace TimeMDev
                 english = content;
             }
         }
+
+        /// <summary>
+        /// 换行优先的中英文换行规则
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="chinese"></param>
+        /// <param name="english"></param>
+        public static void SpiltRuleByEnter(string content, out string chinese, out string english)
+        {
+            chinese = "";
+            english = "";
+            string[] spiltString=new string[1];
+            spiltString[0]="\r\n";
+            string[] afterSpilt=content.Split(spiltString,StringSplitOptions.None);
+            string buf="";
+            for(int i=0;i<afterSpilt.Length;i++)
+            {
+                buf+=afterSpilt[i];
+                if(i>0)
+                {
+                    buf+="\r\n";
+                }
+                if (i == 0)
+                {
+                    buf += "挊燶秾";
+                }
+            }
+            string chinese2 = "";
+            string english2 = "";
+            string chinese3 = "";
+            string english3 = "";
+            SpiltRule(buf, out chinese2, out english2);
+            SpiltRule(chinese2, out chinese3,out english3);
+            if (chinese3.EndsWith("挊燶秾"))
+            {
+                chinese = chinese3.Replace("挊燶秾", "");
+                english = english2;
+            }
+            else if (chinese3.Equals("挊燶秾"))
+            {
+                chinese = "";
+                english = content;
+            }
+            else
+            {
+                SpiltRule(content, out chinese, out english);
+            }
+        }
+
         /// <summary>
         /// 提取开始的标点
         /// </summary>
         /// <param name="content"></param>
         /// <param name="punctuation"></param>
         /// <returns></returns>
-        public static bool GetPunctuationStart(string content, out string punctuation,out string left)
+        public static bool GetPunctuationStart(string content, out string punctuation, out string left)
         {
             punctuation = "";
             left = "";
@@ -528,7 +577,8 @@ namespace TimeMDev
             string chinese="";
             string english = "";
             bool chineseStart = true;
-            CCHandle.SpiltRule(content, out chinese, out english);
+            CCHandle.SpiltRuleByEnter(content, out chinese, out english);
+            //CCHandle.SpiltRule(content, out chinese, out english); 2014-3-3
             if (content.StartsWith(chinese))
             {
                 chineseStart = true;
