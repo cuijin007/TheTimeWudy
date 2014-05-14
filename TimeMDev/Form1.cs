@@ -18,6 +18,7 @@ using Microsoft.Win32;
 using TimeMDev.ShortCut;
 using System.Diagnostics;
 using System.Reflection;
+using TimeMDev.HandleRecord.cchandle;
 
 namespace TimeMDev
 {
@@ -642,7 +643,8 @@ namespace TimeMDev
 
         private void ccSubtitleHandleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
+            //CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
+            (new CutSame(this.timeLineReadWrite.GetListSingleSentence())).CutSameFromList();
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }

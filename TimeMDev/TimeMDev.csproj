@@ -182,6 +182,9 @@
     <Compile Include="HandleRecord\AddBlankRecord.cs" />
     <Compile Include="HandleRecord\AdditionalSubtitle.cs" />
     <Compile Include="HandleRecord\AddRecord.cs" />
+    <Compile Include="HandleRecord\cchandle\CCHandle2.cs" />
+    <Compile Include="HandleRecord\cchandle\CutSame.cs" />
+    <Compile Include="HandleRecord\cchandle\ProcessingCase.cs" />
     <Compile Include="HandleRecord\ChangeRecord.cs" />
     <Compile Include="HandleRecord\CommandManage.cs" />
     <Compile Include="HandleRecord\CopyRecord.cs" />
@@ -468,9 +471,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HandleRecord\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

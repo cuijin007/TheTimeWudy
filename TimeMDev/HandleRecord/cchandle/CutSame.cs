@@ -21,7 +21,7 @@ namespace TimeMDev.HandleRecord.cchandle
         {
             for (int i = this.listSentence.Count - 1; i > 0; i--)
             {
-                this.listSentence[i].content=this.CutSameSentence(this.listSentence[i].content, this.listSentence[i - 1].content);
+                this.listSentence[i].content = DeleteStartEnter(this.CutSameSentence(this.listSentence[i].content, this.listSentence[i - 1].content));
             }
         }
 
@@ -51,6 +51,7 @@ namespace TimeMDev.HandleRecord.cchandle
                     {
                         mark = i;
                     }
+                    j--;
                 }
                 else
                 {
@@ -61,18 +62,43 @@ namespace TimeMDev.HandleRecord.cchandle
                     j = compareSB.Length - 1;
                 }
             }
-            int length = needCutSB.Length - mark;
-            if (length < needCutSB.Length)
+            if (mark > 0)
             {
-                StringBuilder finalSB = needCutSB.Remove(0, length);
-                return finalSB.ToString();
+                int length = mark+1;
+                if (length < needCutSB.Length)
+                {
+                    StringBuilder finalSB = needCutSB.Remove(0, length);
+                    return finalSB.ToString();
+                }
+                else
+                {
+                    return "";
+                }
             }
             else
             {
-                return "";
+                return sentenceNeedCut;
             }
         }
-
+        /// <summary>
+        /// 删除开头的空格和回车
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
+        private string DeleteStartEnter(string sentence)
+        {
+            if (sentence.StartsWith("\r\n"))
+            {
+                sentence=sentence.Remove(0, 2);
+                sentence=DeleteStartEnter(sentence);
+            }
+            if (sentence.StartsWith(" "))
+            {
+                sentence = sentence.Remove(0, 1);
+                sentence = DeleteStartEnter(sentence);
+            }
+            return sentence;
+        }
 
     }
 }
