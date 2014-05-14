@@ -645,6 +645,9 @@ namespace TimeMDev
         {
             //CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
             (new CutSame(this.timeLineReadWrite.GetListSingleSentence())).CutSameFromList();
+            (new DeleteSymbols(this.timeLineReadWrite.GetListSingleSentence())).DeleteAction();
+            (new FristMergeAndResolution(this.timeLineReadWrite.GetListSingleSentence())).MergeResolutionFunction();
+            
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }

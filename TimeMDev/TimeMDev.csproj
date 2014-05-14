@@ -120,6 +120,7 @@
     <Compile Include="ChooseEncodingForm.Designer.cs">
       <DependentUpon>ChooseEncodingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HandleRecord\cchandle\DeleteSymbols.cs" />
     <Compile Include="ConfigSave\RecentFile.cs" />
     <Compile Include="ConfigSave\Config.cs" />
     <Compile Include="ConfigSave\ShortCuts.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="HandleRecord\AddRecord.cs" />
     <Compile Include="HandleRecord\cchandle\CCHandle2.cs" />
     <Compile Include="HandleRecord\cchandle\CutSame.cs" />
+    <Compile Include="HandleRecord\cchandle\FristMergeAndResolution.cs" />
     <Compile Include="HandleRecord\cchandle\ProcessingCase.cs" />
     <Compile Include="HandleRecord\ChangeRecord.cs" />
     <Compile Include="HandleRecord\CommandManage.cs" />
