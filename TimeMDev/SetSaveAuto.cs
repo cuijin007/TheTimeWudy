@@ -23,7 +23,7 @@ namespace TimeMDev
             this.path.Text = Config.DefaultConfig["AutoSavePath"];
             this.functionTime.Text = Config.DefaultConfig["AutoSaveFunctionTime"];
             this.count.Text = Config.DefaultConfig["AutoSaveCount"];
-
+            this.pathBuf.Text = Config.DefaultConfig["TimeMBufPath"];
         }
 
         private void choosePath_Click(object sender, EventArgs e)
@@ -87,6 +87,7 @@ namespace TimeMDev
                     Config.DefaultConfig["AutoSavePath"] = this.path.Text;
                     Config.DefaultConfig["AutoSaveFunctionTime"] = timeI + "";
                     Config.DefaultConfig["AutoSaveCount"] = countI + "";
+                    Config.DefaultConfig["TimeMBufPath"] = this.pathBuf.Text;
                     this.Close();
                 }
                 else
@@ -105,6 +106,15 @@ namespace TimeMDev
         private void cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chooseBufPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                this.pathBuf.Text = fbd.SelectedPath;
+            }
         }
     }
 }
