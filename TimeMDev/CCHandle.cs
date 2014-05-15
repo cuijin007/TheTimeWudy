@@ -57,7 +57,7 @@ namespace TimeMDev
         /// 大写转小写。
         /// </summary>
         /// <param name="listSingleSentence"></param>
-        private static void UpToLow(List<SingleSentence> listSingleSentence)
+        public static void UpToLow(List<SingleSentence> listSingleSentence)
         {
             for (int i = 0; i < listSingleSentence.Count; i++)
             {

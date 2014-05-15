@@ -120,6 +120,7 @@
     <Compile Include="ChooseEncodingForm.Designer.cs">
       <DependentUpon>ChooseEncodingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HandleRecord\cchandle\CaseConversion.cs" />
     <Compile Include="HandleRecord\cchandle\DeleteSymbols.cs" />
     <Compile Include="ConfigSave\RecentFile.cs" />
     <Compile Include="ConfigSave\Config.cs" />

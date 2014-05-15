@@ -55,12 +55,12 @@ namespace TimeMDev.ConfigSave
             if (sentence.EndsWith("\r\n"))
             {
                 sentence = sentence.Remove(sentence.Length-2, 2);
-                sentence = DeleteStartEnter(sentence);
+                sentence = DeleteEndEnter(sentence);
             }
             if (sentence.EndsWith(" "))
             {
                 sentence = sentence.Remove(sentence.Length - 1, 1);
-                sentence = DeleteStartEnter(sentence);
+                sentence = DeleteEndEnter(sentence);
             }
             return sentence;
         }
@@ -90,9 +90,24 @@ namespace TimeMDev.ConfigSave
         private string DeleteSpecialEffect(string sentence)
         {
             sentence = Regex.Replace(sentence, @"\<.*\>", "");
-            sentence = Regex.Replace(sentence, "\\[.*?\\]|\\(.*?\\)", "");
+            //sentence = Regex.Replace(sentence, "\\[.*?\\]|\\(.*?\\)", "");
+            sentence = Regex.Replace(sentence, @"\[.*\]", "");
+            sentence = Regex.Replace(sentence, @"\(.*\)", "");
+
             return sentence;
         }
+
+        /// <summary>
+        /// 删除开头的带冒号的英文
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
+        private string DeleteStartName(string sentence)
+        {
+            sentence = Regex.Replace(sentence, @"^[a-zA-Z]*:","");
+            return sentence;
+        }
+        
         public void DeleteAction()
         {
             for (int i = this.listSingleSentence.Count-1; i >0; i--)
@@ -101,11 +116,43 @@ namespace TimeMDev.ConfigSave
                 this.listSingleSentence[i].content = this.DeleteStartEnter(this.listSingleSentence[i].content);
                 this.listSingleSentence[i].content = this.DeleteEndEnter(this.listSingleSentence[i].content);
                 this.listSingleSentence[i].content = this.DeleteMutiSpace(this.listSingleSentence[i].content);
-                if (this.listSingleSentence[i].content.Equals(""))
+                this.listSingleSentence[i].content = this.DeleteStartName(this.listSingleSentence[i].content);
+                this.listSingleSentence[i].content = this.DeleteStartEndQuestionMark(this.listSingleSentence[i].content);
+                if (this.listSingleSentence[i].content.Equals("")||this.JudgeIfAllCase(this.listSingleSentence[i].content))
                 {
                     this.listSingleSentence.RemoveAt(i);
                 }
             }
+        }
+        /// <summary>
+        /// 判断此句是否全为标点
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
+        private bool JudgeIfAllCase(string sentence)
+        {
+            //return Regex.IsMatch(sentence, @"^[,:.?!~@#$%^]*", RegexOptions.None);
+            MatchCollection collection=Regex.Matches(sentence, @"^[,:.?!~@#$%^]*", RegexOptions.None);
+            if (collection.Count > 0)
+            {
+                if (sentence.Equals(collection[0].Value))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private string DeleteStartEndQuestionMark(string sentence)
+        {
+            if (sentence!=null&&sentence.Length>1&&
+                sentence.StartsWith("?") && sentence.EndsWith("?"))
+            {
+                sentence=sentence.Remove(0, 1);
+                sentence = sentence.Remove(sentence.Length - 1, 1);
+            }
+            return sentence;
         }
     }
 }

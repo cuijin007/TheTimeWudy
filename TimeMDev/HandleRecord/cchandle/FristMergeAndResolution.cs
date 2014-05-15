@@ -12,7 +12,7 @@ namespace TimeMDev.HandleRecord.cchandle
     public class FristMergeAndResolution
     {
         double mergeTimeBetween = 0.5;//超过0.5s不合并
-        string[] endCase = {",","?","!",".","" };//结束标识
+        string[] endCase = {",","?","!",".","。" };//结束标识
         int maxLength = 74;//单句最长字符数
         int maxCountCutMark = 10;//从后面数第几个位置是切字符串的位置
 
@@ -33,6 +33,11 @@ namespace TimeMDev.HandleRecord.cchandle
         public void MergeResolutionFunction()
         {
             this.Merge();
+
+            CCHandle.UpToLow(listSingleSentence);
+            CCHandle.TurnUpLowPunctuation(this.listSingleSentence);
+            CCHandle.TurnUpLowName(this.listSingleSentence);
+
             this.Resolution();
         }
 
@@ -111,6 +116,8 @@ namespace TimeMDev.HandleRecord.cchandle
                     
                     SingleSentence result1 = CopyObject.DeepCopy<SingleSentence>(sentence);
                     SingleSentence result2 = CopyObject.DeepCopy<SingleSentence>(sentence);
+                    result1.content = "";
+                    result2.content = "";
                     double allTime = Math.Abs(sentence.endTime - sentence.startTime);
                     result1.endTime = result1.startTime + allTime * (plusAllMark / sentenceAfterSpilt.Length);
                     result2.startTime = result1.endTime + 0.01;
@@ -131,7 +138,7 @@ namespace TimeMDev.HandleRecord.cchandle
                     if (returnSentenceBuf != null)
                     {
                         returnSentence.RemoveAt(0);
-                        for (int j = 0; j < returnSentence.Count; j++)
+                        for (int j = 0; j < returnSentenceBuf.Count; j++)
                         {
                             returnSentence.Insert(j, returnSentenceBuf[j]);
                         }

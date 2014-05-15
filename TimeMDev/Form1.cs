@@ -644,10 +644,10 @@ namespace TimeMDev
         private void ccSubtitleHandleItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //CCHandle.DeleteRemark(this.timeLineReadWrite.GetListSingleSentence());
-            (new CutSame(this.timeLineReadWrite.GetListSingleSentence())).CutSameFromList();
-            (new DeleteSymbols(this.timeLineReadWrite.GetListSingleSentence())).DeleteAction();
-            (new FristMergeAndResolution(this.timeLineReadWrite.GetListSingleSentence())).MergeResolutionFunction();
-            
+            //(new CutSame(this.timeLineReadWrite.GetListSingleSentence())).CutSameFromList();
+            //(new DeleteSymbols(this.timeLineReadWrite.GetListSingleSentence())).DeleteAction();
+            //(new FristMergeAndResolution(this.timeLineReadWrite.GetListSingleSentence())).MergeResolutionFunction();
+            this.commandManage.CommandRunNoRedo(new CCHandle2(this.timeLineReadWrite.GetListSingleSentence()));
             this.SetListViewData(this.timeLineReadWrite.GetListSingleSentence());
             this.listView1.YYRefresh();
         }
