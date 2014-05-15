@@ -116,13 +116,25 @@ namespace TimeMDev
         private void CheckSentenceEnglish(int index,SingleSentence sentence)
         {
             string chinese;
+            string english2;
             List<string> english;
-            CCHandle.GetEnglishFromChinese(sentence.content, out english);
-            if (english.Count > 1||(english.Count==1&&!english[0].Equals("")))
+            
+            //CCHandle.GetEnglishFromChinese(sentence.content, out english);//cuijin---修改于2014-5-15
+            //if (english.Count > 1||(english.Count==1&&!english[0].Equals("")))
+            //{
+            //    this.AddNewItemInListview(index, "中文行中有英文", this.chineseContainEnglishColor.BackColor);
+            //}
+            CCHandle.SpiltRuleByEnter(sentence.content, out chinese, out english2);
+            chinese = CCHandle.TrimEnterEnd(chinese);
+            if (chinese.Length > 0)
             {
-                this.AddNewItemInListview(index, "中文行中有英文", this.chineseContainEnglishColor.BackColor);
+                CCHandle.GetEnglishFromChinese(chinese+"中文", out english);
+                if (english.Count > 1 || (english.Count == 1 && !english[0].Equals("")))
+                {
+                    this.AddNewItemInListview(index, "中文行中有英文", this.chineseContainEnglishColor.BackColor);
+                }
             }
-           
+            
         }
         /// <summary>
         /// 检查中文字符的长度
