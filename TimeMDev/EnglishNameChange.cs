@@ -73,6 +73,7 @@ namespace TimeMDev
             }
             streamReader.Close();
             fileStream.Close();
+            this.NameListSort();
             return;
         }
         /// <summary>
@@ -204,6 +205,10 @@ namespace TimeMDev
 
         public int Compare(NameTable x, NameTable y)
         {
+            if (x.englishName.Length == y.englishName.Length)
+            {
+                return 0;
+            }
             if (x.englishName.Length > y.englishName.Length)
             {
                 return 1;

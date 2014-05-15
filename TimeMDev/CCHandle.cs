@@ -255,7 +255,8 @@ namespace TimeMDev
             for(int i=0;i<afterSpilt.Length;i++)
             {
                 buf+=afterSpilt[i];
-                if(i>0)
+                //if(i>0)
+                if(i>0&&i<afterSpilt.Length-1)//cuijin---修改于2014-5-15
                 {
                     buf+="\r\n";
                 }
@@ -272,7 +273,8 @@ namespace TimeMDev
             SpiltRule(chinese2, out chinese3,out english3);
             if (chinese3.EndsWith("挊燶秾"))
             {
-                chinese = chinese3.Replace("挊燶秾", "");
+                //chinese = chinese3.Replace("挊燶秾", "");
+                chinese = chinese3.Replace("挊燶秾", "\r\n");//cuijin----修改于2014-5-15
                 english = english2;
             }
             else if (chinese3.Equals("挊燶秾"))
