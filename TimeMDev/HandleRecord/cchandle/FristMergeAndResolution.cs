@@ -17,7 +17,7 @@ namespace TimeMDev.HandleRecord.cchandle
         int maxCountCutMark = 10;//从后面数第几个位置是切字符串的位置
 
         int resolutionTimeLength=5;
-        string[] importantWord={"and", "or", "that", "who", "which", "when", "how", "why", "what", "if", "whether", "but", "until",",",".","?","!"};
+        string[] importantWord={"and", "or", "that", "who", "which", "when", "how", "why", "what", "if", "whether", "but", "until","til", "until", "not til", "not until", "so", "then", "because","'cause","not that",",",".","?","!"};
 
         string[] resolutionCutCase = { " ", ",", ".", "!", "?", "-" };
 
